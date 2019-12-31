@@ -267,6 +267,142 @@
 # p "hello".gsub(/./) {|s| s.ord.to_s + ' '}
 # p "hello".gsub(/[eo]/, 'e' => 3, 'o' => "*")
 
+#===================================================
+
+# p "0x0a".hex     
+# p "-1234".hex    
+# p "0".hex        
+# p "hello".hex   
+
+#===================================================
+
+# p "hello".include? "lo"  
+# p "hello".include? "ol"  
+# p "hello".include? ?h 
+# # p "hello".include? ?he #error
+
+#===================================================
+
+# p "hello".index('e')             
+# p "hello".index('lo')            
+# p "hello".index('a')             
+# p "hello".index(?e)   
+# p "hello".index(/[aeiou]/)   
+# p "hello".index(/[aeiou]/, -3)
+
+
+#==================================================
+
+# s = "hello"    
+# p s.replace "world"
+# p s
+
+#==================================================
+
+# p "abcd".insert(0, 'X')
+# p "abcd".insert(3, 'X')
+# p "abcd".insert(4, 'X')
+# p "abcd".insert(-3, 'X')
+# p "abcd".insert(-1, 'X')
+
+#===================================================
+
+# s = "hello"
+# s[3] = "\b"
+# p s
+# p s.inspect 
+# p s
+
+#===================================================
+
+# p "hello".intern
+# s = 'cat'.to_sym
+# p s
+# p s == :cat
+# s = '@cat'.to_sym
+# p s
+# p s == :@cat
+# p "hello world".to_sym
+# p "hello world".to_sym.class
+
+#===================================================
+
+# p "hello\nworld\n".lines
+# p "hello\nworld\n".lines[0]
+# p "hello  world".lines(' ')
+# p "hel lo wor ld".lines(" ")
+# p "helloworld".lines("l")
+# p "hello\nworld\n".lines(chomp: true)
+
+#==================================================
+
+# p "hello".ljust(4)
+# p "hello".ljust(20)
+# p "hello".ljust(20, '1234') 
+
+#==================================================
+
+# p "  hello  ".lstrip
+# p "hello".lstrip 
+
+# a = "  hello    "
+# p a
+# p a.lstrip!
+# p a
+
+#==================================================
+
+# p "Ruby".match?(/R.../)
+# p "Ruby".match?(/R.../, 1)
+# p "Ruby".match?(/R.../, 0)
+# p "Ruby Python".match?(/P.../)
+# p "Ruby".match?(/P.../)
+
+#==================================================
+
+# p "abcd".succ
+# p "123".succ
+# p "abcz".succ
+# p "abcy".succ
+# p "abcdef".succ
+# p "***".succ
+
+#=================================================
+
+# p "123".oct
+# p "-123".oct
+# p "hello".oct
+# p "123hello".oct
+
+#=================================================
+
+# p 65.chr
+# p "A".ord
+
+#=================================================
+
+# p "hello".partition("l")
+# p "hello".partition("x")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
