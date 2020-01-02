@@ -384,6 +384,252 @@
 # p "hello".partition("l")
 # p "hello".partition("x")
 
+#=================================================
+
+# a = "!"
+# p a.prepend("Hello ", "World")
+# p a
+
+#==================================================
+
+# s = "hello"
+# p s.replace "world"
+# p s
+
+#==================================================
+
+# s = "Hello"
+# p s.reverse
+# p s
+
+#==================================================
+
+# p "hello".rindex('e')
+# p "hello".rindex('l')
+# p "hello".rindex(?l)
+# p "hello".rindex('x')
+# p "hello".rindex(/[aeiou]/,0)  #nil
+# p "hello".rindex(/[aeiou]/,1)
+# p "hello".rindex(/[aeiou]/,2)
+# p "hello".rindex(/[aeiou]/,4)
+# p "hello".rindex(/[aeiou]/,5)
+# p "hello".rindex(/[aeiou]/,-1)
+# p "hello".rindex(/[aeiou]/,-5)  #nil
+
+#===================================================
+
+# p "hello".rjust(4)
+# p "hello".rjust(20)
+# p "hello".rjust(20,"123")
+
+#===================================================
+
+# p "hello".partition("l")
+# p "hello".rpartition("l")
+# p "hello".partition("x")
+# p "hello".rpartition("x")
+
+#===================================================
+
+# p "hello".strip()
+# p "     hello     ".strip
+# p "     hello     ".rstrip()
+# p "     hello     ".lstrip()
+
+#===================================================
+
+# s = "     hello    "
+# p s.strip!
+# p s
+
+# s = "hello    "
+# p s.strip!
+# p s
+
+# s = "hello"
+# p s.strip!  #nil
+# p s
+
+# s = "     hello    "
+# p s.rstrip!
+# p s
+
+# s = "     hello"
+# p s.rstrip!
+# p s
+
+#===================================================
+
+# s = "this is a string"
+# p s.slice!(2)
+# p s
+
+#===================================================
+
+# p "now's the time".split
+# p "now's the time    ".split
+# p "now's the time".split(" ")
+# p "this#is#split#method".split("#")
+# p "1,2,,3,4,,,".split(",")
+# p "1,2,,3,4,,,".split(",", 4)
+# p "1,2,,3,4,,,".split(",", 3)
+# p "1,2,,3,4,,,,,5".split(",")
+# p "mellow yellow".split("ello")
+# p "".split
+# p " ".split
+
+#===================================================
+
+# p "yello moon".squeeze
+# p "yello moon".squeeze("m-z")
+
+#===================================================
+
+# p "hello".start_with?("h")
+# p "hello".start_with?("hel")
+# p "hello".start_with?("e")
+# p "hello".start_with?("x")
+# p "hello".start_with?("hel", "x")
+# p "hello".start_with?("x", "h")
+
+#===================================================
+
+# p "hello".sub(/[aeiou]/, '*')
+# p "hello".sub(/([aeiou])/, '<\1>')
+# p "hello".sub(/./) {|s| s.ord.to_s + ' '}
+
+# s = "hello"
+# p s.sub!(/[aeiou]/, '*')
+# p s
+
+# s = "hello"
+# p s.gsub!(/[aeiou]/, '*')
+# p s
+
+#====================================================
+
+# p "Hello".swapcase()
+# p "hELLO".swapcase()
+# p "hello".swapcase
+# p "HELLO".swapcase
+
+#====================================================
+
+# p '9'.to_c
+# p '2.5'.to_c
+# p 'hello'.to_c
+# p '2.5/1'.to_c
+# p '-i'.to_c
+# p 'i'.to_c
+# p '-3/2'.to_c
+
+# p '9'.to_f
+# p '9.1'.to_f
+# p 'hello'.to_f
+
+# p '9'.to_i
+# p '9.4'.to_i
+# p '4 + 2i'.to_i
+# p 'hello'.to_i
+# p "hello".to_i
+
+# p '1100101'.to_i(2)
+# p '1100101'.to_i(8)
+# p '1100101'.to_i(10)
+# p '1100101'.to_i(16)
+# p '0a'.to_i(16)
+
+# p '  2  '.to_r
+# p '300/2'.to_r
+# p '-9.2'.to_r
+# p 'hello'.to_r
+# p 'hello 1079'.to_r
+# p 'BWV 1079'.to_r
+
+# p 5/2 == 2.5  #false
+# p 5/2r == 2.5  #true
+# p '0.3'.to_r == '0.3'.to_r  #true
+# p '0.3'.to_r == 3/10r
+# p 0.3 == 3/10r
+# p '0.3' == 3/10r
+
+# p 12345.to_s
+# p '12345'.to_s
+# p 'hello'.to_s
+
+#======================================================
+
+# p "hello".tr('el', 'ip')
+# p "hello".tr('ell', 'ip')
+# p "hello".tr('l', 'L')
+# p "hello".tr('a-y', 'b-z')
+# p "hello".tr('a-y', 'c-z')
+# p "hello".tr('aeiou', '*')
+# p "hello".tr('^aeiou', '*')
+
+# s = "hello"
+# p s.tr!('el', 'ip')
+# p s
+
+#=====================================================
+
+# "a8".upto("b6") {|s| print s, ' '}
+
+# for s in "a8".."b6"
+# 	print s, ' '
+# end
+
+# for s in "a8"..."b6"
+# 	print s, ' '
+# end
+
+# p "9".upto("11").to_a
+# p "25".upto("5").to_a
+# p "07".upto("11").to_a
+
+
+#=====================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
