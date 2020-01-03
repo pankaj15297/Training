@@ -362,33 +362,72 @@
 
 #================================================
 
+# h = { a: 1, b: 2, c: 3 }
 
+# p h.transform_values! {|v| v * v + 1}
+# p h
+# p h.transform_values! {|v| v.to_s}
+# p h
+# p h.transform_values!(&:to_s)
+# p h
+# p h.transform_values!.with_index {|v, i| "#{v}.#{i}"}
+# p h
 
+# h = { a: 1, b: 2, c: 3 }
 
+# p h.transform_values {|v| v * v + 1}
+# p h
 
+# p h.transform_values {|v| v.to_s}
+# p h.transform_values(&:to_s)
+# p h.transform_values.with_index {|v, i| "#{v}.#{i}"}
 
+#========================================================
 
+# h1 = {a: 1, b: 2, c: 3}
+# h2 = {d: 4, e: 5, f: 6}
+# h3 = {g: 7, h: 8, i: 9}
 
+# p h1.update(h2)
+# p h1
 
+# p h1.update(h2,h3)
+# p h1
+# p h2
+# p h3
 
+#=========================================================
 
+# h = {a: 1, b: 2, c: 3}
 
+# p h
+# p h.transform_keys {|k| k.to_s}
+# p h.transform_keys(&:to_s)
+# p h.transform_keys.with_index {|k, i| "#{k}.#{i}"}
 
+# h = {a: 1, b: 2, c: 3}
 
+# p h
+# p h.transform_keys! {|k| k.to_s}
+# p h
 
+# p h.transform_keys!(&:to_s)
+# p h
 
+# p h.transform_keys!.with_index {|k, i| "#{k}.#{i}"}
+# p h
 
+#=========================================================
 
+# h = {a: 1, b: 2}
 
+# hp = h.to_proc
+# p hp.call(:a)
+# p hp.call(:b)
+# p hp.(:a)
+# p hp[:b]
+# p hp.call(:c)
 
+# h = {a: 1, b: 2}
 
-
-
-
-
-
-
-
-
-
-
+# p [:a, :b, :c].map(&h)
