@@ -93,37 +93,104 @@
 
 #==============================================
 
+# f = proc {|x| x * x}
+# g = proc {|x| x + x}
+
+# p (f << g).call(3)
+# p (f >> g).call(3)
+# p (g << f).call(3)
+# p (g >> f).call(3)
+
+#=================================================
+
+# def fun(*var)
+# 	var.each {|x| puts x * 2}
+# end
+
+# fun(4,5,8)
+# fun(5)
+# fun()
+
+# def fun(*var)
+# 	for i in var
+# 		puts i * 2
+# 	end
+# end
+
+# fun
+# fun(5)
+# fun(4,8,9)
+
+#=================================================
+
+# p proc {}.arity
+# p proc {||}.arity
+# p proc {|a|}.arity
+# p proc {|a,b|}.arity
+# p proc {|a,b,c|}.arity
+# p proc {|*a|}.arity
+
+#==================================================
+
+# p proc {|a,b| [a,b]}.call(5,3)
+# p proc {|a,b| [a,b]}.call(1,2,7)
+# p proc {|a,b| [a,b]}.call([2,8])
+# p proc {|a,b| [a,b]}.call([1,8,6])
+
+# p lambda {|a,b| [a,b]}.call(4,7)
+# # p lambda {|a,b| [a,b]}.call(4)  #error
+# # p lambda {|a,b| [a,b]}.call(5,4,7) #error
+
+# p lambda {}.lambda?
+# p proc {}.lambda?
+# p Proc.new {}.lambda?
+
+# def n(&b)
+# 	b.lambda?
+# end
+
+# p n(&lambda {})
+
+#==================================================
+
+# def fun
+# 	puts "before yield"
+# 	yield
+# 	puts "after yield"
+# 	yield
+# end
+
+# fun{puts "yield statement"} 
 
 
+# def fun
+# 	puts "before yield"
+# 	yield
+# 	puts "after yield"
+# 	yield 1
+# 	yield 2
+# end
+
+# fun{|i| puts "yield statement #{i}"} 
+
+#==================================================
+
+# def fun(&block)
+# 	puts "this is method"
+# end
+
+# fun()
 
 
+# def fun(&block)
+# 	puts "this is method"
+# 	block.call
+# end
 
+# # fun()
+# fun {puts "this is &block example"}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#===================================================
 
 
 
