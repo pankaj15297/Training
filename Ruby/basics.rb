@@ -200,6 +200,12 @@
 
 # end
 
+# class Abc
+# 	@@a = 52
+# end
+
+# p Abc.class_variable_get(:@@a)
+
 # puts Foo.new
 # puts Foo.new.class
 
@@ -238,28 +244,150 @@
 # f = Foo.new("Pankaj",23,"Delhi")
 # f.get_data
 
-class Foo
-	def initialize(name,age)
-		@@name = name
-		@@age = age
-		@@add = add
-	end
-	
-	def get_data
-		puts @@name
-		puts @@age
-		puts @@add
-	end
-	def initialize(name,age,add = 0)
-		@@name = name
-		@@age = age
-		@@add = add
-	end
-end
+#====================================================Doubt
 
-f = Foo.new("Pankaj",23)
-d = Foo.new("Pankaj",23, "Delhi")
-f.get_data
+# class Foo
+# 	def initialize(name,age)
+# 		@@name = name
+# 		@@age = age
+# 		@@add = add
+# 	end
+	
+# 	def get_data
+# 		puts @@name
+# 		puts @@age
+# 		puts @@add
+# 	end
+# 	def initialize(name,age,add = 0)
+# 		@@name = name
+# 		@@age = age
+# 		@@add = add
+# 	end
+# end
+
+# f = Foo.new("Pankaj",23)
+# p f.object_id
+# d = Foo.new("Pankaj",23, "Delhi")
+# p f.object_id
+# f.get_data
+
+#======================================================
+
+# module Fun
+
+# end
+
+# p Fun.class
+
+# module Fun
+# 	V = 22
+# 	def Fun.sum(a,b)
+# 		return a+b
+# 	end
+# 	def Fun.sub(a,b)
+# 		return b-a
+# 	end
+# 	def Fun.mul(a,b)
+# 		return a*b
+# 	end
+# end
+
+# p Fun::V
+# p Fun.sum(5,2)
+# p Fun.sub(10,20)
+# p Fun.mul(5,3)
+
+
+
+# module Fun
+# 	V = 22
+# 	def sum(a,b)
+# 		return a+b
+# 	end
+# 	def sub(a,b)
+# 		return b-a
+# 	end
+# 	def mul(a,b)
+# 		return a*b
+# 	end
+# end
+
+# include Fun
+
+# p V
+# p sum(5,2)
+# p mul(5,2)
+
+
+
+# module Fun
+# 	V = 22
+# 	def sum(a,b)
+# 		return a+b
+# 	end
+# 	def sub(a,b)
+# 		return b-a
+# 	end
+# 	def mul(a,b)
+# 		return a*b
+# 	end
+# end
+
+# extend Fun
+
+# # p V  #error
+# p sum(5,2)
+# p mul(5,2)
+
+
+
+# module Fun
+# 	V = 22
+# 	def sum(a,b)
+# 		return a+b
+# 	end
+# 	def sub(a,b)
+# 		return b-a
+# 	end
+# 	def mul(a,b)
+# 		return a*b
+# 	end
+# end
+
+# class Fea
+# 	include Fun
+# end
+
+# f = Fea.new
+# # p Fea.class_variable_get(:V) #error
+# p f.sum(5,2)
+# p f.mul(5,2)
+
+
+
+# module Fun
+# 	V = 22
+# 	def sum(a,b)
+# 		return a+b
+# 	end
+# 	def sub(a,b)
+# 		return b-a
+# 	end
+# 	def mul(a,b)
+# 		return a*b
+# 	end
+# end
+
+# class Fea
+# 	extend Fun
+# end
+
+# # p Fea.class_variable_get(:V) #error
+
+# p Fea.sum(5,2)
+# p Fea.mul(5,2)
+
+
 
 
 
