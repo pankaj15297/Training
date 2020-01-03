@@ -192,12 +192,74 @@
 
 #===================================================
 
+# p 1.class
 
+# p self.class
 
+# class Foo
 
+# end
 
+# puts Foo.new
+# puts Foo.new.class
 
+# class Foo
+# 	def set_data(name,age,add)
+# 		@@name = name
+# 		@@age = age
+# 		@@add = add
+# 	end
+	
+# 	def get_data
+# 		puts @@name
+# 		puts @@age
+# 		puts @@add
+# 	end
+# end
 
+# f = Foo.new
+# f.set_data("Pankaj",23,"Delhi")
+# f.get_data
+
+# class Foo
+# 	def initialize(name,age,add)
+# 		@@name = name
+# 		@@age = age
+# 		@@add = add
+# 	end
+	
+# 	def get_data
+# 		puts @@name
+# 		puts @@age
+# 		puts @@add
+# 	end
+# end
+
+# f = Foo.new("Pankaj",23,"Delhi")
+# f.get_data
+
+class Foo
+	def initialize(name,age)
+		@@name = name
+		@@age = age
+		@@add = add
+	end
+	
+	def get_data
+		puts @@name
+		puts @@age
+		puts @@add
+	end
+	def initialize(name,age,add = 0)
+		@@name = name
+		@@age = age
+		@@add = add
+	end
+end
+
+f = Foo.new("Pankaj",23)
+d = Foo.new("Pankaj",23, "Delhi")
+f.get_data
 
 
 
