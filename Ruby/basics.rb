@@ -685,23 +685,118 @@
 
 #===================================================
 
+# class Foo
+# 	def fun(a,b)
+# 		return sub(a,b)
+# 	end
 
+# 	private
+# 	def sub(a,b)
+# 		return b-a
+# 	end
+# end
 
+# f = Foo.new
+# p f.fun(4,5)
 
+#===================================================
 
+# class Foo
+# 	def sum(a,b)
+# 		return a+b
+# 	end
 
+# 	private
+# 	def sub(a,b)
+# 		return b-a
+# 	end
+# end
 
+# class Zoo < Foo
+# 	def fun(a,b)
+# 		return sub(a,b)
+# 	end
+# end
 
+# z = Zoo.new
+# p z.fun(4,8)
 
+#=================================================
 
+# class Foo
+# 	def fun(a,b)
+# 		return sub(a,b)
+# 	end
 
+# 	protected
+# 	def sub(a,b)
+# 		return b-a
+# 	end
+# end
 
+# f = Foo.new
+# p f.fun(5,10)
 
+#=================================================
 
+# class Foo
+# 	def sum(a,b)
+# 		return a+b
+# 	end
 
+# 	protected
+# 	def sub(a,b)
+# 		return b-a
+# 	end
+# end
 
+# class Zoo < Foo
+# 	def fun(a,b)
+# 		return sub(a,b)
+# 	end
+# end
 
+# z = Zoo.new
+# p z.fun(4,8)
 
+#==================================================
+
+# class Foo
+# 	@@a = 10
+# 	def fun1
+# 		@b = 20
+# 	end
+# 	def fun2
+# 		@b
+# 	end
+# 	def fun3
+# 		@@a
+# 	end
+# end
+
+# # p Foo.class_variable_get(:@@a)
+
+# f = Foo.new
+# # f.fun1
+# p f.fun3
+
+#===================================================
+
+# module Fun
+# 	def sum(a,b)
+# 		return a+b
+# 	end
+# end
+
+# class Foo
+# 	class << self
+# 		include Fun
+# 	end
+# end
+
+# p Foo.sum(5,9)
+
+#===================================================
 
 
 
