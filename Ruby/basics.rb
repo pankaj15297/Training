@@ -270,6 +270,35 @@
 # d = Foo.new("Pankaj",23, "Delhi")
 # p f.object_id
 # f.get_data
+# d.get_data
+
+
+# class Foo
+# 	def initialize(name,age)
+# 		@name = name
+# 		@age = age
+# 		@add = add
+# 	end
+	
+# 	def get_data
+# 		puts @name
+# 		puts @age
+# 		puts @add
+# 	end
+# 	def initialize(name,age,add = 0)
+# 		@name = name
+# 		@age = age
+# 		@add = add
+# 	end
+# end
+
+# f = Foo.new("Pankaj",23)
+# p f.object_id
+# d = Foo.new("Pankaj",23, "Delhi")
+# p f.object_id
+# f.get_data
+# d.get_data
+
 
 #======================================================
 
@@ -386,6 +415,362 @@
 
 # p Fea.sum(5,2)
 # p Fea.mul(5,2)
+
+
+#========================================================
+
+# module Fun
+# 	V = 22
+# 	def sum(a,b)
+# 		return a+b
+# 	end
+# 	def sub(a,b)
+# 		return b-a
+# 	end
+# 	def mul(a,b)
+# 		return a*b
+# 	end
+# 	class Foo
+# 		def div(a,b)
+# 			return a/b
+# 		end
+# 		def mod(a,b)
+# 			return a%b
+# 		end
+# 	end
+# end
+
+# class Exp < Fun::Foo
+
+# end
+
+# e = Exp.new
+# p e.div(10,2)
+
+#==================================================
+
+
+# class Foo
+# 	def sum(a,b)
+# 		return a+b
+# 	end
+# 	def sub(a,b)
+# 		return b-a
+# 	end
+# end
+
+# class Hoo < Foo
+# 	def mul(a,b)
+# 		return a*b
+# 	end
+# end
+
+# h = Hoo.new
+# p h.sum(5,3)
+# p h.mul(5,2)
+
+# f = Foo.new
+# p f.sum(5,3)
+# # p f.mul(5,2) #error
+
+
+#=======================================================
+
+
+# class Foo
+# 	def self.sum(a,b)
+# 		return a+b
+# 	end
+# end
+
+# class Noo < Foo
+# 	def self.sub(a,b)
+# 		return b-a
+# 	end
+# end
+
+# class Hoo < Noo
+# 	def self.mul(a,b)
+# 		return a*b
+# 	end
+# end
+
+# p Hoo.sum(10,20)
+# p Hoo.mul(5,2)
+# p Hoo.sub(4,9)
+# p Noo.sum(7,7)
+
+#==========================================================
+
+# class Foo
+# 	def self.sum(a,b)
+# 		return a+b
+# 	end
+
+# 	private
+# 	def self.sub(a,b)
+# 		return b-a
+# 	end
+
+# 	protected
+# 	def self.mul(a,b)
+# 		return a*b
+# 	end
+
+# 	public
+# 	def self.mod(a,b)
+# 		return a%b
+# 	end
+# end
+
+# p Foo.sum(4,4)
+# p Foo.sub(7,9)
+# p Foo.mul(8,3)
+# p Foo.mod(9,2)
+
+#=================================================
+
+# class Foo
+# 	def self.sum(a,b)
+# 		return a+b
+# 	end
+
+# 	private
+# 	def self.sub(a,b)
+# 		return b-a
+# 	end
+
+# 	protected
+# 	def self.mul(a,b)
+# 		return a*b
+# 	end
+
+# 	public
+# 	def self.mod(a,b)
+# 		return a%b
+# 	end
+# end
+
+# class Qoo < Foo
+
+# end
+
+# p Qoo.sum(4,4)
+# p Qoo.sub(7,9)
+# p Qoo.mul(8,3)
+# p Qoo.mod(9,2)
+
+
+#=============================================
+
+# class Foo
+# 	def sum(a,b)
+# 		return a+b
+# 	end
+
+# 	private
+# 	def sub(a,b)
+# 		return b-a
+# 	end
+
+# 	protected
+# 	def mul(a,b)
+# 		return a*b
+# 	end
+
+# 	public
+# 	def mod(a,b)
+# 		return a%b
+# 	end
+# end
+
+# class Qoo < Foo
+
+# end
+
+# q = Qoo.new
+# p q.sum(4,4)
+# # p q.sub(7,9)  #error
+# # p q.mul(8,3)  #error
+# p q.mod(9,2)
+
+#==================================================
+
+# class Foo
+# 	def self.sum(a,b)
+# 		return a+b
+# 	end
+
+# 	private
+# 	def self.sub(a,b)
+# 		return b-a
+# 	end
+
+# 	protected
+# 	def self.mul(a,b)
+# 		return a*b
+# 	end
+
+# 	public
+# 	def self.mod(a,b)
+# 		return a%b
+# 	end
+# end
+
+# p Foo.sum(5,6)
+# p Foo.sub(6,9)
+
+#==================================================
+
+# class Foo
+# 	class << self
+# 		def sum(a,b)
+# 			return a+b
+# 		end
+
+# 		private
+# 		def sub(a,b)
+# 			return b-a
+# 		end
+
+# 		protected
+# 		def mul(a,b)
+# 			return a*b
+# 		end
+
+# 		public
+# 		def mod(a,b)
+# 			return a%b
+# 		end
+# 	end
+# end
+
+# p Foo.sum(4,4)
+# # p Foo.sub(7,9)  #error
+# # p Foo.mul(8,3)   #error
+# p Foo.mod(9,2)
+
+
+#====================================================
+
+
+# class Foo
+# 	def sum(a,b)
+# 		return a+b
+# 	end
+
+# 	private
+# 	def sub(a,b)
+# 		return b-a
+# 	end
+
+# 	protected
+# 	def mul(a,b)
+# 		return a*b
+# 	end
+
+# 	public
+# 	def mod(a,b)
+# 		return a%b
+# 	end
+# 	p sub(7,9)
+# end
+
+# class Qoo < Foo
+# 	f = Foo.new
+# 	p f.mod(4,6)
+# 	# p f.mul(4,2) #error
+# 	# p f.sub(7,8)  #error
+# end
+
+#===================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
