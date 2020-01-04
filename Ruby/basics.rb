@@ -840,13 +840,39 @@
 
 # p sum(6,6)
 
-#================================================
+#================================EXP:::33333=============================================
+
+# $LOAD_PATH << '.'
+# require 'modulefile.rb'
+
+# f = Foo.new
+# p f.sum(5,7)
+# # p f.sub(4,6)  #error
 
 
 
 
+# $LOAD_PATH << '.'
+# require 'modulefile.rb'
 
+# class Hoo < Foo
+# 	def fun1(a,b)
+# 		return sum(a,b)
+# 	end
+# 	def fun2(a,b)
+# 		return sub(a,b)
+# 	end
+# 	def fun3(a,b)
+# 		return mul(a,b)
+# 	end
+# end
 
+# h = Hoo.new
+# p h.fun1(5,7)
+# p h.fun2(4,6)
+# p h.fun3(7,8)
+
+#===========================
 
 
 

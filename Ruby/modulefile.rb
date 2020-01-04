@@ -38,4 +38,27 @@
 # 	end
 # end
 
-#===================================================================
+#====================EXP:::33333===================================
+
+# class Foo
+# 	def sum(a,b)
+# 		return a+b
+# 	end
+# 	protected
+# 	def sub(a,b)
+# 		return b-a
+# 	end
+# 	private
+# 	def mul(a,b)
+# 		return a*b
+# 	end
+# 	public
+# 	def div(a,b)
+# 		return a/b
+# 	end
+# 	def mod(a,b)
+# 		return a%b
+# 	end
+# end
+
+#============================
