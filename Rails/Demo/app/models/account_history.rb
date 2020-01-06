@@ -1,3 +1,3 @@
 class AccountHistory < ApplicationRecord
-	belongs_to :account
+	belongs_to :AccountHistory
 end
