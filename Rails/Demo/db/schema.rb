@@ -36,3 +36,4 @@ ActiveRecord::Schema.define(version: 2020_01_06_073514) do
 
   add_foreign_key "products", "users"
 end
+
