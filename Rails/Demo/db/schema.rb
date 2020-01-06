@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_06_073514) do
+ActiveRecord::Schema.define(version: 2020_01_06_092351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "author_id", null: false
+    t.index ["author_id"], name: "index_books_on_author_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
@@ -34,6 +48,6 @@ ActiveRecord::Schema.define(version: 2020_01_06_073514) do
     t.index ["user_number"], name: "index_users_on_user_number"
   end
 
+  add_foreign_key "books", "authors"
   add_foreign_key "products", "users"
 end
-
