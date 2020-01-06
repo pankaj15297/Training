@@ -872,44 +872,94 @@
 # p h.fun2(4,6)
 # p h.fun3(7,8)
 
-#===========================
+#========================================================
+
+# class Person
+
+# end
+
+# person = Person.new
+# # p person.name  # no method error
+
+
+
+# class Person
+# 	def name
+# 		@name
+# 	end
+# end
+
+# person = Person.new
+# # p person.name
+# # person.name = "Pankaj"  #no method error
+
+
+
+# class Person
+# 	def name
+# 		@name
+# 	end
+# 	def name=(s)
+# 		@name = s
+# 	end
+# end
+
+# person = Person.new
+# # p person.name = "Pankaj"
+# person.name = "Pankaj"
+# p person.name
 
 
 
 
+# class Person
+# 	attr_reader :name
+# 	attr_writer :name
+# end
+
+# person = Person.new
+# person.name = "Pankaj"
+# p person.name
 
 
 
 
+# class Person
+# 	attr_accessor :name
+# end
+
+# person = Person.new
+# person.name = "Pankaj"
+# p person.name
 
 
 
 
+# class Person
+# 	attr_accessor :name
+# 	def show
+# 		"Hello #{@name}"
+# 	end
+# end
+
+# person = Person.new
+# person.name = "Pankaj"
+# p person.show
 
 
+#=========================================================
 
 
+# p [1,2,3,4].inject(0) {|res, ele| res + ele}
 
+# p [1,2,3,4].inject(10) {|res, ele| res + ele}
 
+# p [1,2,3,4].inject(2.5) {|res, ele| res + ele}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[1, "a", Object.new, :hi].inject({}) do |hash, item|
+	hash[item.to_s] = item
+	p hash
+end
 
 
 
