@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_06_124939) do
+ActiveRecord::Schema.define(version: 2020_01_07_115026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 2020_01_06_124939) do
     t.bigint "patient_id", null: false
     t.index ["patient_id"], name: "index_appointments_on_patient_id"
     t.index ["physician_id"], name: "index_appointments_on_physician_id"
+  end
+
+  create_table "arts", force: :cascade do |t|
+    t.string "name"
+    t.boolean "published"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "assemblies", force: :cascade do |t|
@@ -70,10 +77,37 @@ ActiveRecord::Schema.define(version: 2020_01_06_124939) do
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
+  create_table "clients", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "clients_programmers", id: false, force: :cascade do |t|
+    t.bigint "client_id", null: false
+    t.bigint "programmer_id", null: false
+    t.index ["client_id"], name: "index_clients_programmers_on_client_id"
+    t.index ["programmer_id"], name: "index_clients_programmers_on_programmer_id"
+  end
+
+  create_table "districs", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "employees", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "india", id: false, force: :cascade do |t|
+    t.bigint "state_id", null: false
+    t.bigint "distric_id", null: false
+    t.index ["distric_id", "state_id"], name: "index_india_on_distric_id_and_state_id"
+    t.index ["state_id", "distric_id"], name: "index_india_on_state_id_and_distric_id"
   end
 
   create_table "parts", force: :cascade do |t|
@@ -111,10 +145,31 @@ ActiveRecord::Schema.define(version: 2020_01_06_124939) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
+  create_table "programmers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "suppliers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.bigint "manager_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["manager_id"], name: "index_teams_on_manager_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -140,5 +195,7 @@ ActiveRecord::Schema.define(version: 2020_01_06_124939) do
   add_foreign_key "assembly_and_parts", "assemblies"
   add_foreign_key "assembly_and_parts", "parts"
   add_foreign_key "books", "authors"
+  add_foreign_key "clients_programmers", "clients"
+  add_foreign_key "clients_programmers", "programmers"
   add_foreign_key "products", "users"
 end
