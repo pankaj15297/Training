@@ -956,11 +956,12 @@
 
 # p [1,2,3,4].inject(2.5) {|res, ele| res + ele}
 
-[1, "a", Object.new, :hi].inject({}) do |hash, item|
-	hash[item.to_s] = item
-	p hash
-end
+# [1, "a", Object.new, :hi].inject({}) do |hash, item|
+# 	hash[item.to_s] = item
+# 	p hash
+# end
 
+#=========================================================
 
 
 
