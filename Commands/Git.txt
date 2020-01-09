@@ -5,3 +5,12 @@ git config --global user.name Pankaj
 git config --global user.email
 git config --global user.email pankaj15297@gmail.com
 git status
+mkdir ProjectName
+cd ProjectName
+git init
+subl .
+git status
+git remote
+git remote -v
+git remote  add origin http://github.com/pankaj15297/Training.git
+git remote -v
