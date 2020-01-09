@@ -14,3 +14,28 @@ git remote
 git remote -v
 git remote  add origin http://github.com/pankaj15297/Training.git
 git remote -v
+git branch
+git branch -a
+git branch --list
+git branch mybranch
+git branch checkout -b mybranch
+git checkout -b branch
+git branch
+git checkout -b branch
+git branch -a
+git status
+git add -A
+git add .
+git add Git.txt
+git status
+git commit -m "My first commit"
+git status
+git push origin mybranch
+git push -u origin master
+git log
+git remove rm origin
+git rm -r Command
+git commit -m "Remove Folder from git repo."
+git push origin master
+git pull
+git pull origin master
