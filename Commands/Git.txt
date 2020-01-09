@@ -1,0 +1,7 @@
+git --version
+git config --list
+git config --global user.name
+git config --global user.name Pankaj
+git config --global user.email
+git config --global user.email pankaj15297@gmail.com
+git status
