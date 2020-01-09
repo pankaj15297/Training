@@ -1,0 +1,5 @@
+rvm -v
+rvm list
+rvm list known
+rvm --default use ruby 2.7.0
+rvm use system
