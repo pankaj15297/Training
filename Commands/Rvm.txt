@@ -1,5 +1,9 @@
 rvm -v
 rvm list
 rvm list known
-rvm --default use ruby 2.7.0
 rvm use system
+rvm install 2.7.0
+rvm use 2.7.0
+rvm get 2.6.3
+rvm remove 2.6.3
+rvm --default use ruby 2.7.0
