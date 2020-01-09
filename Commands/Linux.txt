@@ -1,0 +1,16 @@
+mkdir Folder
+cd Folder
+rmdir Folder (remove empty directory)
+rm file (remove)
+unlink file (remove)
+cp a.text b.text (copy file)
+cat a.text (read)
+mv Folder1 Folder2 (rename)
+scp a.text beryl@192.168.1.4:/home/beryl/Folder2 (Secure file copy from host to remote)
+pwd (current dir)
+scp -r Folder1 beryl@192.168.1.4:/home/beryl/Folder2 (Secure Folder copy)
+scp beryl@192.168.1.4:/home/beryl/Folder1/c.text /home/beryl/Folder2 (copy from remote to host)
+rm -R Folder2 (To remove non-empty dir)
+cp -r /home/beryl/Folder1 /home/beryl/Folder2 ( copy Folder)
+mkdir music
+mkdir music/Hindi music/Punjabi music/English
