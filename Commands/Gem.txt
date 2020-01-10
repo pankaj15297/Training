@@ -2,3 +2,4 @@ simple_form
 bootstrap-saas
 jquery-rails
 pry
+devise
