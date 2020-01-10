@@ -83,5 +83,3 @@ test:
 production:
   <<: *default
   database: MessageBoard_production
-  username: MessageBoard
-  password: <%= ENV['MESSAGEBOARD_DATABASE_PASSWORD'] %>
