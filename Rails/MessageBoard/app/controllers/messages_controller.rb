@@ -4,6 +4,10 @@ class MessagesController < ApplicationController
     @messages = Message.all.order("created_at DESC")
   end
 
+  def show
+    @message = Message.find(params[:id])
+  end
+
   def new
     @message = Message.new
   end
