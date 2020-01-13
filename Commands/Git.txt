@@ -42,6 +42,10 @@ git push origin master
 git pull
 git pull origin master
 
-git rm Gem.txt  (Remove File)
+git rm Gem.txt  (Remove file from git as well as filesystem)
+git commit -m "Remove Gem.txt"
+git push origin master
+
+git rm --cached Gem.txt  (Remove file from only git)
 git commit -m "Remove Gem.txt"
 git push origin master
