@@ -11,7 +11,22 @@ service postgresql force-reload
 
 sudo su postgres  (make like log: postgres@beryl-Latitude-E5520:/home/beryl$.):(To use postgresql)
 
-postgres@beryl-Latitude-E5520:/home/beryl$ psql  (make like log: postgres=#)
+su postgres       (,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,)
+
+su - postgres     (,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,)
+
+password: pass (system password)
+
+postgres@beryl-Latitude-E5520:/home/beryl$ psql  (make like log: postgres=#)(enter into default database)
+
+postgres@beryl-Latitude-E5520:/home/beryl$ createdb Message_development   (create database)
+postgres@beryl-Latitude-E5520:/home/beryl$ psql MessageBoard_development  (enter into database)
+postgres=# CREATE DATABASE Message_development   (create database)
+postgres=# \c Message_production  (select other database)
+
+postgres=# DROP DATABASE Message_production
+
+password: root (admin)
 
 postgres=# \l    (show available databases)
 postgres=# \du   (list of roles attributes)
@@ -19,3 +34,24 @@ postgres=# ALTER USER pankaj WITH PASSWORD '123';  (To alter the role)
 postgres=# CREATE USER pankaj WITH PASSWORD '123';  (To create an user)
 postgres=# ALTER USER pankaj WITH SUPERUSER;       (To alter the user to superuser)
 postgres=# DROP USER pankaj;
+
+
+aa=# CREATE TABLE employee (ID INT PRIMARY KEY NOT NULL, NAME TEXT NOT NULL, AGE INT NOT NULL, ADDRESS CHAR(50), SALARY MONEY, POSITION BIGINT );
+
+aa=# DROP TABLE employee;
+
+aa=# \d  (show list of relations/tables)
+
+aa=# CREATE SCHEMA myschema;
+aa=# CREATE TABLE myschema.department (ID INT PRIMARY KEY NOT NULL, NAME TEXT NOT NULL, AGE INT NOT NULL, ADDRESS CHAR(50), SALARY MONEY, POSITION BIGINT );
+
+aa=# select * from myschema.department;
+aa=# DROP SCHEMA myschema;  (drop schema if it is empty)
+aa=# DROP SCHEMA myschema CASCADE;  (drop schema if it contained objects)
+
+aa=# INSERT INTO company values (5, 'PANKAJ', 23, 'FARIDABAD', 1000, 1001) (insert values)
+
+aa=# INSERT INTO company (POSITION, ID, NAME, AGE, ADDRESS, SALARY) values (1400, 7, 'PAVAN', 13, 'FARIDABAD', 1000);
+
+
+

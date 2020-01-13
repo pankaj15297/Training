@@ -1,3 +1,6 @@
+lsb_release -d (To know ubuntu version)
+lsb_release -a (Display ubuntu version)
+
 mkdir Folder
 cd Folder
 rmdir Folder (remove empty directory)
