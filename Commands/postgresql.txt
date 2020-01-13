@@ -1,0 +1,21 @@
+sudo apt-get install postgresql
+psql -V
+ls /etc/postgresql/9.5/main/
+service postgresql
+service postgresql status
+service postgresql start
+service postgresql stop
+service postgresql restart
+service postgresql reload
+service postgresql force-reload
+
+sudo su postgres  (make like log: postgres@beryl-Latitude-E5520:/home/beryl$.):(To use postgresql)
+
+postgres@beryl-Latitude-E5520:/home/beryl$ psql  (make like log: postgres=#)
+
+postgres=# \l    (show available databases)
+postgres=# \du   (list of roles attributes)
+postgres=# ALTER USER pankaj WITH PASSWORD '123';  (To alter the role)
+postgres=# CREATE USER pankaj WITH PASSWORD '123';  (To create an user)
+postgres=# ALTER USER pankaj WITH SUPERUSER;       (To alter the user to superuser)
+postgres=# DROP USER pankaj;
