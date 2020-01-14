@@ -53,3 +53,5 @@ git push origin master
 git mv postgresql.txt Postgresql.txt   (To rename the file)
 git commit -m "Renamed the postgresql file"
 git push origin master
+
+git checkout Gem.txt  (To fetch from remote)
