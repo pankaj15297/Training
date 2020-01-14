@@ -49,3 +49,7 @@ git push origin master
 git rm --cached Gem.txt  (Remove file from only git)
 git commit -m "Remove Gem.txt"
 git push origin master
+
+git mv postgresql.txt Postgresql.txt   (To rename the file)
+git commit -m "Renamed the postgresql file"
+git push origin master
