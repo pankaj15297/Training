@@ -53,5 +53,3 @@ aa=# INSERT INTO company values (5, 'PANKAJ', 23, 'FARIDABAD', 1000, 1001) (inse
 
 aa=# INSERT INTO company (POSITION, ID, NAME, AGE, ADDRESS, SALARY) values (1400, 7, 'PAVAN', 13, 'FARIDABAD', 1000);
 
-
-
