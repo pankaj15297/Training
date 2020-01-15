@@ -113,3 +113,35 @@ ERROR:  duplicate key value violates unique constraint "orders_pkey"
 DETAIL:  Key (orderid)=(1) already exists.
 
 
+
+select * from customer;
+
+ customerid |  fname  | lname  |    dob     |     address     |  city   | state  
+------------+---------+--------+------------+-----------------+---------+--------
+          1 | Pankaj  | Kumar  | 1997-02-15 | Baniyapur       | Chhapra | Bihar
+          2 | Pavan   | Kumar  | 2007-02-23 | Baniyapur       | Chhapra | Bihar
+          3 | Praveen | Kumar  | 2012-02-23 | Baniyapur       | Chhapra | Bihar
+          4 | Naveen  | Kumar  | 2015-02-23 | Baniyapur       | Chhapra | Bihar
+          5 | Naveen  | Kumar  | 1995-12-13 | Patiala         | Patiala | Punjab
+          6 | Bharti  | Kumari | 1995-12-13 | Patiala         | Patiala | Punjab
+          7 | Mohit   | Sharma | 1993-08-15 | Okhla           | Delhi   | Delhi
+          8 | Ramesh  | Misra  | 1973-08-15 | New Ashok Nager | Delhi   | Delhi
+(8 rows)
+
+UPDATE customer SET city = 'South Delhi' WHERE customerid = 8;
+UPDATE 1
+
+select * from customer;
+ customerid |  fname  | lname  |    dob     |     address     |    city     | state  
+------------+---------+--------+------------+-----------------+-------------+--------
+          1 | Pankaj  | Kumar  | 1997-02-15 | Baniyapur       | Chhapra     | Bihar
+          2 | Pavan   | Kumar  | 2007-02-23 | Baniyapur       | Chhapra     | Bihar
+          3 | Praveen | Kumar  | 2012-02-23 | Baniyapur       | Chhapra     | Bihar
+          4 | Naveen  | Kumar  | 2015-02-23 | Baniyapur       | Chhapra     | Bihar
+          5 | Naveen  | Kumar  | 1995-12-13 | Patiala         | Patiala     | Punjab
+          6 | Bharti  | Kumari | 1995-12-13 | Patiala         | Patiala     | Punjab
+          7 | Mohit   | Sharma | 1993-08-15 | Okhla           | Delhi       | Delhi
+          8 | Ramesh  | Misra  | 1973-08-15 | New Ashok Nager | South Delhi | Delhi
+(8 rows)
+
+
