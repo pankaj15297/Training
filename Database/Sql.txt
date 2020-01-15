@@ -173,7 +173,7 @@ select * from customer;
 
 =========================After Running Delete command=================================
 
-DELETE FROM customer where customerid = 10;
+DELETE FROM customer WHERE customerid = 10;
 ERROR:  update or delete on table "customer" violates foreign key constraint "orders_customerid_fkey" on table "orders"
 DETAIL:  Key (customerid)=(10) is still referenced from table "orders".
 
@@ -204,7 +204,7 @@ DETAIL:  Key (customerid)=(10) is still referenced from table "orders".
 
 
 
-DELETE FROM orders where customerid = 10;
+DELETE FROM orders WHERE customerid = 10;
 DELETE 2
 
 
@@ -215,7 +215,7 @@ DELETE 2
 (2 rows)
 
 
-DELETE FROM customer where customerid = 10;
+DELETE FROM customer WHERE customerid = 10;
 DELETE 1
 
  customerid |  fname  | lname  |    dob     |     address     |    city     | state  
@@ -231,6 +231,63 @@ DELETE 1
           9 | Chhavi  | N/A    | 1973-08-15 | Merath          | Merath      | UP
 (9 rows)
 
+
+
+SELECT * FROM customer WHERE fname like 'P%';
+
+ customerid |  fname  | lname |    dob     |  address  |  city   | state 
+------------+---------+-------+------------+-----------+---------+-------
+          1 | Pankaj  | Kumar | 1997-02-15 | Baniyapur | Chhapra | Bihar
+          2 | Pavan   | Kumar | 2007-02-23 | Baniyapur | Chhapra | Bihar
+          3 | Praveen | Kumar | 2012-02-23 | Baniyapur | Chhapra | Bihar
+(3 rows)
+
+
+SELECT * FROM customer WHERE fname like '%v%';
+
+ customerid |  fname  | lname |    dob     |  address  |  city   | state  
+------------+---------+-------+------------+-----------+---------+--------
+          2 | Pavan   | Kumar | 2007-02-23 | Baniyapur | Chhapra | Bihar
+          3 | Praveen | Kumar | 2012-02-23 | Baniyapur | Chhapra | Bihar
+          4 | Naveen  | Kumar | 2015-02-23 | Baniyapur | Chhapra | Bihar
+          5 | Naveen  | Kumar | 1995-12-13 | Patiala   | Patiala | Punjab
+          9 | Chhavi  | N/A   | 1973-08-15 | Merath    | Merath  | UP
+(5 rows)
+
+
+SELECT * FROM customer WHERE fname LIKE '%n';
+
+ customerid |  fname  | lname |    dob     |  address  |  city   | state  
+------------+---------+-------+------------+-----------+---------+--------
+          2 | Pavan   | Kumar | 2007-02-23 | Baniyapur | Chhapra | Bihar
+          3 | Praveen | Kumar | 2012-02-23 | Baniyapur | Chhapra | Bihar
+          4 | Naveen  | Kumar | 2015-02-23 | Baniyapur | Chhapra | Bihar
+          5 | Naveen  | Kumar | 1995-12-13 | Patiala   | Patiala | Punjab
+(4 rows)
+
+
+
+SELECT * FROM customer WHERE fname LIKE '_a%';   (Find that have 'a' at 2nd position)
+
+ customerid | fname  | lname |    dob     |     address     |    city     | state  
+------------+--------+-------+------------+-----------------+-------------+--------
+          1 | Pankaj | Kumar | 1997-02-15 | Baniyapur       | Chhapra     | Bihar
+          2 | Pavan  | Kumar | 2007-02-23 | Baniyapur       | Chhapra     | Bihar
+          4 | Naveen | Kumar | 2015-02-23 | Baniyapur       | Chhapra     | Bihar
+          5 | Naveen | Kumar | 1995-12-13 | Patiala         | Patiala     | Punjab
+          8 | Ramesh | Misra | 1973-08-15 | New Ashok Nager | South Delhi | Delhi
+(5 rows)
+
+
+
+SELECT * FROM customer WHERE fname LIKE '__v%';  (Find that have 'v' at 3rd position)
+
+ customerid | fname  | lname |    dob     |  address  |  city   | state  
+------------+--------+-------+------------+-----------+---------+--------
+          2 | Pavan  | Kumar | 2007-02-23 | Baniyapur | Chhapra | Bihar
+          4 | Naveen | Kumar | 2015-02-23 | Baniyapur | Chhapra | Bihar
+          5 | Naveen | Kumar | 1995-12-13 | Patiala   | Patiala | Punjab
+(3 rows)
 
 
 
