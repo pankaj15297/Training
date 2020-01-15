@@ -291,6 +291,7 @@ SELECT * FROM customer WHERE fname LIKE '__v%';  (Find that have 'v' at 3rd posi
 
 
 
+
 SELECT * FROM customer WHERE dob < '1997-02-15';
 
  customerid | fname  | lname  |    dob     |     address     |    city     | state  
