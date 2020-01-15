@@ -42,4 +42,3 @@ aa=# DROP TABLE employee;
 
 aa=# \d  (show list of relations/tables)
 
-
