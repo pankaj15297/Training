@@ -67,4 +67,29 @@ Indexes:
     "customer_pkey" PRIMARY KEY, btree (customerid)
 
 
+DROP TABLE customer;
+DROP TABLE
+
+
+CREATE TABLE orders(OrderID INT PRIMARY KEY NOT NULL, CustomerID INT, Date DATE NOT NULL, Comments TEXT NOT NULL, FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID));
+CREATE TABLE
+
+\d Oredrs
+
+
+      Table "public.orders"
+   Column   |  Type   | Modifiers 
+------------+---------+-----------
+ orderid    | integer | not null
+ customerid | integer | 
+ date       | date    | not null
+ comments   | text    | not null
+Indexes:
+    "orders_pkey" PRIMARY KEY, btree (orderid)
+Foreign-key constraints:
+    "orders_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customer(customerid)
+
+
+
+
 
