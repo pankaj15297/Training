@@ -1,0 +1,70 @@
+CREATE TABLE Customer (CustomerID INT PRIMARY KEY NOT NULL, FName CHAR(20) NOT NULL, LName CHAR(20) NOT NULL, DOB DATE NOT NULL, Address CHAR(50) NOT NULL, City CHAR(20) NOT NULL, State CHAR(20) NOT NULL);
+
+INSERT INTO customer VALUES (1, 'Pankaj', 'Kumar', '1997-02-15', 'Baniyapur', 'Chhapra', 'Bihar');
+
+INSERT INTO customer (CustomerID, FName, LName, DOB, Address, City, State) VALUES (1, 'Pankaj', 'Kumar', '1997-02-15', 'Baniyapur', 'Chhapra', 'Bihar');
+
+INSERT INTO customer (FName, LName, DOB, Address, City, State, CustomerID) VALUES ('Pankaj', 'Kumar', '1997-02-15', 'Baniyapur', 'Chhapra', 'Bihar', 1);
+
+
+customerid | fname  | lname |    dob     |  address  |  city   | state 
+------------+--------+-------+------------+-----------+---------+-------
+          1 | Pankaj | Kumar | 1997-02-15 | Baniyapur | Chhapra | Bihar
+          2 | Pavan  | Kumar | 2007-02-23 | Baniyapur | Chhapra | Bihar
+(2 rows)
+
+
+\d Customer
+
+
+            Table "public.customer"
+   Column   |     Type      | Modifiers 
+------------+---------------+-----------
+ customerid | integer       | not null
+ fname      | character(20) | not null
+ lname      | character(20) | not null
+ dob        | date          | not null
+ address    | character(50) | not null
+ city       | character(20) | not null
+ state      | character(20) | not null
+Indexes:
+    "customer_pkey" PRIMARY KEY, btree (customerid)
+
+
+ALTER TABLE customer ALTER COLUMN FName TYPE VARCHAR(20);
+
+\d Customer
+
+
+            Table "public.customer"
+   Column   |         Type          | Modifiers 
+------------+-----------------------+-----------
+ customerid | integer               | not null
+ fname      | character varying(20) | not null
+ lname      | character(20)         | not null
+ dob        | date                  | not null
+ address    | character(50)         | not null
+ city       | character(20)         | not null
+ state      | character(20)         | not null
+Indexes:
+    "customer_pkey" PRIMARY KEY, btree (customerid)
+
+
+ALTER TABLE customer ALTER COLUMN LName TYPE VARCHAR(20), ALTER COLUMN Address TYPE VARCHAR(50), ALTER COLUMN City TYPE VARCHAR(20), ALTER COLUMN State TYPE VARCHAR(20);
+
+ 
+            Table "public.customer"
+   Column   |         Type          | Modifiers 
+------------+-----------------------+-----------
+ customerid | integer               | not null
+ fname      | character varying(20) | not null
+ lname      | character varying(20) | not null
+ dob        | date                  | not null
+ address    | character varying(50) | not null
+ city       | character varying(20) | not null
+ state      | character varying(20) | not null
+Indexes:
+    "customer_pkey" PRIMARY KEY, btree (customerid)
+
+
+
