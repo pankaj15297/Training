@@ -7,6 +7,9 @@ INSERT INTO customer (CustomerID, FName, LName, DOB, Address, City, State) VALUE
 INSERT INTO customer (FName, LName, DOB, Address, City, State, CustomerID) VALUES ('Pankaj', 'Kumar', '1997-02-15', 'Baniyapur', 'Chhapra', 'Bihar', 1);
 
 
+SELECT * FROM customer
+
+
 customerid | fname  | lname |    dob     |  address  |  city   | state 
 ------------+--------+-------+------------+-----------+---------+-------
           1 | Pankaj | Kumar | 1997-02-15 | Baniyapur | Chhapra | Bihar
@@ -90,6 +93,16 @@ Foreign-key constraints:
     "orders_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customer(customerid)
 
 
+Store=# INSERT INTO orders VALUES (1, 7011, '2020-01-15', 'I have ordered a Phone');
+ERROR:  insert or update on table "orders" violates foreign key constraint "orders_customerid_fkey"
+DETAIL:  Key (customerid)=(7011) is not present in table "customer".
 
 
+SELECT * FROM orders
+
+
+ orderid | customerid |    date    |        comments        
+---------+------------+------------+------------------------
+       1 |          2 | 2020-01-15 | I have ordered a Phone
+(1 row)
 
