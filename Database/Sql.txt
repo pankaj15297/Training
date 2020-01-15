@@ -416,3 +416,34 @@ SELECT * FROM myschema.department;
 DROP SCHEMA myschema;  (drop schema if it is empty)
 
 DROP SCHEMA myschema CASCADE;  (drop schema if it containes objects)
+
+
+
+SELECT * FROM customer WHERE city = 'Chhapra'AND address = 'Chhapra';
+
+ customerid | fname | lname |    dob     | address |  city   | state 
+------------+-------+-------+------------+---------+---------+-------
+         10 | Sager | Kumar | 2012-02-23 | Chhapra | Chhapra | Bihar
+         11 | Ujwal | Kumar | 2015-02-23 | Chhapra | Chhapra | Bihar
+(2 rows)
+
+
+SELECT * FROM customer WHERE state = 'Delhi' OR state = 'Bihar';
+
+ customerid |  fname  | lname  |    dob     |     address     |    city     | state 
+------------+---------+--------+------------+-----------------+-------------+-------
+          1 | Pankaj  | Kumar  | 1997-02-15 | Baniyapur       | Chhapra     | Bihar
+          2 | Pavan   | Kumar  | 2007-02-23 | Baniyapur       | Chhapra     | Bihar
+          3 | Praveen | Kumar  | 2012-02-23 | Baniyapur       | Chhapra     | Bihar
+          4 | Naveen  | Kumar  | 2015-02-23 | Baniyapur       | Chhapra     | Bihar
+          7 | Mohit   | Sharma | 1993-08-15 | Okhla           | Delhi       | Delhi
+          8 | Ramesh  | Misra  | 1973-08-15 | New Ashok Nager | South Delhi | Delhi
+         10 | Sager   | Kumar  | 2012-02-23 | Chhapra         | Chhapra     | Bihar
+         11 | Ujwal   | Kumar  | 2015-02-23 | Chhapra         | Chhapra     | Bihar
+(8 rows)
+
+
+
+
+
+
