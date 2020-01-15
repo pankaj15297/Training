@@ -407,4 +407,12 @@ SELECT state FROM customer GROUP BY state;
 
 
 
+CREATE SCHEMA myschema;
 
+CREATE TABLE myschema.department (ID INT PRIMARY KEY NOT NULL, name TEXT NOT NULL, AGE INT NOT NULL, address CHAR(50), salary MONEY, POSITION BIGINT );
+
+SELECT * FROM myschema.department;
+
+DROP SCHEMA myschema;  (drop schema if it is empty)
+
+DROP SCHEMA myschema CASCADE;  (drop schema if it containes objects)
