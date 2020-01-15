@@ -36,8 +36,6 @@ postgres=# ALTER USER pankaj WITH SUPERUSER;       (To alter the user to superus
 postgres=# DROP USER pankaj;
 
 
-aa=# CREATE TABLE employee (ID INT PRIMARY KEY NOT NULL, NAME TEXT NOT NULL, AGE INT NOT NULL, ADDRESS CHAR(50), SALARY MONEY, POSITION BIGINT );
-
 aa=# DROP TABLE employee;
 
 aa=# \d  (show list of relations/tables)
