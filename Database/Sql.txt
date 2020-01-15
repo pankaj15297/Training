@@ -106,3 +106,10 @@ SELECT * FROM orders
        1 |          2 | 2020-01-15 | I have ordered a Phone
 (1 row)
 
+
+
+Store=# INSERT INTO orders VALUES (1, 2, '2020-01-15', 'I have ordered a Laptop');
+ERROR:  duplicate key value violates unique constraint "orders_pkey"
+DETAIL:  Key (orderid)=(1) already exists.
+
+
