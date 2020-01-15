@@ -353,3 +353,58 @@ SELECT dob FROM (SELECT DISTINCT dob FROM customer ORDER BY dob DESC LIMIT 2) AS
  2012-02-23
 (1 row)
 
+
+
+SELECT dob FROM customer GROUP BY dob;
+
+    dob     
+------------
+ 1973-08-15
+ 1993-08-15
+ 1995-12-13
+ 1997-02-15
+ 2007-02-23
+ 2012-02-23
+ 2015-02-23
+(7 rows)
+
+
+SELECT address FROM customer GROUP BY address;
+
+     address     
+-----------------
+ Baniyapur
+ Chhapra
+ Merath
+ New Ashok Nager
+ Okhla
+ Patiala
+(6 rows)
+
+
+SELECT city FROM customer GROUP BY city;
+
+    city     
+-------------
+ Chhapra
+ Delhi
+ Merath
+ Patiala
+ South Delhi
+(5 rows)
+
+
+SELECT state FROM customer GROUP BY state;
+
+ state  
+--------
+ Bihar
+ Delhi
+ Punjab
+ UP
+(4 rows)
+
+
+
+
+
