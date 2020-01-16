@@ -849,7 +849,7 @@ CREATE TABLE COMPANY(
 
 
 
-=================================RENAME a column=====================================
+===============================RENAME, ADD, DROP a column================================
 
 
 \d products
@@ -891,6 +891,75 @@ Indexes:
     "products_pkey" PRIMARY KEY, btree (productid)
 Referenced by:
     TABLE "orderproducts" CONSTRAINT "orderproducts_productid_fkey" FOREIGN KEY (productid) REFERENCES products(productid)
+
+
+
+
+\d customer;
+
+
+            Table "public.customer"
+   Column   |         Type          | Modifiers 
+------------+-----------------------+-----------
+ customerid | integer               | not null
+ fname      | character varying(20) | not null
+ lname      | character varying(20) | not null
+ dob        | date                  | not null
+ address    | character varying(50) | not null
+ city       | character varying(20) | not null
+ state      | character varying(20) | not null
+Indexes:
+    "customer_pkey" PRIMARY KEY, btree (customerid)
+Referenced by:
+    TABLE "orders" CONSTRAINT "orders_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customer(customerid)
+
+
+
+ALTER TABLE customer ADD email VARCHAR(35);
+ALTER TABLE
+
+\d customer;
+
+
+            Table "public.customer"
+   Column   |         Type          | Modifiers 
+------------+-----------------------+-----------
+ customerid | integer               | not null
+ fname      | character varying(20) | not null
+ lname      | character varying(20) | not null
+ dob        | date                  | not null
+ address    | character varying(50) | not null
+ city       | character varying(20) | not null
+ state      | character varying(20) | not null
+ email      | character varying(35) | 
+Indexes:
+    "customer_pkey" PRIMARY KEY, btree (customerid)
+Referenced by:
+    TABLE "orders" CONSTRAINT "orders_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customer(customerid)
+
+
+
+ALTER TABLE customer DROP email;
+ALTER TABLE
+
+\d customer;
+
+
+            Table "public.customer"
+   Column   |         Type          | Modifiers 
+------------+-----------------------+-----------
+ customerid | integer               | not null
+ fname      | character varying(20) | not null
+ lname      | character varying(20) | not null
+ dob        | date                  | not null
+ address    | character varying(50) | not null
+ city       | character varying(20) | not null
+ state      | character varying(20) | not null
+Indexes:
+    "customer_pkey" PRIMARY KEY, btree (customerid)
+Referenced by:
+    TABLE "orders" CONSTRAINT "orders_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customer(customerid)
+
 
 
 
