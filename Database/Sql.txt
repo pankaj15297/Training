@@ -1,3 +1,6 @@
+=======================================POSTGRESQL===========================================
+
+
 ====================CREATE,INSERT,SELECT,DROP,ALTER,Describe a table======================
 
 
@@ -825,8 +828,6 @@ SELECT customerid, fname, productid, name, unit FROM customer FULL OUTER JOIN pr
 
 
 
-
-
 =================================Constraints====================================
 
 CREATE TABLE COMPANY(
@@ -843,6 +844,55 @@ CREATE TABLE COMPANY(
 3) PRIMARY KEY(NOT NULL + UNIQUE) define every row uniquly.
 4) FOREIGN KEY referenced rows that are related to primary key.
 5) UNIQUE makes difference in all records.
+
+
+
+
+
+=================================RENAME a column=====================================
+
+
+\d products
+
+
+              Table "public.products"
+    Column     |          Type          | Modifiers 
+---------------+------------------------+-----------
+ productid     | integer                | not null
+ name          | character varying(20)  | not null
+ description   | character varying(100) | not null
+ size          | character varying(10)  | not null
+ unit          | integer                | not null
+ ordercomments | character varying      | not null
+Indexes:
+    "products_pkey" PRIMARY KEY, btree (productid)
+Referenced by:
+    TABLE "orderproducts" CONSTRAINT "orderproducts_productid_fkey" FOREIGN KEY (productid) REFERENCES products(productid)
+
+
+
+
+ALTER TABLE products RENAME COLUMN ordercomments TO productcomments; 
+ALTER TABLE
+
+\d products
+
+
+               Table "public.products"
+     Column      |          Type          | Modifiers 
+-----------------+------------------------+-----------
+ productid       | integer                | not null
+ name            | character varying(20)  | not null
+ description     | character varying(100) | not null
+ size            | character varying(10)  | not null
+ unit            | integer                | not null
+ productcomments | character varying      | not null
+Indexes:
+    "products_pkey" PRIMARY KEY, btree (productid)
+Referenced by:
+    TABLE "orderproducts" CONSTRAINT "orderproducts_productid_fkey" FOREIGN KEY (productid) REFERENCES products(productid)
+
+
 
 
 
