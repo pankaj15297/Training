@@ -828,7 +828,7 @@ SELECT customerid, fname, productid, name, unit FROM customer FULL OUTER JOIN pr
 
 
 
-=================================Constraints====================================
+=================================ADD,DROP constraints=================================
 
 CREATE TABLE COMPANY(
    ID INT PRIMARY KEY     NOT NULL,
@@ -844,6 +844,119 @@ CREATE TABLE COMPANY(
 3) PRIMARY KEY(NOT NULL + UNIQUE) define every row uniquly.
 4) FOREIGN KEY referenced rows that are related to primary key.
 5) UNIQUE makes difference in all records.
+6) DEFAULT constraint is set a value bydefault which you define if lefting blank.
+
+
+\d customer;
+
+
+            Table "public.customer"
+   Column   |         Type          | Modifiers 
+------------+-----------------------+-----------
+ customerid | integer               | not null
+ fname      | character varying(20) | not null
+ lname      | character varying(20) | not null
+ dob        | date                  | not null
+ address    | character varying(50) | not null
+ city       | character varying(20) | not null
+ state      | character varying(20) | not null
+Indexes:
+    "customer_pkey" PRIMARY KEY, btree (customerid)
+Referenced by:
+    TABLE "orders" CONSTRAINT "orders_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customer(customerid)
+
+
+
+
+ALTER TABLE customer ALTER COLUMN lname DROP NOT NULL;
+ALTER TABLE
+
+\d customer;
+
+
+            Table "public.customer"
+   Column   |         Type          | Modifiers 
+------------+-----------------------+-----------
+ customerid | integer               | not null
+ fname      | character varying(20) | not null
+ lname      | character varying(20) | 
+ dob        | date                  | not null
+ address    | character varying(50) | not null
+ city       | character varying(20) | not null
+ state      | character varying(20) | not null
+Indexes:
+    "customer_pkey" PRIMARY KEY, btree (customerid)
+Referenced by:
+    TABLE "orders" CONSTRAINT "orders_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customer(customerid)
+
+
+ALTER TABLE customer ALTER COLUMN lname SET NOT NULL;
+ALTER TABLE
+
+\d customer;
+
+
+            Table "public.customer"
+   Column   |         Type          | Modifiers 
+------------+-----------------------+-----------
+ customerid | integer               | not null
+ fname      | character varying(20) | not null
+ lname      | character varying(20) | not null
+ dob        | date                  | not null
+ address    | character varying(50) | not null
+ city       | character varying(20) | not null
+ state      | character varying(20) | not null
+Indexes:
+    "customer_pkey" PRIMARY KEY, btree (customerid)
+Referenced by:
+    TABLE "orders" CONSTRAINT "orders_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customer(customerid)
+
+
+
+
+ALTER TABLE customer ALTER COLUMN lname SET DEFAULT 'N/A';
+ALTER TABLE
+
+
+\d customer;
+
+   Column   |         Type          |                 Modifiers                 
+------------+-----------------------+-------------------------------------------
+ customerid | integer               | not null
+ fname      | character varying(20) | not null
+ lname      | character varying(20) | not null default 'N/A'::character varying
+ dob        | date                  | not null
+ address    | character varying(50) | not null
+ city       | character varying(20) | not null
+ state      | character varying(20) | not null
+Indexes:
+    "customer_pkey" PRIMARY KEY, btree (customerid)
+Referenced by:
+    TABLE "orders" CONSTRAINT "orders_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customer(customerid)
+
+
+
+
+ALTER TABLE customer ALTER COLUMN lname DROP NOT NULL;
+ALTER TABLE
+
+\d customer;
+
+
+                        Table "public.customer"
+   Column   |         Type          |            Modifiers             
+------------+-----------------------+----------------------------------
+ customerid | integer               | not null
+ fname      | character varying(20) | not null
+ lname      | character varying(20) | default 'N/A'::character varying
+ dob        | date                  | not null
+ address    | character varying(50) | not null
+ city       | character varying(20) | not null
+ state      | character varying(20) | not null
+Indexes:
+    "customer_pkey" PRIMARY KEY, btree (customerid)
+Referenced by:
+    TABLE "orders" CONSTRAINT "orders_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customer(customerid)
 
 
 
