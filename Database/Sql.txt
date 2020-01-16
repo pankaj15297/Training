@@ -1392,6 +1392,24 @@ DROP VIEW cominfo;
 DROP VIEW
 
 
+==================================TRANSACTION==========================================
+
+
+A transaction is a unit of work that is performed against a database.
+
+Properties of Transactions
+
+Transactions have the following four standard properties, usually referred to by the acronym ACID −
+
+Atomicity − Ensures that all operations within the work unit are completed successfully; otherwise, the transaction is aborted at the point of failure and previous operations are rolled back to their former state.
+
+Consistency − Ensures that the database properly changes states upon a successfully committed transaction.
+
+Isolation − Enables transactions to operate independently of and transparent to each other.
+
+Durability − Ensures that the result or effect of a committed transaction persists in case of a system failure.
+
+
 =======================================ROLLBACK========================================
 
 
