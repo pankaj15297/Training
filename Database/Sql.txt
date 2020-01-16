@@ -323,7 +323,7 @@ SELECT * FROM customer WHERE dob BETWEEN '1997-02-15' AND '2012-02-23';
 (3 rows)
 
 
-===================================ASC,DISC=========================================
+===================================ASC,DESC,LIMIT=========================================
 
 
 SELECT * FROM (SELECT * FROM customer ORDER BY customerid DESC LIMIT 2) AS C ORDER BY customerid LIMIT 1;
@@ -354,7 +354,7 @@ SELECT * FROM customer;
 (11 rows)
 
 
-======================Second Highest DOB, DISTINCT======================================
+======================Second Highest DOB, DISTINCT,LIMIT=================================
 
 
 SELECT dob FROM (SELECT DISTINCT dob FROM customer ORDER BY dob DESC LIMIT 2) AS C ORDER BY dob LIMIT 1;
@@ -421,6 +421,7 @@ SELECT state FROM customer GROUP BY state;
 
 ================================Schema=====================================================
 
+CREATE SCHEMA schemaname AUTHORIZATION username;
 
 CREATE SCHEMA myschema;
 
@@ -554,6 +555,276 @@ SELECT MIN(customerid) FROM customer;
 -----
    1
 (1 row)
+
+=============================Created Product Table========================================
+
+
+CREATE TABLE products (productid INT PRIMARY KEY NOT NULL, name VARCHAR(20) NOT NULL, description VARCHAR(100) NOT NULL, size INT NOT NULL, unit INT NOT NULL, ordercomments VARCHAR NOT NULL);
+CREATE TABLE
+
+\d Products;
+
+              Table "public.products"
+    Column     |          Type          | Modifiers 
+---------------+------------------------+-----------
+ productid     | integer                | not null
+ name          | character varying(20)  | not null
+ description   | character varying(100) | not null
+ size          | integer                | not null
+ unit          | integer                | not null
+ ordercomments | character varying      | not null
+Indexes:
+    "products_pkey" PRIMARY KEY, btree (productid)
+
+
+
+=============================Created OrderProducts Table================================
+
+
+CREATE TABLE orderproducts (orderid INT, productid INT, qty INT NOT NULL, orderproductscomments VARCHAR(100) NOT NULL, FOREIGN KEY(orderid) REFERENCES orders(orderid), FOREIGN KEY(productid) REFERENCES products(productid));
+CREATE TABLE
+
+\d orderproducts;
+
+
+                Table "public.orderproducts"
+        Column         |          Type          | Modifiers 
+-----------------------+------------------------+-----------
+ orderid               | integer                | 
+ productid             | integer                | 
+ qty                   | integer                | not null
+ orderproductscomments | character varying(100) | not null
+Foreign-key constraints:
+    "orderproducts_orderid_fkey" FOREIGN KEY (orderid) REFERENCES orders(orderid)
+    "orderproducts_productid_fkey" FOREIGN KEY (productid) REFERENCES products(productid)
+
+
+
+
+==========================================JOIN=========================================
+
+
+SELECT * FROM customer;
+
+ customerid |  fname  | lname  |    dob     |     address     |    city     | state  
+------------+---------+--------+------------+-----------------+-------------+--------
+          1 | Pankaj  | Kumar  | 1997-02-15 | Baniyapur       | Chhapra     | Bihar
+          2 | Pavan   | Kumar  | 2007-02-23 | Baniyapur       | Chhapra     | Bihar
+          3 | Praveen | Kumar  | 2012-02-23 | Baniyapur       | Chhapra     | Bihar
+          4 | Naveen  | Kumar  | 2015-02-23 | Baniyapur       | Chhapra     | Bihar
+          5 | Naveen  | Kumar  | 1995-12-13 | Patiala         | Patiala     | Punjab
+          6 | Bharti  | Kumari | 1995-12-13 | Patiala         | Patiala     | Punjab
+          7 | Mohit   | Sharma | 1993-08-15 | Okhla           | Delhi       | Delhi
+          8 | Ramesh  | Misra  | 1973-08-15 | New Ashok Nager | South Delhi | Delhi
+          9 | Chhavi  | N/A    | 1973-08-15 | Merath          | Merath      | UP
+         10 | Sager   | Kumar  | 2012-02-23 | Chhapra         | Chhapra     | Bihar
+         11 | Ujwal   | Kumar  | 2015-02-23 | Chhapra         | Chhapra     | Bihar
+(11 rows)
+
+
+
+SELECT * FROM products;
+
+
+ productid |  name  |       description        |   size   | unit |     ordercomments     
+-----------+--------+--------------------------+----------+------+-----------------------
+         1 | Mobile | High battery backup      | 5-INCH   |    2 | This is Samsung phone
+         2 | Laptop | 1 TB Storage             | 15-INCH  |    2 | This is HP laptop
+         3 | Laptop | 1 TB Storage and Full HD | 15-INCH  |    5 | This is Dell laptop
+         4 | Mobile | 48 MP Camera             | 5.5-INCH |   10 | This is Apple phone
+         5 | shoe   | Plastic shoe             | 7-INCH   |   10 | This is Xparks Shoe
+         6 | shoe   | Lather                   | 4-INCH   |   15 | This is Lakhani Shoe
+         7 | shoe   | Lather                   | 4-INCH   |   20 | This is Woodland Shoe
+         8 | Pen    | Link is gold             | 4-MITER  |    2 | This is Link Pen
+(8 rows)
+
+
+
+SELECT customerid, unit, productid, fname, name FROM customer INNER JOIN products ON customerid = unit;
+
+(Mapping each on customerid = unit)
+
+
+ customerid | unit | productid | fname  |  name  
+------------+------+-----------+--------+--------
+          2 |    2 |         1 | Pavan  | Mobile
+          2 |    2 |         2 | Pavan  | Laptop
+          5 |    5 |         3 | Naveen | Laptop
+         10 |   10 |         4 | Sager  | Mobile
+         10 |   10 |         5 | Sager  | shoe
+          2 |    2 |         8 | Pavan  | Pen
+(6 rows)
+
+
+
+
+SELECT * FROM customer CROSS JOIN products;
+
+(A CROSS JOIN matches every row of the first table with every row of the second table.)
+
+
+
+   customerid | unit | productid |  fname  |  name  
+------------+------+-----------+---------+--------
+          1 |    2 |         1 | Pankaj  | Mobile
+          2 |    2 |         1 | Pavan   | Mobile
+          3 |    2 |         1 | Praveen | Mobile
+          4 |    2 |         1 | Naveen  | Mobile
+          5 |    2 |         1 | Naveen  | Mobile
+          6 |    2 |         1 | Bharti  | Mobile
+          7 |    2 |         1 | Mohit   | Mobile
+          8 |    2 |         1 | Ramesh  | Mobile
+          9 |    2 |         1 | Chhavi  | Mobile
+         10 |    2 |         1 | Sager   | Mobile
+         11 |    2 |         1 | Ujwal   | Mobile
+          1 |    2 |         2 | Pankaj  | Laptop
+          2 |    2 |         2 | Pavan   | Laptop
+          3 |    2 |         2 | Praveen | Laptop
+          4 |    2 |         2 | Naveen  | Laptop
+          5 |    2 |         2 | Naveen  | Laptop
+          6 |    2 |         2 | Bharti  | Laptop
+          7 |    2 |         2 | Mohit   | Laptop
+          8 |    2 |         2 | Ramesh  | Laptop
+          9 |    2 |         2 | Chhavi  | Laptop
+         10 |    2 |         2 | Sager   | Laptop
+         11 |    2 |         2 | Ujwal   | Laptop
+          1 |    5 |         3 | Pankaj  | Laptop
+          2 |    5 |         3 | Pavan   | Laptop
+          3 |    5 |         3 | Praveen | Laptop
+          4 |    5 |         3 | Naveen  | Laptop
+          5 |    5 |         3 | Naveen  | Laptop
+          6 |    5 |         3 | Bharti  | Laptop
+          7 |    5 |         3 | Mohit   | Laptop
+          8 |    5 |         3 | Ramesh  | Laptop
+          9 |    5 |         3 | Chhavi  | Laptop
+         10 |    5 |         3 | Sager   | Laptop
+         11 |    5 |         3 | Ujwal   | Laptop
+          1 |   10 |         4 | Pankaj  | Mobile
+          2 |   10 |         4 | Pavan   | Mobile
+          3 |   10 |         4 | Praveen | Mobile
+          4 |   10 |         4 | Naveen  | Mobile
+          5 |   10 |         4 | Naveen  | Mobile
+          6 |   10 |         4 | Bharti  | Mobile
+          7 |   10 |         4 | Mohit   | Mobile
+          8 |   10 |         4 | Ramesh  | Mobile
+          9 |   10 |         4 | Chhavi  | Mobile
+         10 |   10 |         4 | Sager   | Mobile
+         11 |   10 |         4 | Ujwal   | Mobile
+          1 |   10 |         5 | Pankaj  | shoe
+          2 |   10 |         5 | Pavan   | shoe
+          3 |   10 |         5 | Praveen | shoe
+          4 |   10 |         5 | Naveen  | shoe
+          5 |   10 |         5 | Naveen  | shoe
+          6 |   10 |         5 | Bharti  | shoe
+          7 |   10 |         5 | Mohit   | shoe
+          8 |   10 |         5 | Ramesh  | shoe
+          9 |   10 |         5 | Chhavi  | shoe
+         10 |   10 |         5 | Sager   | shoe
+         11 |   10 |         5 | Ujwal   | shoe
+          1 |   15 |         6 | Pankaj  | shoe
+          2 |   15 |         6 | Pavan   | shoe
+          3 |   15 |         6 | Praveen | shoe
+          4 |   15 |         6 | Naveen  | shoe
+          5 |   15 |         6 | Naveen  | shoe
+          6 |   15 |         6 | Bharti  | shoe
+          7 |   15 |         6 | Mohit   | shoe
+          8 |   15 |         6 | Ramesh  | shoe
+          9 |   15 |         6 | Chhavi  | shoe
+         10 |   15 |         6 | Sager   | shoe
+         11 |   15 |         6 | Ujwal   | shoe
+          1 |   20 |         7 | Pankaj  | shoe
+          2 |   20 |         7 | Pavan   | shoe
+          3 |   20 |         7 | Praveen | shoe
+          4 |   20 |         7 | Naveen  | shoe
+          5 |   20 |         7 | Naveen  | shoe
+          6 |   20 |         7 | Bharti  | shoe
+          7 |   20 |         7 | Mohit   | shoe
+          8 |   20 |         7 | Ramesh  | shoe
+          9 |   20 |         7 | Chhavi  | shoe
+         10 |   20 |         7 | Sager   | shoe
+         11 |   20 |         7 | Ujwal   | shoe
+          1 |    2 |         8 | Pankaj  | Pen
+          2 |    2 |         8 | Pavan   | Pen
+          3 |    2 |         8 | Praveen | Pen
+          4 |    2 |         8 | Naveen  | Pen
+          5 |    2 |         8 | Naveen  | Pen
+          6 |    2 |         8 | Bharti  | Pen
+          7 |    2 |         8 | Mohit   | Pen
+          8 |    2 |         8 | Ramesh  | Pen
+          9 |    2 |         8 | Chhavi  | Pen
+         10 |    2 |         8 | Sager   | Pen
+         11 |    2 |         8 | Ujwal   | Pen
+(88 rows)
+
+
+
+
+SELECT customerid, fname, productid, name, unit FROM customer LEFT OUTER JOIN products ON customerid = unit;
+
+
+ customerid |  fname  | productid |  name  | unit 
+------------+---------+-----------+--------+------
+          2 | Pavan   |         1 | Mobile |    2
+          2 | Pavan   |         2 | Laptop |    2
+          5 | Naveen  |         3 | Laptop |    5
+         10 | Sager   |         4 | Mobile |   10
+         10 | Sager   |         5 | shoe   |   10
+          2 | Pavan   |         8 | Pen    |    2
+         11 | Ujwal   |           |        |     
+          8 | Ramesh  |           |        |     
+          6 | Bharti  |           |        |     
+          4 | Naveen  |           |        |     
+          1 | Pankaj  |           |        |     
+          3 | Praveen |           |        |     
+          9 | Chhavi  |           |        |     
+          7 | Mohit   |           |        |     
+(14 rows)
+
+
+
+SELECT customerid, fname, productid, name, unit FROM customer RIGHT OUTER JOIN products ON customerid = unit;
+
+
+ customerid | fname  | productid |  name  | unit 
+------------+--------+-----------+--------+------
+          2 | Pavan  |         1 | Mobile |    2
+          2 | Pavan  |         2 | Laptop |    2
+          5 | Naveen |         3 | Laptop |    5
+         10 | Sager  |         4 | Mobile |   10
+         10 | Sager  |         5 | shoe   |   10
+            |        |         6 | shoe   |   15
+            |        |         7 | shoe   |   20
+          2 | Pavan  |         8 | Pen    |    2
+(8 rows)
+
+
+
+SELECT customerid, fname, productid, name, unit FROM customer FULL OUTER JOIN products ON customerid = unit;
+
+
+ customerid |  fname  | productid |  name  | unit 
+------------+---------+-----------+--------+------
+          2 | Pavan   |         1 | Mobile |    2
+          2 | Pavan   |         2 | Laptop |    2
+          5 | Naveen  |         3 | Laptop |    5
+         10 | Sager   |         4 | Mobile |   10
+         10 | Sager   |         5 | shoe   |   10
+            |         |         6 | shoe   |   15
+            |         |         7 | shoe   |   20
+          2 | Pavan   |         8 | Pen    |    2
+         11 | Ujwal   |           |        |     
+          8 | Ramesh  |           |        |     
+          6 | Bharti  |           |        |     
+          4 | Naveen  |           |        |     
+          1 | Pankaj  |           |        |     
+          3 | Praveen |           |        |     
+          9 | Chhavi  |           |        |     
+          7 | Mohit   |           |        |     
+(16 rows)
+
+
+
+
 
 
 =================================Constraints====================================
