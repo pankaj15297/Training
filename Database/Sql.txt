@@ -1392,5 +1392,104 @@ DROP VIEW cominfo;
 DROP VIEW
 
 
+=======================================ROLLBACK========================================
+
+
+NOTE:- lname is set to default itself
+
+
+SELECT * FROM customers;
+
+
+ customerid |  fname  | lname  |    dob     |     address     |    city     | state  
+------------+---------+--------+------------+-----------------+-------------+--------
+          1 | Pankaj  | Kumar  | 1997-02-15 | Baniyapur       | Chhapra     | Bihar
+          2 | Pavan   | Kumar  | 2007-02-23 | Baniyapur       | Chhapra     | Bihar
+          3 | Praveen | Kumar  | 2012-02-23 | Baniyapur       | Chhapra     | Bihar
+          4 | Naveen  | Kumar  | 2015-02-23 | Baniyapur       | Chhapra     | Bihar
+          5 | Naveen  | Kumar  | 1995-12-13 | Patiala         | Patiala     | Punjab
+          6 | Bharti  | Kumari | 1995-12-13 | Patiala         | Patiala     | Punjab
+          7 | Mohit   | Sharma | 1993-08-15 | Okhla           | Delhi       | Delhi
+          8 | Ramesh  | Misra  | 1973-08-15 | New Ashok Nager | South Delhi | Delhi
+          9 | Chhavi  | N/A    | 1973-08-15 | Merath          | Merath      | UP
+         10 | Sager   | Kumar  | 2012-02-23 | Chhapra         | Chhapra     | Bihar
+         11 | Ujwal   | Kumar  | 2015-02-23 | Chhapra         | Chhapra     | Bihar
+(11 rows)
+
+
+
+INSERT INTO customers (customerid, fname, dob, address, city, state) VALUES (12, 'Seraj', '1996-05-18', 'Chandighar', 'Chandighar', 'Punjab'); 
+INSERT 0 1
+
+SELECT * FROM customers;
+
+
+ customerid |  fname  | lname  |    dob     |     address     |    city     | state  
+------------+---------+--------+------------+-----------------+-------------+--------
+          1 | Pankaj  | Kumar  | 1997-02-15 | Baniyapur       | Chhapra     | Bihar
+          2 | Pavan   | Kumar  | 2007-02-23 | Baniyapur       | Chhapra     | Bihar
+          3 | Praveen | Kumar  | 2012-02-23 | Baniyapur       | Chhapra     | Bihar
+          4 | Naveen  | Kumar  | 2015-02-23 | Baniyapur       | Chhapra     | Bihar
+          5 | Naveen  | Kumar  | 1995-12-13 | Patiala         | Patiala     | Punjab
+          6 | Bharti  | Kumari | 1995-12-13 | Patiala         | Patiala     | Punjab
+          7 | Mohit   | Sharma | 1993-08-15 | Okhla           | Delhi       | Delhi
+          8 | Ramesh  | Misra  | 1973-08-15 | New Ashok Nager | South Delhi | Delhi
+          9 | Chhavi  | N/A    | 1973-08-15 | Merath          | Merath      | UP
+         10 | Sager   | Kumar  | 2012-02-23 | Chhapra         | Chhapra     | Bihar
+         11 | Ujwal   | Kumar  | 2015-02-23 | Chhapra         | Chhapra     | Bihar
+         12 | Seraj   | N/A    | 1996-05-18 | Chandighar      | Chandighar  | Punjab
+(12 rows)
+
+
+
+
+BEGIN;
+BEGIN
+
+DELETE FROM customers where customerid = 12;
+DELETE 1
+
+SELECT * FROM customers;
+
+
+ customerid |  fname  | lname  |    dob     |     address     |    city     | state  
+------------+---------+--------+------------+-----------------+-------------+--------
+          1 | Pankaj  | Kumar  | 1997-02-15 | Baniyapur       | Chhapra     | Bihar
+          2 | Pavan   | Kumar  | 2007-02-23 | Baniyapur       | Chhapra     | Bihar
+          3 | Praveen | Kumar  | 2012-02-23 | Baniyapur       | Chhapra     | Bihar
+          4 | Naveen  | Kumar  | 2015-02-23 | Baniyapur       | Chhapra     | Bihar
+          5 | Naveen  | Kumar  | 1995-12-13 | Patiala         | Patiala     | Punjab
+          6 | Bharti  | Kumari | 1995-12-13 | Patiala         | Patiala     | Punjab
+          7 | Mohit   | Sharma | 1993-08-15 | Okhla           | Delhi       | Delhi
+          8 | Ramesh  | Misra  | 1973-08-15 | New Ashok Nager | South Delhi | Delhi
+          9 | Chhavi  | N/A    | 1973-08-15 | Merath          | Merath      | UP
+         10 | Sager   | Kumar  | 2012-02-23 | Chhapra         | Chhapra     | Bihar
+         11 | Ujwal   | Kumar  | 2015-02-23 | Chhapra         | Chhapra     | Bihar
+(11 rows)
+
+
+
+ROLLBACK;
+ROLLBACK
+
+
+SELECT * FROM customers;
+
+
+ customerid |  fname  | lname  |    dob     |     address     |    city     | state  
+------------+---------+--------+------------+-----------------+-------------+--------
+          1 | Pankaj  | Kumar  | 1997-02-15 | Baniyapur       | Chhapra     | Bihar
+          2 | Pavan   | Kumar  | 2007-02-23 | Baniyapur       | Chhapra     | Bihar
+          3 | Praveen | Kumar  | 2012-02-23 | Baniyapur       | Chhapra     | Bihar
+          4 | Naveen  | Kumar  | 2015-02-23 | Baniyapur       | Chhapra     | Bihar
+          5 | Naveen  | Kumar  | 1995-12-13 | Patiala         | Patiala     | Punjab
+          6 | Bharti  | Kumari | 1995-12-13 | Patiala         | Patiala     | Punjab
+          7 | Mohit   | Sharma | 1993-08-15 | Okhla           | Delhi       | Delhi
+          8 | Ramesh  | Misra  | 1973-08-15 | New Ashok Nager | South Delhi | Delhi
+          9 | Chhavi  | N/A    | 1973-08-15 | Merath          | Merath      | UP
+         10 | Sager   | Kumar  | 2012-02-23 | Chhapra         | Chhapra     | Bihar
+         11 | Ujwal   | Kumar  | 2015-02-23 | Chhapra         | Chhapra     | Bihar
+         12 | Seraj   | N/A    | 1996-05-18 | Chandighar      | Chandighar  | Punjab
+(12 rows)
 
 
