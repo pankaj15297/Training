@@ -1588,3 +1588,111 @@ SELECT * FROM customers;
 (11 rows)
 
 
+
+
+=====================================AUTO INCREMENT======================================
+
+
+CREATE TABLE company (ID SERIAL PRIMARY KEY, name VARCHAR);
+CREATE TABLE
+
+\d company;
+
+                              Table "public.company"
+ Column |       Type        |                      Modifiers                       
+--------+-------------------+------------------------------------------------------
+ id     | integer           | not null default nextval('company_id_seq'::regclass)
+ name   | character varying | 
+Indexes:
+    "company_pkey" PRIMARY KEY, btree (id)
+
+
+INSERT INTO company (name) values ('Pankaj');
+INSERT 0 1
+
+INSERT INTO company (name) values ('Pavan');
+INSERT 0 1
+
+INSERT INTO company (name) values ('Praveen');
+INSERT 0 1
+
+INSERT INTO company (name) values ('Naveen');
+INSERT 0 1
+
+
+SELECT * FROM company;
+
+
+ id |  name   
+----+---------
+  1 | Pankaj
+  2 | Pavan
+  3 | Praveen
+  4 | Naveen
+(4 rows)
+
+
+
+===============================Making a FOREIGN KEY in existing table=================
+
+
+
+\d company
+
+                              Table "public.company"
+ Column |       Type        |                      Modifiers                       
+--------+-------------------+------------------------------------------------------
+ id     | integer           | not null default nextval('company_id_seq'::regclass)
+ name   | character varying | 
+Indexes:
+    "company_pkey" PRIMARY KEY, btree (id)
+
+
+
+ALTER TABLE comp ADD COLUMN id INT;
+ALTER TABLE
+
+\d comp
+
+
+          Table "public.comp"
+ Column |       Type        | Modifiers 
+--------+-------------------+-----------
+ name   | character varying | 
+ id     | integer           | 
+
+
+
+ALTER TABLE comp ADD FOREIGN KEY (id) REFERENCES company;
+ALTER TABLE
+
+
+\d comp
+
+
+
+          Table "public.comp"
+ Column |       Type        | Modifiers 
+--------+-------------------+-----------
+ name   | character varying | 
+ id     | integer           | 
+Foreign-key constraints:
+    "comp_id_fkey" FOREIGN KEY (id) REFERENCES company(id)
+
+
+\d company
+
+
+                              Table "public.company"
+ Column |       Type        |                      Modifiers                       
+--------+-------------------+------------------------------------------------------
+ id     | integer           | not null default nextval('company_id_seq'::regclass)
+ name   | character varying | 
+Indexes:
+    "company_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "comp" CONSTRAINT "comp_id_fkey" FOREIGN KEY (id) REFERENCES company(id)
+
+
+
+
