@@ -536,3 +536,21 @@ SELECT MIN(customerid) FROM customer;
 -----
    1
 (1 row)
+
+
+=================================Constraints====================================
+
+CREATE TABLE COMPANY(
+   ID INT PRIMARY KEY     NOT NULL,
+   NAME           TEXT    NOT NULL,
+   AGE            INT     NOT NULL,
+   ADDRESS        CHAR(50),
+   SALARY         REAL    CHECK(SALARY > 0)
+);
+
+
+1) (CHECK)During insertion salary > 0 only accepts ie those salaries are accepted which > 0.
+2) (NOT NULL):- Attributes ID, NAME, AGE, ADDRESS should not be null.
+3) PRIMARY KEY(NOT NULL + UNIQUE) define every row uniquly.
+4) FOREIGN KEY referenced rows that are related to primary key.
+5) UNIQUE makes different in all records.
