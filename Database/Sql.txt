@@ -1081,7 +1081,7 @@ Referenced by:
 
 
 
-===============================UNION,UNION ALL,INTERSECT==================================
+=============================UNION,UNION ALL,INTERSECT,EXCEPT============================
 
 
 NOTE:-UNION removes duplicate records (where all columns in the results are the same), UNION ALL does not.
@@ -1202,6 +1202,54 @@ SELECT customerid FROM customer INTERSECT SELECT unit FROM products;
          10
 (3 rows)
 
+
+
+SELECT customerid FROM customer;
+
+ customerid 
+------------
+          1
+          2
+          3
+          4
+          5
+          6
+          7
+          8
+          9
+         10
+         11
+(11 rows)
+
+
+SELECT unit FROM products;
+
+ unit 
+------
+    2
+    2
+    5
+   10
+   10
+   15
+   20
+    2
+(8 rows)
+
+
+SELECT customerid FROM customer EXCEPT SELECT unit FROM products;
+
+ customerid 
+------------
+          6
+          4
+          8
+          1
+          9
+          3
+          7
+         11
+(8 rows)
 
 
 ======================================WITH=========================================
