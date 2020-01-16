@@ -1300,3 +1300,36 @@ WITH CINFO AS (SELECT customerid, fname FROM customer) SELECT SUM(customerid) FR
 -----
   66
 (1 row)
+
+
+
+======================================RENAME a table==================================
+
+
+ALTER TABLE customer RENAME TO customers;
+ALTER TABLE
+
+
+\d
+
+
+             List of relations
+ Schema |     Name      | Type  |  Owner   
+--------+---------------+-------+----------
+ public | customers     | table | postgres
+ public | orderproducts | table | postgres
+ public | orders        | table | postgres
+ public | products      | table | postgres
+(4 rows)
+
+
+
+
+
+
+
+
+
+
+
+
