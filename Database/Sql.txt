@@ -1076,5 +1076,96 @@ Referenced by:
 
 
 
+==================================UNION,INTERSECT======================================
 
+
+
+1) SELECT customerid FROM customer UNION SELECT productid, unit FROM products;
+   ERROR:  each UNION query must have the same number of columns
+
+2) SELECT FROM customer UNION SELECT FROM products;
+   ERROR:  UNION over no columns is not supported
+
+3) SELECT customerid FROM customer UNION SELECT name FROM products;
+   ERROR:  UNION types integer and character varying cannot be matched
+
+
+SELECT customerid FROM customer;
+
+ customerid 
+------------
+          1
+          2
+          3
+          4
+          5
+          6
+          7
+          8
+          9
+         10
+         11
+(11 rows)
+
+
+SELECT unit FROM products;
+
+ unit 
+------
+    2
+    2
+    5
+   10
+   10
+   15
+   20
+    2
+(8 rows)
+
+
+
+SELECT customerid FROM customer UNION SELECT unit FROM products;
+
+ customerid 
+------------
+          8
+         15
+          4
+         20
+          1
+          5
+         11
+          3
+         10
+          9
+          6
+          2
+          7
+(13 rows)
+
+
+
+
+1) SELECT customerid FROM customer INTERSECT SELECT NAME FROM products;
+   ERROR:  INTERSECT types integer and character varying cannot be matched
+
+
+2) SELECT customerid FROM customer INTERSECT SELECT name, unit FROM products;
+   ERROR:  each INTERSECT query must have the same number of columns
+
+
+3) SELECT FROM customer INTERSECT SELECT FROM products;
+   ERROR:  INTERSECT over no columns is not supported
+
+
+
+
+SELECT customerid FROM customer INTERSECT SELECT unit FROM products;
+
+ customerid 
+------------
+          5
+          2
+         10
+(3 rows)
 
