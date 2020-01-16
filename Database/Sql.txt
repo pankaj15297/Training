@@ -1323,10 +1323,12 @@ ALTER TABLE
 (4 rows)
 
 
-====================================TRUNCATE========================================
+====================================TRUNCATE,DROP========================================
 
 
 1) The PostgreSQL TRUNCATE TABLE command is used to delete complete data from an existing  table.
+
+2) DROP destroy whole table like data as well as schema.
 
 
 SELECT * FROM customers;
@@ -1357,6 +1359,37 @@ TRUNCATE TABLE
 ------------+---------+--------+------------+-----------------+-------------+--------
 
 (0 rows)
+
+
+
+=====================================VIEW create,drop===================================
+
+
+CREATE VIEW cominfo AS SELECT customerid, fname FROM customers;
+CREATE VIEW
+
+
+SELECT * FROM cominfo;
+
+
+ customerid |  fname  
+------------+---------
+          1 | Pankaj
+          2 | Pavan
+          3 | Praveen
+          4 | Naveen
+          5 | Naveen
+          6 | Bharti
+          7 | Mohit
+          8 | Ramesh
+          9 | Chhavi
+         10 | Sager
+         11 | Ujwal
+(11 rows)
+
+
+DROP VIEW cominfo;
+DROP VIEW
 
 
 
