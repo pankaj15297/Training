@@ -1410,7 +1410,7 @@ Isolation − Enables transactions to operate independently of and transparent t
 Durability − Ensures that the result or effect of a committed transaction persists in case of a system failure.
 
 
-=======================================ROLLBACK========================================
+====================================BEGIN,ROLLBACK======================================
 
 
 NOTE:- lname is set to default itself
@@ -1512,7 +1512,7 @@ SELECT * FROM customers;
 
 
 
-===================================COMMIT===================================
+===================================BEGIN,COMMIT===================================
 
 
 
