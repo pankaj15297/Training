@@ -645,7 +645,12 @@ SELECT * FROM products;
 
 SELECT customerid, unit, productid, fname, name FROM customer INNER JOIN products ON customerid = unit;
 
+                                   OR
+
+SELECT customerid, unit, productid, fname, name FROM customer AS C INNER JOIN products AS P ON C.customerid = P.unit;
+
 (Mapping each on customerid = unit)
+
 
 
  customerid | unit | productid | fname  |  name  
@@ -1076,8 +1081,10 @@ Referenced by:
 
 
 
-==================================UNION,INTERSECT======================================
+===============================UNION,UNION ALL,INTERSECT==================================
 
+
+NOTE:-UNION removes duplicate records (where all columns in the results are the same), UNION ALL does not.
 
 
 1) SELECT customerid FROM customer UNION SELECT productid, unit FROM products;
@@ -1145,6 +1152,32 @@ SELECT customerid FROM customer UNION SELECT unit FROM products;
 
 
 
+SELECT customerid FROM customer UNION ALL SELECT unit FROM products;
+
+ customerid 
+------------
+          1
+          2
+          3
+          4
+          5
+          6
+          7
+          8
+          9
+         10
+         11
+          2
+          2
+          5
+         10
+         10
+         15
+         20
+          2
+(19 rows)
+
+
 
 1) SELECT customerid FROM customer INTERSECT SELECT NAME FROM products;
    ERROR:  INTERSECT types integer and character varying cannot be matched
@@ -1169,3 +1202,53 @@ SELECT customerid FROM customer INTERSECT SELECT unit FROM products;
          10
 (3 rows)
 
+
+
+======================================WITH=========================================
+
+
+SELECT customerid, fname FROM customer;
+
+
+ customerid |  fname  
+------------+---------
+          1 | Pankaj
+          2 | Pavan
+          3 | Praveen
+          4 | Naveen
+          5 | Naveen
+          6 | Bharti
+          7 | Mohit
+          8 | Ramesh
+          9 | Chhavi
+         10 | Sager
+         11 | Ujwal
+(11 rows)
+
+
+WITH CINFO AS (SELECT customerid, fname FROM customer) SELECT * FROM CINFO;
+
+
+ customerid |  fname  
+------------+---------
+          1 | Pankaj
+          2 | Pavan
+          3 | Praveen
+          4 | Naveen
+          5 | Naveen
+          6 | Bharti
+          7 | Mohit
+          8 | Ramesh
+          9 | Chhavi
+         10 | Sager
+         11 | Ujwal
+(11 rows)
+
+
+
+WITH CINFO AS (SELECT customerid, fname FROM customer) SELECT SUM(customerid) FROM CINFO;
+
+ sum 
+-----
+  66
+(1 row)
