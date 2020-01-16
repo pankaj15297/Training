@@ -1,3 +1,6 @@
+====================CREATE,INSERT,SELECT,DROP,ALTER,Describe a table======================
+
+
 CREATE TABLE Customer (CustomerID INT PRIMARY KEY NOT NULL, FName CHAR(20) NOT NULL, LName CHAR(20) NOT NULL, DOB DATE NOT NULL, Address CHAR(50) NOT NULL, City CHAR(20) NOT NULL, State CHAR(20) NOT NULL);
 
 INSERT INTO customer VALUES (1, 'Pankaj', 'Kumar', '1997-02-15', 'Baniyapur', 'Chhapra', 'Bihar');
@@ -93,7 +96,10 @@ Foreign-key constraints:
     "orders_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customer(customerid)
 
 
-Store=# INSERT INTO orders VALUES (1, 7011, '2020-01-15', 'I have ordered a Phone');
+===================================UPDATE====================================
+
+
+INSERT INTO orders VALUES (1, 7011, '2020-01-15', 'I have ordered a Phone');
 ERROR:  insert or update on table "orders" violates foreign key constraint "orders_customerid_fkey"
 DETAIL:  Key (customerid)=(7011) is not present in table "customer".
 
@@ -108,9 +114,10 @@ SELECT * FROM orders
 
 
 
-Store=# INSERT INTO orders VALUES (1, 2, '2020-01-15', 'I have ordered a Laptop');
+INSERT INTO orders VALUES (1, 2, '2020-01-15', 'I have ordered a Laptop');
 ERROR:  duplicate key value violates unique constraint "orders_pkey"
 DETAIL:  Key (orderid)=(1) already exists.
+
 
 
 
@@ -203,6 +210,7 @@ DETAIL:  Key (customerid)=(10) is still referenced from table "orders".
 (4 rows)
 
 
+=========================WHERE,LIKE,ORDER BY,DELETE,BETWEEN,<,=,>=========================
 
 DELETE FROM orders WHERE customerid = 10;
 DELETE 2
@@ -233,7 +241,7 @@ DELETE 1
 
 
 
-SELECT * FROM customer WHERE fname like 'P%';
+SELECT * FROM customer WHERE fname LIKE 'P%';
 
  customerid |  fname  | lname |    dob     |  address  |  city   | state 
 ------------+---------+-------+------------+-----------+---------+-------
@@ -243,7 +251,7 @@ SELECT * FROM customer WHERE fname like 'P%';
 (3 rows)
 
 
-SELECT * FROM customer WHERE fname like '%v%';
+SELECT * FROM customer WHERE fname LIKE '%v%';
 
  customerid |  fname  | lname |    dob     |  address  |  city   | state  
 ------------+---------+-------+------------+-----------+---------+--------
@@ -315,6 +323,8 @@ SELECT * FROM customer WHERE dob BETWEEN '1997-02-15' AND '2012-02-23';
 (3 rows)
 
 
+===================================ASC,DISC=========================================
+
 
 SELECT * FROM (SELECT * FROM customer ORDER BY customerid DESC LIMIT 2) AS C ORDER BY customerid LIMIT 1;
 
@@ -344,6 +354,8 @@ SELECT * FROM customer;
 (11 rows)
 
 
+======================Second Highest DOB, DISTINCT======================================
+
 
 SELECT dob FROM (SELECT DISTINCT dob FROM customer ORDER BY dob DESC LIMIT 2) AS C ORDER BY dob LIMIT 1;
 
@@ -353,6 +365,8 @@ SELECT dob FROM (SELECT DISTINCT dob FROM customer ORDER BY dob DESC LIMIT 2) AS
  2012-02-23
 (1 row)
 
+
+=====================================GROUP BY====================================
 
 
 SELECT dob FROM customer GROUP BY dob;
@@ -405,6 +419,7 @@ SELECT state FROM customer GROUP BY state;
 (4 rows)
 
 
+================================Schema=====================================================
 
 
 CREATE SCHEMA myschema;
@@ -417,6 +432,8 @@ DROP SCHEMA myschema;  (drop schema if it is empty)
 
 DROP SCHEMA myschema CASCADE;  (drop schema if it containes objects)
 
+
+============================AND,OR,GROUP BY,HAVING=======================================
 
 
 SELECT * FROM customer WHERE city = 'Chhapra'AND address = 'Chhapra';
@@ -473,6 +490,7 @@ SELECT dob FROM customer GROUP BY dob HAVING COUNT(dob) = 2;
  1973-08-15
 (4 rows)
 
+=================================Aggregate functions=====================================
 
 SELECT SUM(customerid) FROM customer;
 
@@ -553,4 +571,7 @@ CREATE TABLE COMPANY(
 2) (NOT NULL):- Attributes ID, NAME, AGE, ADDRESS should not be null.
 3) PRIMARY KEY(NOT NULL + UNIQUE) define every row uniquly.
 4) FOREIGN KEY referenced rows that are related to primary key.
-5) UNIQUE makes different in all records.
+5) UNIQUE makes difference in all records.
+
+
+
