@@ -1887,3 +1887,42 @@ SELECT salary[4],task[4] FROM company;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+===============================================================================
+
+
+
+
+
+
+
+
+
+
+
+b) SELECT C.eid, MAX (A.cruisingrange) FROM Certified C, Aircraft A WHERE C.aid = A.aid GROUP BY C.eid HAVING COUNT (*) > 3;
+
+
+ eid |  max  
+-----+-------
+ 101 | 20000
+ 108 | 20000
+(2 rows)
+
+
+
+
+
+
+
