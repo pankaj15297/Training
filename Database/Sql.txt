@@ -1,4 +1,4 @@
-=======================================POSTGRESQL===========================================
+=======================================POSTGRESQL=========================================
 
 
 ====================CREATE,INSERT,SELECT,DROP,ALTER,Describe a table======================
@@ -1633,6 +1633,29 @@ SELECT * FROM company;
 
 
 
+
+\d company_id_seq; 
+
+(Table company_id_seq is automatically created to keep track increment values)
+
+
+       Sequence "public.company_id_seq"
+    Column     |  Type   |        Value        
+---------------+---------+---------------------
+ sequence_name | name    | company_id_seq
+ last_value    | bigint  | 5
+ start_value   | bigint  | 1
+ increment_by  | bigint  | 1
+ max_value     | bigint  | 9223372036854775807
+ min_value     | bigint  | 1
+ cache_value   | bigint  | 1
+ log_cnt       | bigint  | 32
+ is_cycled     | boolean | f
+ is_called     | boolean | t
+Owned by: public.company.id
+
+
+
 ===============================Making a FOREIGN KEY in existing table=================
 
 
@@ -1695,4 +1718,169 @@ Referenced by:
 
 
 
+=============================ARRAY data types use==================================
+
+
+
+\d company;
+
+                              Table "public.company"
+ Column |       Type        |                      Modifiers                       
+--------+-------------------+------------------------------------------------------
+ id     | integer           | not null default nextval('company_id_seq'::regclass)
+ name   | character varying | 
+Indexes:
+    "company_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "comp" CONSTRAINT "comp_id_fkey" FOREIGN KEY (id) REFERENCES company(id)
+
+
+
+ALTER TABLE company ADD COLUMN salary integer[];
+ALTER TABLE
+
+\d company;
+
+
+                              Table "public.company"
+ Column |       Type        |                      Modifiers                       
+--------+-------------------+------------------------------------------------------
+ id     | integer           | not null default nextval('company_id_seq'::regclass)
+ name   | character varying | 
+ salary | integer[]         | 
+Indexes:
+    "company_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "comp" CONSTRAINT "comp_id_fkey" FOREIGN KEY (id) REFERENCES company(id)
+
+
+
+ALTER TABLE company ADD COLUMN task integer ARRAY[4];
+ALTER TABLE
+
+\d company;
+
+
+                              Table "public.company"
+ Column |       Type        |                      Modifiers                       
+--------+-------------------+------------------------------------------------------
+ id     | integer           | not null default nextval('company_id_seq'::regclass)
+ name   | character varying | 
+ salary | integer[]         | 
+ task   | integer[]         | 
+Indexes:
+    "company_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "comp" CONSTRAINT "comp_id_fkey" FOREIGN KEY (id) REFERENCES company(id)
+
+
+
+INSERT INTO company (name, salary, task) values ('Sivam', '{100,500,800,200}', '{1,5,8,2}');
+INSERT 0 1
+
+
+SELECT * FROM company;
+
+ id |  name   |      salary       |   task    
+----+---------+-------------------+-----------
+  1 | Pankaj  |                   | 
+  2 | Pavan   |                   | 
+  3 | Praveen |                   | 
+  4 | Naveen  |                   | 
+  5 | Bharti  |                   | 
+  6 | Sivam   | {100,500,800,200} | {1,5,8,2}
+(6 rows)
+
+
+
+SELECT salary FROM company;
+
+      salary       
+-------------------
+ 
+ 
+ 
+ 
+ 
+ {100,500,800,200}
+(6 rows)
+
+
+SELECT salary[0] FROM company;
+
+ salary 
+--------
+       
+       
+       
+       
+       
+       
+(6 rows)
+
+
+SELECT salary[1] FROM company;
+
+ salary 
+--------
+       
+       
+       
+       
+       
+    100
+(6 rows)
+
+
+SELECT salary[2] FROM company;
+
+ salary 
+--------
+       
+       
+       
+       
+       
+    500
+(6 rows)
+
+
+SELECT salary[4] FROM company;
+
+ salary 
+--------
+       
+       
+       
+       
+       
+    200
+(6 rows)
+
+
+SELECT salary[5] FROM company;
+
+ salary 
+--------
+       
+       
+       
+       
+       
+       
+(6 rows)
+
+
+
+SELECT salary[4],task[4] FROM company;
+
+ salary | task 
+--------+------
+        |     
+        |     
+        |     
+        |     
+        |     
+    200 |    2
+(6 rows)
 
