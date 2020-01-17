@@ -45,3 +45,5 @@ aa=# \dn  (show list of schema)
 
 
 CREATE ROLE pankaj WITH CREATEDB LOGIN PASSWORD '123'  (create role)
+
+http://mll.csie.ntu.edu.tw/course/database_f07/assignment/Solutions/assignment3_solution.pdf
