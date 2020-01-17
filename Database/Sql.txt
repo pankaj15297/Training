@@ -1884,3 +1884,6 @@ SELECT salary[4],task[4] FROM company;
     200 |    2
 (6 rows)
 
+
+
+
