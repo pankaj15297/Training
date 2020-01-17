@@ -291,3 +291,35 @@ f) SELECT A.aid FROM Aircraft A WHERE A.cruisingrange > ( SELECT MIN (F.distance
 
 
 
+l) SELECT E.ename FROM Employees E, Certified C, Aircraft A WHERE C.aid = A.aid AND E.eid = C.eid GROUP BY E.eid, E.ename HAVING EVERY (A.cruisingrange > 1000) ;
+
+  ename   
+----------
+ Naveen
+ Pavan
+ Raju
+ Ashutosh
+ Aman
+ Bharti
+ Saurabh
+ Ramesh
+ Chhavi
+ Pankaj
+ Moti
+ Sager
+ Praveen
+(13 rows)
+
+
+m) SELECT E.ename FROM Employees E, Certified C, Aircraft A WHERE C.aid = A.aid AND 
+E.eid = C.eid GROUP BY E.eid, E.ename HAVING EVERY (A.cruisingrange > 1000) AND 
+COUNT (*) > 1;
+
+ ename  
+--------
+ Naveen
+ Ramesh
+ Pankaj
+(3 rows)
+
+
