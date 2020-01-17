@@ -22,7 +22,7 @@ postgres@beryl-Latitude-E5520:/home/beryl$ psql  (make like log: postgres=#)(ent
 postgres@beryl-Latitude-E5520:/home/beryl$ createdb Message_development   (create database)
 postgres@beryl-Latitude-E5520:/home/beryl$ psql MessageBoard_development  (enter into database)
 postgres=# CREATE DATABASE Message_development   (create database)
-postgres=# \c Message_production  (select other database)
+postgres=# \c Message_production  (switch to other database)
 
 postgres=# DROP DATABASE Message_production
 
@@ -39,4 +39,9 @@ postgres=# DROP USER pankaj;
 aa=# DROP TABLE employee;
 
 aa=# \d  (show list of relations/tables)
+aa=# \d+  (show details of tables)
+aa=# \d table_name  (to describe the table)
+aa=# \dn  (show list of schema)
 
+
+CREATE ROLE pankaj WITH CREATEDB LOGIN PASSWORD '123'  (create role)
