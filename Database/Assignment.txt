@@ -264,6 +264,11 @@ SELECT C.eid, MAX(A.cruisingrange) FROM Aircraft A JOIN Certified C ON A.aid = C
 
 c) SELECT DISTINCT E.ename FROM Employees E WHERE E.salary < ( SELECT MIN (F.price) FROM Flights F WHERE F.from = 'Delhi' AND F.to = 'London' );
 
+										OR
+
+SELECT DISTINCT E.ename FROM Employees E WHERE E.salary < ( SELECT MIN (F.price) FROM Flights F WHERE F.from = 'Delhi' AND F.to = 'London' );
+
+
   ename   
 ----------
  Raju
