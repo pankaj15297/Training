@@ -231,6 +231,11 @@ SELECT * FROM Certified;
 
 a) SELECT DISTINCT A.aname FROM Aircraft A WHERE A.aid IN (SELECT C.aid FROM Certified C, Employees E WHERE C.eid = E.eid AND NOT EXISTS ( SELECT * FROM Employees E1 WHERE E1.eid = E.eid AND E1.salary < 80000 ));
 
+									OR
+
+SELECT DISTINCT A.aname FROM Aircraft A JOIN Certified C ON A.aid = C.aid JOIN Employees E ON C.eid = E.eid WHERE E.salary > 80000;
+
+
   aname   
 ----------
  SpiceJet
@@ -244,6 +249,11 @@ a) SELECT DISTINCT A.aname FROM Aircraft A WHERE A.aid IN (SELECT C.aid FROM Cer
 
 
 b) SELECT C.eid, MAX (A.cruisingrange) FROM Certified C, Aircraft A WHERE C.aid = A.aid GROUP BY C.eid HAVING COUNT (*) > 3;
+
+									OR
+
+SELECT C.eid, MAX(A.cruisingrange) FROM Aircraft A JOIN Certified C ON A.aid = C.aid JOIN Employees E ON C.eid = E.eid GROUP BY C.eid HAVING COUNT(C.eid) > 3;
+
 
  eid |  max  
 -----+-------
@@ -267,7 +277,30 @@ c) SELECT DISTINCT E.ename FROM Employees E WHERE E.salary < ( SELECT MIN (F.pri
 (8 rows)
 
 
-e) SELECT DISTINCT E.ename FROM Employees E, Certified C, Aircraft A WHERE E.eid = C.eid AND C.aid = A.aid AND A.aname LIKE 'Vis%';
+
+d) SELECT A.aname, AVG(E.salary) FROM Employees E JOIN Certified C ON E.eid = C.eid JOIN Aircraft A ON C.aid = A.aid WHERE A.cruisingrange > 1000 GROUP BY A.aname;
+
+
+  aname   |         avg         
+----------+---------------------
+ SpiceJet |  71142.857142857143
+ IndiGo   |  86666.666666666667
+ Zoom AIr | 100000.000000000000
+ Vistara  | 100000.000000000000
+ TruJet   |  90000.000000000000
+ Star Air |  90000.000000000000
+ GoAir    | 100000.000000000000
+(7 rows)
+
+
+
+
+e) SELECT DISTINCT E.ename FROM Employees E, Certified C, Aircraft A WHERE E.eid = C.eid AND C.aid = A.aid AND A.aname LIKE 'Vistara%';
+
+										OR
+
+SELECT DISTINCT E.ename FROM Employees E JOIN Certified C ON E.eid = C.eid JOIN Aircraft A ON C.aid = A.aid WHERE A.aname LIKE 'Vistara%';
+
 
  ename  
 --------
@@ -290,8 +323,62 @@ f) SELECT A.aid FROM Aircraft A WHERE A.cruisingrange > ( SELECT MIN (F.distance
 
 
 
+i) SELECT departs FROM Flights WHERE "from" IN (SELECT "from" FROM Flights WHERE "to" IN 
+(SELECT "from" FROM Flights WHERE "to" = 'New Yark')) AND arrives < '18:00:00';
 
-l) SELECT E.ename FROM Employees E, Certified C, Aircraft A WHERE C.aid = A.aid AND E.eid = C.eid GROUP BY E.eid, E.ename HAVING EVERY (A.cruisingrange > 1000) ;
+											OR
+
+SELECT departs FROM Flights WHERE "from" = ANY (SELECT "from" FROM Flights 
+WHERE "to" = ANY (SELECT "from" FROM Flights WHERE "to" = 'New Yark')) 
+AND arrives < '18:00:00';											
+
+ departs  
+----------
+ 01:10:00
+ 05:10:00
+ 01:30:00
+ 01:30:00
+ 01:30:00
+(5 rows)
+
+
+
+j) SELECT(SELECT AVG(salary) FROM Employees WHERE eid IN (SELECT DISTINCT eid FROM Certified))-(SELECT AVG(salary) FROM Employees) AS diff;
+
+
+       diff        
+-------------------
+ 3217.194570135747
+(1 row)
+
+
+										OR
+
+SELECT(SELECT AVG(salary) FROM Employees)-(SELECT AVG(salary) FROM Employees WHERE eid 
+IN (SELECT DISTINCT eid FROM Certified)) AS diff;
+
+        diff        
+--------------------
+ -3217.194570135747
+
+
+
+k) SELECT ename, salary FROM Employees WHERE salary > (SELECT AVG(salary) FROM Employees WHERE eid IN (SELECT DISTINCT eid FROM Certified)) AND eid NOT IN (SELECT DISTINCT eid FROM Certified);
+
+ ename  | salary 
+--------+--------
+ Manish |  75000
+(1 row)
+
+
+
+
+l) SELECT DISTINCT E.ename FROM Employees E, Certified C, Aircraft A WHERE C.aid = A.aid AND E.eid = C.eid GROUP BY E.eid, E.ename HAVING EVERY (A.cruisingrange > 1000) ;
+
+										OR
+
+SELECT DISTINCT E.ename FROM Employees E JOIN Certified C ON E.eid = C.eid  JOIN Aircraft A ON C.aid = A.aid WHERE cruisingrange > 1000;
+
 
   ename   
 ----------
@@ -315,11 +402,38 @@ m) SELECT E.ename FROM Employees E, Certified C, Aircraft A WHERE C.aid = A.aid 
 E.eid = C.eid GROUP BY E.eid, E.ename HAVING EVERY (A.cruisingrange > 1000) AND 
 COUNT (*) > 1;
 
+										OR
+
+SELECT E.ename FROM Employees E JOIN Certified C ON E.eid = C.eid JOIN Aircraft A 
+ON C.aid = A.aid GROUP BY E.ename, E.eid HAVING EVERY (cruisingrange > 1000) AND 
+COUNT(a.aid) > 1;
+
+                                        OR
+
+SELECT E.ename FROM Employees E JOIN Certified C ON E.eid = C.eid JOIN Aircraft A 
+ON C.aid = A.aid WHERE cruisingrange > 1000 GROUP BY E.ename HAVING 
+COUNT(a.aid) > 1;                                        
+
+
  ename  
 --------
  Naveen
  Ramesh
  Pankaj
 (3 rows)
+
+
+
+n) SELECT E.ename FROM Employees E JOIN Certified C ON E.eid = C.eid JOIN Aircraft A 
+ON C.aid = A.aid WHERE cruisingrange > 1000 AND A.aname LIKE 'Vistara%';
+
+
+ ename  
+--------
+ Pankaj
+(1 row)
+
+
+
 
 
