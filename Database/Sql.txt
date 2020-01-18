@@ -1890,37 +1890,198 @@ SELECT salary[4],task[4] FROM company;
 
 
 
+==============================EXISTS,NOT EXISTS,IN,NOT IN============================
+
+
+SELECT * FROM Employees;
+
+ eid  |  ename   | salary 
+------+----------+--------
+  101 | Pankaj   | 100000
+  102 | Pavan    |  10000
+  103 | Chhavi   |  80000
+  104 | Saurabh  |  70000
+  105 | Ashutosh |  65000
+  106 | Aman     |  95000
+  107 | Moti     |  55000
+  108 | Ramesh   |  80000
+  109 | Bharti   |  40000
+ 1010 | Naveen   |  80000
+ 1011 | Praveen  |  80000
+ 1012 | Sager    |  85000
+ 1013 | Raju     |  56000
+ 1014 | Ashutosh |  65000
+ 1015 | Ashu     |  36000
+ 1016 | Manish   |  75000
+ 1017 | Aders    |  45000
+(17 rows)
+
+
+
+SELECT * FROM Employees E WHERE EXISTS (SELECT * FROM Employees WHERE E.salary > 80000);
+
+ eid  | ename  | salary 
+------+--------+--------
+  101 | Pankaj | 100000
+  106 | Aman   |  95000
+ 1012 | Sager  |  85000
+(3 rows)
+
+
+
+
+SELECT * FROM Employees E WHERE NOT EXISTS (SELECT * FROM Employees WHERE 
+E.salary > 80000);
+
+ eid  |  ename   | salary 
+------+----------+--------
+  102 | Pavan    |  10000
+  103 | Chhavi   |  80000
+  104 | Saurabh  |  70000
+  105 | Ashutosh |  65000
+  107 | Moti     |  55000
+  108 | Ramesh   |  80000
+  109 | Bharti   |  40000
+ 1010 | Naveen   |  80000
+ 1011 | Praveen  |  80000
+ 1013 | Raju     |  56000
+ 1014 | Ashutosh |  65000
+ 1015 | Ashu     |  36000
+ 1016 | Manish   |  75000
+ 1017 | Aders    |  45000
+(14 rows)
+
+
+
+SELECT * FROM Employees E1 WHERE EXISTS (SELECT * FROM Employees E2 WHERE 
+E1.salary < E2.salary);
+
+(Removes Max salary record)
+
+
+ eid  |  ename   | salary 
+------+----------+--------
+  102 | Pavan    |  10000
+  103 | Chhavi   |  80000
+  104 | Saurabh  |  70000
+  105 | Ashutosh |  65000
+  106 | Aman     |  95000
+  107 | Moti     |  55000
+  108 | Ramesh   |  80000
+  109 | Bharti   |  40000
+ 1010 | Naveen   |  80000
+ 1011 | Praveen  |  80000
+ 1012 | Sager    |  85000
+ 1013 | Raju     |  56000
+ 1014 | Ashutosh |  65000
+ 1015 | Ashu     |  36000
+ 1016 | Manish   |  75000
+ 1017 | Aders    |  45000
+(16 rows)
+
+
+
+
+SELECT * FROM Employees E1 WHERE NOT EXISTS (SELECT * FROM Employees E2 WHERE 
+E1.salary < E2.salary);
+
+(Find Max salary record)
+
+
+ eid | ename  | salary 
+-----+--------+--------
+ 101 | Pankaj | 100000
+(1 row)
 
 
 
 
 
+SELECT * FROM Employees E1 WHERE EXISTS (SELECT * FROM Employees E2 WHERE 
+E1.salary > E2.salary);
+
+(Removes Min salary record)
+
+ eid  |  ename   | salary 
+------+----------+--------
+  101 | Pankaj   | 100000
+  103 | Chhavi   |  80000
+  104 | Saurabh  |  70000
+  105 | Ashutosh |  65000
+  106 | Aman     |  95000
+  107 | Moti     |  55000
+  108 | Ramesh   |  80000
+  109 | Bharti   |  40000
+ 1010 | Naveen   |  80000
+ 1011 | Praveen  |  80000
+ 1012 | Sager    |  85000
+ 1013 | Raju     |  56000
+ 1014 | Ashutosh |  65000
+ 1015 | Ashu     |  36000
+ 1016 | Manish   |  75000
+ 1017 | Aders    |  45000
+(16 rows)
+
+
+
+SELECT * FROM Employees E1 WHERE NOT EXISTS (SELECT * FROM Employees E2 WHERE 
+E1.salary > E2.salary);
+
+
+ eid | ename | salary 
+-----+-------+--------
+ 102 | Pavan |  10000
+(1 row)
 
 
 
 
-===============================================================================
+
+SELECT * FROM Employees E WHERE E.salary IN (80000,95000,100,55000);
+
+ eid  |  ename  | salary 
+------+---------+--------
+  103 | Chhavi  |  80000
+  106 | Aman    |  95000
+  107 | Moti    |  55000
+  108 | Ramesh  |  80000
+ 1010 | Naveen  |  80000
+ 1011 | Praveen |  80000
+(6 rows)
 
 
 
+SELECT * FROM Employees E WHERE E.salary NOT IN (80000,95000,100,55000);
+
+ eid  |  ename   | salary 
+------+----------+--------
+  101 | Pankaj   | 100000
+  102 | Pavan    |  10000
+  104 | Saurabh  |  70000
+  105 | Ashutosh |  65000
+  109 | Bharti   |  40000
+ 1012 | Sager    |  85000
+ 1013 | Raju     |  56000
+ 1014 | Ashutosh |  65000
+ 1015 | Ashu     |  36000
+ 1016 | Manish   |  75000
+ 1017 | Aders    |  45000
+(11 rows)
 
 
+=================================Note===================================
 
 
+NOTE:- SELECT(SELECT ename FROM Employees) AS SUB;
+ERROR:  more than one row returned by a subquery used as an expression
 
 
+SELECT(SELECT MAX(salary) FROM Employees) AS MAXIMUM_SALARY;
 
-
-b) SELECT C.eid, MAX (A.cruisingrange) FROM Certified C, Aircraft A WHERE C.aid = A.aid GROUP BY C.eid HAVING COUNT (*) > 3;
-
-
- eid |  max  
------+-------
- 101 | 20000
- 108 | 20000
-(2 rows)
-
-
+ maximum_salary 
+----------------
+         100000
+(1 row)
 
 
 
