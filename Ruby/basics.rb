@@ -17,7 +17,8 @@
 # end while $i < $num
 
 
-  puts "Inside loop i = #{$i}"
+sdkjhfksjdhk
+puts "Inside loop i = #{$i}"
   $i += 1
 nd while $i < $num
 
