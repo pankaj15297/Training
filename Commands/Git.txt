@@ -55,3 +55,5 @@ git commit -m "Renamed the postgresql file"
 git push origin master
 
 git checkout Gem.txt  (To fetch from remote)
+
+git merge mybranch
