@@ -1,3 +1,119 @@
+#=================================================================
+
+# $i = 0
+# $num = 5
+
+# while $i < $num
+#   puts "Inside the loop i = #{$i}"
+#   $i += 1
+# end
+
+
+# $i = 0
+# $num = 5
+# begin
+#   puts "Inside loop i = #{$i}"
+#   $i += 1
+# end while $i < $num
+
+
+
+
+
+#=================================================================
+
+# obj = "a"
+# other = obj.dup
+
+# p obj == other  #true
+
+# obj = "a"
+# other = obj
+
+# p obj == other  #true
+
+
+# p 1 == 1.0     #true
+# p 1.eql? 1.0   #false
+# p 1.equal? 1.0  #false
+
+#==================================================================
+
+# a = "hello"
+# b = "hello"
+
+# p a.object_id == b.object_id  #false
+
+# a = "hello".freeze
+# b = "hello".freeze
+
+# p a.object_id == b.object_id  #true
+
+# a = 5
+# b = 5
+
+# p a.object_id == b.object_id  #true
+
+
+# a = "hello"
+# b = a
+
+# p a.object_id == b.object_id  #true
+
+#=================================================================
+
+# p Object
+# p Object.new
+# p Object.new.object_id
+# p Object.new.object_id == Object.new.object_id  #false
+
+#=================================================================
+
+# class Foo
+
+#   def fun(*args)
+#   	# p args.class  #Array
+#     "Hello " + args.join(' ')
+#   end
+
+# end
+
+# f = Foo.new
+# # p f.fun("Ruby", "On", "Rails")
+# p f.send :fun, "Ruby", "On", "Rails"  #"Hello Ruby On Rails"
+
+
+#==================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #=============================================
 
 # s = Proc.new {}
