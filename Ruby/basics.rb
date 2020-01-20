@@ -18,6 +18,7 @@
 
 
 
+
   puts "Inside loop i = #{$i}"
   $i += 1
 nd while $i < $num
