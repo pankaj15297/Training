@@ -17,6 +17,12 @@
 # end while $i < $num
 
 
+$i = 0
+$num = 5
+begin
+  puts "Inside loop i = #{$i}"
+  $i += 1
+end while $i < $num
 
 
 
