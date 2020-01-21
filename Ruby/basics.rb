@@ -17,6 +17,83 @@
 # end while $i < $num
 
 
+# $i = 0
+# $num = 5
+# until $i > $num do
+#   puts "Inside loop i = #{$i}"
+#   $i += 1
+# end
+
+
+# $i = 0
+# $num = 5
+# begin
+#   puts "Inside loop i = #{$i}"
+#   $i += 1
+# end until $i > $num
+
+
+# for i in 0..5
+#   puts "Values of local variable i = #{i}"
+# end
+
+
+# for i in 0...5
+#   puts "Values of local variable i = #{i}"
+# end
+
+
+# (0..5).each do |i|
+#   puts "Values of local variable i = #{i}"
+# end
+
+
+# (0...5).each do |i|
+#   puts "Values of local variable i = #{i}"
+# end
+
+
+# for i in 0..5
+#   if i > 2 then
+#   	break
+#   end
+#   puts "Values of local variable i = #{i}"
+# end
+
+
+# for i in 0..5
+#   if i < 2
+#   	next
+#   end
+#   puts "Values of local variable i = #{i}"
+# end
+
+
+# for i in 0..5
+#   if i < 2 then
+#   	puts "Values of local variable is #{i}"
+#   	redo  #restart the loop always and goes to infinite
+#   end
+# end
+
+
+#=================================================================
+
+# begin
+#   a = 1/0  # ZeroDivisionError
+#   puts "Non-zero divide by zero is infinite"  #not executedsss
+# end
+
+
+# begin
+#   a = 1/0
+#   puts "Non-zero divide by zero is infinite"
+# rescue
+#   puts "Non-zero not divisible by zero"
+# end
+
+
+
 
 
 
@@ -36,6 +113,7 @@
 # p 1 == 1.0     #true
 # p 1.eql? 1.0   #false
 # p 1.equal? 1.0  #false
+
 
 #==================================================================
 
@@ -83,22 +161,97 @@
 # p f.send :fun, "Ruby", "On", "Rails"  #"Hello Ruby On Rails"
 
 
-#==================================================================
+#==============================================================
+
+# class Entity
+
+#   @@instances = 0
+
+#   def initialize
+#     @@instances += 1
+#     @number = @@instances
+#   end
+
+#   def who_am_i
+#    "I'm #{@number} of #{@@instances}"
+#   end
+
+#   def self.total
+#     @@instances
+#   end
+# end
+
+# entities = Array.new(9) { Entity.new }
+
+# p entities[6].who_am_i  # => "I'm 7 of 9"
+# p Entity.total          # => 9
 
 
+#=================================================================
 
 
+# class Entity
 
+#   @instances = 0
 
+#   class << self
+#     attr_accessor :instances  # provide class methods for reading/writing
+#   end
 
+#   def initialize
+#     self.class.instances += 1
+#     # puts self.class.instances
+#     @number = self.class.instances
+#   end
 
+#   def who_am_i
+#    "I'm #{@number} of #{self.class.instances}"
+#   end
 
+#   def self.total
+#     @instances
+#   end
+# end
 
+# entities = Array.new(9) { Entity.new }
 
+# p entities[6].who_am_i  # => "I'm 7 of 9"
+# p Entity.instances      # => 9
+# p Entity.total          # => 9
 
+#==================================================
 
+# class Person
+# 	@name = "Pankaj"
+# 	def show
+# 		"Hello #{@name}"
+# 	end
+# end
 
+# person = Person.new
+# p person.show  #"Hello " ; @name is not accessible due instance variable under class 
 
+#==================================================
+
+# class Woof
+
+#   @@sound = "class-woof"
+
+#   def self.sound
+#     @@sound
+#   end
+# end
+
+# # p Woof.sound  # => "woof"
+
+# class LoudWoof < Woof
+#   @@sound = "class-LoudWoof"
+# end
+
+# # p LoudWoof.sound  # => "class-LoudWoof"
+# p Woof.sound      # => "class-LoudWoof"
+
+#===============================================
 
 
 
@@ -562,49 +715,6 @@
 
 # e = Exp.new
 # p e.div(10,2)
-
-#==================================================
-
-# class Entity
-
-#   @instances = 0
-
-#   class << self
-#     attr_accessor :instances  # provide class methods for reading/writing
-#   end
-
-#   def initialize
-#     self.class.instances += 1
-#     puts self.class.instances
-#     @number = self.class.instances
-#   end
-
-#   def who_am_i
-#    "I'm #{@number} of #{self.class.instances}"
-#   end
-
-#   def self.total
-#     @instances
-#   end
-# end
-
-# entities = Array.new(9) { Entity.new }
-
-# p entities[6].who_am_i  # => "I'm 7 of 9"
-# p Entity.instances      # => 9
-# p Entity.total          # => 9
-
-#==================================================
-
-# class Person
-# 	@name = "Pankaj"
-# 	def show
-# 		"Hello #{@name}"
-# 	end
-# end
-
-# person = Person.new
-# p person.show  #"Hello " ; @name is not accessible due instance variable under class 
 
 
 #==================================================
