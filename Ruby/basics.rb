@@ -565,6 +565,25 @@
 
 #==================================================
 
+# class Foo
+#   @@cvar = 0
+  
+#   def fun
+#   	@ivar = 2
+#   end
+
+#   def show
+#   	p @@cvar
+#   	p @ivar
+#   end
+
+# end
+
+# obj = Array.new(5) { Foo.new }
+# p obj[0].class
+# p obj.class
+
+#==================================================
 
 # class Foo
 # 	def sum(a,b)
