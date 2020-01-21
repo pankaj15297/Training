@@ -30,6 +30,7 @@ password: root (admin)
 
 postgres=# \l    (show available databases)
 postgres=# \du   (list of roles attributes)
+postgres=# \q    ( To quit )
 postgres=# ALTER USER pankaj WITH PASSWORD '123';  (To alter the role)
 postgres=# CREATE USER pankaj WITH PASSWORD '123';  (To create an user)
 postgres=# ALTER USER pankaj WITH SUPERUSER;       (To alter the user to superuser)
@@ -45,5 +46,10 @@ aa=# \dn  (show list of schema)
 
 
 CREATE ROLE pankaj WITH CREATEDB LOGIN PASSWORD '123'  (create role)
+
+
+sudo -u postgres pg_dump -U postgres fly > flight_employee_managment_system.sql ( how to making dump of database )
+
+
 
 http://mll.csie.ntu.edu.tw/course/database_f07/assignment/Solutions/assignment3_solution.pdf
