@@ -57,3 +57,5 @@ git push origin master
 git checkout Gem.txt  (To fetch from remote)
 
 git merge mybranch
+
+git push origin --delete mybranch
