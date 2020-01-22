@@ -397,6 +397,50 @@
 
 #=================================================================
 
+# Customer = Struct.new(:name, :address) do
+
+#   def show
+#     "Hello #{name}!"
+#   end
+
+# end
+
+# dave = Customer.new("Pankaj", "Delhi")
+# # p dave.name = "Pavan"
+# p dave.show
+
+
+
+# Customer = Struct.new(:name, :address) do
+
+#   def show
+#     "Hello #{name}!"
+#   end
+
+# end
+
+# dave = Array.new(10) { Customer.new("Pankaj", "Delhi") }
+# p dave[1].show
+# dave[1].name = "Pavan"
+# p dave[1].show
+# p dave[5].show
+
+
+
+#=================================================================
+
+# class Foo
+#   attr_accessor :name
+#   def fun
+#   	"Hello #{name}"
+#   end
+# end
+# f = Foo.new
+# f.name = "Pankaj"
+# p f.fun
+
+#=================================================================
+
 # class Foo
 
 #   def fun(*args)
