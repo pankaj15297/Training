@@ -92,6 +92,61 @@
 #   puts "Non-zero not divisible by zero"
 # end
 
+
+# def generate_Exception
+#   puts "Before the raise"
+#   raise "oops! 	An error has occured"
+#   puts "After the raise"
+# end
+
+# generate_Exception
+
+
+
+
+# def generate_Exception_and_rescue
+  
+#   puts "Before the raise"
+  
+#   begin
+
+#     raise "oops! An error has occured"
+
+#     rescue
+#       puts "Code rescued"
+#   end
+  
+#   puts "After the raise"
+
+# end
+
+# generate_Exception_and_rescue
+
+
+
+# begin
+#   a = 1/0
+#   rescue ZeroDivisionError => e
+#   	puts "Exception Class: #{e.class.name}"
+#   	puts "Exception Message: #{e.message}"
+#   	puts "Exception Backtrace: #{e.backtrace}"
+# end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #=============================================================
 
 # a = [1,2,3,4,5]
@@ -294,6 +349,8 @@
 
 # p entities[6].who_am_i  # => "I'm 7 of 9"
 # p Entity.total          # => 9
+# p entities[5].class.name
+# p entities.class.name
 
 
 #=================================================================
