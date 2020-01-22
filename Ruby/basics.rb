@@ -92,9 +92,64 @@
 #   puts "Non-zero not divisible by zero"
 # end
 
+#===================================================
 
+# class Foo
+  
+#   @@a = 2
+#   @b = 8
 
+#   def f1
+#   	@c = 5
+#   	@@d = 10
+#   end
+  
+#   def f4
+#   	@b
+#   end
 
+#   def f5
+#   	@@a
+#   end
+
+#   def f6 
+#   	@c
+#   end
+
+#   def f7
+#   	@@d
+#   end
+
+# end
+
+# class Yoo < Foo
+  
+#   def f2
+#   	@c
+#   end
+
+#   def f3
+#   	@@a
+#   end
+
+#   def f8
+#   	@@a
+#   end
+
+#   def f9
+#   	@b
+#   end
+
+# end
+
+# y = Yoo.new
+# y.f1
+# p y.f4  #nil
+# p y.f5  #2
+# p y.f6  #5
+# p y.f7  #10
+# p y.f8  #2
+# p y.f9  #nil
 
 
 #=================================================================
