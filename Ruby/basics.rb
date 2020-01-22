@@ -1,3 +1,80 @@
+#===============================================
+
+
+# f = File.open("file1.txt", "w")
+# f.write("File ")
+# f.write("Handling ")
+# f.write("Programs ")
+# f.close()
+
+
+# f = File.new("file1.txt", "w")
+# f.write("File ")
+# f.write("Handling ")
+# f.write("Programs ")
+# f.close()
+
+
+# f = File.new("file1.txt", "w+")
+# f.write("File ")
+# f.write("Handling ")
+# f.write("Programs ")
+# p f.read  #""
+# f.seek(0)
+# p f.read  #"File Handling Programs "
+# f.close()
+
+
+# f = File.new("file1.txt", "r")
+# # p f.read
+# # p f.read(7)
+# # p f.readline(1)
+# p f.readline
+# f.close()
+
+
+# f = File.new("file1.txt", "r+")
+# p f.read
+# f.write("!")
+# f.seek(0)
+# p f.read
+# f.close
+
+
+# f = File.open("file1.txt", "r+")
+# p f.read
+# f.write("!")
+# f.seek(0)
+# p f.read
+# f.close
+
+
+# File.foreach("file1.txt") { |l| puts l }
+
+
+# f = File.open("file1.txt", "a")
+# f.write("This is Database ")
+# p f.read
+
+# f.close
+
+
+
+# f = File.new("file1.txt", "a+")
+# f.write("This is Database ")
+# f.seek(0)
+# p f.read
+# f.close
+
+
+# p File.file?("file1.txt")
+# p File.file?("newfile1.txt")
+# p File.readable?("file1.txt")
+# p File.writable?("file1.txt")
+# p File.rename("file1.txt", "file1.text")
+# p File.delete("file1.text")
+
+
 #=================================================================
 
 # $i = 0
@@ -147,8 +224,12 @@
 
 #=============================================================
 
+# num = 12.45
 
-
+# p num
+# p num.ceil  #13
+# p num.floor  #12
+# p num.integer?  #false
 
 
 
@@ -421,19 +502,6 @@
 
 # # p LoudWoof.sound  # => "class-LoudWoof"
 # p Woof.sound      # => "class-LoudWoof"
-
-#===============================================
-
-
-
-
-
-
-
-
-
-
-
 
 
 
