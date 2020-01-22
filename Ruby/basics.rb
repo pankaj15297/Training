@@ -92,6 +92,60 @@
 #   puts "Non-zero not divisible by zero"
 # end
 
+#=============================================================
+
+# a = [1,2,3,4,5]
+
+# a.each do |i|
+#   puts i
+# end
+
+
+# (1..5).each do |i|
+#   puts i
+# end
+
+
+# (1...5).each do |i|
+#   puts i
+# end
+
+
+# 5.times do |i|
+#   puts i
+# end
+
+
+# 5.upto(10) do |i|
+#   puts i
+# end
+
+
+# (10..100).step(10) do |i|
+#   puts i
+# end
+
+
+# (10...100).step(10) do |i|
+#   puts i
+# end
+
+
+#========================================================
+
+
+# a = (10..100).to_a
+# p a
+
+
+# a = (10..100).step(5).to_a
+# p a
+
+
+# a = (10...100).step(5).to_a
+# p a
+
+
 #===================================================
 
 # class Foo
