@@ -93,5 +93,15 @@
 # a.uniq!
 # p a[-2]
 
-#==============================
+#========================Febonaci Series========================
+
+
+# def fib(n)
+# 	if n <= 1
+# 		return n
+# 	end
+# 	return fib(n-1) + fib(n-2)
+# end
+
+# p fib(9)
 
