@@ -103,6 +103,18 @@
 
 
 
+# def generate_Exception
+#   puts "Before the raise"
+#   raise "oops! An error has occured"
+#     puts "After the raise"
+#   ensure
+#   	puts "Ensure"
+# end
+
+# generate_Exception
+
+
+
 
 # def generate_Exception_and_rescue
   
@@ -133,14 +145,7 @@
 # end
 
 
-
-
-
-
-
-
-
-
+#=============================================================
 
 
 
