@@ -15,7 +15,17 @@
 
 # p /st/.match('haystack')   ##<MatchData "st">
 
+# p /1 \+ 2 = 3\?/.match('Does 1 + 2 = 3?')   ##<MatchData "1 + 2 = 3?">
+# p /1 \+ 2 = 3 \?/.match('Does 1 + 2 = 3?')   #nil
+# p /1\+2 = 3\?/.match('Does 1+2 = 3?')   ##<MatchData "1+2 = 3?">
 
+# p /1 \+ 2 = 3\?/.match('1 + 2 = 3?')    ##<MatchData "1 + 2 = 3?">
+
+# p /a\\b/.match('a\\b')  ##<MatchData "a\\b">
+
+# p /W[aeiou]rd/.match('Word')   ##<MatchData "Word">
+# p /W[aeiou]rd/.match('Wdrd')    #nil
+# p /W[aeiou]rd/.match('word')    #nil
 
 
 
