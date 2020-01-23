@@ -1,8 +1,11 @@
 # p /hay/ =~ 'haystack'         #0
+# p /hay/ =~ 'sayhaystack'      #3
+
 # p /hay/ =~ 'hay'              #0
 # p /hay/ =~ 'stack'            #nil
 # p /hay/.match('haystack')     ##<MatchData "hay">
 # p /hay/.match('stack')        #nil
+# p /hay/.match('h')            #nil
 
 # p /y/.match('haystack')       ##<MatchData "y">
 # p /needle/.match('haystack')  #nil
@@ -23,6 +26,7 @@
 
 # p /a\\b/.match('a\\b')  ##<MatchData "a\\b">
 
+
 # p /W[aeiou]rd/.match('Word')    ##<MatchData "Word">
 # p /W[aeiou]rd/.match('Wdrd')    #nil
 # p /W[aeiou]rd/.match('word')    #nil
@@ -41,14 +45,18 @@
 # p /[^a-eg-z]/.match('p')   #nil
 
 
+# string = "Ruby On Rails framework is used for Web Application"
 
+# p string =~ /On/      #5
+# p string =~ /for/     #32
+# p string =~ /Application/ ? "Valid" : "Invalid"  #Valid
+# p string =~ /Apps/ ? "Valid" : "Invalid"         #Invalid
 
-
-
-
-
-
-
+# if string =~ /Web/
+#   puts "Valid"
+# else
+#   puts "Invalid"
+# end
 
 
 
