@@ -1546,11 +1546,54 @@
 #=========================================================
 
 
+# puts "Enter Your Day"
+# day = gets.chomp
+# case day
+# when "Monday"
+# 	puts "Mater Panir"
+# when "Tuesday"
+# 	puts "Puri Sabji"
+# when "Sunday"
+# 	puts "Checken"
+# when "Saturday"
+# 	puts "Andda"
+# else
+# 	puts "Nothing is ..........."
+# end
+
+
+# puts "Enter capacity"
+# capacity = gets.chomp.to_i
+# case capacity
+#   when 0
+#   	puts "You ran out of gas."
+#   when 1..20
+#   	puts "The tank is almost empty. Quickly, find a gas station!"
+#   when 21..70
+#   	puts "You should be ok for now."
+#   when 71..100
+#   	puts "The tank is almost full."
+#   else
+#   	"Error: capacity has a invalid value (#{capacity})"
+#   end
+
+
+# puts "Enter serial_code"
+# serial_code = gets.chomp.to_i
+# case serial_code
+#   when /\AC/
+#   	puts "Low risk"
+#   when /\AL/
+#   	puts "Medium risk"
+#   when /\AX/
+#   	puts "High risk"
+#   else
+#   	puts "Unknown risk"
+#   end
 
 
 
-
-
+#========================================================
 
 
 
