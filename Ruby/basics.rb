@@ -115,6 +115,22 @@
 # p File.delete("file1.text")
 
 
+# p File.size("counter.txt")
+# p File.exist?("counter.txt")
+# p File.exists?("counter.txt")                 #true
+# p File.exists?("cont.txt")                    #false
+# p File.extname("counter.txt")
+# p File.basename("/Ruby/counter.txt")          #counter.txt
+# p File.dirname("/Training/Ruby/counter.txt")  #/Training/Ruby
+# p File.directory?("/home/beryl/Training")     #true
+
+# p Dir.exists?("/home/beryl/Training")         #true
+# p File.exists?("/home/beryl/Training")        #true
+# p Dir.exists?("/home/Training")               #false
+# p File.exists?("/home/Training")              #false
+
+
+
 #=================================================================
 
 # $i = 0
