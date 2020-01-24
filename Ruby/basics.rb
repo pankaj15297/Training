@@ -1,14 +1,43 @@
 #===============================================
-if File.file?("counter.txt") == false
-  f = File.new("counter.txt", "w")
-  f.write("0: counter")
-end
+# if File.file?("counter.txt") == false
+#   f = File.new("counter.txt", "w")
+#   f.write("1: counter")
+#   f.close
+# end
 
-File.open("counter.txt", "r+") do |f|
-  n = f.gets.to_i
-  f.rewind
-  f.write(n.next)
-end
+# File.open("counter.txt", "r+") do |f|
+#   n = f.gets.to_i
+#   f.rewind
+#   f.write(n.next)
+# end
+
+
+
+# if File.file?("counter.txt") == false
+#   fl = File.new("counter.txt", "w")
+#   fl.write("counter:0")
+#   fl.close
+# end
+
+# File.open("counter.txt", "a+") do |f|
+#   f.seek(f.read.length-1)
+#   n = f.read.to_i
+#   p n
+#   f.write("counter:")
+#   f.write(n.next)
+# end
+
+
+# def processText(f)
+#   lines = File.readlines(f)
+#   linescount = lines.size
+#   text = lines.join
+#   puts "Number of lines: #{linescount}"
+#   puts "******************************"
+#   puts text
+# end
+
+# processText("counter.txt")
 
 
 
