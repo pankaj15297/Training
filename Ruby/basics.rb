@@ -1,4 +1,15 @@
 #===============================================
+if File.file?("counter.txt") == false
+  f = File.new("counter.txt", "w")
+  f.write("0: counter")
+end
+
+File.open("counter.txt", "r+") do |f|
+  n = f.gets.to_i
+  f.rewind
+  f.write(n.next)
+end
+
 
 
 # f = File.open("file1.txt", "w")
