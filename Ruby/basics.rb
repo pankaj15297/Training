@@ -1,7 +1,8 @@
 #===============================================
+
 # if File.file?("counter.txt") == false
 #   f = File.new("counter.txt", "w")
-#   f.write("1: counter")
+#   f.write("0: counter")
 #   f.close
 # end
 
@@ -142,6 +143,10 @@
 
 # Dir.mkdir("Folder")                              #making a folder in pwd
 # Dir.mkdir("/home/beryl/Training/Newfolder")      #making a folder in specified dir
+
+
+# File.write("count.txt", "I am Pankaj Kumar")
+# File.write("count.txt", "I live in Delhi currently", mode: "")
 
 
 #=================================================================
