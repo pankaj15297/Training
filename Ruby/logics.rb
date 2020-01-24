@@ -105,3 +105,34 @@
 
 # p fib(9)
 
+
+#=======================Count frequency of words=========================
+
+
+# def count_words(string)
+#   # words = string.split(' ')
+#   words = string.scan(/\w+/)
+#   frequency = Hash.new(0)
+#   words.each { |word| frequency[word.downcase] += 1 }
+#   return frequency
+# end
+
+# p count_words("my pen is green / your pen is blue")
+
+
+
+# text = "my pen is green / your pen is blue"
+# # a = text.split()
+# b = text.scan(/\w+/)
+# # p a  #["my", "pen", "is", "green", "/", "your", "pen", "is", "blue"]
+# # p b  #["my", "pen", "is", "green", "your", "pen", "is", "blue"]
+
+# c = Hash.new(0)
+# b.each do |b|
+#   c[b] += 1
+# end
+
+# p c
+
+
+
