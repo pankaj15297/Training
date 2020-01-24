@@ -45,18 +45,55 @@
 # p /[^a-eg-z]/.match('p')   #nil
 
 
-# string = "Ruby On Rails framework is used for Web Application"
+# string = "Ruby On Rails 6.0 framework is used for Web Application 48 4 8"
 
 # p string =~ /On/      #5
 # p string =~ /for/     #32
 # p string =~ /Application/ ? "Valid" : "Invalid"  #Valid
-# p string =~ /Apps/ ? "Valid" : "Invalid"         #Invalid
+# # p string =~ /Apps/ ? "Valid" : "Invalid"         #Invalid
+# p string =~ /web/ ? "Valid" : "Invalid"          #Invalid
+# p string =~ /web/i ? "Valid" : "Invalid"         #Valid
 
 # if string =~ /Web/
 #   puts "Valid"
 # else
 #   puts "Invalid"
 # end
+
+# p string.to_enum(:scan, /\d+/).map { Regexp.last_match }   #[#<MatchData "6">, #<MatchData "0">, #<MatchData "48">, #<MatchData "4">, #<MatchData "8">]
+
+
+# VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+# puts 'pankaj1497@gmail.com'.match? (VALID_EMAIL_REGEX)
+# puts '1497@gmail.com'.match? (VALID_EMAIL_REGEX)
+# puts 'pankaj1497@gm5ail.com'.match? (VALID_EMAIL_REGEX)
+# puts 'pankaj1497@gmail.com56'.match? (VALID_EMAIL_REGEX)
+# puts 'pankaj1497@gmailcom'.match? (VALID_EMAIL_REGEX)
+# puts '@gmail.com'.match? (VALID_EMAIL_REGEX)
+# puts '152qui@.hu'.match? (VALID_EMAIL_REGEX)
+
+
+# m = "Pankaj 23".match /(?<name>\w+) (?<age>\d+)/
+# p m.class
+# p m[:name]
+# p m[:age]
+
+# m = "Pankaj97 23years".match /(?<name>\w+) (?<age>\d+)/
+# p m[:name]  #Pankaj97
+# p m[:age]   #23
+
+
+# text = "my pen is green / your pen is blue"
+
+# a = text.split()
+# b = text.scan(/\w+/)
+# p a  #["my", "pen", "is", "green", "/", "your", "pen", "is", "blue"]
+# p b  #["my", "pen", "is", "green", "your", "pen", "is", "blue"]
+
+
+
+
 
 
 
