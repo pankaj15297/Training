@@ -129,6 +129,19 @@
 # p Dir.exists?("/home/Training")               #false
 # p File.exists?("/home/Training")              #false
 
+# p Dir.glob("*.rb")	  #["string.rb", "modulefile.rb", "hash.rb", "array.rb", "basics.rb", "logics.rb", "regexp.rb"]
+# p Dir.glob("*")         #["string.rb", "modulefile.rb", "hash.rb", "array.rb", "basics.rb", "counter.txt", "logics.rb", "regexp.rb"]
+# p Dir.glob("*ics*")     #["basics.rb", "logics.rb"]
+
+# p Dir.glob("**/**")     #if a.txt, b.rb  exist in folder["string.rb", "modulefile.rb", "hash.rb", "array.rb", "basics.rb", "counter.txt", "logics.rb", "regexp.rb", "folder", "folder/a.txt", "folder/b.rb"]
+
+# p Dir.pwd               #/home/beryl/Training/Ruby
+
+# p Dir.empty?("/home/beryl/Training")               #false
+# p Dir.empty?("/home/beryl/Training/Ruby/Folder")   #true if Folder is exist and empty in Ruby dir
+
+# Dir.mkdir("Folder")                              #making a folder in pwd
+# Dir.mkdir("/home/beryl/Training/Newfolder")      #making a folder in specified dir
 
 
 #=================================================================
