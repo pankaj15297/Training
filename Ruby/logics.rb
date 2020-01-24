@@ -141,4 +141,14 @@
 # p c
 
 
+#=================== Sort according to keys and values length =================
+
+# h = {'pankaj' => 'name', 123 => 24, 1024 => 'kr', 5896 => 'aDf56ytz', 'a' => 5}
+
+# p h.keys.map(&:to_s)#.sort_by(&:length)
+# p h.values.map(&:to_s).sort_by(&:length)
+
+
+#===================================================
+
 
