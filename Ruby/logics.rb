@@ -10,6 +10,12 @@
 # end
 # print newstr
 
+#==============Remove special charactor====================
+
+
+# string = '#This is * Ruby \ on% Rail"s'
+# p string.gsub(/[*#%\\"]/, "")
+
 
 #=================largest number============================
 
