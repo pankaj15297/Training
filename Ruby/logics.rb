@@ -149,6 +149,9 @@
 # p h.values.map(&:to_s).sort_by(&:length)
 
 
-#===================================================
+#======================== Sum of length of all values ===========================
 
+# a = ["dell", "hp", "lenevo", "shoe"]
+# c = a.inject(0) { |a,b| a + b.to_s.length}
+# p c
 
