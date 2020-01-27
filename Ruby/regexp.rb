@@ -84,7 +84,7 @@
 # p m[:age]   #23
 
 
-# text = "my pen is green / your pen is blue"
+# text = "my pen is green / your 99 pen is blue"
 
 # a = text.split()
 # b = text.scan(/\w+/)
