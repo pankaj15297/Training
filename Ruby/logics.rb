@@ -218,29 +218,66 @@
 # b = (0..10).step(2).to_a
 # print b - a
 
-#=============================
+#=================Make a whitespace sepereted meaningful sentance====================
 
-d = ["This", "Hello", "is", "Mobile", "Pankaj"]
-s = "ThisisMobile"
-a = ""
-for i in d do
-  if s.include? i
-    a += i + " "
-  end
-end
+# d = ["This", "Hello", "is", "Mobile", "Pankaj"]
+# s = "ThisisMobile"
+# a = ""
+# for i in d do
+#   if s.include? i
+#     a += i + " "
+#   end
+# end
 
-p a
+# p a
+
+#========================Prime number==============================
+
+# a = [0,1,2,3,4,5,6,7,8,9,10,3,-11,5,5,5,11,12,13,14,15,16,17,18,19,20,21,22,23,-5]
+
+# def prime(n)
+# 	if n == 2
+# 		return true
+# 	elsif n <= 1
+# 		return false
+# 	end
+# 	for i in 2..(n-1) do
+# 		if n % i == 0
+# 			return false
+# 		end
+# 	end
+# 	return true
+# end
+
+# t = a.select { |x| prime(x) == true }
+# print t
 
 
 
+# def prime(n)
+# 	if n == 2
+# 		return true
+# 	elsif n <= 1
+# 		return false
+# 	end
+# 	for i in 2..(n-1) do
+# 		if n % i == 0
+# 			return false
+# 		end
+# 	end
+# 	return true
+# end
 
-
-
-
-
-
-
-
+# p prime(-4)
+# p prime(-3)
+# p prime(-1)
+# p prime(0)
+# p prime(1)
+# p prime(2)
+# p prime(3)
+# p prime(6)
+# p prime(9)
+# p prime(11)
 
 
 
