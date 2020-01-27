@@ -157,13 +157,21 @@
 #   a = gets.chomp.to_i
 #   c += 1
 #   if a == 5 or a == 10 or a == 20
-#   	puts "Congratulations!!!"
+#     puts "Congratulations!!!"
 # 	break
 #   end
 #   if c == 3
-#   	puts "Sorry your chance is exceded."
-#   	break
+#     puts "Sorry your chance is exceded."
+#     break
 #   end
+# end
+
+
+# i = 0
+# while i < 5
+#   puts i
+#   i += 1
+#   redo if i == 5
 # end
 
 
