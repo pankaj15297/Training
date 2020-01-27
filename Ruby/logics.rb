@@ -145,13 +145,20 @@
 
 # h = {'pankaj' => 'name', 123 => 24, 1024 => 'kr', 5896 => 'aDf56ytz', 'a' => 5}
 
-# p h.keys.map(&:to_s)#.sort_by(&:length)
-# p h.values.map(&:to_s).sort_by(&:length)
+# p h.keys                                   #["pankaj", 123, 1024, 5896, "a"]
+# p h.keys.map(&:to_s)                       #["pankaj", "123", "1024", "5896", "a"]
+# p h.keys.map(&:to_s).sort_by(&:length)     #["a", "123", "1024", "5896", "pankaj"]
+# p h.values.map(&:to_s).sort_by(&:length)   #["5", "24", "kr", "name", "aDf56ytz"]
 
 
 #======================== Sum of length of all values ===========================
 
 # a = ["dell", "hp", "lenevo", "shoe"]
 # c = a.inject(0) { |a,b| a + b.to_s.length}
-# p c
+# p c                                        #16
+# c = a.inject(0) { |a,b| a + b.length }
+# p c                                        #16
+
+
+
 
