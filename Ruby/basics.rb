@@ -151,6 +151,22 @@
 
 #=================================================================
 
+# c = 0
+# loop do
+#   print "Enter a lucky number from 1 to 20: "
+#   a = gets.chomp.to_i
+#   c += 1
+#   if a == 5 or a == 10 or a == 20
+#   	puts "Congratulations!!!"
+# 	break
+#   end
+#   if c == 3
+#   	puts "Sorry your chance is exceded."
+#   	break
+#   end
+# end
+
+
 # $i = 0
 # $num = 5
 
