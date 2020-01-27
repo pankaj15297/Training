@@ -368,10 +368,10 @@
 # c = 0
 # for i in 1..5 do
 # 	for j in 1..5 do
-# 		if i >= j
-# 			print (65+c).chr
-# 			c += 1
-# 		end
+# 	  if i >= j
+# 		print (65+c).chr
+# 		c += 1
+# 	  end
 # 	end
 # 	print("\n")
 # end
@@ -383,6 +383,15 @@
 # GHIJ
 # KLMNO
 
+
+#=========================Counting frequency of words=========================
+
+# s = "ab bc ef pk pk pk ab pk"
+# n = s.split(" ")
+# u = n.uniq
+# for i in 0...u.length do
+#   print "#{u[i]} is #{n.count(u[i])} times \n"
+# end
 
 
 
