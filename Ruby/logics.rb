@@ -332,6 +332,19 @@
 #   b = f
 # end
 
+#=======================Sum of a fibonacci series=================================
+
+# a = 0
+# b = 1
+# arr = [a,b]
+# for i in 3..20
+#   f = a + b
+#   arr.append(f)
+#   a = b
+#   b = f
+# end
+
+# p arr[0..4].sum
 
 #======================Print 1 to 100 without any loop============================
 
