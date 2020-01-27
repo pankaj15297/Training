@@ -408,9 +408,28 @@
 #   print "#{u[i]} is #{n.count(u[i])} times \n"
 # end
 
+#============================Prime no. on a range================================
 
+# print "Enter a range to know Prime no. in between."
+# print "\nfrom: "
+# s = gets.chomp.to_i
+# print "to: "
+# e = gets.chomp.to_i
+# a = (s..e).to_a
 
+# def checkprime(n)
+#   if n<= 1
+# 	return false
+#   end
+#   for i in 2..(n-1) do
+#     if n % i == 0
+#  	  return false
+#     end
+#   end
+#   return true
+# end
 
-
+# t = a.select { |x| checkprime(x) == true }
+# print t
 
 
