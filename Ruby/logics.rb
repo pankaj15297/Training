@@ -305,12 +305,31 @@
 # p checkprime(9)
 # p checkprime(11)
 
-#=====================================================
+#=========================Fibonacci series============================
+
+
+# a = 0
+# b = 1
+# arr = [a,b]
+# for i in 3..10
+#   f = a + b
+#   arr.append(f)
+#   a = b
+#   b = f
+# end
+
+# p arr
 
 
 
-
-
-
+# a = 0
+# b = 1
+# print "#{a} #{b} "
+# for i in 3..10
+#   f = a + b
+#   print "#{f} "
+#   a = b
+#   b = f
+# end
 
 
