@@ -433,3 +433,26 @@
 # print t
 
 
+#============================Armstrong number==================================
+
+# print "Enter a number to its Armstrong no: "
+# v = gets.chomp
+# n = v.split("")
+# a = []
+# for i in n
+#   a.append(i.to_i**3)
+# end
+# s = a.sum
+# if s == v.to_i
+#   puts "Armstrong Number"
+# else
+#   puts "Not a Armstrong Number"
+# end
+
+
+
+
+
+
+
+
