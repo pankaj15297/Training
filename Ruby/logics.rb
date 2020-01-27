@@ -347,6 +347,22 @@
 # fun(1)
 
 
+#===============================Palindrome==================================
+
+# a = "ABCDE"
+# rev = ""
+# for i in 1..a.length do
+#   rev += a[a.length - i]
+# end
+# if rev % 2 == 0
+#   a += rev
+# else
+#   a += rev[1..a.length]
+# end
+
+# print a
+
+
 
 
 
