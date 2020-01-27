@@ -333,3 +333,26 @@
 # end
 
 
+#======================Print 1 to 100 without any loop============================
+
+# def fun(n)
+#   if n > 100
+#   	return
+#   else
+#   	puts n
+#   	fun(n+=1)
+#   end
+# end
+
+# fun(1)
+
+
+
+
+
+
+
+
+
+
+
