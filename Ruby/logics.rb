@@ -109,7 +109,9 @@
 # 	return fib(n-1) + fib(n-2)
 # end
 
-# p fib(9)
+# print "Enter a number: "
+# n = gets.chomp.to_i
+# puts "Sum of fibonacci series upto #{n} is : #{fib(n+1) - 1}"
 
 
 #=======================Count frequency of words=========================
