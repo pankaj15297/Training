@@ -337,10 +337,10 @@
 
 # def fun(n)
 #   if n > 100
-#   	return
+#     return
 #   else
-#   	puts n
-#   	fun(n+=1)
+#     puts n
+#     fun(n+=1)
 #   end
 # end
 
@@ -363,7 +363,25 @@
 # print a
 
 
+#======================A pattern for alphabetic right triangle=====================
 
+# c = 0
+# for i in 1..5 do
+# 	for j in 1..5 do
+# 		if i >= j
+# 			print (65+c).chr
+# 			c += 1
+# 		end
+# 	end
+# 	print("\n")
+# end
+
+
+# A
+# BC
+# DEF
+# GHIJ
+# KLMNO
 
 
 
