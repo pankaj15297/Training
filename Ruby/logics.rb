@@ -446,7 +446,7 @@
 # if s == v.to_i
 #   puts "Armstrong Number"
 # else
-#   puts "Not a Armstrong Number"
+#   puts "Not an Armstrong Number"
 # end
 
 
