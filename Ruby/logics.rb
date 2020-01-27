@@ -218,6 +218,18 @@
 # b = (0..10).step(2).to_a
 # print b - a
 
+#=============================
+
+d = ["This", "Hello", "is", "Mobile", "Pankaj"]
+s = "ThisisMobile"
+a = ""
+for i in d do
+  if s.include? i
+    a += i + " "
+  end
+end
+
+p a
 
 
 
