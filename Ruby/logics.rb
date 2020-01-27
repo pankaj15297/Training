@@ -183,8 +183,29 @@
 # /***\
 
 
-#=============================================
+#======================================Factorial=======================================
 
+# def fact(n)
+#   if n == 0
+#   	return 1
+#   else
+#   	return n * fact(n-1)
+#   end
+# end
+
+# p fact(3)
+
+
+
+# def fact(n)
+#   return 1 if n == 0
+#   return n * fact(n-1)
+# end
+
+# p fact(0)
+# p fact(1)
+# p fact(2)
+# p fact(4)
 
 
 
