@@ -281,6 +281,31 @@
 
 
 
+# def checkprime(n)
+# 	if n<=1
+# 		return false
+# 	end
+#    for i in 2..(n-1) do
+
+#  	   if n % i == 0
+#  		 return false
+#         end
+#  	end
+#         return true
+# end
+
+# p checkprime(-4)
+# p checkprime(-3)
+# p checkprime(-1)
+# p checkprime(0)
+# p checkprime(1)
+# p checkprime(2)
+# p checkprime(3)
+# p checkprime(6)
+# p checkprime(9)
+# p checkprime(11)
+
+#=====================================================
 
 
 
