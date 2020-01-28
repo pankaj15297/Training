@@ -450,9 +450,32 @@
 # end
 
 
+#============================Armstrong number over a range================================
 
 
+# print "Enter a range to know Prime no. in between."
+# print "\nfrom: "
+# s = gets.chomp.to_i
+# print "to: "
+# e = gets.chomp.to_i
+# a = (s..e).to_a
 
+# def checkarmstrong(n)
+#   v = n.split("")
+#   b = []
+#   for i in v
+#   	b.append(i.to_i**3)
+#   end
+#   s = b.sum
+#   if s == n.to_i
+#     return true
+#   else
+#   	return false
+#   end
+# end
+
+# t = a.select { |e| checkarmstrong(e.to_s) == true }
+# print t
 
 
 
