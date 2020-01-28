@@ -453,7 +453,7 @@
 #============================Armstrong number over a range================================
 
 
-# print "Enter a range to know Prime no. in between."
+# print "Enter a range to know Armstrong no. in between."
 # print "\nfrom: "
 # s = gets.chomp.to_i
 # print "to: "
