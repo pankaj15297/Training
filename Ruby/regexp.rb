@@ -92,6 +92,39 @@
 # p b  #["my", "pen", "is", "green", "your", "pen", "is", "blue"]
 
 
+# p /./.match("Pankaj")                                          ##<MatchData "P">
+# p /.*/.match("Pankaj")                                         ##<MatchData "Pankaj">
+# p /.+/.match("Pankaj")                                         ##<MatchData "Pankaj">
+# p /.*/.match("")                                               ##<MatchData "">
+# p /.+/.match("")                                               #nil
+# p /.?/.match("Pankaj")                                         ##<MatchData "P">
+# p /.?/.match("")                                               ##<MatchData "">
+# p /.{3}/.match("Pankaj")                                       ##<MatchData "Pan">
+# p /.{3,}/.match("Pankaj")                                      ##<MatchData "Pankaj">
+# p /.{3,}/.match("Pk")                                          #nil
+# p /.{,4}/.match("Pankaj")                                      ##<MatchData "Pank">
+# p /.{,4}/.match("Pk")                                          ##<MatchData "Pk">
+# p /.{4,10}/.match("Pankaj Kumar")                              ##<MatchData "Pankaj Kum">
+# p /.{4,10}/.match("Pk")                                        #nil
+p /.{4,10}/.match("Pnkj")
+
+
+# p /[[:lower:]]/.match("pankaj")                                ##<MatchData "p">
+# p /[[:lower:]]/.match("Pankaj")                                ##<MatchData "a">
+# p /[[:lower:]]/.match("PANKAJ")                                #nil
+# p /[[:lower:]]+[[:lower:]]/.match("Pankaj")                    ##<MatchData "ankaj">
+# p /[[:lower:]][[:upper:]][[:lower:]]/.match("PanKaj")          ##<MatchData "nKa">
+
+
+# p /[[:digit:]]/.match("456")                                   ##<MatchData "4">
+# p /[[:digit:]]/.match("Phdk456")                               ##<MatchData "4">
+# p /[[:digit:]]+[[:digit:]]/.match("Phkd56478lPj63h")           ##<MatchData "56478">
+# p /[[:upper:]]+[[:lower:]]+l{2}o/.match("Hello")               ##<MatchData "Hello">
+# p /[[:upper:]]+[[:lower:]]+nkaj/.match("Pankaj")               ##<MatchData "Pankaj">
+# p /<.+>/.match("<a><b>")                                       ##<MatchData "<a><b>">
+# p /<.+?/.match("<a><b>")                                       ##<MatchData "<a">
+
+
 
 
 
