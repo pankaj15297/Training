@@ -442,3 +442,1049 @@ ON C.aid = A.aid WHERE cruisingrange > 1000 AND A.aname LIKE 'Vistara%';
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+====================================================================================
+
+
+
+
+beryl@beryl-Latitude-E5520:~/Training/Ruby$ cd 
+beryl@beryl-Latitude-E5520:~$ su postgres
+Password: 
+su: Authentication failure
+beryl@beryl-Latitude-E5520:~$ su postgres
+Password: 
+postgres@beryl-Latitude-E5520:/home/beryl$ psql fly
+Password: 
+psql (9.5.19)
+Type "help" for help.
+
+fly=# Select * from customers join order;
+ERROR:  syntax error at or near "order"
+LINE 1: Select * from customers join order;
+                                     ^
+fly=# Select * from customers join orders;
+ERROR:  syntax error at or near ";"
+LINE 1: Select * from customers join orders;
+                                           ^
+fly=# Select * from customers join orders on ;
+ERROR:  syntax error at or near ";"
+LINE 1: Select * from customers join orders on ;
+                                               ^
+fly=# \c Store
+You are now connected to database "Store" as user "postgres".
+Store=# SELECT customerid, unit, productid, fname, name FROM customer INNER JOIN products ON customerid = unit;
+ERROR:  relation "customer" does not exist
+LINE 1: ...ECT customerid, unit, productid, fname, name FROM customer I...
+                                                             ^
+Store=# SELECT customerid, unit, productid, fname, name FROM customers INNER JOIN products ON customerid = unit;
+ customerid | unit | productid | fname  |  name  
+------------+------+-----------+--------+--------
+          2 |    2 |         1 | Pavan  | Mobile
+          2 |    2 |         2 | Pavan  | Laptop
+          5 |    5 |         3 | Naveen | Laptop
+         10 |   10 |         4 | Sager  | Mobile
+         10 |   10 |         5 | Sager  | shoe
+          2 |    2 |         8 | Pavan  | Pen
+(6 rows)
+
+Store=# 
+Store=# SELECT customerid, unit, productid, fname, name FROM customer JOIN products;
+ERROR:  syntax error at or near ";"
+LINE 1: ...d, unit, productid, fname, name FROM customer JOIN products;
+                                                                      ^
+Store=# SELECT customerid, unit, productid, fname, name FROM customer JOIN products;
+ERROR:  syntax error at or near ";"
+LINE 1: ...d, unit, productid, fname, name FROM customer JOIN products;
+                                                                      ^
+Store=# SELECT customerid, count(unit), productid, fname, name FROM customer INNER JOIN products ON customerid = unit;
+ERROR:  relation "customer" does not exist
+LINE 1: ...tomerid, count(unit), productid, fname, name FROM customer I...
+                                                             ^
+Store=# \d
+               List of relations
+ Schema |      Name      |   Type   |  Owner   
+--------+----------------+----------+----------
+ public | comp           | table    | postgres
+ public | company        | table    | postgres
+ public | company_id_seq | sequence | postgres
+ public | customers      | table    | postgres
+ public | orderproducts  | table    | postgres
+ public | orders         | table    | postgres
+ public | products       | table    | postgres
+(7 rows)
+
+Store=# SELECT customerid, count(unit), productid, fname, name FROM customers INNER JOIN products ON customerid = unit;
+ERROR:  column "customers.customerid" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT customerid, count(unit), productid, fname, name FROM ...
+               ^
+Store=# \c fly
+You are now connected to database "fly" as user "postgres".
+fly=# 
+fly=# 
+fly=# \d
+           List of relations
+ Schema |   Name    | Type  |  Owner   
+--------+-----------+-------+----------
+ public | aircraft  | table | postgres
+ public | certified | table | postgres
+ public | employees | table | postgres
+ public | flights   | table | postgres
+(4 rows)
+
+fly=# \d aircraft;
+            Table "public.aircraft"
+    Column     |       Type        | Modifiers 
+---------------+-------------------+-----------
+ aid           | integer           | not null
+ aname         | character varying | not null
+ cruisingrange | integer           | not null
+Indexes:
+    "aircraft_pkey" PRIMARY KEY, btree (aid)
+Referenced by:
+    TABLE "certified" CONSTRAINT "certified_aid_fkey" FOREIGN KEY (aid) REFERENCES aircraft(aid)
+
+fly=# \d certified;
+   Table "public.certified"
+ Column |  Type   | Modifiers 
+--------+---------+-----------
+ eid    | integer | 
+ aid    | integer | 
+Foreign-key constraints:
+    "certified_aid_fkey" FOREIGN KEY (aid) REFERENCES aircraft(aid)
+    "certified_eid_fkey" FOREIGN KEY (eid) REFERENCES employees(eid)
+
+fly=# \d employees;
+        Table "public.employees"
+ Column |       Type        | Modifiers 
+--------+-------------------+-----------
+ eid    | integer           | not null
+ ename  | character varying | not null
+ salary | integer           | not null
+Indexes:
+    "employees_pkey" PRIMARY KEY, btree (eid)
+Referenced by:
+    TABLE "certified" CONSTRAINT "certified_eid_fkey" FOREIGN KEY (eid) REFERENCES employees(eid)
+
+fly=# \d flights;
+            Table "public.flights"
+  Column  |          Type          | Modifiers 
+----------+------------------------+-----------
+ flno     | integer                | not null
+ from     | character varying      | not null
+ to       | character varying      | not null
+ distance | integer                | not null
+ departs  | time without time zone | not null
+ arrives  | time without time zone | not null
+ price    | integer                | not null
+Indexes:
+    "flights_pkey" PRIMARY KEY, btree (flno)
+
+fly=# 
+fly=# 
+fly=# 
+fly=# 
+fly=# SELECT * FROM Employees;
+ eid  |  ename   | salary 
+------+----------+--------
+  101 | Pankaj   | 100000
+  102 | Pavan    |  10000
+  103 | Chhavi   |  80000
+  104 | Saurabh  |  70000
+  105 | Ashutosh |  65000
+  106 | Aman     |  95000
+  107 | Moti     |  55000
+  108 | Ramesh   |  80000
+  109 | Bharti   |  40000
+ 1010 | Naveen   |  80000
+ 1011 | Praveen  |  80000
+ 1012 | Sager    |  85000
+ 1013 | Raju     |  56000
+ 1014 | Ashutosh |  65000
+ 1015 | Ashu     |  36000
+ 1016 | Manish   |  75000
+ 1017 | Aders    |  45000
+(17 rows)
+
+fly=# SELECT * FROM certified;
+ eid  |  aid  
+------+-------
+  101 | 50001
+  101 | 50002
+  101 | 50003
+  101 | 50004
+  101 | 50005
+  101 | 50006
+  101 | 50007
+  101 | 50003
+  102 | 50003
+  103 | 50003
+  104 | 50003
+  105 | 50003
+  106 | 50003
+  107 | 50003
+  108 | 50003
+  109 | 50003
+ 1010 | 50003
+ 1011 | 50003
+ 1012 | 50003
+ 1013 | 50003
+ 1010 | 50002
+  108 | 50002
+  108 | 50006
+  108 | 50005
+(24 rows)
+
+fly=# SELECT * FROM aircraft;
+  aid  |      aname      | cruisingrange 
+-------+-----------------+---------------
+ 50001 | GoAir           |          5000
+ 50002 | IndiGo          |         10000
+ 50003 | SpiceJet        |         20000
+ 50004 | Vistara         |         15000
+ 50005 | Star Air        |         15000
+ 50006 | TruJet          |         12000
+ 50007 | Zoom AIr        |          5000
+ 50008 | Pawan Hans      |           500
+ 50009 | Deccan Charters |           900
+(9 rows)
+
+fly=# SELECT * FROM flights;
+ flno  |  from  |     to     | distance | departs  | arrives  | price 
+-------+--------+------------+----------+----------+----------+-------
+ 20001 | Delhi  | Mumbai     |     1700 | 01:10:00 | 02:50:00 |  5000
+ 20002 | Delhi  | Patna      |     1000 | 05:10:00 | 05:55:00 |  3000
+ 20003 | Patna  | Banglore   |     3000 | 09:30:00 | 12:00:00 |  7000
+ 20004 | Patna  | Chandigarh |     1200 | 06:30:00 | 08:00:00 |  2500
+ 20005 | Delhi  | Chandigarh |      300 | 01:30:00 | 02:00:00 |  2000
+ 20006 | Delhi  | London     |    30000 | 01:30:00 | 12:00:00 | 75000
+ 20007 | Delhi  | New Yark   |    30000 | 01:30:00 | 12:00:00 | 75000
+ 20008 | London | New Yark   |    30000 | 01:30:00 | 12:00:00 | 75000
+(8 rows)
+
+fly=# SELECT aname FROM Aircraft A JOIN Certified C;
+ERROR:  syntax error at or near ";"
+LINE 1: SELECT aname FROM Aircraft A JOIN Certified C;
+                                                     ^
+fly=# SELECT aname FROM Aircraft A JOIN Certified C ON A.aid = C.aid;
+  aname   
+----------
+ GoAir
+ IndiGo
+ SpiceJet
+ Vistara
+ Star Air
+ TruJet
+ Zoom AIr
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ IndiGo
+ IndiGo
+ TruJet
+ Star Air
+(24 rows)
+
+fly=# SELECT aname,COUNT(C.eid) FROM Aircraft A JOIN Certified C ON A.aid = C.aid;
+ERROR:  column "a.aname" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT aname,COUNT(C.eid) FROM Aircraft A JOIN Certified C O...
+               ^
+fly=# SELECT aname,COUNT(C.eid) FROM Aircraft A JOIN Certified C ON A.aid = C.aid GROUP BY C.eid;
+ERROR:  column "a.aname" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT aname,COUNT(C.eid) FROM Aircraft A JOIN Certified C O...
+               ^
+fly=# SELECT A.aname,COUNT(C.eid) FROM Aircraft A JOIN Certified C ON A.aid = C.aid GROUP BY C.eid;
+ERROR:  column "a.aname" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT A.aname,COUNT(C.eid) FROM Aircraft A JOIN Certified C...
+               ^
+fly=# SELECT A.aname,COUNT(C.eid) FROM Aircraft A JOIN Certified C ON A.aid = C.aid;
+ERROR:  column "a.aname" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT A.aname,COUNT(C.eid) FROM Aircraft A JOIN Certified C...
+               ^
+fly=# SELECT A.aname FROM Aircraft A JOIN Certified C ON A.aid = C.aid;
+  aname   
+----------
+ GoAir
+ IndiGo
+ SpiceJet
+ Vistara
+ Star Air
+ TruJet
+ Zoom AIr
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ SpiceJet
+ IndiGo
+ IndiGo
+ TruJet
+ Star Air
+(24 rows)
+
+fly=# SELECT A.aname, COUNT(C.eid) FROM Aircraft A JOIN Certified C ON A.aid = C.aid GROUP BY A.name;
+ERROR:  column a.name does not exist
+LINE 1: ...ircraft A JOIN Certified C ON A.aid = C.aid GROUP BY A.name;
+                                                                ^
+HINT:  Perhaps you meant to reference the column "a.aname".
+fly=# SELECT A.aname, COUNT(C.eid) FROM Aircraft A JOIN Certified C ON A.aid = C.aid GROUP BY A.aname;
+  aname   | count 
+----------+-------
+ SpiceJet |    14
+ Zoom AIr |     1
+ Vistara  |     1
+ TruJet   |     2
+ Star Air |     2
+ GoAir    |     1
+ IndiGo   |     3
+(7 rows)
+
+fly=# 
+fly=# 
+fly=# SELECT A.aname, COUNT(C.eid) FROM Aircraft A JOIN Certified C ON A.aid = C.aid GROUP BY A.aname;
+  aname   | count 
+----------+-------
+ SpiceJet |    14
+ Zoom AIr |     1
+ Vistara  |     1
+ TruJet   |     2
+ Star Air |     2
+ GoAir    |     1
+ IndiGo   |     3
+(7 rows)
+
+fly=# 
+fly=# 
+fly=# SELECT A.aname, COUNT(C.eid) FROM Aircraft A JOIN Certified C ON A.aid = C.aid GROUP BY A.aname;
+  aname   | count 
+----------+-------
+ SpiceJet |    14
+ Zoom AIr |     1
+ Vistara  |     1
+ TruJet   |     2
+ Star Air |     2
+ GoAir    |     1
+ IndiGo   |     3
+(7 rows)
+
+fly=# \c Store
+You are now connected to database "Store" as user "postgres".
+Store=# \d
+               List of relations
+ Schema |      Name      |   Type   |  Owner   
+--------+----------------+----------+----------
+ public | comp           | table    | postgres
+ public | company        | table    | postgres
+ public | company_id_seq | sequence | postgres
+ public | customers      | table    | postgres
+ public | orderproducts  | table    | postgres
+ public | orders         | table    | postgres
+ public | products       | table    | postgres
+(7 rows)
+
+Store=# \d orderproducts
+                Table "public.orderproducts"
+        Column         |          Type          | Modifiers 
+-----------------------+------------------------+-----------
+ orderid               | integer                | 
+ productid             | integer                | 
+ qty                   | integer                | not null
+ orderproductscomments | character varying(100) | not null
+Foreign-key constraints:
+    "orderproducts_orderid_fkey" FOREIGN KEY (orderid) REFERENCES orders(orderid)
+    "orderproducts_productid_fkey" FOREIGN KEY (productid) REFERENCES products(productid)
+
+Store=# \d orders
+        Table "public.orders"
+    Column     |  Type   | Modifiers 
+---------------+---------+-----------
+ orderid       | integer | not null
+ customerid    | integer | 
+ date          | date    | not null
+ ordercomments | text    | not null
+Indexes:
+    "orders_pkey" PRIMARY KEY, btree (orderid)
+Foreign-key constraints:
+    "orders_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customers(customerid)
+Referenced by:
+    TABLE "orderproducts" CONSTRAINT "orderproducts_orderid_fkey" FOREIGN KEY (orderid) REFERENCES orders(orderid)
+
+Store=# CREATE DATABASE customer_order_product_mangment
+Store-# ;
+CREATE DATABASE
+Store=# \c customer_order_product_mangment
+You are now connected to database "customer_order_product_mangment" as user "postgres".
+customer_order_product_mangment=# 
+customer_order_product_mangment=# 
+customer_order_product_mangment=# 
+customer_order_product_mangment=# \c Store
+You are now connected to database "Store" as user "postgres".
+Store=# \d products;
+               Table "public.products"
+     Column      |          Type          | Modifiers 
+-----------------+------------------------+-----------
+ productid       | integer                | not null
+ name            | character varying(20)  | not null
+ description     | character varying(100) | not null
+ size            | character varying(10)  | not null
+ unit            | integer                | not null
+ productcomments | character varying      | not null
+Indexes:
+    "products_pkey" PRIMARY KEY, btree (productid)
+Referenced by:
+    TABLE "orderproducts" CONSTRAINT "orderproducts_productid_fkey" FOREIGN KEY (productid) REFERENCES products(productid)
+
+Store=# \d orders;
+        Table "public.orders"
+    Column     |  Type   | Modifiers 
+---------------+---------+-----------
+ orderid       | integer | not null
+ customerid    | integer | 
+ date          | date    | not null
+ ordercomments | text    | not null
+Indexes:
+    "orders_pkey" PRIMARY KEY, btree (orderid)
+Foreign-key constraints:
+    "orders_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customers(customerid)
+Referenced by:
+    TABLE "orderproducts" CONSTRAINT "orderproducts_orderid_fkey" FOREIGN KEY (orderid) REFERENCES orders(orderid)
+
+Store=# \c customer_order_product_mangment
+You are now connected to database "customer_order_product_mangment" as user "postgres".
+customer_order_product_mangment=# 
+customer_order_product_mangment=# 
+customer_order_product_mangment=# CREATE TABLE customers(customerid INT PRYMERY KEY, name varchar NOT NULL, address varchar NOT NULL, dob DATE NOT NULL, contact INT NOT NULL);
+ERROR:  syntax error at or near "PRYMERY"
+LINE 1: CREATE TABLE customers(customerid INT PRYMERY KEY, name varc...
+                                              ^
+customer_order_product_mangment=# CREATE TABLE customers(customerid INT PRIMARY KEY, name varchar NOT NULL, address varchar NOT NULL, dob DATE NOT NULL, contact INT NOT NULL);
+CREATE TABLE
+customer_order_product_mangment=# 
+customer_order_product_mangment=# CREATE TABLE products(productid INT PRIMARY KEY, name varchar not null, colour varchar not null);
+CREATE TABLE
+customer_order_product_mangment=# CREFGATE TABLE orders(orderid INT PRIMARY KEY, data DATE NOT NULL, customerid INT NOT NULL, productid INT NOT NULL, data DATE NOT NULL, FOREIGN KEY (customerid) references customers(customerid), foreign key (orderid) references orders(orderid) )
+customer_order_product_mangment-# ;
+ERROR:  syntax error at or near "CREFGATE"
+LINE 1: CREFGATE TABLE orders(orderid INT PRIMARY KEY, data DATE NOT...
+        ^
+customer_order_product_mangment=# \d products;
+          Table "public.products"
+  Column   |       Type        | Modifiers 
+-----------+-------------------+-----------
+ productid | integer           | not null
+ name      | character varying | not null
+ colour    | character varying | not null
+Indexes:
+    "products_pkey" PRIMARY KEY, btree (productid)
+
+customer_order_product_mangment=# alter table products add column price int not null;
+ALTER TABLE
+customer_order_product_mangment=# \d products;
+          Table "public.products"
+  Column   |       Type        | Modifiers 
+-----------+-------------------+-----------
+ productid | integer           | not null
+ name      | character varying | not null
+ colour    | character varying | not null
+ price     | integer           | not null
+Indexes:
+    "products_pkey" PRIMARY KEY, btree (productid)
+
+customer_order_product_mangment=# create table orders(orderid int primary key, customerid int not null, date date not null, foreign key (customerid) references customers(customerid));
+CREATE TABLE
+customer_order_product_mangment=# create table orderproducts (orderproductid int primary key, orderid int not null, productid int not null, foreign key(orderid) references orders(orderid), foreign key(productid) references products(productid));
+CREATE TABLE
+customer_order_product_mangment=# 
+customer_order_product_mangment=# 
+customer_order_product_mangment=# 
+customer_order_product_mangment=# \d products;
+          Table "public.products"
+  Column   |       Type        | Modifiers 
+-----------+-------------------+-----------
+ productid | integer           | not null
+ name      | character varying | not null
+ colour    | character varying | not null
+ price     | integer           | not null
+Indexes:
+    "products_pkey" PRIMARY KEY, btree (productid)
+Referenced by:
+    TABLE "orderproducts" CONSTRAINT "orderproducts_productid_fkey" FOREIGN KEY (productid) REFERENCES products(productid)
+
+customer_order_product_mangment=# insert into products values (1,"Laptop","Silver",70000);
+ERROR:  column "Laptop" does not exist
+LINE 1: insert into products values (1,"Laptop","Silver",70000);
+                                       ^
+customer_order_product_mangment=# \d customers;
+          Table "public.customers"
+   Column   |       Type        | Modifiers 
+------------+-------------------+-----------
+ customerid | integer           | not null
+ name       | character varying | not null
+ address    | character varying | not null
+ dob        | date              | not null
+ contact    | integer           | not null
+Indexes:
+    "customers_pkey" PRIMARY KEY, btree (customerid)
+Referenced by:
+    TABLE "orders" CONSTRAINT "orders_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customers(customerid)
+
+customer_order_product_mangment=# \d orders;
+      Table "public.orders"
+   Column   |  Type   | Modifiers 
+------------+---------+-----------
+ orderid    | integer | not null
+ customerid | integer | not null
+ date       | date    | not null
+Indexes:
+    "orders_pkey" PRIMARY KEY, btree (orderid)
+Foreign-key constraints:
+    "orders_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customers(customerid)
+Referenced by:
+    TABLE "orderproducts" CONSTRAINT "orderproducts_orderid_fkey" FOREIGN KEY (orderid) REFERENCES orders(orderid)
+
+customer_order_product_mangment=# insert into products values (1,"Laptop","Silver",70000);
+ERROR:  column "Laptop" does not exist
+LINE 1: insert into products values (1,"Laptop","Silver",70000);
+                                       ^
+customer_order_product_mangment=# \d customers;
+          Table "public.customers"
+   Column   |       Type        | Modifiers 
+------------+-------------------+-----------
+ customerid | integer           | not null
+ name       | character varying | not null
+ address    | character varying | not null
+ dob        | date              | not null
+ contact    | integer           | not null
+Indexes:
+    "customers_pkey" PRIMARY KEY, btree (customerid)
+Referenced by:
+    TABLE "orders" CONSTRAINT "orders_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customers(customerid)
+
+customer_order_product_mangment=# insert into customers values (1,'Pankaj','Delhi','15-02-1997');
+ERROR:  date/time field value out of range: "15-02-1997"
+LINE 1: insert into customers values (1,'Pankaj','Delhi','15-02-1997...
+                                                         ^
+HINT:  Perhaps you need a different "datestyle" setting.
+customer_order_product_mangment=# insert into customers values (1,'Pankaj','Delhi','1997-02-15');
+ERROR:  null value in column "contact" violates not-null constraint
+DETAIL:  Failing row contains (1, Pankaj, Delhi, 1997-02-15, null).
+customer_order_product_mangment=# insert into customers values (1,'Pankaj','Delhi','1997-02-15',7009147259);
+ERROR:  integer out of range
+customer_order_product_mangment=# insert into customers values (1,'Pankaj','Delhi','1997-02-15',7788);
+INSERT 0 1
+customer_order_product_mangment=# insert into customers values (2,'Pavan','Punjab','2007-05-18',7799);
+INSERT 0 1
+customer_order_product_mangment=# insert into customers values (3,'Sachin','Haryana','2005-12-45',5698);
+ERROR:  date/time field value out of range: "2005-12-45"
+LINE 1: ...nsert into customers values (3,'Sachin','Haryana','2005-12-4...
+                                                             ^
+HINT:  Perhaps you need a different "datestyle" setting.
+customer_order_product_mangment=# insert into customers values (3,'Sachin','Haryana','2005-12-15',5698);
+INSERT 0 1
+customer_order_product_mangment=# insert into products values (1,"Laptop","silver",70000 );
+ERROR:  column "Laptop" does not exist
+LINE 1: insert into products values (1,"Laptop","silver",70000 );
+                                       ^
+customer_order_product_mangment=# \d products;
+          Table "public.products"
+  Column   |       Type        | Modifiers 
+-----------+-------------------+-----------
+ productid | integer           | not null
+ name      | character varying | not null
+ colour    | character varying | not null
+ price     | integer           | not null
+Indexes:
+    "products_pkey" PRIMARY KEY, btree (productid)
+Referenced by:
+    TABLE "orderproducts" CONSTRAINT "orderproducts_productid_fkey" FOREIGN KEY (productid) REFERENCES products(productid)
+
+customer_order_product_mangment=# insert into products values (1,"Laptop","silver",70000 );
+ERROR:  column "Laptop" does not exist
+LINE 1: insert into products values (1,"Laptop","silver",70000 );
+                                       ^
+customer_order_product_mangment=# insert into products values (1,'Laptop',"silver",70000 );
+ERROR:  column "silver" does not exist
+LINE 1: insert into products values (1,'Laptop',"silver",70000 );
+                                                ^
+customer_order_product_mangment=# insert into products values (1,'Laptop','silver',70000 );
+INSERT 0 1
+customer_order_product_mangment=# insert into products values (2,'Mobile','silver',15000 );
+INSERT 0 1
+customer_order_product_mangment=# insert into products values (3,'Shoe','Black',1000 );
+INSERT 0 1
+customer_order_product_mangment=# select * from products;
+ productid |  name  | colour | price 
+-----------+--------+--------+-------
+         1 | Laptop | silver | 70000
+         2 | Mobile | silver | 15000
+         3 | Shoe   | Black  |  1000
+(3 rows)
+
+customer_order_product_mangment=# update table products set colour = "Silver" where price = 70000;
+ERROR:  syntax error at or near "table"
+LINE 1: update table products set colour = "Silver" where price = 70...
+               ^
+customer_order_product_mangment=# update products set colour = "Silver" where price = 70000;
+ERROR:  column "Silver" does not exist
+LINE 1: update products set colour = "Silver" where price = 70000;
+                                     ^
+customer_order_product_mangment=# update products set colour = 'Silver' where price = 70000;
+UPDATE 1
+customer_order_product_mangment=# update products set colour = 'Silver' where price = 15000;
+UPDATE 1
+customer_order_product_mangment=# select * from products;
+ productid |  name  | colour | price 
+-----------+--------+--------+-------
+         3 | Shoe   | Black  |  1000
+         1 | Laptop | Silver | 70000
+         2 | Mobile | Silver | 15000
+(3 rows)
+
+customer_order_product_mangment=# insert into products values (4,'Bag','Black',800 );
+INSERT 0 1
+customer_order_product_mangment=# insert into products values (5,'Mouse','Black',500 );
+INSERT 0 1
+customer_order_product_mangment=# \d orders;
+      Table "public.orders"
+   Column   |  Type   | Modifiers 
+------------+---------+-----------
+ orderid    | integer | not null
+ customerid | integer | not null
+ date       | date    | not null
+Indexes:
+    "orders_pkey" PRIMARY KEY, btree (orderid)
+Foreign-key constraints:
+    "orders_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customers(customerid)
+Referenced by:
+    TABLE "orderproducts" CONSTRAINT "orderproducts_orderid_fkey" FOREIGN KEY (orderid) REFERENCES orders(orderid)
+
+customer_order_product_mangment=# insert into orders values (1,1,'2020-01-28');
+INSERT 0 1
+customer_order_product_mangment=# insert into orders values (2,1,'2020-01-20');
+INSERT 0 1
+customer_order_product_mangment=# insert into orders values (2,1,'2020-01-20');
+ERROR:  duplicate key value violates unique constraint "orders_pkey"
+DETAIL:  Key (orderid)=(2) already exists.
+customer_order_product_mangment=# insert into orders values (3,3,'2020-01-10');
+INSERT 0 1
+customer_order_product_mangment=# insert into orders values (3,3,'2020-01-12');
+ERROR:  duplicate key value violates unique constraint "orders_pkey"
+DETAIL:  Key (orderid)=(3) already exists.
+customer_order_product_mangment=# insert into orders values (4,3,'2020-01-12');
+INSERT 0 1
+customer_order_product_mangment=# insert into orderproducts values ()
+customer_order_product_mangment-# ;
+ERROR:  syntax error at or near ")"
+LINE 1: insert into orderproducts values ()
+                                          ^
+customer_order_product_mangment=# \d orderproducts;
+     Table "public.orderproducts"
+     Column     |  Type   | Modifiers 
+----------------+---------+-----------
+ orderproductid | integer | not null
+ orderid        | integer | not null
+ productid      | integer | not null
+Indexes:
+    "orderproducts_pkey" PRIMARY KEY, btree (orderproductid)
+Foreign-key constraints:
+    "orderproducts_orderid_fkey" FOREIGN KEY (orderid) REFERENCES orders(orderid)
+    "orderproducts_productid_fkey" FOREIGN KEY (productid) REFERENCES products(productid)
+
+customer_order_product_mangment=# insert into orderproducts values (1,1,1);
+INSERT 0 1
+customer_order_product_mangment=# insert into orderproducts values (2,1,1);
+INSERT 0 1
+customer_order_product_mangment=# SELECT * FROM products;
+ productid |  name  | colour | price 
+-----------+--------+--------+-------
+         3 | Shoe   | Black  |  1000
+         1 | Laptop | Silver | 70000
+         2 | Mobile | Silver | 15000
+         4 | Bag    | Black  |   800
+         5 | Mouse  | Black  |   500
+(5 rows)
+
+customer_order_product_mangment=# SELECT * FROM customers;
+ customerid |  name  | address |    dob     | contact 
+------------+--------+---------+------------+---------
+          1 | Pankaj | Delhi   | 1997-02-15 |    7788
+          2 | Pavan  | Punjab  | 2007-05-18 |    7799
+          3 | Sachin | Haryana | 2005-12-15 |    5698
+(3 rows)
+
+customer_order_product_mangment=# SELECT * FROM orders;
+ orderid | customerid |    date    
+---------+------------+------------
+       1 |          1 | 2020-01-28
+       2 |          1 | 2020-01-20
+       3 |          3 | 2020-01-10
+       4 |          3 | 2020-01-12
+(4 rows)
+
+customer_order_product_mangment=# SELECT * FROM orderproducts;
+ orderproductid | orderid | productid 
+----------------+---------+-----------
+              1 |       1 |         1
+              2 |       1 |         1
+(2 rows)
+
+customer_order_product_mangment=# insert into orderproducts values (3,2,1);
+INSERT 0 1
+customer_order_product_mangment=# SELECT * FROM orderproducts;
+ orderproductid | orderid | productid 
+----------------+---------+-----------
+              1 |       1 |         1
+              2 |       1 |         1
+              3 |       2 |         1
+(3 rows)
+
+customer_order_product_mangment=# insert into orderproducts values (3,2,4);
+ERROR:  duplicate key value violates unique constraint "orderproducts_pkey"
+DETAIL:  Key (orderproductid)=(3) already exists.
+customer_order_product_mangment=# insert into orderproducts values (4,2,4);
+INSERT 0 1
+customer_order_product_mangment=# SELECT * FROM orderproducts;
+ orderproductid | orderid | productid 
+----------------+---------+-----------
+              1 |       1 |         1
+              2 |       1 |         1
+              3 |       2 |         1
+              4 |       2 |         4
+(4 rows)
+
+customer_order_product_mangment=# insert into orderproducts values (5,3,4);
+INSERT 0 1
+customer_order_product_mangment=# insert into orderproducts values (6,4,4);
+INSERT 0 1
+customer_order_product_mangment=# insert into orderproducts values (6,4,5);
+ERROR:  duplicate key value violates unique constraint "orderproducts_pkey"
+DETAIL:  Key (orderproductid)=(6) already exists.
+customer_order_product_mangment=# insert into orderproducts values (7,4,5);
+INSERT 0 1
+customer_order_product_mangment=# SELECT * FROM orderproducts;
+ orderproductid | orderid | productid 
+----------------+---------+-----------
+              1 |       1 |         1
+              2 |       1 |         1
+              3 |       2 |         1
+              4 |       2 |         4
+              5 |       3 |         4
+              6 |       4 |         4
+              7 |       4 |         5
+(7 rows)
+
+customer_order_product_mangment=# SELECT * FROM orders;
+ orderid | customerid |    date    
+---------+------------+------------
+       1 |          1 | 2020-01-28
+       2 |          1 | 2020-01-20
+       3 |          3 | 2020-01-10
+       4 |          3 | 2020-01-12
+(4 rows)
+
+customer_order_product_mangment=# select * from customers C join orders O on C.customerid = O.orderid; 
+ customerid |  name  | address |    dob     | contact | orderid | customerid |    date    
+------------+--------+---------+------------+---------+---------+------------+------------
+          1 | Pankaj | Delhi   | 1997-02-15 |    7788 |       1 |          1 | 2020-01-28
+          2 | Pavan  | Punjab  | 2007-05-18 |    7799 |       2 |          1 | 2020-01-20
+          3 | Sachin | Haryana | 2005-12-15 |    5698 |       3 |          3 | 2020-01-10
+(3 rows)
+
+customer_order_product_mangment=# select * from customers C join orders O on C.customerid = O.customerid; 
+ customerid |  name  | address |    dob     | contact | orderid | customerid |    date    
+------------+--------+---------+------------+---------+---------+------------+------------
+          1 | Pankaj | Delhi   | 1997-02-15 |    7788 |       1 |          1 | 2020-01-28
+          1 | Pankaj | Delhi   | 1997-02-15 |    7788 |       2 |          1 | 2020-01-20
+          3 | Sachin | Haryana | 2005-12-15 |    5698 |       3 |          3 | 2020-01-10
+          3 | Sachin | Haryana | 2005-12-15 |    5698 |       4 |          3 | 2020-01-12
+(4 rows)
+
+customer_order_product_mangment=# select * from customers C join orders O on C.customerid = O.customerid where C.customerid = 1; 
+ customerid |  name  | address |    dob     | contact | orderid | customerid |    date    
+------------+--------+---------+------------+---------+---------+------------+------------
+          1 | Pankaj | Delhi   | 1997-02-15 |    7788 |       1 |          1 | 2020-01-28
+          1 | Pankaj | Delhi   | 1997-02-15 |    7788 |       2 |          1 | 2020-01-20
+(2 rows)
+
+customer_order_product_mangment=# select C.address from customers C join orders O on C.customerid = O.customerid where C.customerid = 1; 
+ address 
+---------
+ Delhi
+ Delhi
+(2 rows)
+
+customer_order_product_mangment=# SELECT * FROM products;
+ productid |  name  | colour | price 
+-----------+--------+--------+-------
+         3 | Shoe   | Black  |  1000
+         1 | Laptop | Silver | 70000
+         2 | Mobile | Silver | 15000
+         4 | Bag    | Black  |   800
+         5 | Mouse  | Black  |   500
+(5 rows)
+
+customer_order_product_mangment=# select P.name from Customer C join Orders O on C.customerid = O.customerid; 
+ERROR:  relation "customer" does not exist
+LINE 1: select P.name from Customer C join Orders O on C.customerid ...
+                           ^
+customer_order_product_mangment=# select P.name from customers C join Orders O on C.customerid = O.customerid; 
+ERROR:  missing FROM-clause entry for table "p"
+LINE 1: select P.name from customers C join Orders O on C.customerid...
+               ^
+customer_order_product_mangment=# select from customers C join Orders O on C.customerid = O.customerid; 
+--
+(4 rows)
+
+customer_order_product_mangment=# 
+customer_order_product_mangment=# select * from customers C join Orders O on C.customerid = O.customerid; 
+ customerid |  name  | address |    dob     | contact | orderid | customerid |    date    
+------------+--------+---------+------------+---------+---------+------------+------------
+          1 | Pankaj | Delhi   | 1997-02-15 |    7788 |       1 |          1 | 2020-01-28
+          1 | Pankaj | Delhi   | 1997-02-15 |    7788 |       2 |          1 | 2020-01-20
+          3 | Sachin | Haryana | 2005-12-15 |    5698 |       3 |          3 | 2020-01-10
+          3 | Sachin | Haryana | 2005-12-15 |    5698 |       4 |          3 | 2020-01-12
+(4 rows)
+
+customer_order_product_mangment=# 
+customer_order_product_mangment=# 
+customer_order_product_mangment=# select * from customers C join Orders O on C.customerid = O.customerid join orderproducts OP on O.orderid = OP.orderid; 
+ customerid |  name  | address |    dob     | contact | orderid | customerid |    date    | orderproductid | orderid | productid 
+------------+--------+---------+------------+---------+---------+------------+------------+----------------+---------+-----------
+          1 | Pankaj | Delhi   | 1997-02-15 |    7788 |       1 |          1 | 2020-01-28 |              1 |       1 |         1
+          1 | Pankaj | Delhi   | 1997-02-15 |    7788 |       1 |          1 | 2020-01-28 |              2 |       1 |         1
+          1 | Pankaj | Delhi   | 1997-02-15 |    7788 |       2 |          1 | 2020-01-20 |              3 |       2 |         1
+          1 | Pankaj | Delhi   | 1997-02-15 |    7788 |       2 |          1 | 2020-01-20 |              4 |       2 |         4
+          3 | Sachin | Haryana | 2005-12-15 |    5698 |       3 |          3 | 2020-01-10 |              5 |       3 |         4
+          3 | Sachin | Haryana | 2005-12-15 |    5698 |       4 |          3 | 2020-01-12 |              6 |       4 |         4
+          3 | Sachin | Haryana | 2005-12-15 |    5698 |       4 |          3 | 2020-01-12 |              7 |       4 |         5
+(7 rows)
+
+customer_order_product_mangment=# select * from customers C join Orders O on C.customerid = O.customerid join orderproducts OP on O.orderid = OP.orderid join products P; 
+ERROR:  syntax error at or near ";"
+LINE 1: ... orderproducts OP on O.orderid = OP.orderid join products P;
+                                                                      ^
+customer_order_product_mangment=# select * from customers C join Orders O on C.customerid = O.customerid join orderproducts OP on O.orderid = OP.orderid join products P on P.productid = OP.productid; 
+customer_order_product_mangment=# select P.name from customers C join Orders O on C.customerid = O.customerid join orderproducts OP on O.orderid = OP.orderid join products P on P.productid = OP.productid; 
+  name  
+--------
+ Laptop
+ Laptop
+ Laptop
+ Bag
+ Bag
+ Bag
+ Mouse
+(7 rows)
+
+customer_order_product_mangment=# select distinct P.name from customers C join Orders O on C.customerid = O.customerid join orderproducts OP on O.orderid = OP.orderid join products P on P.productid = OP.productid; 
+  name  
+--------
+ Bag
+ Mouse
+ Laptop
+(3 rows)
+
+customer_order_product_mangment=# select distinct P.name from customers C join Orders O on C.customerid = O.customerid join orderproducts OP on O.orderid = OP.orderid join products P on P.productid = OP.productid where C.customerid = 1; 
+  name  
+--------
+ Bag
+ Laptop
+(2 rows)
+
+customer_order_product_mangment=# select distinct P.name from customers C join Orders O on C.customerid = O.customerid join orderproducts OP on O.orderid = OP.orderid join products P on P.productid = OP.productid where C.customerid = 1 as Productname; 
+ERROR:  syntax error at or near "as"
+LINE 1: ...P.productid = OP.productid where C.customerid = 1 as Product...
+                                                             ^
+customer_order_product_mangment=# select distinct P.name as PN from customers C join Orders O on C.customerid = O.customerid join orderproducts OP on O.orderid = OP.orderid join products P on P.productid = OP.productid where C.customerid = 1; 
+   pn   
+--------
+ Bag
+ Laptop
+(2 rows)
+
+customer_order_product_mangment=# select distinct P.name as Product_Name from customers C join Orders O on C.customerid = O.customerid join orderproducts OP on O.orderid = OP.orderid join products P on P.productid = OP.productid where C.customerid = 1; 
+ product_name 
+--------------
+ Bag
+ Laptop
+(2 rows)
+
+customer_order_product_mangment=# select distinct P.name as Product_Name, P.productid as Product_id from customers C join Orders O on C.customerid = O.customerid join orderproducts OP on O.orderid = OP.orderid join products P on P.productid = OP.productid where C.customerid = 1; 
+ product_name | product_id 
+--------------+------------
+ Laptop       |          1
+ Bag          |          4
+(2 rows)
+
+customer_order_product_mangment=# select * from orders;
+ orderid | customerid |    date    
+---------+------------+------------
+       1 |          1 | 2020-01-28
+       2 |          1 | 2020-01-20
+       3 |          3 | 2020-01-10
+       4 |          3 | 2020-01-12
+(4 rows)
+
+customer_order_product_mangment=# select * from orderproducts;
+ orderproductid | orderid | productid 
+----------------+---------+-----------
+              1 |       1 |         1
+              2 |       1 |         1
+              3 |       2 |         1
+              4 |       2 |         4
+              5 |       3 |         4
+              6 |       4 |         4
+              7 |       4 |         5
+(7 rows)
+
+customer_order_product_mangment=# select distinct P.name as Product_Name, P.productid as Product_id from customers C join Orders O on C.customerid = O.customerid join orderproducts OP on O.orderid = OP.orderid join products P on P.productid = OP.productid where C.customerid = 3; 
+ product_name | product_id 
+--------------+------------
+ Mouse        |          5
+ Bag          |          4
+(2 rows)
+
+customer_order_product_mangment=# select * from products;
+ productid |  name  | colour | price 
+-----------+--------+--------+-------
+         3 | Shoe   | Black  |  1000
+         1 | Laptop | Silver | 70000
+         2 | Mobile | Silver | 15000
+         4 | Bag    | Black  |   800
+         5 | Mouse  | Black  |   500
+(5 rows)
+
+customer_order_product_mangment=# select distinct C.name from customers C join Orders O on C.customerid = O.customerid join orderproducts OP on O.orderid = OP.orderid join products P on P.productid = OP.productid where P.name = "Mouse"; 
+ERROR:  column "Mouse" does not exist
+LINE 1: ...ucts P on P.productid = OP.productid where P.name = "Mouse";
+                                                               ^
+customer_order_product_mangment=# select distinct C.name from customers C join Orders O on C.customerid = O.customerid join orderproducts OP on O.orderid = OP.orderid join products P on P.productid = OP.productid where P.name = 'Mouse'; 
+  name  
+--------
+ Sachin
+(1 row)
+
+customer_order_product_mangment=# 
+customer_order_product_mangment=# select distinct P.name, count(P.productid) from customers C join Orders O on C.customerid = O.customerid join orderproducts OP on O.orderid = OP.orderid join products P on P.productid = OP.productid group by P.name; 
+  name  | count 
+--------+-------
+ Mouse  |     1
+ Laptop |     3
+ Bag    |     3
+(3 rows)
+
+customer_order_product_mangment=# select * from orders;
+ orderid | customerid |    date    
+---------+------------+------------
+       1 |          1 | 2020-01-28
+       2 |          1 | 2020-01-20
+       3 |          3 | 2020-01-10
+       4 |          3 | 2020-01-12
+(4 rows)
+
+customer_order_product_mangment=# select * from orderproducts;
+ orderproductid | orderid | productid 
+----------------+---------+-----------
+              1 |       1 |         1
+              2 |       1 |         1
+              3 |       2 |         1
+              4 |       2 |         4
+              5 |       3 |         4
+              6 |       4 |         4
+              7 |       4 |         5
+(7 rows)
+
+customer_order_product_mangment=# select * from products;
+ productid |  name  | colour | price 
+-----------+--------+--------+-------
+         3 | Shoe   | Black  |  1000
+         1 | Laptop | Silver | 70000
+         2 | Mobile | Silver | 15000
+         4 | Bag    | Black  |   800
+         5 | Mouse  | Black  |   500
+(5 rows)
+
+customer_order_product_mangment=# select distinct P.name, count(P.productid) from customers C join Orders O on C.customerid = O.customerid join orderproducts OP on O.orderid = OP.orderid join products P on P.productid = OP.productid group by P.name; 
+  name  | count 
+--------+-------
+ Mouse  |     1
+ Laptop |     3
+ Bag    |     3
+(3 rows)
+
+customer_order_product_mangment=# select distinct P.name, count(P.productid) from customers C join Orders O on C.customerid = O.customerid join orderproducts OP on O.orderid = OP.orderid join products P on P.productid = OP.productid where C.name = 'Pankaj' group by P.name; 
+  name  | count 
+--------+-------
+ Laptop |     3
+ Bag    |     1
+(2 rows)
+
+customer_order_product_mangment=# select * from products;
+ productid |  name  | colour | price 
+-----------+--------+--------+-------
+         3 | Shoe   | Black  |  1000
+         1 | Laptop | Silver | 70000
+         2 | Mobile | Silver | 15000
+         4 | Bag    | Black  |   800
+         5 | Mouse  | Black  |   500
+(5 rows)
+
+customer_order_product_mangment=# select * from orderproducts;
+ orderproductid | orderid | productid 
+----------------+---------+-----------
+              1 |       1 |         1
+              2 |       1 |         1
+              3 |       2 |         1
+              4 |       2 |         4
+              5 |       3 |         4
+              6 |       4 |         4
+              7 |       4 |         5
+(7 rows)
+
+customer_order_product_mangment=# 
+
