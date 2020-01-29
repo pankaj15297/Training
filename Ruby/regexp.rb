@@ -106,7 +106,77 @@
 # p /.{,4}/.match("Pk")                                          ##<MatchData "Pk">
 # p /.{4,10}/.match("Pankaj Kumar")                              ##<MatchData "Pankaj Kum">
 # p /.{4,10}/.match("Pk")                                        #nil
-p /.{4,10}/.match("Pnkj")
+# p /.{4,10}/.match("Pnkj")                                      ##<MatchData "Pnkj">
+# p /./.match(".")                                               ##<MatchData ".">
+# p /./.match(",")                                               ##<MatchData ",">
+# p /./.match("\n")                                              #nil
+
+
+# p /\w/.match("Hello")                                          ##<MatchData "H">
+# p /\w/.match(";Hello")                                         ##<MatchData "H">
+# p /\w/.match(".';/Hello")                                      ##<MatchData "H">
+# p /\w/.match("1586")                                           ##<MatchData "1">
+# p /\w/.match("/?'.1586")                                       ##<MatchData "1">
+# p /\w/.match("")                                               #nil
+# p /\w/.match(" ")                                              #nil
+# p /\w/.match("_")                                              ##<MatchData "_">
+# p /\w/.match(":-.")                                            #nil
+
+
+
+# p /\W/.match(" ")                                              ##<MatchData " ">
+# p /\W/.match(".,;?/")                                          ##<MatchData ".">
+# p /\W/.match("_")                                              #nil
+# p /\W/.match("Hello")                                          #nil
+# p /\W/.match("?.;'Hello")                                      ##<MatchData "?">
+# p /\W/i.match("Hello?/./'")                                    ##<MatchData "?">
+
+
+
+# p /\d/.match("15632")                                          ##<MatchData "1">
+# p /\d/.match("Pankaj86s")                                      ##<MatchData "8">
+# p /\d/.match("_")                                              #nil
+# p /\d/.match(" ")              								 #nil
+# p /\d/.match(".''")											 #nil
+# p /\d/.match("Pankaj")										 #nil
+
+
+
+# p /\D/.match("15236")                                          #nil
+# p /\D/.match("Hello")                                          ##<MatchData "H">
+# p /\D/.match("165HHKJ'/'/")                                    ##<MatchData "H">
+# p /\D/.match(";:.';")                                          ##<MatchData ";">
+# p /\D/.match("_")                                              ##<MatchData "_">
+# p /\D/.match("")                                               #nil
+# p /\D/.match(" ")                                              ##<MatchData " ">
+
+
+
+# p /\h/.match("4512")                                           ##<MatchData "4">
+# p /\h/.match("A15")                                            ##<MatchData "A">
+# p /\h/.match("a56")                                            ##<MatchData "a">
+# p /\h/.match("P5621")                                          ##<MatchData "5">
+# p /\h/.match("_")                                              #nil
+# p /\h/.match(";:/.")                                           #nil
+# p /\h/.match("")                                               #nil
+# p /\h/.match(" ")                                              #nil
+
+
+
+# p /\H/.match("34545")                                          #nil
+# p /\H/.match("UHGH65645")                                      ##<MatchData "U">
+# p /\H/.match("Ab56")                                           #nil
+# p /\H/.match("_")                                              ##<MatchData "_">
+# p /\H/.match(":-,.")                                           ##<MatchData ":">
+# p /\H/.match("")                                               #nil
+# p /\H/.match(" ")                                              ##<MatchData " ">
+
+
+
+p /\s/.match(" ")
+
+
+
 
 
 # p /[[:lower:]]/.match("pankaj")                                ##<MatchData "p">
