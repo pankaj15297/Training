@@ -2069,6 +2069,74 @@ SELECT * FROM Employees E WHERE E.salary NOT IN (80000,95000,100,55000);
 (11 rows)
 
 
+
+====================================ENUM======================================
+
+
+CREATE TYPE mood AS ENUM ('sad', 'ok', 'happy');
+CREATE TYPE
+
+
+select n.nspname as enum_schema,  
+       t.typname as enum_name,  
+       e.enumlabel as enum_value
+from pg_type t 
+   join pg_enum e on t.oid = e.enumtypid  
+   join pg_catalog.pg_namespace n ON n.oid = t.typnamespace;
+
+
+
+ enum_schema | enum_name | enum_value 
+-------------+-----------+------------
+ public      | mood      | sad
+ public      | mood      | ok
+ public      | mood      | happy
+(3 rows)
+
+
+
+
+CREATE TABLE person (name TEXT, current_mood mood);
+CREATE TABLE
+
+
+\d person
+
+
+      Table "public.person"
+    Column    | Type | Modifiers 
+--------------+------+-----------
+ name         | text | 
+ current_mood | mood | 
+
+
+
+
+INSERT INTO person VALUES ('Pankaj', 'happy')
+
+
+SELECT * FROM person;
+
+  name  | current_mood 
+--------+--------------
+ Pankaj | happy
+(1 row)
+
+
+INSERT INTO person VALUES ('Pankaj', 'kumar');
+ERROR:  invalid input value for enum mood: "kumar"
+LINE 1: insert into person values ('Pankaj', 'kumar')
+
+
+
+
+
+
+
+
+
+
+
 =================================Note===================================
 
 
