@@ -5819,3 +5819,2425 @@ blog_post_system=# select * from users U inner join likes L on U.id = L.user_id;
 (11 rows)
 
 blog_post_system=# 
+
+
+
+
+
+
+
+
+
+
+
+
+=============================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+beryl@beryl-Latitude-E5520:~$ su postgres
+Password: 
+postgres@beryl-Latitude-E5520:/home/beryl$ psql
+Password: 
+psql (9.5.19)
+Type "help" for help.
+
+postgres=# \l
+postgres=# \c blog_post_system
+You are now connected to database "blog_post_system" as user "postgres".
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# \l
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select * from likes;
+ id | user_id | post_id 
+----+---------+---------
+  1 |       1 |       1
+  2 |       1 |       2
+  3 |       2 |       1
+  4 |       2 |       5
+  5 |       2 |       6
+  6 |       4 |       6
+  7 |       4 |       6
+  8 |       4 |      12
+  9 |      14 |      12
+ 10 |      14 |      11
+ 11 |      11 |      11
+(11 rows)
+
+blog_post_system=# select * from users;
+ id |  name   | address  | paid 
+----+---------+----------+------
+  1 | Pankaj  | Patna    | f
+  2 | Pankaj  | Patna    | t
+  3 | Saurabh | Delhi    | t
+  4 | Mohit   | Delhi    | f
+  5 | Rohit   | Hariyana | f
+  6 | Gundeep | Patiala  | t
+  7 | Manjeet | Patiala  | t
+  8 | Motilal | Chhapra  | f
+  9 | Bittu   | Chhapra  | f
+ 10 | Bittu   | Patna    | t
+ 11 | Pavan   | Patna    | t
+ 12 | Pavan   | Chhapra  | t
+ 13 | Naveen  | Chhapra  | t
+ 14 | Naveen  | Patiala  | t
+ 15 | Praveen | Chhapra  | f
+ 16 | John    | Goa      | f
+ 17 | Doe     | Goa      | t
+(17 rows)
+
+blog_post_system=# select U.id from users U full outer join likes L on U.id = L.user_id;
+ id 
+----
+  1
+  1
+  2
+  2
+  2
+  4
+  4
+  4
+ 14
+ 14
+ 11
+ 17
+ 12
+ 10
+ 15
+ 13
+  5
+  8
+  6
+ 16
+  3
+  9
+  7
+(23 rows)
+
+blog_post_system=# select * from users U full outer join likes L on U.id = L.user_id;
+ id |  name   | address  | paid | id | user_id | post_id 
+----+---------+----------+------+----+---------+---------
+  1 | Pankaj  | Patna    | f    |  1 |       1 |       1
+  1 | Pankaj  | Patna    | f    |  2 |       1 |       2
+  2 | Pankaj  | Patna    | t    |  3 |       2 |       1
+  2 | Pankaj  | Patna    | t    |  4 |       2 |       5
+  2 | Pankaj  | Patna    | t    |  5 |       2 |       6
+  4 | Mohit   | Delhi    | f    |  6 |       4 |       6
+  4 | Mohit   | Delhi    | f    |  7 |       4 |       6
+  4 | Mohit   | Delhi    | f    |  8 |       4 |      12
+ 14 | Naveen  | Patiala  | t    |  9 |      14 |      12
+ 14 | Naveen  | Patiala  | t    | 10 |      14 |      11
+ 11 | Pavan   | Patna    | t    | 11 |      11 |      11
+ 17 | Doe     | Goa      | t    |    |         |        
+ 12 | Pavan   | Chhapra  | t    |    |         |        
+ 10 | Bittu   | Patna    | t    |    |         |        
+ 15 | Praveen | Chhapra  | f    |    |         |        
+ 13 | Naveen  | Chhapra  | t    |    |         |        
+  5 | Rohit   | Hariyana | f    |    |         |        
+  8 | Motilal | Chhapra  | f    |    |         |        
+  6 | Gundeep | Patiala  | t    |    |         |        
+ 16 | John    | Goa      | f    |    |         |        
+  3 | Saurabh | Delhi    | t    |    |         |        
+  9 | Bittu   | Chhapra  | f    |    |         |        
+  7 | Manjeet | Patiala  | t    |    |         |        
+(23 rows)
+
+blog_post_system=# select * from users U right outer join likes L on U.id = L.user_id;
+ id |  name  | address | paid | id | user_id | post_id 
+----+--------+---------+------+----+---------+---------
+  1 | Pankaj | Patna   | f    |  1 |       1 |       1
+  1 | Pankaj | Patna   | f    |  2 |       1 |       2
+  2 | Pankaj | Patna   | t    |  3 |       2 |       1
+  2 | Pankaj | Patna   | t    |  4 |       2 |       5
+  2 | Pankaj | Patna   | t    |  5 |       2 |       6
+  4 | Mohit  | Delhi   | f    |  6 |       4 |       6
+  4 | Mohit  | Delhi   | f    |  7 |       4 |       6
+  4 | Mohit  | Delhi   | f    |  8 |       4 |      12
+ 14 | Naveen | Patiala | t    |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    | 10 |      14 |      11
+ 11 | Pavan  | Patna   | t    | 11 |      11 |      11
+(11 rows)
+
+blog_post_system=# select U.id from users U full outer join likes L on U.id = L.user_id;
+ id 
+----
+  1
+  1
+  2
+  2
+  2
+  4
+  4
+  4
+ 14
+ 14
+ 11
+ 17
+ 12
+ 10
+ 15
+ 13
+  5
+  8
+  6
+ 16
+  3
+  9
+  7
+(23 rows)
+
+blog_post_system=# select U.id from users U right outer join likes L on U.id = L.user_id;
+ id 
+----
+  1
+  1
+  2
+  2
+  2
+  4
+  4
+  4
+ 14
+ 14
+ 11
+(11 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select * from users U left outer join posts P on U.id = P.uesr_id inner join likes L on P.id = L.post_id;
+ERROR:  column p.uesr_id does not exist
+LINE 1: ... * from users U left outer join posts P on U.id = P.uesr_id ...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "p.user_id".
+blog_post_system=# select * from users U left outer join posts P on U.id = P.uesr_id;
+ERROR:  column p.uesr_id does not exist
+LINE 1: ... * from users U left outer join posts P on U.id = P.uesr_id;
+                                                             ^
+HINT:  Perhaps you meant to reference the column "p.user_id".
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select * from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id;
+ id |  name  | address  | paid | id | user_id |  title   |            content             | category_id | id | user_id | post_id 
+----+--------+----------+------+----+---------+----------+--------------------------------+-------------+----+---------+---------
+  5 | Rohit  | Hariyana | f    |  1 |       5 | a mango  | Mangoes are sweets.            |           2 |  1 |       1 |       1
+  5 | Rohit  | Hariyana | f    |  2 |       5 | a banana | Bananas are sweets and yellow. |           2 |  2 |       1 |       2
+  5 | Rohit  | Hariyana | f    |  1 |       5 | a mango  | Mangoes are sweets.            |           2 |  3 |       2 |       1
+ 10 | Bittu  | Patna    | t    |  5 |      10 | a goods  | Goods are heavy.               |           1 |  4 |       2 |       5
+  1 | Pankaj | Patna    | f    |  6 |       1 | a food   | foods are heavy.               |           3 |  5 |       2 |       6
+  1 | Pankaj | Patna    | f    |  6 |       1 | a food   | foods are heavy.               |           3 |  6 |       4 |       6
+  1 | Pankaj | Patna    | f    |  6 |       1 | a food   | foods are heavy.               |           3 |  7 |       4 |       6
+ 14 | Naveen | Patiala  | t    | 12 |      14 | a wood   | woods are heavy.               |           4 |  8 |       4 |      12
+ 14 | Naveen | Patiala  | t    | 12 |      14 | a wood   | woods are heavy.               |           4 |  9 |      14 |      12
+ 14 | Naveen | Patiala  | t    | 11 |      14 | a cloth  | cloths are red.                |           8 | 10 |      14 |      11
+ 14 | Naveen | Patiala  | t    | 11 |      14 | a cloth  | cloths are red.                |           8 | 11 |      11 |      11
+(11 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select * from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false;
+ id |  name  | address  | paid | id | user_id |  title   |            content             | category_id | id | user_id | post_id 
+----+--------+----------+------+----+---------+----------+--------------------------------+-------------+----+---------+---------
+  5 | Rohit  | Hariyana | f    |  1 |       5 | a mango  | Mangoes are sweets.            |           2 |  1 |       1 |       1
+  5 | Rohit  | Hariyana | f    |  2 |       5 | a banana | Bananas are sweets and yellow. |           2 |  2 |       1 |       2
+  5 | Rohit  | Hariyana | f    |  1 |       5 | a mango  | Mangoes are sweets.            |           2 |  3 |       2 |       1
+  1 | Pankaj | Patna    | f    |  6 |       1 | a food   | foods are heavy.               |           3 |  5 |       2 |       6
+  1 | Pankaj | Patna    | f    |  6 |       1 | a food   | foods are heavy.               |           3 |  6 |       4 |       6
+  1 | Pankaj | Patna    | f    |  6 |       1 | a food   | foods are heavy.               |           3 |  7 |       4 |       6
+(6 rows)
+
+blog_post_system=# select count(P.id) from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false ;
+ count 
+-------
+     6
+(1 row)
+
+blog_post_system=# select count(P.id),count(L.id) from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false ;
+ count | count 
+-------+-------
+     6 |     6
+(1 row)
+
+blog_post_system=# select count(P.id),count(L.id) from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by U.id;
+ count | count 
+-------+-------
+     3 |     3
+     3 |     3
+(2 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select count(P.id),count(L.id) from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = true group by U.id;
+ count | count 
+-------+-------
+     1 |     1
+     4 |     4
+(2 rows)
+
+blog_post_system=# select count(P.id),count(L.id) from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by U.id;
+ count | count 
+-------+-------
+     3 |     3
+     3 |     3
+(2 rows)
+
+blog_post_system=# 
+blog_post_system=# select count(P.id),count(L.id) from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id;
+ count | count 
+-------+-------
+     1 |     1
+     3 |     3
+     2 |     2
+(3 rows)
+
+blog_post_system=# select * from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id;
+ERROR:  column "u.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select * from users U left outer join posts P on U.id = P.us...
+               ^
+blog_post_system=# select * from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by U.id;
+ERROR:  column "p.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select * from users U left outer join posts P on U.id = P.us...
+               ^
+blog_post_system=# select * from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false;
+ id |  name  | address  | paid | id | user_id |  title   |            content             | category_id | id | user_id | post_id 
+----+--------+----------+------+----+---------+----------+--------------------------------+-------------+----+---------+---------
+  5 | Rohit  | Hariyana | f    |  1 |       5 | a mango  | Mangoes are sweets.            |           2 |  1 |       1 |       1
+  5 | Rohit  | Hariyana | f    |  2 |       5 | a banana | Bananas are sweets and yellow. |           2 |  2 |       1 |       2
+  5 | Rohit  | Hariyana | f    |  1 |       5 | a mango  | Mangoes are sweets.            |           2 |  3 |       2 |       1
+  1 | Pankaj | Patna    | f    |  6 |       1 | a food   | foods are heavy.               |           3 |  5 |       2 |       6
+  1 | Pankaj | Patna    | f    |  6 |       1 | a food   | foods are heavy.               |           3 |  6 |       4 |       6
+  1 | Pankaj | Patna    | f    |  6 |       1 | a food   | foods are heavy.               |           3 |  7 |       4 |       6
+(6 rows)
+
+blog_post_system=# select U.id, U.name from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false;
+ id |  name  
+----+--------
+  5 | Rohit
+  5 | Rohit
+  5 | Rohit
+  1 | Pankaj
+  1 | Pankaj
+  1 | Pankaj
+(6 rows)
+
+blog_post_system=# select U.id, U.name from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by U.id;
+ id |  name  
+----+--------
+  1 | Pankaj
+  5 | Rohit
+(2 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# \d
+             List of relations
+ Schema |    Name     |   Type   |  Owner   
+--------+-------------+----------+----------
+ public | categories  | table    | postgres
+ public | comments    | table    | postgres
+ public | count_views | view     | postgres
+ public | likes       | table    | postgres
+ public | pk          | table    | postgres
+ public | pk_id_seq   | sequence | postgres
+ public | posts       | table    | postgres
+ public | users       | table    | postgres
+(8 rows)
+
+blog_post_system=# \d pk
+                         Table "public.pk"
+ Column |  Type   |                    Modifiers                    
+--------+---------+-------------------------------------------------
+ id     | integer | not null default nextval('pk_id_seq'::regclass)
+ roll   | integer | 
+Indexes:
+    "pk_pkey" PRIMARY KEY, btree (id)
+
+blog_post_system=# select * from pk;
+ id | roll 
+----+------
+(0 rows)
+
+blog_post_system=# insert into pk (roll) values (10)
+blog_post_system-# ;
+INSERT 0 1
+blog_post_system=# select * from pk;
+ id | roll 
+----+------
+ 13 |   10
+(1 row)
+
+blog_post_system=# 
+blog_post_system=# insert into pk (roll) values (11);
+INSERT 0 1
+blog_post_system=# insert into pk (roll) values (12);
+INSERT 0 1
+blog_post_system=# select * from pk;
+ id | roll 
+----+------
+ 13 |   10
+ 14 |   11
+ 15 |   12
+(3 rows)
+
+blog_post_system=# alter table pk alter column roll set not null;
+ALTER TABLE
+blog_post_system=# \d pk
+                         Table "public.pk"
+ Column |  Type   |                    Modifiers                    
+--------+---------+-------------------------------------------------
+ id     | integer | not null default nextval('pk_id_seq'::regclass)
+ roll   | integer | not null
+Indexes:
+    "pk_pkey" PRIMARY KEY, btree (id)
+
+blog_post_system=# select * from pk;
+ id | roll 
+----+------
+ 13 |   10
+ 14 |   11
+ 15 |   12
+(3 rows)
+
+blog_post_system=# alter table pk alter column roll drop not null;
+ALTER TABLE
+blog_post_system=# \d pk
+                         Table "public.pk"
+ Column |  Type   |                    Modifiers                    
+--------+---------+-------------------------------------------------
+ id     | integer | not null default nextval('pk_id_seq'::regclass)
+ roll   | integer | 
+Indexes:
+    "pk_pkey" PRIMARY KEY, btree (id)
+
+blog_post_system=# insert into pk (roll) values ();
+ERROR:  syntax error at or near ")"
+LINE 1: insert into pk (roll) values ();
+                                      ^
+blog_post_system=# insert into pk (roll) values ('');
+ERROR:  invalid input syntax for integer: ""
+LINE 1: insert into pk (roll) values ('');
+                                      ^
+blog_post_system=# insert into pk (id, roll) values ();
+ERROR:  syntax error at or near ")"
+LINE 1: insert into pk (id, roll) values ();
+                                          ^
+blog_post_system=# insert into pk (id, roll) values (10);
+ERROR:  INSERT has more target columns than expressions
+LINE 1: insert into pk (id, roll) values (10);
+                            ^
+blog_post_system=# insert into pk (id) values ();
+ERROR:  syntax error at or near ")"
+LINE 1: insert into pk (id) values ();
+                                    ^
+blog_post_system=# insert into pk (id) values (100);
+INSERT 0 1
+blog_post_system=# insert into pk (id) values (100);
+ERROR:  duplicate key value violates unique constraint "pk_pkey"
+DETAIL:  Key (id)=(100) already exists.
+blog_post_system=# insert into pk (id) values (101);
+INSERT 0 1
+blog_post_system=# select * from pk;
+ id  | roll 
+-----+------
+  13 |   10
+  14 |   11
+  15 |   12
+ 100 |     
+ 101 |     
+(5 rows)
+
+blog_post_system=# 
+blog_post_system=# alter table pk alter column roll set not null;
+ERROR:  column "roll" contains null values
+blog_post_system=# alter table pk alter column roll set not null;
+ERROR:  column "roll" contains null values
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# '
+blog_post_system'# '
+blog_post_system-# '
+blog_post_system'# ;
+blog_post_system'# '
+blog_post_system-# ;
+ERROR:  syntax error at or near "'
+'
+'
+;
+'"
+LINE 1: '
+        ^
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# create table
+blog_post_system-# { name serial
+blog_post_system-# ;
+ERROR:  syntax error at or near "{"
+LINE 2: { name serial
+        ^
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select count(P.id),count(L.id) from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by U.id;
+ count | count 
+-------+-------
+     3 |     3
+     3 |     3
+(2 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select U.id, count(P.id),count(L.id) from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by U.id;
+ id | count | count 
+----+-------+-------
+  1 |     3 |     3
+  5 |     3 |     3
+(2 rows)
+
+blog_post_system=# select U.id, U.name, count(P.id),count(L.id) from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by U.id;
+ id |  name  | count | count 
+----+--------+-------+-------
+  1 | Pankaj |     3 |     3
+  5 | Rohit  |     3 |     3
+(2 rows)
+
+blog_post_system=# select U.id, U.name, count(P.id) as Poat_count, count(L.id) as Like_count from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by U.id;
+ id |  name  | poat_count | like_count 
+----+--------+------------+------------
+  1 | Pankaj |          3 |          3
+  5 | Rohit  |          3 |          3
+(2 rows)
+
+blog_post_system=# select * from posts;
+ id | user_id |   title   |            content             | category_id 
+----+---------+-----------+--------------------------------+-------------
+  5 |      10 | a goods   | Goods are heavy.               |           1
+  1 |       5 | a mango   | Mangoes are sweets.            |           2
+  2 |       5 | a banana  | Bananas are sweets and yellow. |           2
+  3 |      10 | a banana  | Bananas are sweets and yellow. |           2
+  4 |      10 | a book    | Books are good.                |           5
+  6 |       1 | a food    | foods are heavy.               |           3
+  7 |       3 | a food    | foods are light.               |           3
+  8 |      14 | a food    | foods are light.               |           3
+  9 |      14 | the goods | goods are light.               |           1
+ 10 |      14 | a food    | foods are good.                |           3
+ 11 |      14 | a cloth   | cloths are red.                |           8
+ 12 |      14 | a wood    | woods are heavy.               |           4
+ 13 |       7 | a food    | foods are light.               |           3
+ 14 |       7 | a cloth   | cloths are red.                |           8
+ 15 |       7 | a food    | foods are heavy.               |           3
+ 16 |       7 | a goods   | Goods are heavy.               |           1
+ 17 |       7 | a goods   | Goods are heavy.               |           1
+(17 rows)
+
+blog_post_system=# select * from likes;
+ id | user_id | post_id 
+----+---------+---------
+  1 |       1 |       1
+  2 |       1 |       2
+  3 |       2 |       1
+  4 |       2 |       5
+  5 |       2 |       6
+  6 |       4 |       6
+  7 |       4 |       6
+  8 |       4 |      12
+  9 |      14 |      12
+ 10 |      14 |      11
+ 11 |      11 |      11
+(11 rows)
+
+blog_post_system=# select U.id, U.name, count(P.id) as Poat_count, count(L.id) as Like_count from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by U.id;
+ id |  name  | poat_count | like_count 
+----+--------+------------+------------
+  1 | Pankaj |          3 |          3
+  5 | Rohit  |          3 |          3
+(2 rows)
+
+blog_post_system=# select * from users;
+ id |  name   | address  | paid 
+----+---------+----------+------
+  1 | Pankaj  | Patna    | f
+  2 | Pankaj  | Patna    | t
+  3 | Saurabh | Delhi    | t
+  4 | Mohit   | Delhi    | f
+  5 | Rohit   | Hariyana | f
+  6 | Gundeep | Patiala  | t
+  7 | Manjeet | Patiala  | t
+  8 | Motilal | Chhapra  | f
+  9 | Bittu   | Chhapra  | f
+ 10 | Bittu   | Patna    | t
+ 11 | Pavan   | Patna    | t
+ 12 | Pavan   | Chhapra  | t
+ 13 | Naveen  | Chhapra  | t
+ 14 | Naveen  | Patiala  | t
+ 15 | Praveen | Chhapra  | f
+ 16 | John    | Goa      | f
+ 17 | Doe     | Goa      | t
+(17 rows)
+
+blog_post_system=# select U.id, U.name, count(P.id) as Poat_count, count(L.id) as Like_count from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false;
+ERROR:  column "u.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select U.id, U.name, count(P.id) as Poat_count, count(L.id) ...
+               ^
+blog_post_system=# select U.name, count(P.id) as Poat_count, count(L.id) as Like_count from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false;
+ERROR:  column "u.name" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select U.name, count(P.id) as Poat_count, count(L.id) as Lik...
+               ^
+blog_post_system=# select count(P.id) as Poat_count, count(L.id) as Like_count from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false;
+ poat_count | like_count 
+------------+------------
+          6 |          6
+(1 row)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select U.id, U.name,P.id, L.id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false;
+ id |  name  | id | id 
+----+--------+----+----
+  5 | Rohit  |  1 |  1
+  5 | Rohit  |  2 |  2
+  5 | Rohit  |  1 |  3
+  1 | Pankaj |  6 |  5
+  1 | Pankaj |  6 |  6
+  1 | Pankaj |  6 |  7
+(6 rows)
+
+blog_post_system=# select U.id, U.name,P.id as post_id, L.id as like_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false;
+ id |  name  | post_id | like_id 
+----+--------+---------+---------
+  5 | Rohit  |       1 |       1
+  5 | Rohit  |       2 |       2
+  5 | Rohit  |       1 |       3
+  1 | Pankaj |       6 |       5
+  1 | Pankaj |       6 |       6
+  1 | Pankaj |       6 |       7
+(6 rows)
+
+blog_post_system=# select U.id, U.name, count(U.id) as Poat_count, count(L.id) as Like_count from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false;
+ERROR:  column "u.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select U.id, U.name, count(U.id) as Poat_count, count(L.id) ...
+               ^
+blog_post_system=# select U.id, U.name, count(U.id) as Poat_count, count(L.id) as Like_count from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by U.id;
+ id |  name  | poat_count | like_count 
+----+--------+------------+------------
+  1 | Pankaj |          3 |          3
+  5 | Rohit  |          3 |          3
+(2 rows)
+
+blog_post_system=# select U.id, U.name, count(U.id) as User_count, count(L.id) as Like_count from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by U.id;
+ id |  name  | user_count | like_count 
+----+--------+------------+------------
+  1 | Pankaj |          3 |          3
+  5 | Rohit  |          3 |          3
+(2 rows)
+
+blog_post_system=# 
+blog_post_system=# select distinct U.id, U.name, count(U.id) as User_count, count(L.id) as Like_count from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by U.id;
+ id |  name  | user_count | like_count 
+----+--------+------------+------------
+  1 | Pankaj |          3 |          3
+  5 | Rohit  |          3 |          3
+(2 rows)
+
+blog_post_system=# select distinct U.id, U.name, count(L.id) as Like_count from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false;
+ERROR:  column "u.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select distinct U.id, U.name, count(L.id) as Like_count from...
+                        ^
+blog_post_system=# select U.id, U.name,P.id as post_id, L.id as like_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false;
+ id |  name  | post_id | like_id 
+----+--------+---------+---------
+  5 | Rohit  |       1 |       1
+  5 | Rohit  |       2 |       2
+  5 | Rohit  |       1 |       3
+  1 | Pankaj |       6 |       5
+  1 | Pankaj |       6 |       6
+  1 | Pankaj |       6 |       7
+(6 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select U.id, U.name,P.id as post_id, L.id as like_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id;
+ERROR:  column "u.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select U.id, U.name,P.id as post_id, L.id as like_id from us...
+               ^
+blog_post_system=# select P.id as post_id, L.id as like_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id;
+ERROR:  column "l.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select P.id as post_id, L.id as like_id from users U left ou...
+                                ^
+blog_post_system=# select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id;
+ post_id 
+---------
+       2
+       6
+       1
+(3 rows)
+
+blog_post_system=# 
+blog_post_system=# select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by distinct P.id;
+ERROR:  syntax error at or near "distinct"
+LINE 1: ...on P.id = L.post_id where U.paid = false group by distinct P...
+                                                             ^
+blog_post_system=# select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id;
+ post_id 
+---------
+       2
+       6
+       1
+(3 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select U.id, P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id;
+ERROR:  column "u.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select U.id, P.id as post_id from users U left outer join po...
+               ^
+blog_post_system=# select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by distinct P.id;
+ERROR:  syntax error at or near "distinct"
+LINE 1: ...on P.id = L.post_id where U.paid = false group by distinct P...
+                                                             ^
+blog_post_system=# select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id;
+ post_id 
+---------
+       2
+       6
+       1
+(3 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select L.id, P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id;
+ERROR:  column "l.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select L.id, P.id as post_id from users U left outer join po...
+               ^
+blog_post_system=# select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id;
+ post_id 
+---------
+       2
+       6
+       1
+(3 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select U1.id, U1.name from users U1 join likes L1 on U1.id = L1.id where id in (select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id);
+ERROR:  column reference "id" is ambiguous
+LINE 1: ...rom users U1 join likes L1 on U1.id = L1.id where id in (sel...
+                                                             ^
+blog_post_system=# select U1.id, U1.name from users U1 join likes L1 on U1.id = L1.user_id where id in (select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id);
+ERROR:  column reference "id" is ambiguous
+LINE 1: ...sers U1 join likes L1 on U1.id = L1.user_id where id in (sel...
+                                                             ^
+blog_post_system=# select U1.id, U1.name from users U1 join likes L1 on U1.id = L1.user_id where U1.id in (select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id);
+ id |  name  
+----+--------
+  1 | Pankaj
+  1 | Pankaj
+  2 | Pankaj
+  2 | Pankaj
+  2 | Pankaj
+(5 rows)
+
+blog_post_system=# select U1.id, U1.name from users U1 join likes L1 on U1.id = L1.user_id where U1.id in (select U.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id);
+ERROR:  column "u.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: ...s L1 on U1.id = L1.user_id where U1.id in (select U.id as po...
+                                                             ^
+blog_post_system=# select U1.id, U1.name from users U1 join likes L1 on U1.id = L1.user_id where U1.id in (select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id);
+ id |  name  
+----+--------
+  1 | Pankaj
+  1 | Pankaj
+  2 | Pankaj
+  2 | Pankaj
+  2 | Pankaj
+(5 rows)
+
+blog_post_system=# select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id;
+ post_id 
+---------
+       2
+       6
+       1
+(3 rows)
+
+blog_post_system=# select U1.id, U1.name from users U1 join likes L1 on U1.id = L1.user_id where U1.id in (select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id);
+ id |  name  
+----+--------
+  1 | Pankaj
+  1 | Pankaj
+  2 | Pankaj
+  2 | Pankaj
+  2 | Pankaj
+(5 rows)
+
+blog_post_system=# select U1.id, U1.name from users U1 join likes L1 on U1.id = L1.user_id where P1.id in (select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id);
+ERROR:  missing FROM-clause entry for table "p1"
+LINE 1: ...sers U1 join likes L1 on U1.id = L1.user_id where P1.id in (...
+                                                             ^
+blog_post_system=# select U1.id, U1.name from users U1 join likes L1 on U1.id = L1.user_id where P1.id in (select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id);
+ERROR:  missing FROM-clause entry for table "p1"
+LINE 1: ...sers U1 join likes L1 on U1.id = L1.user_id where P1.id in (...
+                                                             ^
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# create type as mood Enum ('sad', 'ok', 'happy');
+ERROR:  syntax error at or near "as"
+LINE 1: create type as mood Enum ('sad', 'ok', 'happy');
+                    ^
+blog_post_system=# create type mood as Enum ('sad', 'ok', 'happy');
+CREATE TYPE
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# \d
+             List of relations
+ Schema |    Name     |   Type   |  Owner   
+--------+-------------+----------+----------
+ public | categories  | table    | postgres
+ public | comments    | table    | postgres
+ public | count_views | view     | postgres
+ public | likes       | table    | postgres
+ public | pk          | table    | postgres
+ public | pk_id_seq   | sequence | postgres
+ public | posts       | table    | postgres
+ public | users       | table    | postgres
+(8 rows)
+
+blog_post_system=# create table person (name text, current_mood mood);
+CREATE TABLE
+blog_post_system=# \d
+             List of relations
+ Schema |    Name     |   Type   |  Owner   
+--------+-------------+----------+----------
+ public | categories  | table    | postgres
+ public | comments    | table    | postgres
+ public | count_views | view     | postgres
+ public | likes       | table    | postgres
+ public | person      | table    | postgres
+ public | pk          | table    | postgres
+ public | pk_id_seq   | sequence | postgres
+ public | posts       | table    | postgres
+ public | users       | table    | postgres
+(9 rows)
+
+blog_post_system=# \d person
+      Table "public.person"
+    Column    | Type | Modifiers 
+--------------+------+-----------
+ name         | text | 
+ current_mood | mood | 
+
+blog_post_system=# insert into person values ('Pankaj', 'happy')
+blog_post_system-# ;
+INSERT 0 1
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select * from person;
+  name  | current_mood 
+--------+--------------
+ Pankaj | happy
+(1 row)
+
+blog_post_system=# insert into person values ('Pankaj', 'kumar')
+blog_post_system-# ;
+ERROR:  invalid input value for enum mood: "kumar"
+LINE 1: insert into person values ('Pankaj', 'kumar')
+                                             ^
+blog_post_system=# insert into person values ('Pankaj', 'ok')
+;
+INSERT 0 1
+blog_post_system=# select * from person;
+  name  | current_mood 
+--------+--------------
+ Pankaj | happy
+ Pankaj | ok
+(2 rows)
+
+blog_post_system=# select * from person where current_mood = 'happy';
+  name  | current_mood 
+--------+--------------
+ Pankaj | happy
+(1 row)
+
+blog_post_system=# select * from person where current_mood < 'happy';
+  name  | current_mood 
+--------+--------------
+ Pankaj | ok
+(1 row)
+
+blog_post_system=# select * from person where current_mood > 'happy';
+ name | current_mood 
+------+--------------
+(0 rows)
+
+blog_post_system=# select * from mood;
+ERROR:  relation "mood" does not exist
+LINE 1: select * from mood;
+                      ^
+blog_post_system=# select * from public.mood;
+ERROR:  relation "public.mood" does not exist
+LINE 1: select * from public.mood;
+                      ^
+blog_post_system=# select * from ENUM;
+ERROR:  relation "enum" does not exist
+LINE 1: select * from ENUM;
+                      ^
+blog_post_system=# select enum from pg_enum;
+ERROR:  column "enum" does not exist
+LINE 1: select enum from pg_enum;
+               ^
+blog_post_system=# select mood from pg_enum;
+ERROR:  column "mood" does not exist
+LINE 1: select mood from pg_enum;
+               ^
+blog_post_system=# insert into pk (id,roll) (default);
+ERROR:  syntax error at or near "default"
+LINE 1: insert into pk (id,roll) (default);
+                                  ^
+blog_post_system=# \d pk;
+                         Table "public.pk"
+ Column |  Type   |                    Modifiers                    
+--------+---------+-------------------------------------------------
+ id     | integer | not null default nextval('pk_id_seq'::regclass)
+ roll   | integer | 
+Indexes:
+    "pk_pkey" PRIMARY KEY, btree (id)
+
+blog_post_system=# alter table pk alter column roll set default 'NO';
+ERROR:  invalid input syntax for integer: "NO"
+blog_post_system=# alter table pk alter column roll set default '5';
+ALTER TABLE
+blog_post_system=# \d pk;
+                         Table "public.pk"
+ Column |  Type   |                    Modifiers                    
+--------+---------+-------------------------------------------------
+ id     | integer | not null default nextval('pk_id_seq'::regclass)
+ roll   | integer | default 5
+Indexes:
+    "pk_pkey" PRIMARY KEY, btree (id)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# insert into pk values (default);
+INSERT 0 1
+blog_post_system=# insert into pk values (default);
+INSERT 0 1
+blog_post_system=# select * from pk;
+ id  | roll 
+-----+------
+  13 |   10
+  14 |   11
+  15 |   12
+ 100 |     
+ 101 |     
+  16 |    5
+  17 |    5
+(7 rows)
+
+blog_post_system=# insert into pk values (default);
+INSERT 0 1
+blog_post_system=# select * from pk;
+ id  | roll 
+-----+------
+  13 |   10
+  14 |   11
+  15 |   12
+ 100 |     
+ 101 |     
+  16 |    5
+  17 |    5
+  18 |    5
+(8 rows)
+
+blog_post_system=# alter table pk alter column roll drop default '5';
+ERROR:  syntax error at or near "'5'"
+LINE 1: alter table pk alter column roll drop default '5';
+                                                      ^
+blog_post_system=# alter table pk alter column roll drop default ;
+ALTER TABLE
+blog_post_system=# \d pk;
+                         Table "public.pk"
+ Column |  Type   |                    Modifiers                    
+--------+---------+-------------------------------------------------
+ id     | integer | not null default nextval('pk_id_seq'::regclass)
+ roll   | integer | 
+Indexes:
+    "pk_pkey" PRIMARY KEY, btree (id)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# insert into pk values (default);
+INSERT 0 1
+blog_post_system=# select * from pk;
+ id  | roll 
+-----+------
+  13 |   10
+  14 |   11
+  15 |   12
+ 100 |     
+ 101 |     
+  16 |    5
+  17 |    5
+  18 |    5
+  19 |     
+(9 rows)
+
+blog_post_system=# insert into pk values (default,6);
+INSERT 0 1
+blog_post_system=# select * from pk;
+ id  | roll 
+-----+------
+  13 |   10
+  14 |   11
+  15 |   12
+ 100 |     
+ 101 |     
+  16 |    5
+  17 |    5
+  18 |    5
+  19 |     
+  20 |    6
+(10 rows)
+
+blog_post_system=# insert into pk values (6);
+INSERT 0 1
+blog_post_system=# select * from pk;
+ id  | roll 
+-----+------
+  13 |   10
+  14 |   11
+  15 |   12
+ 100 |     
+ 101 |     
+  16 |    5
+  17 |    5
+  18 |    5
+  19 |     
+  20 |    6
+   6 |     
+(11 rows)
+
+blog_post_system=# \d
+             List of relations
+ Schema |    Name     |   Type   |  Owner   
+--------+-------------+----------+----------
+ public | categories  | table    | postgres
+ public | comments    | table    | postgres
+ public | count_views | view     | postgres
+ public | likes       | table    | postgres
+ public | person      | table    | postgres
+ public | pk          | table    | postgres
+ public | pk_id_seq   | sequence | postgres
+ public | posts       | table    | postgres
+ public | users       | table    | postgres
+(9 rows)
+
+blog_post_system=# \d pk_id_seq;
+          Sequence "public.pk_id_seq"
+    Column     |  Type   |        Value        
+---------------+---------+---------------------
+ sequence_name | name    | pk_id_seq
+ last_value    | bigint  | 20
+ start_value   | bigint  | 1
+ increment_by  | bigint  | 1
+ max_value     | bigint  | 9223372036854775807
+ min_value     | bigint  | 1
+ cache_value   | bigint  | 1
+ log_cnt       | bigint  | 28
+ is_cycled     | boolean | f
+ is_called     | boolean | t
+Owned by: public.pk.id
+
+blog_post_system=# select * from pk_id_seq;
+ sequence_name | last_value | start_value | increment_by |      max_value      | min_value | cache_value | log_cnt | is_cycled | is_called 
+---------------+------------+-------------+--------------+---------------------+-----------+-------------+---------+-----------+-----------
+ pk_id_seq     |         20 |           1 |            1 | 9223372036854775807 |         1 |           1 |      28 | f         | t
+(1 row)
+
+blog_post_system=# select U1.id, U1.name from users U1 join likes L1 on U1.id = L1.user_id where P1.id in (select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id);
+ERROR:  missing FROM-clause entry for table "p1"
+LINE 1: ...sers U1 join likes L1 on U1.id = L1.user_id where P1.id in (...
+                                                             ^
+blog_post_system=# select U1.id, U1.name from users U1 join likes L1 on U1.id = L1.user_id where P1.id in (select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id);
+ERROR:  missing FROM-clause entry for table "p1"
+LINE 1: ...sers U1 join likes L1 on U1.id = L1.user_id where P1.id in (...
+                                                             ^
+blog_post_system=# select U1.id, U1.name from users U1 join likes L1 on U1.id = L1.user_id where U1.id in (select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id);
+ id |  name  
+----+--------
+  1 | Pankaj
+  1 | Pankaj
+  2 | Pankaj
+  2 | Pankaj
+  2 | Pankaj
+(5 rows)
+
+blog_post_system=# select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id;
+ post_id 
+---------
+       2
+       6
+       1
+(3 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select U.id, P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id;
+ERROR:  column "u.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select U.id, P.id as post_id from users U left outer join po...
+               ^
+blog_post_system=# select U.id, P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id;select U.id, U.name,P.id as post_id, L.id as like_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false;
+ERROR:  column "u.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select U.id, P.id as post_id from users U left outer join po...
+               ^
+ id |  name  | post_id | like_id 
+----+--------+---------+---------
+  5 | Rohit  |       1 |       1
+  5 | Rohit  |       2 |       2
+  5 | Rohit  |       1 |       3
+  1 | Pankaj |       6 |       5
+  1 | Pankaj |       6 |       6
+  1 | Pankaj |       6 |       7
+(6 rows)
+
+blog_post_system=# select U.id, U.name,P.id as post_id, L.id as like_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false;
+ id |  name  | post_id | like_id 
+----+--------+---------+---------
+  5 | Rohit  |       1 |       1
+  5 | Rohit  |       2 |       2
+  5 | Rohit  |       1 |       3
+  1 | Pankaj |       6 |       5
+  1 | Pankaj |       6 |       6
+  1 | Pankaj |       6 |       7
+(6 rows)
+
+blog_post_system=# select U.id, U.name,P.id as post_id, L.id as like_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by (U.id);
+ERROR:  column "p.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select U.id, U.name,P.id as post_id, L.id as like_id from us...
+                            ^
+blog_post_system=# select U.id, count(P.id) as post_count from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by (U.id, P.id);
+ id | post_count 
+----+------------
+  1 |          3
+  5 |          2
+  5 |          1
+(3 rows)
+
+blog_post_system=# select ditinct U.id, count(P.id) as post_count from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by (U.id, P.id);
+ERROR:  syntax error at or near "."
+LINE 1: select ditinct U.id, count(P.id) as post_count from users U ...
+                        ^
+blog_post_system=# select distinct U.id, count(P.id) as post_count from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by (U.id, P.id);
+ id | post_count 
+----+------------
+  1 |          3
+  5 |          1
+  5 |          2
+(3 rows)
+
+blog_post_system=# select distinct U.id, count(P.id) as post_count from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by (U.id);
+ id | post_count 
+----+------------
+  1 |          3
+  5 |          3
+(2 rows)
+
+blog_post_system=# select distinct U.id, count(P.id) as post_count from users U left outer join posts P on U.id = P.user_id Left outer join likes L on P.id = L.post_id where U.paid = false group by (U.id);
+ id | post_count 
+----+------------
+  8 |          0
+ 16 |          0
+ 15 |          0
+  4 |          0
+  9 |          0
+  1 |          3
+  5 |          3
+(7 rows)
+
+blog_post_system=# select distinct U.id, count(P.id) as post_count from users U left outer join posts P on U.id = P.user_id Left outer group by (U.id);
+ERROR:  syntax error at or near "group"
+LINE 1: ...outer join posts P on U.id = P.user_id Left outer group by (...
+                                                             ^
+blog_post_system=# select distinct U.id, count(P.id) as post_count from users U left outer join posts P on U.id = P.user_id group by (U.id);
+ id | post_count 
+----+------------
+  3 |          1
+  8 |          0
+ 12 |          0
+  2 |          0
+  6 |          0
+ 11 |          0
+  1 |          1
+ 17 |          0
+  5 |          2
+ 13 |          0
+ 10 |          3
+ 14 |          5
+  7 |          5
+ 16 |          0
+ 15 |          0
+  4 |          0
+  9 |          0
+(17 rows)
+
+blog_post_system=# select distinct U.id, count(P.id) as post_count from users U join posts P on U.id = P.user_id group by (U.id);
+ id | post_count 
+----+------------
+  3 |          1
+  1 |          1
+  5 |          2
+ 10 |          3
+ 14 |          5
+  7 |          5
+(6 rows)
+
+blog_post_system=# select distinct U.id, count(P.id) as post_count from users U join posts P on U.id = P.user_id where U.paid= false group by (U.id);
+ id | post_count 
+----+------------
+  5 |          2
+  1 |          1
+(2 rows)
+
+blog_post_system=# select distinct U.id, P.id, count(P.id) as post_count from users U join posts P on U.id = P.user_id where U.paid= false group by (U.id)  ;
+ERROR:  column "p.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select distinct U.id, P.id, count(P.id) as post_count from u...
+                              ^
+blog_post_system=# select distinct (U.id, P.id), count(P.id) as post_count from users U join posts P on U.id = P.user_id where U.paid= false group by (U.id)  ;
+ERROR:  column "p.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select distinct (U.id, P.id), count(P.id) as post_count from...
+                               ^
+blog_post_system=# select distinct U.id, count(P.id) as post_count from users U join posts P on U.id = P.user_id where U.paid= false group by (U.id)  ;
+ id | post_count 
+----+------------
+  5 |          2
+  1 |          1
+(2 rows)
+
+blog_post_system=# select distinct U.id, U.name, count(P.id) as post_count from users U join posts P on U.id = P.user_id where U.paid= false group by (U.id)  ;
+ id |  name  | post_count 
+----+--------+------------
+  1 | Pankaj |          1
+  5 | Rohit  |          2
+(2 rows)
+
+blog_post_system=# select U.id, U.name, count(P.id) as post_count from users U join posts P on U.id = P.user_id where U.paid= false group by (U.id)  ;
+ id |  name  | post_count 
+----+--------+------------
+  1 | Pankaj |          1
+  5 | Rohit  |          2
+(2 rows)
+
+blog_post_system=# select U.id, U.name,P.id, count(P.id) as post_count from users U join posts P on U.id = P.user_id where U.paid= false group by (U.id)  ;
+ERROR:  column "p.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select U.id, U.name,P.id, count(P.id) as post_count from use...
+                            ^
+blog_post_system=# select U.id, U.name,P.id, count(P.id) as post_count from users U join posts P on U.id = P.user_id where U.paid= false group by (U.id, P.id)  ;
+ id |  name  | id | post_count 
+----+--------+----+------------
+  5 | Rohit  |  2 |          1
+  1 | Pankaj |  6 |          1
+  5 | Rohit  |  1 |          1
+(3 rows)
+
+blog_post_system=# select U.id, U.name,P.id, count(P.id) as post_count from users U join posts P on U.id = P.user_id where U.paid= false group by (U.id, P.id)  ;
+ id |  name  | id | post_count 
+----+--------+----+------------
+  5 | Rohit  |  2 |          1
+  1 | Pankaj |  6 |          1
+  5 | Rohit  |  1 |          1
+(3 rows)
+
+blog_post_system=# select *from posts;
+ id | user_id |   title   |            content             | category_id 
+----+---------+-----------+--------------------------------+-------------
+  5 |      10 | a goods   | Goods are heavy.               |           1
+  1 |       5 | a mango   | Mangoes are sweets.            |           2
+  2 |       5 | a banana  | Bananas are sweets and yellow. |           2
+  3 |      10 | a banana  | Bananas are sweets and yellow. |           2
+  4 |      10 | a book    | Books are good.                |           5
+  6 |       1 | a food    | foods are heavy.               |           3
+  7 |       3 | a food    | foods are light.               |           3
+  8 |      14 | a food    | foods are light.               |           3
+  9 |      14 | the goods | goods are light.               |           1
+ 10 |      14 | a food    | foods are good.                |           3
+ 11 |      14 | a cloth   | cloths are red.                |           8
+ 12 |      14 | a wood    | woods are heavy.               |           4
+ 13 |       7 | a food    | foods are light.               |           3
+ 14 |       7 | a cloth   | cloths are red.                |           8
+ 15 |       7 | a food    | foods are heavy.               |           3
+ 16 |       7 | a goods   | Goods are heavy.               |           1
+ 17 |       7 | a goods   | Goods are heavy.               |           1
+(17 rows)
+
+blog_post_system=#  select P.id as post_id from users U left outer join posts P on U.id = P.user_id inner join likes L on P.id = L.post_id where U.paid = false group by P.id;
+ post_id 
+---------
+       2
+       6
+       1
+(3 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select * from likes;
+ id | user_id | post_id 
+----+---------+---------
+  1 |       1 |       1
+  2 |       1 |       2
+  3 |       2 |       1
+  4 |       2 |       5
+  5 |       2 |       6
+  6 |       4 |       6
+  7 |       4 |       6
+  8 |       4 |      12
+  9 |      14 |      12
+ 10 |      14 |      11
+ 11 |      11 |      11
+(11 rows)
+
+blog_post_system=# select * from users U join posts P; 
+ERROR:  syntax error at or near ";"
+LINE 1: select * from users U join posts P;
+                                          ^
+blog_post_system=# select * from users U full outer join posts P join likes L on U.id = P.user_id and U.id = L.user_id; 
+ERROR:  syntax error at or near ";"
+LINE 1: ...sts P join likes L on U.id = P.user_id and U.id = L.user_id;
+                                                                      ^
+blog_post_system=# select * from users U full outer join posts P on U.id = P.user_id; 
+ id |  name   | address  | paid | id | user_id |   title   |            content             | category_id 
+----+---------+----------+------+----+---------+-----------+--------------------------------+-------------
+ 10 | Bittu   | Patna    | t    |  5 |      10 | a goods   | Goods are heavy.               |           1
+  5 | Rohit   | Hariyana | f    |  1 |       5 | a mango   | Mangoes are sweets.            |           2
+  5 | Rohit   | Hariyana | f    |  2 |       5 | a banana  | Bananas are sweets and yellow. |           2
+ 10 | Bittu   | Patna    | t    |  3 |      10 | a banana  | Bananas are sweets and yellow. |           2
+ 10 | Bittu   | Patna    | t    |  4 |      10 | a book    | Books are good.                |           5
+  1 | Pankaj  | Patna    | f    |  6 |       1 | a food    | foods are heavy.               |           3
+  3 | Saurabh | Delhi    | t    |  7 |       3 | a food    | foods are light.               |           3
+ 14 | Naveen  | Patiala  | t    |  8 |      14 | a food    | foods are light.               |           3
+ 14 | Naveen  | Patiala  | t    |  9 |      14 | the goods | goods are light.               |           1
+ 14 | Naveen  | Patiala  | t    | 10 |      14 | a food    | foods are good.                |           3
+ 14 | Naveen  | Patiala  | t    | 11 |      14 | a cloth   | cloths are red.                |           8
+ 14 | Naveen  | Patiala  | t    | 12 |      14 | a wood    | woods are heavy.               |           4
+  7 | Manjeet | Patiala  | t    | 13 |       7 | a food    | foods are light.               |           3
+  7 | Manjeet | Patiala  | t    | 14 |       7 | a cloth   | cloths are red.                |           8
+  7 | Manjeet | Patiala  | t    | 15 |       7 | a food    | foods are heavy.               |           3
+  7 | Manjeet | Patiala  | t    | 16 |       7 | a goods   | Goods are heavy.               |           1
+  7 | Manjeet | Patiala  | t    | 17 |       7 | a goods   | Goods are heavy.               |           1
+ 11 | Pavan   | Patna    | t    |    |         |           |                                |            
+ 17 | Doe     | Goa      | t    |    |         |           |                                |            
+ 12 | Pavan   | Chhapra  | t    |    |         |           |                                |            
+  2 | Pankaj  | Patna    | t    |    |         |           |                                |            
+ 15 | Praveen | Chhapra  | f    |    |         |           |                                |            
+ 13 | Naveen  | Chhapra  | t    |    |         |           |                                |            
+  8 | Motilal | Chhapra  | f    |    |         |           |                                |            
+  6 | Gundeep | Patiala  | t    |    |         |           |                                |            
+ 16 | John    | Goa      | f    |    |         |           |                                |            
+  4 | Mohit   | Delhi    | f    |    |         |           |                                |            
+  9 | Bittu   | Chhapra  | f    |    |         |           |                                |            
+(28 rows)
+
+blog_post_system=# select * from users U full outer join posts P on U.id = P.user_id join Likes L on U.id = L.user_id; 
+ id |  name  | address | paid | id | user_id |   title   |     content      | category_id | id | user_id | post_id 
+----+--------+---------+------+----+---------+-----------+------------------+-------------+----+---------+---------
+  1 | Pankaj | Patna   | f    |  6 |       1 | a food    | foods are heavy. |           3 |  1 |       1 |       1
+  1 | Pankaj | Patna   | f    |  6 |       1 | a food    | foods are heavy. |           3 |  2 |       1 |       2
+  2 | Pankaj | Patna   | t    |    |         |           |                  |             |  3 |       2 |       1
+  2 | Pankaj | Patna   | t    |    |         |           |                  |             |  4 |       2 |       5
+  2 | Pankaj | Patna   | t    |    |         |           |                  |             |  5 |       2 |       6
+  4 | Mohit  | Delhi   | f    |    |         |           |                  |             |  6 |       4 |       6
+  4 | Mohit  | Delhi   | f    |    |         |           |                  |             |  7 |       4 |       6
+  4 | Mohit  | Delhi   | f    |    |         |           |                  |             |  8 |       4 |      12
+ 14 | Naveen | Patiala | t    | 12 |      14 | a wood    | woods are heavy. |           4 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    | 11 |      14 | a cloth   | cloths are red.  |           8 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    | 10 |      14 | a food    | foods are good.  |           3 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    |  9 |      14 | the goods | goods are light. |           1 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    |  8 |      14 | a food    | foods are light. |           3 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    | 12 |      14 | a wood    | woods are heavy. |           4 | 10 |      14 |      11
+ 14 | Naveen | Patiala | t    | 11 |      14 | a cloth   | cloths are red.  |           8 | 10 |      14 |      11
+ 14 | Naveen | Patiala | t    | 10 |      14 | a food    | foods are good.  |           3 | 10 |      14 |      11
+ 14 | Naveen | Patiala | t    |  9 |      14 | the goods | goods are light. |           1 | 10 |      14 |      11
+ 14 | Naveen | Patiala | t    |  8 |      14 | a food    | foods are light. |           3 | 10 |      14 |      11
+ 11 | Pavan  | Patna   | t    |    |         |           |                  |             | 11 |      11 |      11
+(19 rows)
+
+blog_post_system=# select * from users U full outer join posts P on U.id = P.user_id join Likes L on U.id = L.user_id and U.id = P.user_id; 
+ id |  name  | address | paid | id | user_id |   title   |     content      | category_id | id | user_id | post_id 
+----+--------+---------+------+----+---------+-----------+------------------+-------------+----+---------+---------
+  1 | Pankaj | Patna   | f    |  6 |       1 | a food    | foods are heavy. |           3 |  1 |       1 |       1
+  1 | Pankaj | Patna   | f    |  6 |       1 | a food    | foods are heavy. |           3 |  2 |       1 |       2
+ 14 | Naveen | Patiala | t    | 12 |      14 | a wood    | woods are heavy. |           4 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    | 11 |      14 | a cloth   | cloths are red.  |           8 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    | 10 |      14 | a food    | foods are good.  |           3 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    |  9 |      14 | the goods | goods are light. |           1 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    |  8 |      14 | a food    | foods are light. |           3 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    | 12 |      14 | a wood    | woods are heavy. |           4 | 10 |      14 |      11
+ 14 | Naveen | Patiala | t    | 11 |      14 | a cloth   | cloths are red.  |           8 | 10 |      14 |      11
+ 14 | Naveen | Patiala | t    | 10 |      14 | a food    | foods are good.  |           3 | 10 |      14 |      11
+ 14 | Naveen | Patiala | t    |  9 |      14 | the goods | goods are light. |           1 | 10 |      14 |      11
+ 14 | Naveen | Patiala | t    |  8 |      14 | a food    | foods are light. |           3 | 10 |      14 |      11
+(12 rows)
+
+blog_post_system=# select * from users U full outer join posts P on U.id = P.user_id join Likes L on U.id = L.user_id and L.id = P.user_id; 
+ id |  name  | address | paid | id | user_id | title  |     content      | category_id | id | user_id | post_id 
+----+--------+---------+------+----+---------+--------+------------------+-------------+----+---------+---------
+  1 | Pankaj | Patna   | f    |  6 |       1 | a food | foods are heavy. |           3 |  1 |       1 |       1
+(1 row)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select * from users U full outer join posts P on U.id = P.user_id join Likes L on U.id = L.user_id; 
+ id |  name  | address | paid | id | user_id |   title   |     content      | category_id | id | user_id | post_id 
+----+--------+---------+------+----+---------+-----------+------------------+-------------+----+---------+---------
+  1 | Pankaj | Patna   | f    |  6 |       1 | a food    | foods are heavy. |           3 |  1 |       1 |       1
+  1 | Pankaj | Patna   | f    |  6 |       1 | a food    | foods are heavy. |           3 |  2 |       1 |       2
+  2 | Pankaj | Patna   | t    |    |         |           |                  |             |  3 |       2 |       1
+  2 | Pankaj | Patna   | t    |    |         |           |                  |             |  4 |       2 |       5
+  2 | Pankaj | Patna   | t    |    |         |           |                  |             |  5 |       2 |       6
+  4 | Mohit  | Delhi   | f    |    |         |           |                  |             |  6 |       4 |       6
+  4 | Mohit  | Delhi   | f    |    |         |           |                  |             |  7 |       4 |       6
+  4 | Mohit  | Delhi   | f    |    |         |           |                  |             |  8 |       4 |      12
+ 14 | Naveen | Patiala | t    | 12 |      14 | a wood    | woods are heavy. |           4 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    | 11 |      14 | a cloth   | cloths are red.  |           8 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    | 10 |      14 | a food    | foods are good.  |           3 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    |  9 |      14 | the goods | goods are light. |           1 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    |  8 |      14 | a food    | foods are light. |           3 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    | 12 |      14 | a wood    | woods are heavy. |           4 | 10 |      14 |      11
+ 14 | Naveen | Patiala | t    | 11 |      14 | a cloth   | cloths are red.  |           8 | 10 |      14 |      11
+ 14 | Naveen | Patiala | t    | 10 |      14 | a food    | foods are good.  |           3 | 10 |      14 |      11
+ 14 | Naveen | Patiala | t    |  9 |      14 | the goods | goods are light. |           1 | 10 |      14 |      11
+ 14 | Naveen | Patiala | t    |  8 |      14 | a food    | foods are light. |           3 | 10 |      14 |      11
+ 11 | Pavan  | Patna   | t    |    |         |           |                  |             | 11 |      11 |      11
+(19 rows)
+
+blog_post_system=# select * from users U full outer join posts P on U.id = P.user_id join Likes L on U.id = L.user_id;
+ id |  name  | address | paid | id | user_id |   title   |     content      | category_id | id | user_id | post_id 
+----+--------+---------+------+----+---------+-----------+------------------+-------------+----+---------+---------
+  1 | Pankaj | Patna   | f    |  6 |       1 | a food    | foods are heavy. |           3 |  1 |       1 |       1
+  1 | Pankaj | Patna   | f    |  6 |       1 | a food    | foods are heavy. |           3 |  2 |       1 |       2
+  2 | Pankaj | Patna   | t    |    |         |           |                  |             |  3 |       2 |       1
+  2 | Pankaj | Patna   | t    |    |         |           |                  |             |  4 |       2 |       5
+  2 | Pankaj | Patna   | t    |    |         |           |                  |             |  5 |       2 |       6
+  4 | Mohit  | Delhi   | f    |    |         |           |                  |             |  6 |       4 |       6
+  4 | Mohit  | Delhi   | f    |    |         |           |                  |             |  7 |       4 |       6
+  4 | Mohit  | Delhi   | f    |    |         |           |                  |             |  8 |       4 |      12
+ 14 | Naveen | Patiala | t    | 12 |      14 | a wood    | woods are heavy. |           4 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    | 11 |      14 | a cloth   | cloths are red.  |           8 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    | 10 |      14 | a food    | foods are good.  |           3 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    |  9 |      14 | the goods | goods are light. |           1 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    |  8 |      14 | a food    | foods are light. |           3 |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    | 12 |      14 | a wood    | woods are heavy. |           4 | 10 |      14 |      11
+ 14 | Naveen | Patiala | t    | 11 |      14 | a cloth   | cloths are red.  |           8 | 10 |      14 |      11
+ 14 | Naveen | Patiala | t    | 10 |      14 | a food    | foods are good.  |           3 | 10 |      14 |      11
+ 14 | Naveen | Patiala | t    |  9 |      14 | the goods | goods are light. |           1 | 10 |      14 |      11
+ 14 | Naveen | Patiala | t    |  8 |      14 | a food    | foods are light. |           3 | 10 |      14 |      11
+ 11 | Pavan  | Patna   | t    |    |         |           |                  |             | 11 |      11 |      11
+(19 rows)
+
+blog_post_system=# select count(L.id) from users U full outer join posts P on U.id = P.user_id join Likes L on U.id = L.user_id;
+ count 
+-------
+    19
+(1 row)
+
+blog_post_system=# select count(L.id) from users U full outer join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id;
+ count 
+-------
+     7
+     2
+     2
+     2
+     2
+     2
+     2
+(7 rows)
+
+blog_post_system=# select P.id, count(L.id) from users U full outer join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id;
+ id | count 
+----+-------
+    |     7
+ 11 |     2
+ 12 |     2
+ 10 |     2
+  8 |     2
+  6 |     2
+  9 |     2
+(7 rows)
+
+blog_post_system=# select P.id, count(L.id) from users U full outer join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id = 6;
+ERROR:  column "p.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select P.id, count(L.id) from users U full outer join posts ...
+               ^
+blog_post_system=# select P.id, count(L.id) from users U full outer join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id;
+ id | count 
+----+-------
+    |     7
+ 11 |     2
+ 12 |     2
+ 10 |     2
+  8 |     2
+  6 |     2
+  9 |     2
+(7 rows)
+
+blog_post_system=# select count(id) from (select P.id, count(L.id) from users U full outer join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id);
+ERROR:  subquery in FROM must have an alias
+LINE 1: select count(id) from (select P.id, count(L.id) from users U...
+                              ^
+HINT:  For example, FROM (SELECT ...) [AS] foo.
+blog_post_system=# select count(id) from (select P.id, count(L.id) from users U full outer join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id) as S;
+ count 
+-------
+     6
+(1 row)
+
+blog_post_system=# select count(S.id) from (select P.id, count(L.id) from users U full outer join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id) as S;
+ count 
+-------
+     6
+(1 row)
+
+blog_post_system=# select P.id, count(L.id) from users U full outer join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id;
+ id | count 
+----+-------
+    |     7
+ 11 |     2
+ 12 |     2
+ 10 |     2
+  8 |     2
+  6 |     2
+  9 |     2
+(7 rows)
+
+blog_post_system=# select P.id, count(L.id) from users U join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id;
+ id | count 
+----+-------
+ 11 |     2
+ 12 |     2
+ 10 |     2
+  8 |     2
+  6 |     2
+  9 |     2
+(6 rows)
+
+blog_post_system=# select count(S.id) from (select P.id, count(L.id) from users U full outer join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id) as S;
+ count 
+-------
+     6
+(1 row)
+
+blog_post_system=# select count(S.id) from (select P.id, count(L.id) from users U join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id) as S;
+ count 
+-------
+     6
+(1 row)
+
+blog_post_system=# select n.nspname as enum_schema,  
+blog_post_system-#        t.typname as enum_name,  
+blog_post_system-#        e.enumlabel as enum_value
+blog_post_system-# from pg_type t 
+blog_post_system-#    join pg_enum e on t.oid = e.enumtypid  
+blog_post_system-# join pg_catalog.pg_namespace n ON n.oid = t.typnamespace;
+ enum_schema | enum_name | enum_value 
+-------------+-----------+------------
+ public      | mood      | sad
+ public      | mood      | ok
+ public      | mood      | happy
+(3 rows)
+
+blog_post_system=# select n.nspname as enum_schema,  
+       t.typname as enum_name,  
+       e.enumlabel as enum_value
+from pg_type t 
+   join pg_enum e on t.oid = e.enumtypid  
+join pg_catalog.pg_namespace n ON n.oid = t.typnamespace;
+ enum_schema | enum_name | enum_value 
+-------------+-----------+------------
+ public      | mood      | sad
+ public      | mood      | ok
+ public      | mood      | happy
+(3 rows)
+
+blog_post_system=# select n.nspname as enum_schema,  
+       t.typname as enum_name,  
+       e.enumlabel as enum_value
+from pg_type t 
+   join pg_enum e on t.oid = e.enumtypid  
+join pg_catalog.pg_namespace n ON n.oid = t.typnamespace;
+ enum_schema | enum_name | enum_value 
+-------------+-----------+------------
+ public      | mood      | sad
+ public      | mood      | ok
+ public      | mood      | happy
+(3 rows)
+
+blog_post_system=# select n.nspname as enum_schema,  
+       t.typname as enum_name,  
+       e.enumlabel as enum_value
+from pg_type t 
+   join pg_enum e on t.oid = e.enumtypid  
+join pg_catalog.pg_namespace n ON n.oid = t.typnamespace;
+ enum_schema | enum_name | enum_value 
+-------------+-----------+------------
+ public      | mood      | sad
+ public      | mood      | ok
+ public      | mood      | happy
+(3 rows)
+
+blog_post_system=# select n.nspname as enum_schema,  
+blog_post_system-#        t.typname as enum_name,  
+blog_post_system-#        e.enumlabel as enum_value
+blog_post_system-# from pg_type t 
+blog_post_system-#    join pg_enum e on t.oid = e.enumtypid  
+blog_post_system-#    join pg_catalog.pg_namespace n ON n.oid = t.typnamespace
+blog_post_system-# ;
+ enum_schema | enum_name | enum_value 
+-------------+-----------+------------
+ public      | mood      | sad
+ public      | mood      | ok
+ public      | mood      | happy
+(3 rows)
+
+blog_post_system=# select n.nspname as enum_schema,  
+       t.typname as enum_name,  
+       e.enumlabel as enum_value
+from pg_type t 
+   join pg_enum e on t.oid = e.enumtypid  
+   join pg_catalog.pg_namespace n ON n.oid = t.typnamespace
+;
+ enum_schema | enum_name | enum_value 
+-------------+-----------+------------
+ public      | mood      | sad
+ public      | mood      | ok
+ public      | mood      | happy
+(3 rows)
+
+blog_post_system=# 
+blog_post_system=# CREATE TYPE mood AS ENUM ('sad', 'ok', 'happy');
+ERROR:  type "mood" already exists
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select n.nspname as enum_schema,  
+blog_post_system-#        t.typname as enum_name,  
+blog_post_system-#        e.enumlabel as enum_value
+blog_post_system-# from pg_type t 
+blog_post_system-#    join pg_enum e on t.oid = e.enumtypid  
+blog_post_system-#    join pg_catalog.pg_namespace n ON n.oid = t.typnamespace
+blog_post_system-# ;
+ enum_schema | enum_name | enum_value 
+-------------+-----------+------------
+ public      | mood      | sad
+ public      | mood      | ok
+ public      | mood      | happy
+(3 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select n.nspname as enum_schema,  
+       t.typname as enum_name,  
+       e.enumlabel as enum_value
+from pg_type T 
+   join pg_enum e on t.oid = e.enumtypid  
+   join pg_catalog.pg_namespace n ON n.oid = t.typnamespace
+;
+ enum_schema | enum_name | enum_value 
+-------------+-----------+------------
+ public      | mood      | sad
+ public      | mood      | ok
+ public      | mood      | happy
+(3 rows)
+
+blog_post_system=# select n.nspname as enum_schema,  
+       t.typname as enum_name,  
+       e.enumlabel as enum_value
+from pg_type Tabk 
+   join pg_enum e on t.oid = e.enumtypid  
+   join pg_catalog.pg_namespace n ON n.oid = t.typnamespace
+;
+ERROR:  missing FROM-clause entry for table "t"
+LINE 5:    join pg_enum e on t.oid = e.enumtypid  
+                             ^
+blog_post_system=# select n.nspname as enum_schema,  
+       t.typname as enum_name,  
+       e.enumlabel as enum_value
+from pg_type Tabk 
+   join pg_enum e on t.oid = e.enumtypid  
+   join pg_catalog.pg_namespace n ON n.oid = t.typnamespace
+;
+ERROR:  missing FROM-clause entry for table "t"
+LINE 5:    join pg_enum e on t.oid = e.enumtypid  
+                             ^
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select n.nspname as enum_schema,  
+blog_post_system-#        t.typname as enum_name,  
+blog_post_system-#        e.enumlabel as enum_value
+blog_post_system-# from pg_type t 
+blog_post_system-#    join pg_enum e on t.oid = e.enumtypid  
+blog_post_system-#    join pg_catalog.pg_namespace n ON n.oid = t.typnamespace
+blog_post_system-# ;
+ enum_schema | enum_name | enum_value 
+-------------+-----------+------------
+ public      | mood      | sad
+ public      | mood      | ok
+ public      | mood      | happy
+(3 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select * from pg_enum;
+ enumtypid | enumsortorder | enumlabel 
+-----------+---------------+-----------
+    157592 |             1 | sad
+    157592 |             2 | ok
+    157592 |             3 | happy
+(3 rows)
+
+blog_post_system=# select * from pg_type;
+blog_post_system=# select * from pg_enum;
+ enumtypid | enumsortorder | enumlabel 
+-----------+---------------+-----------
+    157592 |             1 | sad
+    157592 |             2 | ok
+    157592 |             3 | happy
+(3 rows)
+
+blog_post_system=# select typname from pg_enum;
+ERROR:  column "typname" does not exist
+LINE 1: select typname from pg_enum;
+               ^
+blog_post_system=# select typname from pg_type;
+blog_post_system=# select * from pg_catelog;
+ERROR:  relation "pg_catelog" does not exist
+LINE 1: select * from pg_catelog;
+                      ^
+blog_post_system=# select * from pg_catalog;
+ERROR:  relation "pg_catalog" does not exist
+LINE 1: select * from pg_catalog;
+                      ^
+blog_post_system=# select * from pg_catalog.pg_namespace;
+      nspname       | nspowner |               nspacl                
+--------------------+----------+-------------------------------------
+ pg_toast           |       10 | 
+ pg_temp_1          |       10 | 
+ pg_toast_temp_1    |       10 | 
+ pg_catalog         |       10 | {postgres=UC/postgres,=U/postgres}
+ public             |       10 | {postgres=UC/postgres,=UC/postgres}
+ information_schema |       10 | {postgres=UC/postgres,=U/postgres}
+(6 rows)
+
+blog_post_system=# \d
+             List of relations
+ Schema |    Name     |   Type   |  Owner   
+--------+-------------+----------+----------
+ public | categories  | table    | postgres
+ public | comments    | table    | postgres
+ public | count_views | view     | postgres
+ public | likes       | table    | postgres
+ public | person      | table    | postgres
+ public | pk          | table    | postgres
+ public | pk_id_seq   | sequence | postgres
+ public | posts       | table    | postgres
+ public | users       | table    | postgres
+(9 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select count(S.id) from (select P.id, count(L.id) from users U join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id) as S;
+ count 
+-------
+     6
+(1 row)
+
+blog_post_system=# delect * from users where id in select count(S.id) from (select P.id, count(L.id) from users U join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id) as S;
+ERROR:  syntax error at or near "delect"
+LINE 1: delect * from users where id in select count(S.id) from (sel...
+        ^
+blog_post_system=# select * from users where id in select count(S.id) from (select P.id, count(L.id) from users U join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id) as S;
+ERROR:  syntax error at or near "select"
+LINE 1: select * from users where id in select count(S.id) from (sel...
+                                        ^
+blog_post_system=# select P.id, count(L.id) from users U join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id;
+ id | count 
+----+-------
+ 11 |     2
+ 12 |     2
+ 10 |     2
+  8 |     2
+  6 |     2
+  9 |     2
+(6 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select * from user where id in (select P.id, count(L.id) from users U join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id);
+ERROR:  column "id" does not exist
+LINE 1: select * from user where id in (select P.id, count(L.id) fro...
+                                 ^
+blog_post_system=# select * from users where id in (select P.id, count(L.id) from users U join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id);
+ERROR:  subquery has too many columns
+LINE 1: select * from users where id in (select P.id, count(L.id) fr...
+                                     ^
+blog_post_system=# 
+blog_post_system=# select * from users where id in (select P.id from users U join posts P on U.id = P.user_id join Likes L on U.id = L.user_id group by P.id);
+ id |  name   | address | paid 
+----+---------+---------+------
+  6 | Gundeep | Patiala | t
+  8 | Motilal | Chhapra | f
+  9 | Bittu   | Chhapra | f
+ 10 | Bittu   | Patna   | t
+ 11 | Pavan   | Patna   | t
+ 12 | Pavan   | Chhapra | t
+(6 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select U.id, U.name, P.id, P.title, P.content from users U join posts P on U.id = P.user_id join Likes L on U.id = L.user_id ;
+ id |  name  | id |   title   |     content      
+----+--------+----+-----------+------------------
+  1 | Pankaj |  6 | a food    | foods are heavy.
+  1 | Pankaj |  6 | a food    | foods are heavy.
+ 14 | Naveen | 12 | a wood    | woods are heavy.
+ 14 | Naveen | 11 | a cloth   | cloths are red.
+ 14 | Naveen | 10 | a food    | foods are good.
+ 14 | Naveen |  9 | the goods | goods are light.
+ 14 | Naveen |  8 | a food    | foods are light.
+ 14 | Naveen | 12 | a wood    | woods are heavy.
+ 14 | Naveen | 11 | a cloth   | cloths are red.
+ 14 | Naveen | 10 | a food    | foods are good.
+ 14 | Naveen |  9 | the goods | goods are light.
+ 14 | Naveen |  8 | a food    | foods are light.
+(12 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content from users U join posts P on U.id = P.user_id join Likes L on U.id = L.user_id ;
+ user_id | user_name | post_id |   title   |     content      
+---------+-----------+---------+-----------+------------------
+       1 | Pankaj    |       6 | a food    | foods are heavy.
+       1 | Pankaj    |       6 | a food    | foods are heavy.
+      14 | Naveen    |      12 | a wood    | woods are heavy.
+      14 | Naveen    |      11 | a cloth   | cloths are red.
+      14 | Naveen    |      10 | a food    | foods are good.
+      14 | Naveen    |       9 | the goods | goods are light.
+      14 | Naveen    |       8 | a food    | foods are light.
+      14 | Naveen    |      12 | a wood    | woods are heavy.
+      14 | Naveen    |      11 | a cloth   | cloths are red.
+      14 | Naveen    |      10 | a food    | foods are good.
+      14 | Naveen    |       9 | the goods | goods are light.
+      14 | Naveen    |       8 | a food    | foods are light.
+(12 rows)
+
+blog_post_system=# select * from likes;
+ id | user_id | post_id 
+----+---------+---------
+  1 |       1 |       1
+  2 |       1 |       2
+  3 |       2 |       1
+  4 |       2 |       5
+  5 |       2 |       6
+  6 |       4 |       6
+  7 |       4 |       6
+  8 |       4 |      12
+  9 |      14 |      12
+ 10 |      14 |      11
+ 11 |      11 |      11
+(11 rows)
+
+blog_post_system=# select * from user U join likes L on U.id = L.user_id;
+ERROR:  column u.id does not exist
+LINE 1: select * from user U join likes L on U.id = L.user_id;
+                                             ^
+HINT:  Perhaps you meant to reference the column "l.id".
+blog_post_system=# select * from users U join likes L on U.id = L.user_id;
+ id |  name  | address | paid | id | user_id | post_id 
+----+--------+---------+------+----+---------+---------
+  1 | Pankaj | Patna   | f    |  1 |       1 |       1
+  1 | Pankaj | Patna   | f    |  2 |       1 |       2
+  2 | Pankaj | Patna   | t    |  3 |       2 |       1
+  2 | Pankaj | Patna   | t    |  4 |       2 |       5
+  2 | Pankaj | Patna   | t    |  5 |       2 |       6
+  4 | Mohit  | Delhi   | f    |  6 |       4 |       6
+  4 | Mohit  | Delhi   | f    |  7 |       4 |       6
+  4 | Mohit  | Delhi   | f    |  8 |       4 |      12
+ 14 | Naveen | Patiala | t    |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    | 10 |      14 |      11
+ 11 | Pavan  | Patna   | t    | 11 |      11 |      11
+(11 rows)
+
+blog_post_system=# select * from users U left outer join likes L on U.id = L.user_id;
+ id |  name   | address  | paid | id | user_id | post_id 
+----+---------+----------+------+----+---------+---------
+  1 | Pankaj  | Patna    | f    |  1 |       1 |       1
+  1 | Pankaj  | Patna    | f    |  2 |       1 |       2
+  2 | Pankaj  | Patna    | t    |  3 |       2 |       1
+  2 | Pankaj  | Patna    | t    |  4 |       2 |       5
+  2 | Pankaj  | Patna    | t    |  5 |       2 |       6
+  4 | Mohit   | Delhi    | f    |  6 |       4 |       6
+  4 | Mohit   | Delhi    | f    |  7 |       4 |       6
+  4 | Mohit   | Delhi    | f    |  8 |       4 |      12
+ 14 | Naveen  | Patiala  | t    |  9 |      14 |      12
+ 14 | Naveen  | Patiala  | t    | 10 |      14 |      11
+ 11 | Pavan   | Patna    | t    | 11 |      11 |      11
+ 17 | Doe     | Goa      | t    |    |         |        
+ 12 | Pavan   | Chhapra  | t    |    |         |        
+ 10 | Bittu   | Patna    | t    |    |         |        
+ 15 | Praveen | Chhapra  | f    |    |         |        
+ 13 | Naveen  | Chhapra  | t    |    |         |        
+  5 | Rohit   | Hariyana | f    |    |         |        
+  8 | Motilal | Chhapra  | f    |    |         |        
+  6 | Gundeep | Patiala  | t    |    |         |        
+ 16 | John    | Goa      | f    |    |         |        
+  3 | Saurabh | Delhi    | t    |    |         |        
+  9 | Bittu   | Chhapra  | f    |    |         |        
+  7 | Manjeet | Patiala  | t    |    |         |        
+(23 rows)
+
+blog_post_system=# select * from users U join likes L on U.id = L.user_id;
+ id |  name  | address | paid | id | user_id | post_id 
+----+--------+---------+------+----+---------+---------
+  1 | Pankaj | Patna   | f    |  1 |       1 |       1
+  1 | Pankaj | Patna   | f    |  2 |       1 |       2
+  2 | Pankaj | Patna   | t    |  3 |       2 |       1
+  2 | Pankaj | Patna   | t    |  4 |       2 |       5
+  2 | Pankaj | Patna   | t    |  5 |       2 |       6
+  4 | Mohit  | Delhi   | f    |  6 |       4 |       6
+  4 | Mohit  | Delhi   | f    |  7 |       4 |       6
+  4 | Mohit  | Delhi   | f    |  8 |       4 |      12
+ 14 | Naveen | Patiala | t    |  9 |      14 |      12
+ 14 | Naveen | Patiala | t    | 10 |      14 |      11
+ 11 | Pavan  | Patna   | t    | 11 |      11 |      11
+(11 rows)
+
+blog_post_system=# select * from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id;
+ id |  name  | address | paid | id | user_id | post_id | id | user_id |  title   |            content             | category_id 
+----+--------+---------+------+----+---------+---------+----+---------+----------+--------------------------------+-------------
+  1 | Pankaj | Patna   | f    |  1 |       1 |       1 |  1 |       5 | a mango  | Mangoes are sweets.            |           2
+  1 | Pankaj | Patna   | f    |  2 |       1 |       2 |  2 |       5 | a banana | Bananas are sweets and yellow. |           2
+  2 | Pankaj | Patna   | t    |  3 |       2 |       1 |  1 |       5 | a mango  | Mangoes are sweets.            |           2
+  2 | Pankaj | Patna   | t    |  4 |       2 |       5 |  5 |      10 | a goods  | Goods are heavy.               |           1
+  2 | Pankaj | Patna   | t    |  5 |       2 |       6 |  6 |       1 | a food   | foods are heavy.               |           3
+  4 | Mohit  | Delhi   | f    |  6 |       4 |       6 |  6 |       1 | a food   | foods are heavy.               |           3
+  4 | Mohit  | Delhi   | f    |  7 |       4 |       6 |  6 |       1 | a food   | foods are heavy.               |           3
+  4 | Mohit  | Delhi   | f    |  8 |       4 |      12 | 12 |      14 | a wood   | woods are heavy.               |           4
+ 14 | Naveen | Patiala | t    |  9 |      14 |      12 | 12 |      14 | a wood   | woods are heavy.               |           4
+ 14 | Naveen | Patiala | t    | 10 |      14 |      11 | 11 |      14 | a cloth  | cloths are red.                |           8
+ 11 | Pavan  | Patna   | t    | 11 |      11 |      11 | 11 |      14 | a cloth  | cloths are red.                |           8
+(11 rows)
+
+blog_post_system=# select * from users U join likes L on U.id = L.user_id left outer join posts P on P.id = L.post_id;
+ id |  name  | address | paid | id | user_id | post_id | id | user_id |  title   |            content             | category_id 
+----+--------+---------+------+----+---------+---------+----+---------+----------+--------------------------------+-------------
+  1 | Pankaj | Patna   | f    |  1 |       1 |       1 |  1 |       5 | a mango  | Mangoes are sweets.            |           2
+  1 | Pankaj | Patna   | f    |  2 |       1 |       2 |  2 |       5 | a banana | Bananas are sweets and yellow. |           2
+  2 | Pankaj | Patna   | t    |  3 |       2 |       1 |  1 |       5 | a mango  | Mangoes are sweets.            |           2
+  2 | Pankaj | Patna   | t    |  4 |       2 |       5 |  5 |      10 | a goods  | Goods are heavy.               |           1
+  2 | Pankaj | Patna   | t    |  5 |       2 |       6 |  6 |       1 | a food   | foods are heavy.               |           3
+  4 | Mohit  | Delhi   | f    |  6 |       4 |       6 |  6 |       1 | a food   | foods are heavy.               |           3
+  4 | Mohit  | Delhi   | f    |  7 |       4 |       6 |  6 |       1 | a food   | foods are heavy.               |           3
+  4 | Mohit  | Delhi   | f    |  8 |       4 |      12 | 12 |      14 | a wood   | woods are heavy.               |           4
+ 14 | Naveen | Patiala | t    |  9 |      14 |      12 | 12 |      14 | a wood   | woods are heavy.               |           4
+ 14 | Naveen | Patiala | t    | 10 |      14 |      11 | 11 |      14 | a cloth  | cloths are red.                |           8
+ 11 | Pavan  | Patna   | t    | 11 |      11 |      11 | 11 |      14 | a cloth  | cloths are red.                |           8
+(11 rows)
+
+blog_post_system=# select * from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id;
+ id |  name  | address | paid | id | user_id | post_id | id | user_id |  title   |            content             | category_id 
+----+--------+---------+------+----+---------+---------+----+---------+----------+--------------------------------+-------------
+  1 | Pankaj | Patna   | f    |  1 |       1 |       1 |  1 |       5 | a mango  | Mangoes are sweets.            |           2
+  1 | Pankaj | Patna   | f    |  2 |       1 |       2 |  2 |       5 | a banana | Bananas are sweets and yellow. |           2
+  2 | Pankaj | Patna   | t    |  3 |       2 |       1 |  1 |       5 | a mango  | Mangoes are sweets.            |           2
+  2 | Pankaj | Patna   | t    |  4 |       2 |       5 |  5 |      10 | a goods  | Goods are heavy.               |           1
+  2 | Pankaj | Patna   | t    |  5 |       2 |       6 |  6 |       1 | a food   | foods are heavy.               |           3
+  4 | Mohit  | Delhi   | f    |  6 |       4 |       6 |  6 |       1 | a food   | foods are heavy.               |           3
+  4 | Mohit  | Delhi   | f    |  7 |       4 |       6 |  6 |       1 | a food   | foods are heavy.               |           3
+  4 | Mohit  | Delhi   | f    |  8 |       4 |      12 | 12 |      14 | a wood   | woods are heavy.               |           4
+ 14 | Naveen | Patiala | t    |  9 |      14 |      12 | 12 |      14 | a wood   | woods are heavy.               |           4
+ 14 | Naveen | Patiala | t    | 10 |      14 |      11 | 11 |      14 | a cloth  | cloths are red.                |           8
+ 11 | Pavan  | Patna   | t    | 11 |      11 |      11 | 11 |      14 | a cloth  | cloths are red.                |           8
+(11 rows)
+
+blog_post_system=# select * from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id where U.paid = false;
+ id |  name  | address | paid | id | user_id | post_id | id | user_id |  title   |            content             | category_id 
+----+--------+---------+------+----+---------+---------+----+---------+----------+--------------------------------+-------------
+  1 | Pankaj | Patna   | f    |  1 |       1 |       1 |  1 |       5 | a mango  | Mangoes are sweets.            |           2
+  1 | Pankaj | Patna   | f    |  2 |       1 |       2 |  2 |       5 | a banana | Bananas are sweets and yellow. |           2
+  4 | Mohit  | Delhi   | f    |  6 |       4 |       6 |  6 |       1 | a food   | foods are heavy.               |           3
+  4 | Mohit  | Delhi   | f    |  7 |       4 |       6 |  6 |       1 | a food   | foods are heavy.               |           3
+  4 | Mohit  | Delhi   | f    |  8 |       4 |      12 | 12 |      14 | a wood   | woods are heavy.               |           4
+(5 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id where U.paid = false;
+ user_id | user_name | post_id |  title   |            content             
+---------+-----------+---------+----------+--------------------------------
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow.
+       4 | Mohit     |       6 | a food   | foods are heavy.
+       4 | Mohit     |       6 | a food   | foods are heavy.
+       4 | Mohit     |      12 | a wood   | woods are heavy.
+(5 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id where U.paid = false group by U.id;
+ERROR:  column "p.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select U.id as user_id, U.name as user_name, P.id as post_id...
+                                                     ^
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id where U.paid = false;
+ user_id | user_name | post_id |  title   |            content             
+---------+-----------+---------+----------+--------------------------------
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow.
+       4 | Mohit     |       6 | a food   | foods are heavy.
+       4 | Mohit     |       6 | a food   | foods are heavy.
+       4 | Mohit     |      12 | a wood   | woods are heavy.
+(5 rows)
+
+blog_post_system=# select * from users;
+ id |  name   | address  | paid 
+----+---------+----------+------
+  1 | Pankaj  | Patna    | f
+  2 | Pankaj  | Patna    | t
+  3 | Saurabh | Delhi    | t
+  4 | Mohit   | Delhi    | f
+  5 | Rohit   | Hariyana | f
+  6 | Gundeep | Patiala  | t
+  7 | Manjeet | Patiala  | t
+  8 | Motilal | Chhapra  | f
+  9 | Bittu   | Chhapra  | f
+ 10 | Bittu   | Patna    | t
+ 11 | Pavan   | Patna    | t
+ 12 | Pavan   | Chhapra  | t
+ 13 | Naveen  | Chhapra  | t
+ 14 | Naveen  | Patiala  | t
+ 15 | Praveen | Chhapra  | f
+ 16 | John    | Goa      | f
+ 17 | Doe     | Goa      | t
+(17 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id where U.paid = false;
+ user_id | user_name | post_id |  title   |            content             
+---------+-----------+---------+----------+--------------------------------
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow.
+       4 | Mohit     |       6 | a food   | foods are heavy.
+       4 | Mohit     |       6 | a food   | foods are heavy.
+       4 | Mohit     |      12 | a wood   | woods are heavy.
+(5 rows)
+
+blog_post_system=# 
+blog_post_system=# select * from comments;
+ id | user_id | post_id | enable |          content           
+----+---------+---------+--------+----------------------------
+  1 |       1 |       1 | t      | Empty
+  2 |       1 |       3 | f      | This mangoes are not sweet
+  3 |       3 |       5 | t      | This goods are light
+  4 |      12 |      15 | t      | foods are good
+  5 |      12 |      14 | f      | cloths are old
+  6 |      12 |      11 | t      | foods are not good
+  7 |      12 |       5 | t      | mangoes are not good
+(7 rows)
+
+blog_post_system=# select * from likes;
+ id | user_id | post_id 
+----+---------+---------
+  1 |       1 |       1
+  2 |       1 |       2
+  3 |       2 |       1
+  4 |       2 |       5
+  5 |       2 |       6
+  6 |       4 |       6
+  7 |       4 |       6
+  8 |       4 |      12
+  9 |      14 |      12
+ 10 |      14 |      11
+ 11 |      11 |      11
+(11 rows)
+
+blog_post_system=# update likes set post_id = 7 where id = 6;
+UPDATE 1
+blog_post_system=# select * from likes;
+ id | user_id | post_id 
+----+---------+---------
+  1 |       1 |       1
+  2 |       1 |       2
+  3 |       2 |       1
+  4 |       2 |       5
+  5 |       2 |       6
+  7 |       4 |       6
+  8 |       4 |      12
+  9 |      14 |      12
+ 10 |      14 |      11
+ 11 |      11 |      11
+  6 |       4 |       7
+(11 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id where U.paid = false;
+ user_id | user_name | post_id |  title   |            content             
+---------+-----------+---------+----------+--------------------------------
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow.
+       4 | Mohit     |       6 | a food   | foods are heavy.
+       4 | Mohit     |      12 | a wood   | woods are heavy.
+       4 | Mohit     |       7 | a food   | foods are light.
+(5 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on U.id = C.user_id where U.paid = false;
+ user_id | user_name | post_id |  title   |            content             
+---------+-----------+---------+----------+--------------------------------
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow.
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow.
+(4 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content as post_content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on U.id = C.user_id where U.paid = false;
+ user_id | user_name | post_id |  title   |          post_content          |      comment_content       
+---------+-----------+---------+----------+--------------------------------+----------------------------
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            | This mangoes are not sweet
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            | Empty
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. | This mangoes are not sweet
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. | Empty
+(4 rows)
+
+blog_post_system=# insert into comments values (8, 4, 6, default, 'good foods');
+INSERT 0 1
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content as post_content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on U.id = C.user_id where U.paid = false;
+ user_id | user_name | post_id |  title   |          post_content          |      comment_content       
+---------+-----------+---------+----------+--------------------------------+----------------------------
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            | This mangoes are not sweet
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            | Empty
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. | This mangoes are not sweet
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. | Empty
+       4 | Mohit     |       6 | a food   | foods are heavy.               | good foods
+       4 | Mohit     |      12 | a wood   | woods are heavy.               | good foods
+       4 | Mohit     |       7 | a food   | foods are light.               | good foods
+(7 rows)
+
+blog_post_system=# select * from comments;
+ id | user_id | post_id | enable |          content           
+----+---------+---------+--------+----------------------------
+  1 |       1 |       1 | t      | Empty
+  2 |       1 |       3 | f      | This mangoes are not sweet
+  3 |       3 |       5 | t      | This goods are light
+  4 |      12 |      15 | t      | foods are good
+  5 |      12 |      14 | f      | cloths are old
+  6 |      12 |      11 | t      | foods are not good
+  7 |      12 |       5 | t      | mangoes are not good
+  8 |       4 |       6 | t      | good foods
+(8 rows)
+
+blog_post_system=# insert into comments values (9, 4, 12, default, 'good wood');
+INSERT 0 1
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content as post_content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on U.id = C.user_id where U.paid = false;
+ user_id | user_name | post_id |  title   |          post_content          |      comment_content       
+---------+-----------+---------+----------+--------------------------------+----------------------------
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            | This mangoes are not sweet
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            | Empty
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. | This mangoes are not sweet
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. | Empty
+       4 | Mohit     |       6 | a food   | foods are heavy.               | good wood
+       4 | Mohit     |       6 | a food   | foods are heavy.               | good foods
+       4 | Mohit     |      12 | a wood   | woods are heavy.               | good wood
+       4 | Mohit     |      12 | a wood   | woods are heavy.               | good foods
+       4 | Mohit     |       7 | a food   | foods are light.               | good wood
+       4 | Mohit     |       7 | a food   | foods are light.               | good foods
+(10 rows)
+
+blog_post_system=# select distinct U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content as post_content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on U.id = C.user_id where U.paid = false;
+ user_id | user_name | post_id |  title   |          post_content          |      comment_content       
+---------+-----------+---------+----------+--------------------------------+----------------------------
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. | Empty
+       4 | Mohit     |       6 | a food   | foods are heavy.               | good foods
+       4 | Mohit     |       6 | a food   | foods are heavy.               | good wood
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            | This mangoes are not sweet
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            | Empty
+       4 | Mohit     |       7 | a food   | foods are light.               | good foods
+       4 | Mohit     |      12 | a wood   | woods are heavy.               | good foods
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. | This mangoes are not sweet
+       4 | Mohit     |      12 | a wood   | woods are heavy.               | good wood
+       4 | Mohit     |       7 | a food   | foods are light.               | good wood
+(10 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content as post_content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on U.id = C.user_id where U.paid = false;
+ user_id | user_name | post_id |  title   |          post_content          |      comment_content       
+---------+-----------+---------+----------+--------------------------------+----------------------------
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            | This mangoes are not sweet
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            | Empty
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. | This mangoes are not sweet
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. | Empty
+       4 | Mohit     |       6 | a food   | foods are heavy.               | good wood
+       4 | Mohit     |       6 | a food   | foods are heavy.               | good foods
+       4 | Mohit     |      12 | a wood   | woods are heavy.               | good wood
+       4 | Mohit     |      12 | a wood   | woods are heavy.               | good foods
+       4 | Mohit     |       7 | a food   | foods are light.               | good wood
+       4 | Mohit     |       7 | a food   | foods are light.               | good foods
+(10 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content as post_content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on P.id = C.post_id where U.paid = false;
+ user_id | user_name | post_id |  title  |    post_content     | comment_content 
+---------+-----------+---------+---------+---------------------+-----------------
+       1 | Pankaj    |       1 | a mango | Mangoes are sweets. | Empty
+       4 | Mohit     |       6 | a food  | foods are heavy.    | good foods
+       4 | Mohit     |      12 | a wood  | woods are heavy.    | good wood
+(3 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id where U.paid = false;
+ user_id | user_name | post_id |  title   |            content             
+---------+-----------+---------+----------+--------------------------------
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow.
+       4 | Mohit     |       6 | a food   | foods are heavy.
+       4 | Mohit     |      12 | a wood   | woods are heavy.
+       4 | Mohit     |       7 | a food   | foods are light.
+(5 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content as post_content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on P.id = C.post_id where U.paid = false;
+ user_id | user_name | post_id |  title  |    post_content     | comment_content 
+---------+-----------+---------+---------+---------------------+-----------------
+       1 | Pankaj    |       1 | a mango | Mangoes are sweets. | Empty
+       4 | Mohit     |       6 | a food  | foods are heavy.    | good foods
+       4 | Mohit     |      12 | a wood  | woods are heavy.    | good wood
+(3 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content as post_content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on U.id = C.user_id where U.paid = false;
+ user_id | user_name | post_id |  title   |          post_content          |      comment_content       
+---------+-----------+---------+----------+--------------------------------+----------------------------
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            | This mangoes are not sweet
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            | Empty
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. | This mangoes are not sweet
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. | Empty
+       4 | Mohit     |       6 | a food   | foods are heavy.               | good wood
+       4 | Mohit     |       6 | a food   | foods are heavy.               | good foods
+       4 | Mohit     |      12 | a wood   | woods are heavy.               | good wood
+       4 | Mohit     |      12 | a wood   | woods are heavy.               | good foods
+       4 | Mohit     |       7 | a food   | foods are light.               | good wood
+       4 | Mohit     |       7 | a food   | foods are light.               | good foods
+(10 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content as post_content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on U.id = C.user_id where U.paid = false and L.user_id = C.user_id;
+ user_id | user_name | post_id |  title   |          post_content          |      comment_content       
+---------+-----------+---------+----------+--------------------------------+----------------------------
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            | This mangoes are not sweet
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            | Empty
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. | This mangoes are not sweet
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. | Empty
+       4 | Mohit     |       6 | a food   | foods are heavy.               | good wood
+       4 | Mohit     |       6 | a food   | foods are heavy.               | good foods
+       4 | Mohit     |      12 | a wood   | woods are heavy.               | good wood
+       4 | Mohit     |      12 | a wood   | woods are heavy.               | good foods
+       4 | Mohit     |       7 | a food   | foods are light.               | good wood
+       4 | Mohit     |       7 | a food   | foods are light.               | good foods
+(10 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id where U.paid = false;
+ user_id | user_name | post_id |  title   |            content             
+---------+-----------+---------+----------+--------------------------------
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow.
+       4 | Mohit     |       6 | a food   | foods are heavy.
+       4 | Mohit     |      12 | a wood   | woods are heavy.
+       4 | Mohit     |       7 | a food   | foods are light.
+(5 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content, L.id from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id where U.paid = false;
+ user_id | user_name | post_id |  title   |            content             | id 
+---------+-----------+---------+----------+--------------------------------+----
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            |  1
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. |  2
+       4 | Mohit     |       6 | a food   | foods are heavy.               |  7
+       4 | Mohit     |      12 | a wood   | woods are heavy.               |  8
+       4 | Mohit     |       7 | a food   | foods are light.               |  6
+(5 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content, L.post_id from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id where U.paid = false;
+ user_id | user_name | post_id |  title   |            content             | post_id 
+---------+-----------+---------+----------+--------------------------------+---------
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            |       1
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. |       2
+       4 | Mohit     |       6 | a food   | foods are heavy.               |       6
+       4 | Mohit     |      12 | a wood   | woods are heavy.               |      12
+       4 | Mohit     |       7 | a food   | foods are light.               |       7
+(5 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content, L.post_id from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on C.post_id = P.post  where U.paid = false;
+ERROR:  column p.post does not exist
+LINE 1: ...n P.id = L.post_id join comments C on C.post_id = P.post  wh...
+                                                             ^
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content, L.post_id from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on C.post_id = P.post_id  where U.paid = false;
+ERROR:  column p.post_id does not exist
+LINE 1: ...n P.id = L.post_id join comments C on C.post_id = P.post_id ...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "l.post_id" or the column "c.post_id".
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content, L.post_id from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on C.post_id = P.post_id  where U.paid = false;
+ERROR:  column p.post_id does not exist
+LINE 1: ...n P.id = L.post_id join comments C on C.post_id = P.post_id ...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "l.post_id" or the column "c.post_id".
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content, L.post_id from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on C.post_id = L.post_id  where U.paid = false;
+ user_id | user_name | post_id |  title  |       content       | post_id 
+---------+-----------+---------+---------+---------------------+---------
+       1 | Pankaj    |       1 | a mango | Mangoes are sweets. |       1
+       4 | Mohit     |       6 | a food  | foods are heavy.    |       6
+       4 | Mohit     |      12 | a wood  | woods are heavy.    |      12
+(3 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on C.post_id = L.post_id  where U.paid = false;
+ user_id | user_name | post_id |  title  |       content       | comment_content 
+---------+-----------+---------+---------+---------------------+-----------------
+       1 | Pankaj    |       1 | a mango | Mangoes are sweets. | Empty
+       4 | Mohit     |       6 | a food  | foods are heavy.    | good foods
+       4 | Mohit     |      12 | a wood  | woods are heavy.    | good wood
+(3 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on C.post_id = P.id  where U.paid = false;
+ user_id | user_name | post_id |  title  |       content       | comment_content 
+---------+-----------+---------+---------+---------------------+-----------------
+       1 | Pankaj    |       1 | a mango | Mangoes are sweets. | Empty
+       4 | Mohit     |       6 | a food  | foods are heavy.    | good foods
+       4 | Mohit     |      12 | a wood  | woods are heavy.    | good wood
+(3 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on p.id = C.post_id  where U.paid = false;
+ user_id | user_name | post_id |  title  |       content       | comment_content 
+---------+-----------+---------+---------+---------------------+-----------------
+       1 | Pankaj    |       1 | a mango | Mangoes are sweets. | Empty
+       4 | Mohit     |       6 | a food  | foods are heavy.    | good foods
+       4 | Mohit     |      12 | a wood  | woods are heavy.    | good wood
+(3 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on p.id = C.post_id and  where U.paid = false;
+ERROR:  syntax error at or near "where"
+LINE 1: ....post_id join comments C on p.id = C.post_id and  where U.pa...
+                                                             ^
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on p.id = C.post_id where U.paid = false;
+ user_id | user_name | post_id |  title  |       content       | comment_content 
+---------+-----------+---------+---------+---------------------+-----------------
+       1 | Pankaj    |       1 | a mango | Mangoes are sweets. | Empty
+       4 | Mohit     |       6 | a food  | foods are heavy.    | good foods
+       4 | Mohit     |      12 | a wood  | woods are heavy.    | good wood
+(3 rows)
+
+blog_post_system=# 
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on P.id = C.post_id where U.paid = false;
+ user_id | user_name | post_id |  title  |       content       | comment_content 
+---------+-----------+---------+---------+---------------------+-----------------
+       1 | Pankaj    |       1 | a mango | Mangoes are sweets. | Empty
+       4 | Mohit     |       6 | a food  | foods are heavy.    | good foods
+       4 | Mohit     |      12 | a wood  | woods are heavy.    | good wood
+(3 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on P.id = C.post_id and U.id = C.user_id where U.paid = false;
+ user_id | user_name | post_id |  title  |       content       | comment_content 
+---------+-----------+---------+---------+---------------------+-----------------
+       1 | Pankaj    |       1 | a mango | Mangoes are sweets. | Empty
+       4 | Mohit     |       6 | a food  | foods are heavy.    | good foods
+       4 | Mohit     |      12 | a wood  | woods are heavy.    | good wood
+(3 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on U.id = C.user_id where U.paid = false;
+ user_id | user_name | post_id |  title   |            content             |      comment_content       
+---------+-----------+---------+----------+--------------------------------+----------------------------
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            | This mangoes are not sweet
+       1 | Pankaj    |       1 | a mango  | Mangoes are sweets.            | Empty
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. | This mangoes are not sweet
+       1 | Pankaj    |       2 | a banana | Bananas are sweets and yellow. | Empty
+       4 | Mohit     |       6 | a food   | foods are heavy.               | good wood
+       4 | Mohit     |       6 | a food   | foods are heavy.               | good foods
+       4 | Mohit     |      12 | a wood   | woods are heavy.               | good wood
+       4 | Mohit     |      12 | a wood   | woods are heavy.               | good foods
+       4 | Mohit     |       7 | a food   | foods are light.               | good wood
+       4 | Mohit     |       7 | a food   | foods are light.               | good foods
+(10 rows)
+
+blog_post_system=# select * from comments;
+ id | user_id | post_id | enable |          content           
+----+---------+---------+--------+----------------------------
+  1 |       1 |       1 | t      | Empty
+  2 |       1 |       3 | f      | This mangoes are not sweet
+  3 |       3 |       5 | t      | This goods are light
+  4 |      12 |      15 | t      | foods are good
+  5 |      12 |      14 | f      | cloths are old
+  6 |      12 |      11 | t      | foods are not good
+  7 |      12 |       5 | t      | mangoes are not good
+  8 |       4 |       6 | t      | good foods
+  9 |       4 |      12 | t      | good wood
+(9 rows)
+
+blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id, P.title, P.content, C.content as comment_content from users U join likes L on U.id = L.user_id join posts P on P.id = L.post_id join comments C on P.id = C.post_id and U.id = C.user_id where U.paid = false;
+ user_id | user_name | post_id |  title  |       content       | comment_content 
+---------+-----------+---------+---------+---------------------+-----------------
+       1 | Pankaj    |       1 | a mango | Mangoes are sweets. | Empty
+       4 | Mohit     |       6 | a food  | foods are heavy.    | good foods
+       4 | Mohit     |      12 | a wood  | woods are heavy.    | good wood
+(3 rows)
+
+blog_post_system=# 
