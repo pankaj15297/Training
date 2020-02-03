@@ -8241,3 +8241,956 @@ blog_post_system=# select U.id as user_id, U.name as user_name, P.id as post_id,
 (3 rows)
 
 blog_post_system=# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=========================================================================================
+=========================library_managment_system========================================
+
+
+
+
+
+ 
+blog_post_system=# create database library_managment_system
+blog_post_system-# ;
+CREATE DATABASE
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# \c library_managment_system
+You are now connected to database "library_managment_system" as user "postgres".
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# \d
+No relations found.
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# create table books (id serial primary key, name varchar not null, rental_price int not null, available boolean default true, category_id int not null, foreign key ')
+library_managment_system'# ;
+library_managment_system'# '
+library_managment_system(# 0
+library_managment_system(# )
+library_managment_system-# ;
+ERROR:  syntax error at or near "')
+;
+'"
+LINE 1: ...olean default true, category_id int not null, foreign key ')
+                                                                     ^
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# create table categories (id serial primary key, name varchar not null, amount int not null);
+CREATE TABLE
+library_managment_system=# create table books (id serial primary key, category_id int not null, name varchar not null, author varchar not null, publisher varchar not null,  rental_price int not null, available boolean default true, category_id int not null, foreign key (category) references categories(id);
+library_managment_system(# \q
+postgres@beryl-Latitude-E5520:/home/beryl$ psql library_managment_system
+Password: 
+psql (9.5.19)
+Type "help" for help.
+
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# create table books (id serial primary key, category_id int not null, name varchar not null, author varchar not null, publisher varchar not null,  rental_price int not null, available boolean default true, category_id int not null, foreign key (category) references categories(id);
+library_managment_system(# )
+library_managment_system-# ;
+ERROR:  syntax error at or near ";"
+LINE 1: ... not null, foreign key (category) references categories(id);
+                                                                      ^
+library_managment_system=# create table books (id serial primary key, category_id int not null, name varchar not null, author varchar not null, publisher varchar not null,  rental_price int not null, available boolean default true, category_id int not null, foreign key (category) references categories(id));
+ERROR:  column "category_id" specified more than once
+library_managment_system=# create table books (id serial primary key, category_id int not null, name varchar not null, author varchar not null, publisher varchar not null,  rental_price int not null, available boolean default true, foreign key (category_id) references categories(id));
+CREATE TABLE
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# create table students (id serial primary key, name varchar not null, address varchar not null, registration_date date not null);
+CREATE TABLE
+library_managment_system=# create table issue (id serial primary key, student_id int not null, date date not null, foreign key (student_id) references )
+library_managment_system-# ^C
+library_managment_system=# \dt
+           List of relations
+ Schema |    Name    | Type  |  Owner   
+--------+------------+-------+----------
+ public | books      | table | postgres
+ public | categories | table | postgres
+ public | students   | table | postgres
+(3 rows)
+
+library_managment_system=# \dt students 
+          List of relations
+ Schema |   Name   | Type  |  Owner   
+--------+----------+-------+----------
+ public | students | table | postgres
+(1 row)
+
+library_managment_system=# \d students 
+                                    Table "public.students"
+      Column       |       Type        |                       Modifiers                       
+-------------------+-------------------+-------------------------------------------------------
+ id                | integer           | not null default nextval('students_id_seq'::regclass)
+ name              | character varying | not null
+ address           | character varying | not null
+ registration_date | date              | not null
+Indexes:
+    "students_pkey" PRIMARY KEY, btree (id)
+
+library_managment_system=# create table issue (id serial primary key, student_id int not null, date date not null, foreign key (student_id) references students(id));
+CREATE TABLE
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# create table issue_books (id serial primary key, issue_id int not null, book_id int not null, foreign key(issue_id) references issue(id), foreign key (book_id) references books(id));
+CREATE TABLE
+library_managment_system=# create table return (id serial primary key, student_id int not null, date date not null, foreign key (student_id) references students(id));
+CREATE TABLE
+library_managment_system=# create table return_books (id serial primary key, return_id int not null, book_id int not null, foreign key(issue_id) references issue(id), foreign key (book_id) references books(id));
+ERROR:  column "issue_id" referenced in foreign key constraint does not exist
+library_managment_system=# create table return_books (id serial primary key, return_id int not null, book_id int not null, foreign key(return_id) references issue(id), foreign key (book_id) references books(id));
+CREATE TABLE
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# \dt
+            List of relations
+ Schema |     Name     | Type  |  Owner   
+--------+--------------+-------+----------
+ public | books        | table | postgres
+ public | categories   | table | postgres
+ public | issue        | table | postgres
+ public | issue_books  | table | postgres
+ public | return       | table | postgres
+ public | return_books | table | postgres
+ public | students     | table | postgres
+(7 rows)
+
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# create table employees (id serial primary key, name varchar not null, salary money not null, address varchar not null, contact bigint not null);
+CREATE TABLE
+library_managment_system=# 
+library_managment_system=# \d
+                 List of relations
+ Schema |        Name         |   Type   |  Owner   
+--------+---------------------+----------+----------
+ public | books               | table    | postgres
+ public | books_id_seq        | sequence | postgres
+ public | categories          | table    | postgres
+ public | categories_id_seq   | sequence | postgres
+ public | employees           | table    | postgres
+ public | employees_id_seq    | sequence | postgres
+ public | issue               | table    | postgres
+ public | issue_books         | table    | postgres
+ public | issue_books_id_seq  | sequence | postgres
+ public | issue_id_seq        | sequence | postgres
+ public | return              | table    | postgres
+ public | return_books        | table    | postgres
+ public | return_books_id_seq | sequence | postgres
+ public | return_id_seq       | sequence | postgres
+ public | students            | table    | postgres
+ public | students_id_seq     | sequence | postgres
+(16 rows)
+
+library_managment_system=# \d employees;
+                               Table "public.employees"
+ Column  |       Type        |                       Modifiers                        
+---------+-------------------+--------------------------------------------------------
+ id      | integer           | not null default nextval('employees_id_seq'::regclass)
+ name    | character varying | not null
+ salary  | money             | not null
+ address | character varying | not null
+ contact | bigint            | not null
+Indexes:
+    "employees_pkey" PRIMARY KEY, btree (id)
+
+library_managment_system=# insert into employees values (1, 'Pankaj', 50000, 'Delhi', 7009147259);
+INSERT 0 1
+library_managment_system=# select * from employees;
+ id |  name  |   salary   | address |  contact   
+----+--------+------------+---------+------------
+  1 | Pankaj | ₹50,000.00 | Delhi   | 7009147259
+(1 row)
+
+library_managment_system=# select salary from employees;
+   salary   
+------------
+ ₹50,000.00
+(1 row)
+
+library_managment_system=# select sum(salary) from employees;
+    sum     
+------------
+ ₹50,000.00
+(1 row)
+
+library_managment_system=# insert into employees values (2, 'Pankaj', 50000, 'Delhi', 7009147259);
+INSERT 0 1
+library_managment_system=# select sum(salary) from employees;
+     sum     
+-------------
+ ₹100,000.00
+(1 row)
+
+library_managment_system=# select avg(salary) from employees;
+ERROR:  function avg(money) does not exist
+LINE 1: select avg(salary) from employees;
+               ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+library_managment_system=# select avg(salary::numeric) from employees;
+        avg         
+--------------------
+ 50000.000000000000
+(1 row)
+
+library_managment_system=# select avg(regexp_replace(salary::text, '[₹,]', '', 'g')::numeric) from employees;
+        avg         
+--------------------
+ 50000.000000000000
+(1 row)
+
+library_managment_system=# 
+library_managment_system=# \c blog_post_system
+You are now connected to database "blog_post_system" as user "postgres".
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# \c library_managment_system
+You are now connected to database "library_managment_system" as user "postgres".
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# alter table issue_books add column employee_id int not null;
+ALTER TABLE
+library_managment_system=# alter table issue_books add foreign key (employee_id) references employees(id);
+ALTER TABLE
+library_managment_system=# alter table return_books add column employee_id int not null;
+ALTER TABLE
+library_managment_system=# alter table return_books add foreign key (employee_id) references employees(id);
+ALTER TABLE
+library_managment_system=# \d
+                 List of relations
+ Schema |        Name         |   Type   |  Owner   
+--------+---------------------+----------+----------
+ public | books               | table    | postgres
+ public | books_id_seq        | sequence | postgres
+ public | categories          | table    | postgres
+ public | categories_id_seq   | sequence | postgres
+ public | employees           | table    | postgres
+ public | employees_id_seq    | sequence | postgres
+ public | issue               | table    | postgres
+ public | issue_books         | table    | postgres
+ public | issue_books_id_seq  | sequence | postgres
+ public | issue_id_seq        | sequence | postgres
+ public | return              | table    | postgres
+ public | return_books        | table    | postgres
+ public | return_books_id_seq | sequence | postgres
+ public | return_id_seq       | sequence | postgres
+ public | students            | table    | postgres
+ public | students_id_seq     | sequence | postgres
+(16 rows)
+
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# \c blog_post_system
+You are now connected to database "blog_post_system" as user "postgres".
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select count(P.id) from users U join posts P group by U.id;
+ERROR:  syntax error at or near "group"
+LINE 1: select count(P.id) from users U join posts P group by U.id;
+                                                     ^
+blog_post_system=# select count(P.id) from users U join posts P on U.id = P.user_id group by U.id;
+ count 
+-------
+     3
+     2
+     1
+     1
+     5
+     5
+(6 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select U.id as user_id, count(P.id) as post_count from users U join posts P on U.id = P.user_id group by U.id;
+ user_id | post_count 
+---------+------------
+      10 |          3
+       5 |          2
+       1 |          1
+       3 |          1
+      14 |          5
+       7 |          5
+(6 rows)
+
+blog_post_system=# select U.id as user_id, count(P.id) as post_count from users U join posts P on U.id = P.user_id group by U.id where U.paid = false; 
+ERROR:  syntax error at or near "where"
+LINE 1: ... U join posts P on U.id = P.user_id group by U.id where U.pa...
+                                                             ^
+blog_post_system=# select U.id as user_id, count(P.id) as post_count from users U join posts P on U.id = P.user_id where U.paid = false group by U.id; 
+ user_id | post_count 
+---------+------------
+       1 |          1
+       5 |          2
+(2 rows)
+
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# select P.id from users U1 join posts P1 on U1.id = P1.user_id where U.id in (select U.id as user_id, count(P.id) as post_count from users U join posts P on U.id = P.user_id where U.paid = false group by U.id;);
+ERROR:  syntax error at or near ";"
+LINE 1: ... P on U.id = P.user_id where U.paid = false group by U.id;);
+                                                                    ^
+blog_post_system=# select P.id from users U1 join posts P1 on U1.id = P1.user_id where U.id in (select U.id as user_id, count(P.id) as post_count from users U join posts P on U.id = P.user_id where U.paid = false group by U.id);
+ERROR:  missing FROM-clause entry for table "p"
+LINE 1: select P.id from users U1 join posts P1 on U1.id = P1.user_i...
+               ^
+blog_post_system=# select P.id from users U1 join posts P1 on U1.id = P1.user_id where U1.id in (select U.id as user_id, count(P.id) as post_count from users U join posts P on U.id = P.user_id where U.paid = false group by U.id);
+ERROR:  missing FROM-clause entry for table "p"
+LINE 1: select P.id from users U1 join posts P1 on U1.id = P1.user_i...
+               ^
+blog_post_system=# select P.id from users U1 join posts P1 on U1.id = P1.user_id where U1.id in (1,5,8);
+ERROR:  missing FROM-clause entry for table "p"
+LINE 1: select P.id from users U1 join posts P1 on U1.id = P1.user_i...
+               ^
+blog_post_system=# select P1.id from users U1 join posts P1 on U1.id = P1.user_id where U1.id in (1,5,8);
+ id 
+----
+  1
+  2
+  6
+(3 rows)
+
+blog_post_system=# select P1.id from users U1 join posts P1 on U1.id = P1.user_id where U1.id in (select U.id as user_id, count(P.id) as post_count from users U join posts P on U.id = P.user_id where U.paid = false group by U.id);
+ERROR:  subquery has too many columns
+LINE 1: ...1 join posts P1 on U1.id = P1.user_id where U1.id in (select...
+                                                             ^
+blog_post_system=# select P1.id from users U1 join posts P1 on U1.id = P1.user_id where U1.id in (select U.id from users U join posts P on U.id = P.user_id where U.paid = false group by U.id);
+ id 
+----
+  1
+  2
+  6
+(3 rows)
+
+blog_post_system=# select * from posts;
+ id | user_id |   title   |            content             | category_id 
+----+---------+-----------+--------------------------------+-------------
+  5 |      10 | a goods   | Goods are heavy.               |           1
+  1 |       5 | a mango   | Mangoes are sweets.            |           2
+  2 |       5 | a banana  | Bananas are sweets and yellow. |           2
+  3 |      10 | a banana  | Bananas are sweets and yellow. |           2
+  4 |      10 | a book    | Books are good.                |           5
+  6 |       1 | a food    | foods are heavy.               |           3
+  7 |       3 | a food    | foods are light.               |           3
+  8 |      14 | a food    | foods are light.               |           3
+  9 |      14 | the goods | goods are light.               |           1
+ 10 |      14 | a food    | foods are good.                |           3
+ 11 |      14 | a cloth   | cloths are red.                |           8
+ 12 |      14 | a wood    | woods are heavy.               |           4
+ 13 |       7 | a food    | foods are light.               |           3
+ 14 |       7 | a cloth   | cloths are red.                |           8
+ 15 |       7 | a food    | foods are heavy.               |           3
+ 16 |       7 | a goods   | Goods are heavy.               |           1
+ 17 |       7 | a goods   | Goods are heavy.               |           1
+(17 rows)
+
+blog_post_system=# select U1.id P1.id from users U1 join posts P1 on U1.id = P1.user_id where U1.id in (select U.id from users U join posts P on U.id = P.user_id where U.paid = false group by U.id);
+ERROR:  syntax error at or near "."
+LINE 1: select U1.id P1.id from users U1 join posts P1 on U1.id = P1...
+                       ^
+blog_post_system=# select U1.id, P1.id from users U1 join posts P1 on U1.id = P1.user_id where U1.id in (select U.id from users U join posts P on U.id = P.user_id where U.paid = false group by U.id);
+ id | id 
+----+----
+  5 |  1
+  5 |  2
+  1 |  6
+(3 rows)
+
+blog_post_system=# select U1.id as user_id, P1.id as post_id from users U1 join posts P1 on U1.id = P1.user_id where U1.id in (select U.id from users U join posts P on U.id = P.user_id where U.paid = false group by U.id);
+ user_id | post_id 
+---------+---------
+       5 |       1
+       5 |       2
+       1 |       6
+(3 rows)
+
+blog_post_system=# 
+blog_post_system=# select P1.id from users U1 join posts P1 on U1.id = P1.user_id where U1.id in (select U.id from users U join posts P on U.id = P.user_id where U.paid = false group by U.id);
+ id 
+----
+  1
+  2
+  6
+(3 rows)
+
+blog_post_system=# select count(L2.id) from likes L2 left outer join posts P2 on P2.id = L2.post_id where P2.id in (select P1.id from users U1 join posts P1 on U1.id = P1.user_id where U1.id in (select U.id from users U join posts P on U.id = P.user_id where U.paid = false group by U.id) order by ())
+blog_post_system-# 
+blog_post_system-# ;
+ERROR:  syntax error at or near ")"
+LINE 1: ...= P.user_id where U.paid = false group by U.id) order by ())
+                                                                     ^
+blog_post_system=# 
+blog_post_system=# 
+blog_post_system=# \c library_managment_system
+You are now connected to database "library_managment_system" as user "postgres".
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# \d
+                 List of relations
+ Schema |        Name         |   Type   |  Owner   
+--------+---------------------+----------+----------
+ public | books               | table    | postgres
+ public | books_id_seq        | sequence | postgres
+ public | categories          | table    | postgres
+ public | categories_id_seq   | sequence | postgres
+ public | employees           | table    | postgres
+ public | employees_id_seq    | sequence | postgres
+ public | issue               | table    | postgres
+ public | issue_books         | table    | postgres
+ public | issue_books_id_seq  | sequence | postgres
+ public | issue_id_seq        | sequence | postgres
+ public | return              | table    | postgres
+ public | return_books        | table    | postgres
+ public | return_books_id_seq | sequence | postgres
+ public | return_id_seq       | sequence | postgres
+ public | students            | table    | postgres
+ public | students_id_seq     | sequence | postgres
+(16 rows)
+
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# \d books
+                                 Table "public.books"
+    Column    |       Type        |                     Modifiers                      
+--------------+-------------------+----------------------------------------------------
+ id           | integer           | not null default nextval('books_id_seq'::regclass)
+ category_id  | integer           | not null
+ name         | character varying | not null
+ author       | character varying | not null
+ publisher    | character varying | not null
+ rental_price | integer           | not null
+ available    | boolean           | default true
+Indexes:
+    "books_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "books_category_id_fkey" FOREIGN KEY (category_id) REFERENCES categories(id)
+Referenced by:
+    TABLE "issue_books" CONSTRAINT "issue_books_book_id_fkey" FOREIGN KEY (book_id) REFERENCES books(id)
+    TABLE "return_books" CONSTRAINT "return_books_book_id_fkey" FOREIGN KEY (book_id) REFERENCES books(id)
+
+library_managment_system=# \d employees
+                               Table "public.employees"
+ Column  |       Type        |                       Modifiers                        
+---------+-------------------+--------------------------------------------------------
+ id      | integer           | not null default nextval('employees_id_seq'::regclass)
+ name    | character varying | not null
+ salary  | money             | not null
+ address | character varying | not null
+ contact | bigint            | not null
+Indexes:
+    "employees_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "issue_books" CONSTRAINT "issue_books_employee_id_fkey" FOREIGN KEY (employee_id) REFERENCES employees(id)
+    TABLE "return_books" CONSTRAINT "return_books_employee_id_fkey" FOREIGN KEY (employee_id) REFERENCES employees(id)
+
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# insert into categories values (default, 'Art & Music');
+ERROR:  null value in column "amount" violates not-null constraint
+DETAIL:  Failing row contains (1, Art & Music, null).
+library_managment_system=# \d categories;
+                              Table "public.categories"
+ Column |       Type        |                        Modifiers                        
+--------+-------------------+---------------------------------------------------------
+ id     | integer           | not null default nextval('categories_id_seq'::regclass)
+ name   | character varying | not null
+ amount | integer           | not null
+Indexes:
+    "categories_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "books" CONSTRAINT "books_category_id_fkey" FOREIGN KEY (category_id) REFERENCES categories(id)
+
+library_managment_system=# insert into categories values (default, 'Art & Music', 100);
+INSERT 0 1
+library_managment_system=# select * from categories;
+ id |    name     | amount 
+----+-------------+--------
+  2 | Art & Music |    100
+(1 row)
+
+library_managment_system=# insert into categories values (default, 'Cooking', 50);
+INSERT 0 1
+library_managment_system=# select * from categories;
+ id |    name     | amount 
+----+-------------+--------
+  2 | Art & Music |    100
+  3 | Cooking     |     50
+(2 rows)
+
+library_managment_system=# insert into categories values (default, 'Kids', 70);
+INSERT 0 1
+library_managment_system=# insert into categories values (default, 'Computers', 20);
+INSERT 0 1
+library_managment_system=# insert into categories values (default, 'Hobbies', 10);
+INSERT 0 1
+library_managment_system=# insert into categories values (default, 'Health', 15);
+INSERT 0 1
+library_managment_system=# insert into categories values (default, 'History', 25);
+INSERT 0 1
+library_managment_system=# insert into categories values (default, 'Medical', 50);
+INSERT 0 1
+library_managment_system=# insert into categories values (default, 'Entertainment', 55);
+INSERT 0 1
+library_managment_system=# insert into categories values (default, 'Religion', 30);
+INSERT 0 1
+library_managment_system=# insert into categories values (default, 'Sports', 40);
+INSERT 0 1
+library_managment_system=# insert into categories values (default, 'Romance', 40);
+INSERT 0 1
+library_managment_system=# insert into categories values (default, 'Travel', 45);
+INSERT 0 1
+library_managment_system=# insert into categories values (default, 'Social Sciences', 100);
+INSERT 0 1
+library_managment_system=# select * from categories;
+ id |      name       | amount 
+----+-----------------+--------
+  2 | Art & Music     |    100
+  3 | Cooking         |     50
+  4 | Kids            |     70
+  5 | Computers       |     20
+  6 | Hobbies         |     10
+  7 | Health          |     15
+  8 | History         |     25
+  9 | Medical         |     50
+ 10 | Entertainment   |     55
+ 11 | Religion        |     30
+ 12 | Sports          |     40
+ 13 | Romance         |     40
+ 14 | Travel          |     45
+ 15 | Social Sciences |    100
+(14 rows)
+
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# \d books
+                                 Table "public.books"
+    Column    |       Type        |                     Modifiers                      
+--------------+-------------------+----------------------------------------------------
+ id           | integer           | not null default nextval('books_id_seq'::regclass)
+ category_id  | integer           | not null
+ name         | character varying | not null
+ author       | character varying | not null
+ publisher    | character varying | not null
+ rental_price | integer           | not null
+ available    | boolean           | default true
+Indexes:
+    "books_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "books_category_id_fkey" FOREIGN KEY (category_id) REFERENCES categories(id)
+Referenced by:
+    TABLE "issue_books" CONSTRAINT "issue_books_book_id_fkey" FOREIGN KEY (book_id) REFERENCES books(id)
+    TABLE "return_books" CONSTRAINT "return_books_book_id_fkey" FOREIGN KEY (book_id) REFERENCES books(id)
+
+library_managment_system=# insert into books values (default, 6, 'Printing', 'H.L', 'P.R', default);
+ERROR:  null value in column "rental_price" violates not-null constraint
+DETAIL:  Failing row contains (1, 6, Printing, H.L, P.R, null, t).
+library_managment_system=# alter table books alter column rental_price type money;
+ALTER TABLE
+library_managment_system=# \d books
+                                 Table "public.books"
+    Column    |       Type        |                     Modifiers                      
+--------------+-------------------+----------------------------------------------------
+ id           | integer           | not null default nextval('books_id_seq'::regclass)
+ category_id  | integer           | not null
+ name         | character varying | not null
+ author       | character varying | not null
+ publisher    | character varying | not null
+ rental_price | money             | not null
+ available    | boolean           | default true
+Indexes:
+    "books_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "books_category_id_fkey" FOREIGN KEY (category_id) REFERENCES categories(id)
+Referenced by:
+    TABLE "issue_books" CONSTRAINT "issue_books_book_id_fkey" FOREIGN KEY (book_id) REFERENCES books(id)
+    TABLE "return_books" CONSTRAINT "return_books_book_id_fkey" FOREIGN KEY (book_id) REFERENCES books(id)
+
+library_managment_system=# insert into books values (default, 6, 'Printing', 'H.L', 'P.R', 120, default);
+INSERT 0 1
+library_managment_system=# insert into books values (default, 6, 'Building', 'H.G.L', 'I.R', 240, default);
+INSERT 0 1
+library_managment_system=# insert into books values (default, 6, 'Animation', 'J.K.H', 'S.E', 500, default);
+INSERT 0 1
+library_managment_system=# insert into books values (default, 6, 'Blogging', 'J.H', 'L.K', 300, false);
+INSERT 0 1
+library_managment_system=# insert into books values (default, 6, 'Coloring', 'H.M', 'L.K.D', 200, false);
+INSERT 0 1
+library_managment_system=# select * from books;
+ id | category_id |   name    | author | publisher | rental_price | available 
+----+-------------+-----------+--------+-----------+--------------+-----------
+  2 |           6 | Printing  | H.L    | P.R       |      ₹120.00 | t
+  3 |           6 | Building  | H.G.L  | I.R       |      ₹240.00 | t
+  4 |           6 | Animation | J.K.H  | S.E       |      ₹500.00 | t
+  5 |           6 | Blogging  | J.H    | L.K       |      ₹300.00 | f
+  6 |           6 | Coloring  | H.M    | L.K.D     |      ₹200.00 | f
+(5 rows)
+
+library_managment_system=# insert into books values (default, 5, 'Let Us C', 'E.R.U', 'A.S.D', 330, false);
+INSERT 0 1
+library_managment_system=# insert into books values (default, 5, 'Data Structures', 'P.U.T', 'A.S.D', 330, false);
+INSERT 0 1
+library_managment_system=# insert into books values (default, 5, 'Python', 'P.T', 'A.S', 500, default);
+INSERT 0 1
+library_managment_system=# insert into books values (default, 5, 'Java', 'C.P', 'O.P', 400, default);
+INSERT 0 1
+library_managment_system=# 
+library_managment_system=# insert into books values (default, 5, 'Perl', 'P.M.N', 'O.G', 250, default);
+INSERT 0 1
+library_managment_system=# insert into books values (default, 10, 'Goddess of Light', 'N.K', 'G.P', 135, default);
+INSERT 0 1
+library_managment_system=# insert into books values (default, 10, 'Nights at the Cuzco', 'J.N.K', 'G.H.Y', 145, default);
+INSERT 0 1
+library_managment_system=# insert into books values (default, 2, 'An Animal Dance Book', 'R.T', 'P.K', 145, default);
+INSERT 0 1
+library_managment_system=# alter table categories drop column ammount;
+ERROR:  column "ammount" of relation "categories" does not exist
+library_managment_system=# alter table categories drop column amount;
+ALTER TABLE
+library_managment_system=# 
+library_managment_system=# select * from categories;
+ id |      name       
+----+-----------------
+  2 | Art & Music
+  3 | Cooking
+  4 | Kids
+  5 | Computers
+  6 | Hobbies
+  7 | Health
+  8 | History
+  9 | Medical
+ 10 | Entertainment
+ 11 | Religion
+ 12 | Sports
+ 13 | Romance
+ 14 | Travel
+ 15 | Social Sciences
+(14 rows)
+
+library_managment_system=# insert into books values (default, 3, 'Indian Cooking', 'D.S', 'S.K', 145, default);
+INSERT 0 1
+library_managment_system=# insert into books values (default, 3, 'American Cooking', 'H.D.S', 'S.S', 245, default);
+INSERT 0 1
+library_managment_system=# insert into books values (default, 8, 'The Source of Social Power', 'J.K.S', 'G.S.S', 278, default);
+INSERT 0 1
+library_managment_system=# insert into books values (default, 8, 'Plagues and Peoples', 'J.S', 'G.S', 200, default);
+INSERT 0 1
+library_managment_system=# insert into books values (default, 8, 'The Contours of American', 'U.S', 'L.S', 200, default);
+INSERT 0 1
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# select * from books;
+ id | category_id |            name            | author | publisher | rental_price | available 
+----+-------------+----------------------------+--------+-----------+--------------+-----------
+  2 |           6 | Printing                   | H.L    | P.R       |      ₹120.00 | t
+  3 |           6 | Building                   | H.G.L  | I.R       |      ₹240.00 | t
+  4 |           6 | Animation                  | J.K.H  | S.E       |      ₹500.00 | t
+  5 |           6 | Blogging                   | J.H    | L.K       |      ₹300.00 | f
+  6 |           6 | Coloring                   | H.M    | L.K.D     |      ₹200.00 | f
+  7 |           5 | Let Us C                   | E.R.U  | A.S.D     |      ₹330.00 | f
+  8 |           5 | Data Structures            | P.U.T  | A.S.D     |      ₹330.00 | f
+  9 |           5 | Python                     | P.T    | A.S       |      ₹500.00 | t
+ 10 |           5 | Java                       | C.P    | O.P       |      ₹400.00 | t
+ 11 |           5 | Perl                       | P.M.N  | O.G       |      ₹250.00 | t
+ 12 |          10 | Goddess of Light           | N.K    | G.P       |      ₹135.00 | t
+ 13 |          10 | Nights at the Cuzco        | J.N.K  | G.H.Y     |      ₹145.00 | t
+ 14 |           2 | An Animal Dance Book       | R.T    | P.K       |      ₹145.00 | t
+ 15 |           3 | Indian Cooking             | D.S    | S.K       |      ₹145.00 | t
+ 16 |           3 | American Cooking           | H.D.S  | S.S       |      ₹245.00 | t
+ 17 |           8 | The Source of Social Power | J.K.S  | G.S.S     |      ₹278.00 | t
+ 18 |           8 | Plagues and Peoples        | J.S    | G.S       |      ₹200.00 | t
+ 19 |           8 | The Contours of American   | U.S    | L.S       |      ₹200.00 | t
+(18 rows)
+
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# \d employees;
+                               Table "public.employees"
+ Column  |       Type        |                       Modifiers                        
+---------+-------------------+--------------------------------------------------------
+ id      | integer           | not null default nextval('employees_id_seq'::regclass)
+ name    | character varying | not null
+ salary  | money             | not null
+ address | character varying | not null
+ contact | bigint            | not null
+Indexes:
+    "employees_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "issue_books" CONSTRAINT "issue_books_employee_id_fkey" FOREIGN KEY (employee_id) REFERENCES employees(id)
+    TABLE "return_books" CONSTRAINT "return_books_employee_id_fkey" FOREIGN KEY (employee_id) REFERENCES employees(id)
+
+library_managment_system=# select * from employees;
+ id |  name  |   salary   | address |  contact   
+----+--------+------------+---------+------------
+  1 | Pankaj | ₹50,000.00 | Delhi   | 7009147259
+  2 | Pankaj | ₹50,000.00 | Delhi   | 7009147259
+(2 rows)
+
+library_managment_system=# insert into employees values (default, 'Pavan', 15000, 'Patna', 1489657423);
+ERROR:  duplicate key value violates unique constraint "employees_pkey"
+DETAIL:  Key (id)=(1) already exists.
+library_managment_system=# insert into employees values (default, 'Pavan', 15000, 'Patna', 1489657423);
+ERROR:  duplicate key value violates unique constraint "employees_pkey"
+DETAIL:  Key (id)=(2) already exists.
+library_managment_system=# insert into employees values (default, 'Pavan', 15000, 'Patna', 1489657423);
+INSERT 0 1
+library_managment_system=# insert into employees values (default, 'Naveen', 35000, 'Pune', 5698741256);
+INSERT 0 1
+library_managment_system=# insert into employees values (default, 'Praveen', 35000, 'Chandighar', 9857444452);
+INSERT 0 1
+library_managment_system=# insert into employees values (default, 'Sonu', 25000, 'Haidrabad', 9857444452);
+INSERT 0 1
+library_managment_system=# select * from employees;
+ id |  name   |   salary   |  address   |  contact   
+----+---------+------------+------------+------------
+  1 | Pankaj  | ₹50,000.00 | Delhi      | 7009147259
+  2 | Pankaj  | ₹50,000.00 | Delhi      | 7009147259
+  3 | Pavan   | ₹15,000.00 | Patna      | 1489657423
+  4 | Naveen  | ₹35,000.00 | Pune       | 5698741256
+  5 | Praveen | ₹35,000.00 | Chandighar | 9857444452
+  6 | Sonu    | ₹25,000.00 | Haidrabad  | 9857444452
+(6 rows)
+
+library_managment_system=# \d issue;
+                           Table "public.issue"
+   Column   |  Type   |                     Modifiers                      
+------------+---------+----------------------------------------------------
+ id         | integer | not null default nextval('issue_id_seq'::regclass)
+ student_id | integer | not null
+ date       | date    | not null
+Indexes:
+    "issue_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "issue_student_id_fkey" FOREIGN KEY (student_id) REFERENCES students(id)
+Referenced by:
+    TABLE "issue_books" CONSTRAINT "issue_books_issue_id_fkey" FOREIGN KEY (issue_id) REFERENCES issue(id)
+    TABLE "return_books" CONSTRAINT "return_books_return_id_fkey" FOREIGN KEY (return_id) REFERENCES issue(id)
+
+library_managment_system=# \d students;
+                                    Table "public.students"
+      Column       |       Type        |                       Modifiers                       
+-------------------+-------------------+-------------------------------------------------------
+ id                | integer           | not null default nextval('students_id_seq'::regclass)
+ name              | character varying | not null
+ address           | character varying | not null
+ registration_date | date              | not null
+Indexes:
+    "students_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "issue" CONSTRAINT "issue_student_id_fkey" FOREIGN KEY (student_id) REFERENCES students(id)
+    TABLE "return" CONSTRAINT "return_student_id_fkey" FOREIGN KEY (student_id) REFERENCES students(id)
+
+library_managment_system=# insert into students values (default, 'Chhavi', 'Merath', 2018-11-18);
+ERROR:  column "registration_date" is of type date but expression is of type integer
+LINE 1: ...nto students values (default, 'Chhavi', 'Merath', 2018-11-18...
+                                                             ^
+HINT:  You will need to rewrite or cast the expression.
+library_managment_system=# insert into students values (default, 'Chhavi', 'Merath', '2018-11-18');
+INSERT 0 1
+library_managment_system=# 
+library_managment_system=# selct * from students;
+ERROR:  syntax error at or near "selct"
+LINE 1: selct * from students;
+        ^
+library_managment_system=# select * from students;
+ id |  name  | address | registration_date 
+----+--------+---------+-------------------
+  1 | Chhavi | Merath  | 2018-11-18
+(1 row)
+
+library_managment_system=# insert into students values (default, 'Saurabh', 'Delhi', '2017-05-28');
+INSERT 0 1
+library_managment_system=# insert into students values (default, 'Ashutosh', 'Patna', '2019-07-29');
+INSERT 0 1
+library_managment_system=# insert into students values (default, 'Amandeep', 'Patiala', '2020-01-01');
+INSERT 0 1
+library_managment_system=# insert into students values (default, 'Aman', 'Patna', '2015-08-17');
+INSERT 0 1
+library_managment_system=# insert into students values (default, 'Aman', 'Agra', '2015-08-17');
+INSERT 0 1
+library_managment_system=# insert into students values (default, 'Gaurabh', 'Haridwar', '2012-12-12');
+INSERT 0 1
+library_managment_system=# insert into students values (default, 'Avdhesh', 'Gagiabad', '2013-02-12');
+INSERT 0 1
+library_managment_system=# select * from students;
+ id |   name   | address  | registration_date 
+----+----------+----------+-------------------
+  1 | Chhavi   | Merath   | 2018-11-18
+  2 | Saurabh  | Delhi    | 2017-05-28
+  3 | Ashutosh | Patna    | 2019-07-29
+  4 | Amandeep | Patiala  | 2020-01-01
+  5 | Aman     | Patna    | 2015-08-17
+  6 | Aman     | Agra     | 2015-08-17
+  7 | Gaurabh  | Haridwar | 2012-12-12
+  8 | Avdhesh  | Gagiabad | 2013-02-12
+(8 rows)
+
+library_managment_system=# insert into students values (default, 'Abhishek', 'Pune', '2012-12-12');
+INSERT 0 1
+library_managment_system=# insert into students values (default, 'Sandeep', 'Faridabad', '2018-11-22');
+INSERT 0 1
+library_managment_system=# insert into students values (default, 'Sandeep', 'Faridabad', '2018-11-22');
+INSERT 0 1
+library_managment_system=# select * from students;
+ id |   name   |  address  | registration_date 
+----+----------+-----------+-------------------
+  1 | Chhavi   | Merath    | 2018-11-18
+  2 | Saurabh  | Delhi     | 2017-05-28
+  3 | Ashutosh | Patna     | 2019-07-29
+  4 | Amandeep | Patiala   | 2020-01-01
+  5 | Aman     | Patna     | 2015-08-17
+  6 | Aman     | Agra      | 2015-08-17
+  7 | Gaurabh  | Haridwar  | 2012-12-12
+  8 | Avdhesh  | Gagiabad  | 2013-02-12
+  9 | Abhishek | Pune      | 2012-12-12
+ 10 | Sandeep  | Faridabad | 2018-11-22
+ 11 | Sandeep  | Faridabad | 2018-11-22
+(11 rows)
+
+library_managment_system=# 
+library_managment_system=# select* from issue;
+ id | student_id | date 
+----+------------+------
+(0 rows)
+
+library_managment_system=# insert into issue values (default, 2, '2020-01-20');
+INSERT 0 1
+library_managment_system=# insert into issue values (default, 2, '2020-01-22');
+INSERT 0 1
+library_managment_system=# insert into issue values (default, 5, '2020-01-21');
+INSERT 0 1
+library_managment_system=# insert into issue values (default, 5, '2020-02-01');
+INSERT 0 1
+library_managment_system=# insert into issue values (default, 10, '2020-02-02');
+INSERT 0 1
+library_managment_system=# insert into issue values (default, 11, '2020-02-03');
+INSERT 0 1
+library_managment_system=# insert into issue values (default, 9, '2020-02-03');
+INSERT 0 1
+library_managment_system=# select* from issue;
+ id | student_id |    date    
+----+------------+------------
+  1 |          2 | 2020-01-20
+  2 |          2 | 2020-01-22
+  3 |          5 | 2020-01-21
+  4 |          5 | 2020-02-01
+  5 |         10 | 2020-02-02
+  6 |         11 | 2020-02-03
+  7 |          9 | 2020-02-03
+(7 rows)
+
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# 
+library_managment_system=# \d issue_books
+                            Table "public.issue_books"
+   Column    |  Type   |                        Modifiers                         
+-------------+---------+----------------------------------------------------------
+ id          | integer | not null default nextval('issue_books_id_seq'::regclass)
+ issue_id    | integer | not null
+ book_id     | integer | not null
+ employee_id | integer | not null
+Indexes:
+    "issue_books_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "issue_books_book_id_fkey" FOREIGN KEY (book_id) REFERENCES books(id)
+    "issue_books_employee_id_fkey" FOREIGN KEY (employee_id) REFERENCES employees(id)
+    "issue_books_issue_id_fkey" FOREIGN KEY (issue_id) REFERENCES issue(id)
+
+library_managment_system=# insert into issue_books values (default, 1, 5);
+ERROR:  null value in column "employee_id" violates not-null constraint
+DETAIL:  Failing row contains (1, 1, 5, null).
+library_managment_system=# insert into issue_books values (default, 1, 5, 5);
+INSERT 0 1
+library_managment_system=# insert into issue_books values (default, 1, 6, 5);
+INSERT 0 1
+library_managment_system=# insert into issue_books values (default, 1, 10, 1);
+INSERT 0 1
+library_managment_system=# insert into issue_books values (default, 1, 17, 6);
+INSERT 0 1
+library_managment_system=# 
+library_managment_system=# insert into issue_books values (default, 3, 17, 6);
+INSERT 0 1
+library_managment_system=# insert into issue_books values (default, 3, 10, 6);
+INSERT 0 1
+library_managment_system=# insert into issue_books values (default, 3, 14, 7);
+ERROR:  insert or update on table "issue_books" violates foreign key constraint "issue_books_employee_id_fkey"
+DETAIL:  Key (employee_id)=(7) is not present in table "employees".
+library_managment_system=# insert into issue_books values (default, 3, 14, 1);
+INSERT 0 1
+library_managment_system=# select from issue_books;
+--
+(7 rows)
+
+library_managment_system=# select * from issue_books;
+ id | issue_id | book_id | employee_id 
+----+----------+---------+-------------
+  2 |        1 |       5 |           5
+  3 |        1 |       6 |           5
+  4 |        1 |      10 |           1
+  5 |        1 |      17 |           6
+  6 |        3 |      17 |           6
+  7 |        3 |      10 |           6
+  9 |        3 |      14 |           1
+(7 rows)
+
+library_managment_system=# \l
+library_managment_system=# 
