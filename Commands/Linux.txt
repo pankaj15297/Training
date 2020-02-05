@@ -1,6 +1,9 @@
 lsb_release -d (To know ubuntu version)
 lsb_release -a (Display ubuntu version)
 
+ip addr show
+ifconfig
+
 mkdir Folder
 cd Folder
 rmdir Folder (remove empty directory)
@@ -17,3 +20,31 @@ rm -R Folder2 (To remove non-empty dir)
 cp -r /home/beryl/Folder1 /home/beryl/Folder2 ( copy Folder)
 mkdir music
 mkdir music/Hindi music/Punjabi music/English
+
+
+
+beryl@beryl-Latitude-E5520:~$ chmod -R 0 newfile1
+beryl@beryl-Latitude-E5520:~$ ls -l newfile1
+---------- 1 beryl beryl 150 Feb  5 11:18 newfile1
+beryl@beryl-Latitude-E5520:~$ cat newfile1
+cat: newfile1: Permission denied
+beryl@beryl-Latitude-E5520:~$ 
+
+
+beryl@beryl-Latitude-E5520:~$ chmod -R 765 newfile1
+beryl@beryl-Latitude-E5520:~$ ls -l newfile1
+-rwxrw-r-x 1 beryl beryl 150 Feb  5 11:18 newfile1
+beryl@beryl-Latitude-E5520:~$ cat newfile1
+This is content part..........
+
+
+
+beryl@beryl-Latitude-E5520:~$ gzip -k newfile1
+beryl@beryl-Latitude-E5520:~$ ls -l newfile1*
+-rwxrw-r-x 1 beryl beryl 150 Feb  5 11:18 newfile1
+-rwxrw-r-x 1 beryl beryl 138 Feb  5 11:18 newfile1.gz
+
+beryl@beryl-Latitude-E5520:~$ ls -t newfile1*
+newfile1  newfile1.gz
+
+
