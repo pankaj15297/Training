@@ -6,39 +6,161 @@ ip addr show
 
 ifconfig
 
-mkdir Folder
+ps (To display the currently working processes)
+
+top (Display all running process)
+
+kill pid (kill the by pid)
+kill 19047
+
+
+
+
+
+
+mkdir Folder (create folder)
+
+
+touch file  (create file)
+
 
 cd Folder
 
-rmdir Folder (remove empty directory)
 
-rm file (remove)
+rmdir Folder (Deleting empty directory)
 
-unlink file (remove)
 
-cp a.text b.text (copy file)
+rm file (Deleting file)
 
-cat a.text (read)
 
-mv Folder1 Folder2 (rename)
+unlink file (Deleting file)
+
+
+rm -r Folder2  (Deleting the dir)
+
+
+rm -f file (force to remove file)
+
+
+rm -rf dir (force to remove dir)
+
+
+cp a.text b.text (copy file from a.text to b.text)
+
+
+cp -r dir1 dir2 (copy from dir1 to dir2, dir2 is created when not exist)
+
+
+cat a.text (read content of whole file)
+
+
+head newfile1 (read 10 lines from top)
+
+
+tail newfile1 (read 10 lines from buttom)
+
+
+more newfile1 newfile2 (read more than one files)
+
+
+mv file1 file2 (Rename or move file1 to file2,if file2 is an existing
+directory)
+
+
+mv Folder1 Folder2 (Rename or move Folder1 to Folder2,if Folder2 is an existing directory)
+
 
 mv newfile2 Desktop (To move file on Desktop)
 
+
 scp a.text beryl@192.168.1.4:/home/beryl/Folder2 (Secure file copy from host to remote)
 
-pwd (current dir)
+
+pwd (current working dir)
+
 
 scp -r Folder1 beryl@192.168.1.4:/home/beryl/Folder2 (Secure Folder copy)
 
+
 scp beryl@192.168.1.4:/home/beryl/Folder1/c.text /home/beryl/Folder2 (copy from remote to host)
+
 
 rm -R Folder2 (To remove non-empty dir)
 
+
 cp -r /home/beryl/Folder1 /home/beryl/Folder2 ( copy Folder)
+
 
 mkdir music
 
+
 mkdir music/Hindi music/Punjabi music/English
+
+
+
+
+
+
+
+gzip newfile1 (compresses original file and renames it to file.gz)
+
+gzip -d newfile1.gz (Decompresses original file.gz back to file)
+
+
+
+
+
+
+
+grep "Delhi" newfile1
+
+grep -i "Delhi" newfile1 (search pattern 'Delhi' in newfile1)
+
+grep -r "Delhi" Folder3 (search pattern 'Delhi' in  all files of Folder3/dir)
+
+locate file (find all instance of file)
+
+
+
+
+
+date (to see date)
+
+cal (to see calender)
+
+w (to show who is logged on and what they are doing)
+
+whoami (who you are logged in as)
+
+uptime (find out how long the system is active)
+
+finger beryl (display information about user(beryl))
+
+uname -a  (show kernel information)
+
+cat /proc/cpuinfo (display CPU information)
+
+cat /proc/meminfo (display Memory information)
+
+man command scp  (show the manual for command(scp))
+
+man command ls    (show the manual for command(ls))
+
+man command mv   (show the manual for command(mv))
+
+free (show memory and swap usage)
+
+whereis app
+
+whereis slack  (show possible locations of app(slack))
+
+which slack  (show which applications will be run by default)
+
+wget http://cc.iiti.ac.in/docs/linuxcommands.pdf  (download file)
+
+
+
+
 
 
 
@@ -66,5 +188,22 @@ beryl@beryl-Latitude-E5520:~$ ls -l newfile1*
 
 beryl@beryl-Latitude-E5520:~$ ls -t newfile1*
 newfile1  newfile1.gz
+
+
+beryl@beryl-Latitude-E5520:~$ ls Folder2
+a.text  c.text  d.text  editor  Folder1  Folder1.zip
+
+beryl@beryl-Latitude-E5520:~$ ls -l Folder2
+total 20
+-rw-r--r-- 1 beryl beryl   39 Jan  8 15:00 a.text
+-rw-r--r-- 1 beryl beryl   56 Jan  8 16:03 c.text
+-rw-r--r-- 1 beryl beryl    0 Jan  8 16:05 d.text
+-rw-r--r-- 1 beryl beryl    1 Jan  8 15:32 editor
+drwxr-xr-x 3 beryl beryl 4096 Jan  8 15:43 Folder1
+-rw-r--r-- 1 beryl beryl 1242 Jan  8 15:09 Folder1.zip
+
+beryl@beryl-Latitude-E5520:~$ ls -a Folder2
+.  ..  a.text  c.text  d.text  editor  Folder1  Folder1.zip
+
 
 
