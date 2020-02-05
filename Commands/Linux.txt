@@ -1,24 +1,43 @@
 lsb_release -d (To know ubuntu version)
+
 lsb_release -a (Display ubuntu version)
 
 ip addr show
+
 ifconfig
 
 mkdir Folder
+
 cd Folder
+
 rmdir Folder (remove empty directory)
+
 rm file (remove)
+
 unlink file (remove)
+
 cp a.text b.text (copy file)
+
 cat a.text (read)
+
 mv Folder1 Folder2 (rename)
+
+mv newfile2 Desktop (To move file on Desktop)
+
 scp a.text beryl@192.168.1.4:/home/beryl/Folder2 (Secure file copy from host to remote)
+
 pwd (current dir)
+
 scp -r Folder1 beryl@192.168.1.4:/home/beryl/Folder2 (Secure Folder copy)
+
 scp beryl@192.168.1.4:/home/beryl/Folder1/c.text /home/beryl/Folder2 (copy from remote to host)
+
 rm -R Folder2 (To remove non-empty dir)
+
 cp -r /home/beryl/Folder1 /home/beryl/Folder2 ( copy Folder)
+
 mkdir music
+
 mkdir music/Hindi music/Punjabi music/English
 
 
@@ -43,6 +62,7 @@ beryl@beryl-Latitude-E5520:~$ gzip -k newfile1
 beryl@beryl-Latitude-E5520:~$ ls -l newfile1*
 -rwxrw-r-x 1 beryl beryl 150 Feb  5 11:18 newfile1
 -rwxrw-r-x 1 beryl beryl 138 Feb  5 11:18 newfile1.gz
+
 
 beryl@beryl-Latitude-E5520:~$ ls -t newfile1*
 newfile1  newfile1.gz
