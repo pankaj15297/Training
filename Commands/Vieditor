@@ -41,3 +41,37 @@ S - Substitute entire line and begin to insert at the beginning of the line
 ~ - Change case of individual character
 
 
+Shift+zz - Save the file and quit
+
+:w - Save the file but keep it open
+
+:q - Quit without saving
+
+:wq - Save the file and quit
+
+
+k - Move cursor up
+
+j - Move cursor down
+
+h - Move cursor left
+
+l - Move cursor right
+
+
+yy - copy a line
+
+yw - copy a word
+
+y$ - yank to the end of the current line
+
+
+dd - cut a line
+
+dw - cut a word
+
+d$ - yank to the end of the current line
+
+p - paste  the line
+
+
