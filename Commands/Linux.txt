@@ -95,6 +95,7 @@ mkdir music
 mkdir music/Hindi music/Punjabi music/English
 
 
+stat newfile1 (display properties of file)
 
 
 
@@ -157,6 +158,10 @@ which slack  (show which applications will be run by default)
 wget http://cc.iiti.ac.in/docs/linuxcommands.pdf  (download file)
 
 
+
+
+whois domain
+whois google.com  (display domain details)
 
 
 
