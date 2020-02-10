@@ -6,5 +6,9 @@ class CreateCompanies < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    create_table :branches do |t|
+      t.belongs_to :company
+    end
   end
 end
