@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
+  scope :paid, -> (args){ where ("paid = ?"), args }
 
 
 #   after_create :fun
