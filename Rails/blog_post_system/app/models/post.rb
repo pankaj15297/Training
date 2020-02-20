@@ -6,4 +6,6 @@ class Post < ApplicationRecord
   has_many :post_comments, class_name: "Comment", foreign_key: "post_id", dependent: :destroy
   has_many :commented_users, through: :post_comments, source: :user
   has_many :post_pictures, as: :imageable, class_name: "Picture", foreign_key: "imageable_id"
+  validates :title, presence: true
+  validates :content, absence: true
 end

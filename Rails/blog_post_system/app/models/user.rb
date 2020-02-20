@@ -7,7 +7,8 @@ class User < ApplicationRecord
   has_many :user_pictures, as: :imageable, class_name: "Picture", foreign_key: "imageable_id"
   has_and_belongs_to_many :user_offices, class_name: "Office"
 
-  validates :name, presence: true, format: { with: /\A[a-zA-Z]+\z/, message: "only allows laters" }
+  validates :name, presence: true, format: { with: /\A[a-zA-Z]+\z/, message: "only allows laters" }, length: { maximum: 20}
+  validates :contact, presence: true, numericality: true, length: { is: 10 }
 
   scope :paid, -> (args){ where ("paid = ?"), args }
 
