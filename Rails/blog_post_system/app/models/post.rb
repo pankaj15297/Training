@@ -8,4 +8,10 @@ class Post < ApplicationRecord
   has_many :post_pictures, as: :imageable, class_name: "Picture", foreign_key: "imageable_id"
   validates :title, presence: true
   validates :content, absence: true
+
+  after_create :ensure_first_letter_capital
+
+  def ensure_first_letter_capital
+  	self.title = title.capitalize
+  end
 end

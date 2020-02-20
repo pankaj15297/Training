@@ -12,11 +12,11 @@ class User < ApplicationRecord
 
   scope :paid, -> (args){ where ("paid = ?"), args }
 
-
-#   after_create :fun
-
-# def fun
-#   puts "Hello"
-# end
+  after_create :ensure_first_letter_capital
+  
+  def ensure_first_letter_capital
+  	self.name = name.capitalize
+  	puts "Hello"
+  end
 end
 
