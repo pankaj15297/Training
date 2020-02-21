@@ -1,0 +1,19 @@
+<h3> Listing Users </h3>
+<table>
+	<tr>
+		<th> Name </th>
+		<th> Contact </th>
+		<th> Payment </th>
+		<th> Address </th>
+		<th></th>
+	</tr>
+	<% @users.each do |user|%>
+	<tr>
+		<td><%= user.name %></td>
+		<td><%= user.contact %></td>
+		<td><%= user.paid %></td>
+		<td><%= user.address %></td>
+		<td><%= link_to 'Show', user_path(user) %></td>
+	</tr>
+	<% end %>
+</table>
