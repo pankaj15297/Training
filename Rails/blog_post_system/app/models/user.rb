@@ -25,7 +25,7 @@ class User < ApplicationRecord
     word.each do |w|
       w.capitalize!
     end
-    self.name = word
+    self.name = word.join(' ')
   end
 end
 
