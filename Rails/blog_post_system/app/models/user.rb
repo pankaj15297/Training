@@ -13,15 +13,19 @@ class User < ApplicationRecord
 
   has_many :user_post_category, through: :user_posts, source: :category
 
-  validates :name, presence: true, format: { with: /\A[a-zA-Z]+\z/, message: "only allows laters" }, length: { maximum: 20}
+  validates :name, presence: true, length: { maximum: 50}
   validates :contact, presence: true, numericality: true, length: { is: 10 }
 
   scope :paid, -> (args){ where ("paid = ?"), args }
 
-  before_validation :ensure_first_letter_capital
+  before_save :name_capitalization
   
-  def ensure_first_letter_capital
-  	self.name = name.capitalize
+  def name_capitalization
+    word = name.split(' ')
+    word.each do |w|
+      w.capitalize!
+    end
+    self.name = word
   end
 end
 
