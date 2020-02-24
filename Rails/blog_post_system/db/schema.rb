@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_10_121813) do
+ActiveRecord::Schema.define(version: 2020_02_20_065207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,13 +32,6 @@ ActiveRecord::Schema.define(version: 2020_02_10_121813) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "employees", force: :cascade do |t|
-    t.bigint "manager_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["manager_id"], name: "index_employees_on_manager_id"
-  end
-
   create_table "likes", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -46,6 +39,28 @@ ActiveRecord::Schema.define(version: 2020_02_10_121813) do
     t.bigint "post_id", null: false
     t.index ["post_id"], name: "index_likes_on_post_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "offices", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.integer "pincode"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "offices_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "office_id", null: false
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.string "name"
+    t.string "imageable_type"
+    t.bigint "imageable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
   end
 
   create_table "posts", force: :cascade do |t|
