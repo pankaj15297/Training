@@ -14,6 +14,27 @@
 	    <td><%= user.paid %></td>
 	    <td><%= user.address %></td>
 	    <td><%= link_to 'Show', user_path(user) %></td>
+	    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+	    <td><%= link_to 'Destroy' %></td>
 	  </tr>
   <% end %>
 </table>
+
+<div class="link_style">
+  <%= link_to 'New User', new_user_path %><br>
+</div>
+
+<style type="text/css">
+  .link_style {
+  background-color: #ccffff;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: white;
+}
+</style>
