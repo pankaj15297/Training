@@ -1,19 +1,30 @@
-<p>
+<p class="output_field">
   <strong> Name: </strong>
   <%= @user.name %>
 </p>
 
-<p>
+<p class="output_field">
   <strong> Contact: </strong>
   <%= @user.contact %>
 </p>
 
-<p>
+<p class="output_field">
 	<strong> Payment: </strong>
 	<%= @user.paid %>
 </p>
 
-<p>
+<p class="output_field">
 	<strong> Address: </strong>
 	<%= @user.address %>
 </p>
+
+<style type="text/css">
+  .output_field {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+</style>
