@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root 'welcome#index'
   # get '/user/new', to: 'users#new', as: 'new_user'
   resources :users
+  get '*path', :to => 'application#routing_error'
 end
