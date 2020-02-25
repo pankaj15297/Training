@@ -1,4 +1,7 @@
 class Post < ApplicationRecord
+  before_save :title_capitalization, :content_capitalization
+  after_destroy :log_destroy_action
+
   belongs_to :user
   
   belongs_to :category
@@ -14,9 +17,15 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
-  after_create :ensure_first_letter_capital
-
-  def ensure_first_letter_capital
+  def title_capitalization
   	self.title = title.capitalize
+  end
+
+  def content_capitalization
+    self.content = content.capitalize
+  end
+
+  def log_destroy_action
+    puts "Post destroyed"
   end
 end
