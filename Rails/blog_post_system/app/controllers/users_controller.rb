@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    if User.any?
+      @users = User.all
+    else
+      render html: helpers.tag.strong("No Record Found")
+    end
   end
 
  def new
@@ -8,18 +12,18 @@ class UsersController < ApplicationController
  end
  
   def edit
-    if User.all.ids.include? params[:id].to_i
+    begin
       @user = User.find(params[:id])
-    else
-      render html: helpers.tag.strong("Id '#{params[:id]}' Not Found")
+    rescue => e
+      render html: helpers.tag.strong("#{e.message}")
     end
   end
 
   def show
-    if User.all.ids.include? params[:id].to_i
+    begin
       @user = User.find(params[:id])
-    else
-      render html: helpers.tag.strong("Id '#{params[:id]}' Not Found")
+    rescue => e
+      render html: helpers.tag.strong("#{e.message}")
     end
   end
 
