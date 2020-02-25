@@ -1,54 +1,97 @@
-<%= form_with model: @user, local: true do |form| %>
+<html><head>
+    <title>BlogPostSystem</title>
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="Oz5WSIUleWYwZYJz/nSJptFmZHQCkkZZELG10iClZ/sQm48K9fPpgIjms2mkCLbBwm/CKGKX95X0Jtc8UDKzVQ==">
+    
 
-<% if @user.errors.any? %>
-  <div id="error_explanation">
-    <h4>
-      <%= pluralize(@user.errors.count, "error") %> Prohibited this user from benging saved:
-    </h4>
-    <ul>
-      <% @user.errors.full_messages.each do |msg|%>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>  
+    <link rel="stylesheet" media="all" href="/assets/application.debug-6c05abdb6a806b01bc68baf10e862c2140d90f713ebd406debebb9950ab2184b.css" data-turbolinks-track="reload">
+    <script src="/packs/js/application-3ddb00b952d7632bd73f.js" data-turbolinks-track="reload"></script>
+  </head>
+
+  <body>
+
+<form action="/users" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Oz5WSIUleWYwZYJz/nSJptFmZHQCkkZZELG10iClZ/sQm48K9fPpgIjms2mkCLbBwm/CKGKX95X0Jtc8UDKzVQ==">
+
   <div class="input_field">
     <p>
-    	<%= form.label :Name %><br>
-    	<%= form.text_field :name %>
+      <label for="user_First_Name">First name</label><br>
+      <input type="text" name="user[firstname]" id="user_firstname">
     </p>
   </div>
 
   <div class="input_field">
     <p>
-      <%= form.label :Email %><br>
-      <%= form.text_field :email %>
+      <label for="user_Last_Name">Last name</label><br>
+      <input type="text" name="user[lastname]" id="user_lastname">
+    </p>
+  </div>
+
+  <div class="input_field">
+    <p>
+      <label for="user_Email">Email</label><br>
+      <input type="text" name="user[email]" id="user_email">
+    </p>
+  </div>
+
+  <div class="input_field">
+    <p>
+      <label for="user_Password">Password</label><br>
+      <input type="text" name="user[password]" id="user_password">
+    </p>
+  </div>
+
+  <div class="input_field">
+    <p>
+      <label for="user_Conform_Password">Conform password</label><br>
+      <input type="text" name="user[conformpassword]" id="user_conformpassword">
     </p>
   </div>
   
   <div class="input_field">
     <p>
-    	<%= form.label :Contact %><br>
-    	<%= form.text_field :contact%>
+      <label for="user_Contact">Contact</label><br>
+      <input type="text" name="user[contact]" id="user_contact">
     </p>
   </div>
 
   <div class="input_field">
     <p>
-    	<%= form.label :Payment %><br>
-    	<%= form.text_field :paid%>
+      <label for="user_Payment">Payment</label><br>
+      <input type="text" value="No" name="user[paid]" id="user_paid">
     </p>
   </div>
 
   <div class="input_field">
     <p>
-    	<%= form.label :Address %><br>
-    	<%= form.text_field :address%>
+      <label for="user_Address">Address</label><br>
+      <input type="text" value="No Address" name="user[address]" id="user_address">
     </p>
   </div>
   
   <div class="button">
   <p>
-  	<%= form.submit :Submit %>
+    <input type="submit" name="commit" value="Submit" data-disable-with="Submit">
   </p>
-<% end %>
+
+
+<div class="link_style">
+  <a href="/">Back</a>
+</div>
+
+<style type="text/css">
+  .link_style {
+  background-color: #ccffff;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: white;
+}
+</style>
+  
+
+</div></form></body></html>
