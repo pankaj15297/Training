@@ -8,11 +8,19 @@ class UsersController < ApplicationController
  end
  
   def edit
-    @user = User.find(params[:id])
+    if User.all.ids.include? params[:id].to_i
+      @user = User.find(params[:id])
+    else
+      render html: helpers.tag.strong("Id '#{params[:id]}' Not Found")
+    end
   end
 
   def show
-    @user = User.find(params[:id])
+    if User.all.ids.include? params[:id].to_i
+      @user = User.find(params[:id])
+    else
+      render html: helpers.tag.strong("Id '#{params[:id]}' Not Found")
+    end
   end
 
   def create
