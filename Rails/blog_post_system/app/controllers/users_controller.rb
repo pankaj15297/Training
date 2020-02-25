@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   end
 
   def update
-  	@user = User.find(params[:id])
+    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to @user
     else
@@ -47,6 +47,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :contact, :paid, :address)
+    params.require(:user).permit(:name, :email, :contact, :paid, :address)
   end
 end
