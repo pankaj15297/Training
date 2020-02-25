@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  before_save :name_capitalization, :paid_capitalization, :address_capitalization, :email_downcase
+  before_save :firstname_capitalization, :lastname_capitalization, :paid_capitalization, :address_capitalization, :email_downcase
   
   has_many :user_posts, -> { order('title asc') }, class_name: "Post", foreign_key: "user_id", dependent: :destroy
   
@@ -11,11 +11,10 @@ class User < ApplicationRecord
   
   has_many :user_pictures, as: :imageable, class_name: "Picture", foreign_key: "imageable_id"
   
-  has_and_belongs_to_many :user_offices, class_name: "Office"
-
   has_many :user_post_category, through: :user_posts, source: :category
 
-  validates :name, presence: true, length: { maximum: 50}
+  validates :firstname, presence: true, length: { maximum: 50 }
+  validates :lastname, presence: true, length: { maximum: 50 }
   validates :contact, uniqueness: true, presence: true, numericality: true, length: { is: 10 }
   validates :email, uniqueness: true, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i,
     message: "not valid" }
@@ -34,12 +33,20 @@ class User < ApplicationRecord
     puts "You have touched an object"
   end
   
-  def name_capitalization
-    word = name.split(' ')
+  def firstname_capitalization
+    word = firstname.split(' ')
     word.each do |w|
       w.capitalize!
     end
-    self.name = word.join(' ')
+    self.firstname = word.join(' ')
+  end
+
+  def lastname_capitalization
+    word = lastname.split(' ')
+    word.each do |w|
+      w.capitalize!
+    end
+    self.lastname = word.join(' ')
   end
 
   def paid_capitalization
