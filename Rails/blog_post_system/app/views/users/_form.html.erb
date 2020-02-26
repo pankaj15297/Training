@@ -1,153 +1,50 @@
-<!-- <html><head>
-    <title>BlogPostSystem</title>
-    <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="Oz5WSIUleWYwZYJz/nSJptFmZHQCkkZZELG10iClZ/sQm48K9fPpgIjms2mkCLbBwm/CKGKX95X0Jtc8UDKzVQ==">
-    
-
-    <link rel="stylesheet" media="all" href="/assets/application.debug-6c05abdb6a806b01bc68baf10e862c2140d90f713ebd406debebb9950ab2184b.css" data-turbolinks-track="reload">
-    <script src="/packs/js/application-3ddb00b952d7632bd73f.js" data-turbolinks-track="reload"></script>
-  </head>
-
-  <body>
-
-<form action="/users" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Oz5WSIUleWYwZYJz/nSJptFmZHQCkkZZELG10iClZ/sQm48K9fPpgIjms2mkCLbBwm/CKGKX95X0Jtc8UDKzVQ==">
-
-  <div class="input_field">
-    <p>
-      <label for="user_First_Name">First name</label><br>
-      <input type="text" name="user[firstname]" id="user_firstname">
-    </p>
-  </div>
-
-  <div class="input_field">
-    <p>
-      <label for="user_Last_Name">Last name</label><br>
-      <input type="text" name="user[lastname]" id="user_lastname">
-    </p>
-  </div>
-
-  <div class="input_field">
-    <p>
-      <label for="user_Email">Email</label><br>
-      <input type="text" name="user[email]" id="user_email">
-    </p>
-  </div>
-
-  <div class="input_field">
-    <p>
-      <label for="user_Password">Password</label><br>
-      <input type="text" name="user[password]" id="user_password">
-    </p>
-  </div>
-
-  <div class="input_field">
-    <p>
-      <label for="user_Conform_Password">Conform password</label><br>
-      <input type="text" name="user[conformpassword]" id="user_conformpassword">
-    </p>
-  </div>
-  
-  <div class="input_field">
-    <p>
-      <label for="user_Contact">Contact</label><br>
-      <input type="text" name="user[contact]" id="user_contact">
-    </p>
-  </div>
-
-  <div class="input_field">
-    <p>
-      <label for="user_Payment">Payment</label><br>
-      <input type="text" value="No" name="user[paid]" id="user_paid">
-    </p>
-  </div>
-
-  <div class="input_field">
-    <p>
-      <label for="user_Address">Address</label><br>
-      <input type="text" value="No Address" name="user[address]" id="user_address">
-    </p>
-  </div>
-  
-  <div class="button">
-  <p>
-    <input type="submit" name="commit" value="Submit" data-disable-with="Submit">
-  </p>
-
-
-<div class="link_style">
-  <a href="/">Back</a>
-</div>
-
-<style type="text/css">
-  .link_style {
-  background-color: #ccffff;
-  color: white;
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-a:hover, a:active {
-  background-color: white;
-}
-</style>
-  
-
-</div></form></body></html>
-
-
-
-
- -->
-  
-
-
-
-
-
-
-
-
   <div class="container"><br>
     <h3 class="text-success text-center"> User Register Form </h3><br>
     <div class="col-lg-8 m-auto d-block">
-      <form action="/users" accept-charset="UTF-8" method="post" onclick="return validation()" class="bg-light"><input type="hidden" name="authenticity_token" value="Oz5WSIUleWYwZYJz/nSJptFmZHQCkkZZELG10iClZ/sQm48K9fPpgIjms2mkCLbBwm/CKGKX95X0Jtc8UDKzVQ==">
+      <form action="/users" accept-charset="UTF-8" method="post" onclick="return validation()" class="bg-light">
 
         <div class="form-group">
           <label> Firstname: </label>
-          <input type="text" name="user[firstname]" class="form-control" id="firstname" autocomplete="off" placeholder="Firstname">
-          <span id="firstname_error_message" class="text-danger font-weigth-bold" ></span>
+          <input type="text" name="user[firstname]" class="form-control" id="firstname" autocomplete="off" placeholder="Firstname" onkeyup="validate(this)">
+          <span id="firstname_error_message" class=" font-weigth-bold" ></span><br>
+          <span id="firstname_error_messageone" class="text-danger font-weigth-bold" ></span>
         </div>
 
         <div class="form-group">
           <label> Lastname: </label>
           <input type="text" name="user[lastname]" class="form-control" id="lastname" autocomplete="off" placeholder="Lastname">
-          <span id="lastname_error_message" class="text-danger font-weigth-bold" ></span>
+          <span id="lastname_error_message" class="text-danger font-weigth-bold" ></span><br>
+          <span id="lastname_error_messageone" class="text-danger font-weigth-bold" ></span>
         </div>
 
         <div class="form-group">
           <label> Email: </label>
           <input type="text" name="user[email]" class="form-control" id="email" autocomplete="off" placeholder="abc@gmail.com">
-          <span id="email_error_message" class="text-danger font-weigth-bold" ></span>
+          <span id="email_error_message" class="text-danger font-weigth-bold" ></span><br>
+          <span id="email_error_messageone" class="text-danger font-weigth-bold" ></span><br>
+          <span id="email_error_messagetwo" class="text-danger font-weigth-bold" ></span>
         </div>
 
         <div class="form-group">
           <label> Password: </label>
           <input type="text" name="user[password]" class="form-control" id="password" autocomplete="off" placeholder="Password">
-          <span id="password_error_message" class="text-danger font-weigth-bold" ></span>
+          <span id="password_error_message" class="text-danger font-weigth-bold" ></span><br>
+          <span id="password_error_messageone" class="text-danger font-weigth-bold" ></span>
         </div>
 
         <div class="form-group">
           <label> Conform Password: </label>
           <input type="text" name="user[conformpassword]" class="form-control" id="conformpassword" autocomplete="off" placeholder="Conform Password">
-          <span id="conformpassword_error_message" class="text-danger font-weigth-bold" ></span>
+          <span id="conformpassword_error_message" class="text-danger font-weigth-bold" ></span><br>
+          <span id="conformpassword_error_messageone" class="text-danger font-weigth-bold" ></span>
         </div>
 
         <div class="form-group">
           <label> Mobile Number: </label>
           <input type="text" name="user[contact]" class="form-control" id="contact" autocomplete="off" placeholder="Mobile Number">
-          <span id="mobilenumber_error_message" class="text-danger font-weigth-bold" ></span>
+          <span id="mobilenumber_error_message" class="text-danger font-weigth-bold" ></span><br>
+          <span id="mobilenumber_error_messageone" class="text-danger font-weigth-bold" ></span><br>
+          <span id="mobilenumber_error_messagetwo" class="text-danger font-weigth-bold" ></span>
         </div>
 
         <!-- <div class="form-group">
@@ -168,12 +65,13 @@ a:hover, a:active {
 
         <div class="form-group">
           <label> Address: </label>
-          <textarea type="textarea" name="user[address]" class="form-control" id="address" autocomplete="off">Optional
+          <textarea type="textarea" name="user[address]" class="form-control" id="address" autocomplete="off" placeholder="Optional">
           </textarea>
-          <span id="address_error_message" class="text-danger font-weigth-bold" ></span>
+          <span id="address_error_message" class="text-dark font-weigth-bold" style="background-color: lightblue" >Optional</span>
         </div>
 
-        <input type="submit" name="submit" value="submit" class="btn btn-success">             
+        <input type="submit" name="submit" value="submit" class="btn btn-success">
+        <!-- <input type="reset" name="reset" value="reset" class="btn btn-success"> -->
 
       </form>
     </div>
@@ -181,6 +79,28 @@ a:hover, a:active {
 
 
   <script type="text/javascript">
+
+    function validate(obj){
+      switch(obj.id){
+        case "firstname":
+        if (obj.value === "") {
+          //show validation message
+        document.getElementById('firstname_error_message').innerHTML = " ** Please fill the first name field";
+        document.getElementById('firstname_error_message').style.color = "red";
+
+        } else {
+          document.getElementById('firstname_error_message').style.color = "green";
+        document.getElementById('firstname_error_message').innerHTML = "First name is fine";
+        
+
+      }
+        break;
+
+        case "lastname":
+        //todo
+        break;
+      }
+    }
     
     function validation(){
       var firstname = document.getElementById('firstname').value;
@@ -191,17 +111,18 @@ a:hover, a:active {
       var contact = document.getElementById('contact').value;
       var paid = document.getElementById('paid').value;
       var address = document.getElementById('address').value;
-
+      var letters = /^[A-Za-z]+$/;
 
 
 
       if(firstname == ""){
+        document.getElementById('firstname_error_message').style.color = "red";
         document.getElementById('firstname_error_message').innerHTML = " ** Please fill the first name field";
         return false;
       }
 
-      if(!isNaN(firstname)){
-        document.getElementById('firstname_error_message').innerHTML = " ** Only characters are allowed";
+      if(!firstname.match(letters)){
+        document.getElementById('firstname_error_messageone').innerHTML = " ** Only characters are allowed";
         return false;
       }
 
@@ -210,8 +131,8 @@ a:hover, a:active {
         return false;
       }
 
-      if(!isNaN(lastname)){
-        document.getElementById('lastname_error_message').innerHTML = " ** Only characters are allowed";
+      if(!lastname.match(letters)){
+        document.getElementById('lastname_error_messageone').innerHTML = " ** Only characters are allowed";
         return false;
       }
 
@@ -221,12 +142,12 @@ a:hover, a:active {
       }
 
       if(email.indexOf('@') <= 0){
-        document.getElementById('email_error_message').innerHTML = " ** @ invalid position";
+        document.getElementById('email_error_messageone').innerHTML = " ** @ invalid position";
         return false;
       }
 
       if((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.')){
-        document.getElementById('email_error_message').innerHTML = " ** . invalid position";
+        document.getElementById('email_error_messagetwo').innerHTML = " ** . invalid position";
         return false;
       }
 
@@ -236,7 +157,7 @@ a:hover, a:active {
       }
 
       if((password.length < 8) || (password.length > 20)){
-        document.getElementById('password_error_message').innerHTML = " ** Password length must be between 8 and 20";
+        document.getElementById('password_error_messageone').innerHTML = " ** Password length must be between 8 and 20";
         return false;
       }
 
@@ -246,7 +167,7 @@ a:hover, a:active {
       }
 
       if(conformpassword == ""){
-        document.getElementById('conformpassword_error_message').innerHTML = " ** Please fill the conform password field";
+        document.getElementById('conformpassword_error_messageone').innerHTML = " ** Please fill the conform password field";
         return false;
       }
 
@@ -257,12 +178,12 @@ a:hover, a:active {
       }
 
       if(isNaN(contact)){
-        document.getElementById('mobilenumber_error_message').innerHTML = " ** User must write digits only not characters";
+        document.getElementById('mobilenumber_error_messageone').innerHTML = " ** User must write digits only not characters";
         return false;
       }
 
       if(contact.length != 10){
-        document.getElementById('mobilenumber_error_message').innerHTML = " ** Mobile number must be 10 digits only";
+        document.getElementById('mobilenumber_error_messagetwo').innerHTML = " ** Mobile number must be 10 digits only";
         return false;
       }
 
