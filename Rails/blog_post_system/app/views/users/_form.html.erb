@@ -27,21 +27,21 @@
 
         <div class="form-group">
           <label> Password: </label>
-          <input type="text" name="user[password]" class="form-control" id="password" autocomplete="off" placeholder="Password" onkeyup="validate(this)">
+          <input type="password" name="user[password]" class="form-control" id="password" autocomplete="off" placeholder="Password" onkeyup="validate(this)">
           <span id="password_error_message" class="font-weigth-bold" ></span>
           <!-- <span id="password_error_messageone" class="text-danger font-weigth-bold" ></span> -->
         </div>
 
         <div class="form-group">
           <label> Confirm Password: </label>
-          <input type="text" name="user[conformpassword]" class="form-control" id="conformpassword" autocomplete="off" placeholder="Confirm Password" onkeyup="validate(this)">
+          <input type="password" name="user[conformpassword]" class="form-control" id="conformpassword" autocomplete="off" placeholder="Confirm Password" onkeyup="validate(this)">
           <span id="conformpassword_error_message" class="font-weigth-bold" ></span>
           <!-- <span id="conformpassword_error_messageone" class="text-danger font-weigth-bold" ></span> -->
         </div>
 
         <div class="form-group">
           <label> Mobile Number: </label>
-          <input type="text" name="user[contact]" class="form-control" id="contact" autocomplete="off" placeholder="Mobile Number" onkeyup="validate(this)">
+          <input type="number" name="user[contact]" class="form-control" id="contact" autocomplete="off" placeholder="Mobile Number" onkeyup="validate(this)">
           <span id="mobilenumber_error_message" class="font-weigth-bold" ></span>
           <!-- <span id="mobilenumber_error_messageone" class="text-danger font-weigth-bold" ></span><br>
           <span id="mobilenumber_error_messagetwo" class="text-danger font-weigth-bold" ></span> -->
@@ -82,7 +82,8 @@
     
     function validate(obj){
       var letters = /^[A-Za-z]+$/;
-      var valid_email = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+      var valid_email = /(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+      // var valid_pass = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
       
       switch(obj.id){
         case "firstname":
@@ -139,6 +140,13 @@
         else if((obj.value.length < 8) || (obj.value.length > 20)){
           document.getElementById('password_error_message').innerHTML = " ** Password length must be between 8 and 20";
           document.getElementById('password_error_message').style.color = "red";
+        }
+        else if((obj.value.match(/[a-z]/g) && obj.value.match( 
+                    /[A-Z]/g) && obj.value.match( 
+                    /[0-9]/g) && obj.value.match( 
+                    /[^a-zA-Z\d]/g))){
+          document.getElementById('password_error_message').style.color = "red";
+          document.getElementById('password_error_message').innerHTML = "** Password is strong"
         }
         else{
           document.getElementById('password_error_message').style.color = "green";
@@ -218,6 +226,8 @@
       var letters = /^[A-Za-z]+$/;
       var pass = document.getElementById('password').value;
       var cpass = document.getElementById('conformpassword').value;
+      var valid_email = /(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
 
 
       if(firstname == ""){
@@ -226,10 +236,10 @@
         return false;
       }
 
-      // if(!firstname.match(letters)){
-      //   document.getElementById('firstname_error_messageone').innerHTML = " ** Only characters are allowed";
-      //   return false;
-      // }
+      if(!firstname.match(letters)){
+        document.getElementById('firstname_error_message').innerHTML = " ** Only characters are allowed";
+        return false;
+      }
 
       if(lastname == ""){
         document.getElementById('lastname_error_message').style.color = "red";
@@ -237,14 +247,20 @@
         return false;
       }
 
-      // if(!lastname.match(letters)){
-      //   document.getElementById('lastname_error_messageone').innerHTML = " ** Only characters are allowed";
-      //   return false;
-      // }
+      if(!lastname.match(letters)){
+        document.getElementById('lastname_error_message').innerHTML = " ** Only characters are allowed";
+        return false;
+      }
 
       if(email == ""){
         document.getElementById('email_error_message').style.color = "red";
         document.getElementById('email_error_message').innerHTML = " ** Please fill the email field";
+        return false;
+      }
+
+      if(!email.match(valid_email)){
+        document.getElementById('email_error_message').style.color = "red";
+        document.getElementById('email_error_message').innerHTML = " ** Please enter a valid email"
         return false;
       }
 
