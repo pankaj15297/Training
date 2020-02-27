@@ -34,8 +34,8 @@
 
         <div class="form-group">
           <label> Confirm Password: </label>
-          <input type="text" name="user[conformpassword]" class="form-control" id="conformpassword" autocomplete="off" placeholder="Confirm Password">
-          <span id="conformpassword_error_message" class="font-weigth-bold" onkeyup="validate(this)"></span>
+          <input type="text" name="user[conformpassword]" class="form-control" id="conformpassword" autocomplete="off" placeholder="Confirm Password" onkeyup="validate(this)">
+          <span id="conformpassword_error_message" class="font-weigth-bold" ></span>
           <!-- <span id="conformpassword_error_messageone" class="text-danger font-weigth-bold" ></span> -->
         </div>
 
@@ -81,8 +81,6 @@
   <script type="text/javascript">
     
     function validate(obj){
-      var pass = document.getElementById('password_error_message').value;
-      // var cpass =document.getElementById('')
       var letters = /^[A-Za-z]+$/;
       var valid_email = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       
@@ -149,17 +147,19 @@
         break;
 
         case "conformpassword":
+        var pass = document.getElementById('password').value;
         if(obj.value === ""){
           document.getElementById('conformpassword_error_message').innerHTML = " ** Please fill the conform password field";
           document.getElementById('conformpassword_error_message').style.color = "red";
         }
-        else if(pass != cpass){
+        else if(pass != obj.value){
           document.getElementById('conformpassword_error_message').style.color = "red";
           document.getElementById('conformpassword_error_message').innerHTML = " ** Password are not matching";
         }
-        else{
+        else {
+          
           document.getElementById('conformpassword_error_message').style.color = "green";
-          document.getElementById('conformpassword_error_message').innerHTML = "Fine";
+          document.getElementById('conformpassword_error_message').innerHTML = "";
         }
         break;
 
@@ -192,6 +192,17 @@
           document.getElementById('payment_error_message').innerHTML = "Selected!";
         }
         break;
+
+        case "address":
+        if(obj.value.length > 20){
+          document.getElementById('address_error_message').style.color = "red";
+          document.getElementById('address_error_message').innerHTML = "Please minimize the address";
+        }
+        else{
+          document.getElementById('address_error_message').style.color = "green";
+          document.getElementById('address_error_message').innerHTML = "Address must be less than 20 characters";
+        }
+        break;
       }
     }
     
@@ -205,7 +216,8 @@
       var paid = document.getElementById('paid').value;
       var address = document.getElementById('address').value;
       var letters = /^[A-Za-z]+$/;
-
+      var pass = document.getElementById('password').value;
+      var cpass = document.getElementById('conformpassword').value;
 
 
       if(firstname == ""){
@@ -268,6 +280,12 @@
         return false;
       }
 
+      if(pass != cpass){
+        document.getElementById('conformpassword_error_message').style.color = "red";
+        document.getElementById('conformpassword_error_message').innerHTML = " ** Password are not matching";
+        return false;
+      }
+
 
       if(contact == ""){
         document.getElementById('mobilenumber_error_message').style.color = "red";
@@ -291,11 +309,14 @@
         return false;
       }
 
-      // if(address == ""){
-      //   document.getElementById('address_error_message').innerHTML = " ** Please fill the address field";
-      //   return false;
-      // }
+      if(address.length > 20){
+        document.getElementById('address_error_message').style.color = "red";
+        document.getElementById('address_error_message').innerHTML = "Please minimize the address";
+        return false;
+      }
     }
 
 
   </script>
+
+<a href="/users">Show Users</a>
