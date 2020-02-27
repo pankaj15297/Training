@@ -6,23 +6,23 @@
         <div class="form-group">
           <label> Firstname: </label>
           <input type="text" name="user[firstname]" class="form-control" id="firstname" autocomplete="off" placeholder="Firstname" onkeyup="validate(this)">
-          <span id="firstname_error_message" class=" font-weigth-bold" ></span><br>
-          <span id="firstname_error_messageone" class="text-danger font-weigth-bold" ></span>
+          <span id="firstname_error_message" class="font-weigth-bold" ></span>
+          <!-- <span id="firstname_error_messageone" class="text-danger font-weigth-bold" ></span> -->
         </div>
 
         <div class="form-group">
           <label> Lastname: </label>
-          <input type="text" name="user[lastname]" class="form-control" id="lastname" autocomplete="off" placeholder="Lastname">
-          <span id="lastname_error_message" class="text-danger font-weigth-bold" ></span><br>
-          <span id="lastname_error_messageone" class="text-danger font-weigth-bold" ></span>
+          <input type="text" name="user[lastname]" class="form-control" id="lastname" autocomplete="off" placeholder="Lastname" onkeyup="validate(this)">
+          <span id="lastname_error_message" class="font-weigth-bold" ></span>
+          <!-- <span id="lastname_error_messageone" class="text-danger font-weigth-bold" ></span> -->
         </div>
 
         <div class="form-group">
           <label> Email: </label>
           <input type="text" name="user[email]" class="form-control" id="email" autocomplete="off" placeholder="abc@gmail.com">
-          <span id="email_error_message" class="text-danger font-weigth-bold" ></span><br>
-          <span id="email_error_messageone" class="text-danger font-weigth-bold" ></span><br>
-          <span id="email_error_messagetwo" class="text-danger font-weigth-bold" ></span>
+          <span id="email_error_message" class="font-weigth-bold" ></span>
+          <!-- <span id="email_error_messageone" class="text-danger font-weigth-bold" ></span><br>
+          <span id="email_error_messagetwo" class="text-danger font-weigth-bold" ></span> -->
         </div>
 
         <div class="form-group">
@@ -79,26 +79,68 @@
 
 
   <script type="text/javascript">
-
+    
     function validate(obj){
+
+      var letters = /^[A-Za-z]+$/;
+      var valid_email = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i;
+      
       switch(obj.id){
         case "firstname":
         if (obj.value === "") {
           //show validation message
-        document.getElementById('firstname_error_message').innerHTML = " ** Please fill the first name field";
-        document.getElementById('firstname_error_message').style.color = "red";
-
-        } else {
+          document.getElementById('firstname_error_message').innerHTML = " ** Please fill the first name field";
+          document.getElementById('firstname_error_message').style.color = "red";
+        }
+        else if(!obj.value.match(letters)){
+          document.getElementById('firstname_error_message').innerHTML = " ** Only characters are allowed";
+          document.getElementById('firstname_error_message').style.color = "red";
+        }
+        else {
           document.getElementById('firstname_error_message').style.color = "green";
-        document.getElementById('firstname_error_message').innerHTML = "First name is fine";
-        
-
-      }
+          document.getElementById('firstname_error_message').innerHTML = "First name is fine";
+        } 
         break;
 
         case "lastname":
-        //todo
+        if(obj.value === ""){
+          document.getElementById('lastname_error_message').innerHTML = " ** Please fill the last name field";
+          document.getElementById('lastname_error_message').style.color = "red";
+        }
+        else if(!obj.value.match(letters)){
+          document.getElementById('lastname_error_message').innerHTML = " ** Only characters are allowed";
+          document.getElementById('lastname_error_message').style.color = "red"; 
+        }
+        else{
+          document.getElementById('lastname_error_message').style.color = "green";
+          document.getElementById('lastname_error_message').innerHTML = "Last name is fine";
+        }
         break;
+
+        case "email":
+        if(obj.value === ""){
+          document.getElementById('email_error_message').innerHTML = " ** Please fill the email field";
+          document.getElementById('email_error_message').style.color = "red";
+        }
+        else if(!obj.value.match(valid_email)){
+          document.getElementById('email_error_message').innerHTML = " ** Please enter a valid email";
+          document.getElementById('email_error_message').style.color = "red";
+        }
+        else{
+          document.getElementById('email_error_message').style.color = "green";
+          document.getElementById('email_error_message').innerHTML = "Email is fine";
+        }
+        break;
+
+        case "password":
+        if(obj.value === ""){
+          document.getElementById('password_error_message').innerHTML = " ** Please fill the password field";
+          document.getElementById('password_error_message').style.color = "red";
+        }
+        else if((obj.value.length < 8) || (obj.value.length > 20)){
+          document.getElementById('password_error_messageone').innerHTML = " ** Password length must be between 8 and 20";
+          document.getElementById('password_error_message').style.color = "red"
+        }
       }
     }
     
@@ -121,35 +163,37 @@
         return false;
       }
 
-      if(!firstname.match(letters)){
-        document.getElementById('firstname_error_messageone').innerHTML = " ** Only characters are allowed";
-        return false;
-      }
+      // if(!firstname.match(letters)){
+      //   document.getElementById('firstname_error_messageone').innerHTML = " ** Only characters are allowed";
+      //   return false;
+      // }
 
       if(lastname == ""){
+        document.getElementById('lastname_error_message').style.color = "red"
         document.getElementById('lastname_error_message').innerHTML = " ** Please fill the last name field";
         return false;
       }
 
-      if(!lastname.match(letters)){
-        document.getElementById('lastname_error_messageone').innerHTML = " ** Only characters are allowed";
-        return false;
-      }
+      // if(!lastname.match(letters)){
+      //   document.getElementById('lastname_error_messageone').innerHTML = " ** Only characters are allowed";
+      //   return false;
+      // }
 
       if(email == ""){
+        document.getElementById('email_error_message').style.color = "red"
         document.getElementById('email_error_message').innerHTML = " ** Please fill the email field";
         return false;
       }
 
-      if(email.indexOf('@') <= 0){
-        document.getElementById('email_error_messageone').innerHTML = " ** @ invalid position";
-        return false;
-      }
+      // if(email.indexOf('@') <= 0){
+      //   document.getElementById('email_error_messageone').innerHTML = " ** @ invalid position";
+      //   return false;
+      // }
 
-      if((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.')){
-        document.getElementById('email_error_messagetwo').innerHTML = " ** . invalid position";
-        return false;
-      }
+      // if((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.')){
+      //   document.getElementById('email_error_messagetwo').innerHTML = " ** . invalid position";
+      //   return false;
+      // }
 
       if(password == ""){
         document.getElementById('password_error_message').innerHTML = " ** Please fill the password field";
