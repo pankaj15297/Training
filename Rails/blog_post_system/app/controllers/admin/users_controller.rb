@@ -1,7 +1,8 @@
 class Admin::UsersController < ApplicationController
   protect_from_forgery except: [:create, :edit]
+  layout "users"
   def index
-    if User.any?
+    if User.present?
       @users = User.all
     else
       render html: helpers.tag.strong("No Record Found")
@@ -30,10 +31,12 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      redirect_to admin_user_path(@user.id)
-    else
-      render 'new'
+    respond_to do |format|
+      if @user.save
+        format.html {redirect_to admin_user_path(@user.id), notice: 'User was successfully created.'}
+      else
+        render 'new'
+      end
     end
   end
 
