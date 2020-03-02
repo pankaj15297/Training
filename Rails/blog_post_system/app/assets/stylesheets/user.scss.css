@@ -1,20 +1,38 @@
-/*input[type=submit] {
-  width: 100%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+    .container-fluid{
+      background-color: black;
+    }
 
-input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}*/
+    .form-control{
+      background: #c2c2d6;
+      /*background-image: url("car.jpg");*/
+    }
+
+    .form-controll{
+      position: absolute;
+      right: 0;
+      margin: 20px;
+      /*max-width: 300px;*/
+      width: 40%;
+      padding: 16px;
+      background-color: white;
+    }
+
+    .bg-img{
+      /*background: #00ff99;  */
+      background-image: url("natural.png");
+      min-height: 1000px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+
+    .btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+}
