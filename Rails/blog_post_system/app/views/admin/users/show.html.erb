@@ -1,72 +1,78 @@
-<p class="output_field">
-  <strong> First Name: </strong>
-  <%= @user.firstname %>
-</p>
+<div class="container">
+  <div class="bg-img">
+    <div class="output_field">
+      <strong> First Name: </strong>
+      <%= @user.firstname %>
+    </div>
 
-<p class="output_field">
-  <strong>Last Name: </strong>
-  <%= @user.lastname %>
-</p>
+    <div class="output_field">
+      <strong>Last Name: </strong>
+      <%= @user.lastname %>
+    </div>
 
-<p class="output_field">
-  <strong> Email: </strong>
-  <%= @user.email %>
-</p>
+    <div class="output_field">
+      <strong> Email: </strong>
+      <%= @user.email %>
+    </div>
 
-<p class="output_field">
-  <strong> Contact: </strong>
-  <%= @user.contact %>
-</p>
+    <div class="output_field">
+      <strong> Contact: </strong>
+      <%= @user.contact %>
+    </div>
 
-<p class="output_field">
-	<strong> Payment: </strong>
-	<%= @user.paid %>
-</p>
+    <div class="output_field">
+      <strong> Payment: </strong>
+      <%= @user.paid %>
+    </div>
 
-<p class="output_field">
-	<strong> Address: </strong>
-	<%= @user.address %>
-</p>
+    <div class="output_field">
+      <strong> Address: </strong>
+      <%= @user.address %>
+    </div>
 
-<div class="link_style">
-  <%= link_to 'Back', edit_admin_user_path %><br>
-</div>
+    <div class="link_style">
+      <%= link_to 'Back', edit_admin_user_path %><br>
+    </div>
 
-<div class="link_style">
-  <%= link_to 'Show Users', admin_users_path %>
-</div>
+    <div class="link_style">
+      <%= link_to 'Show Users', admin_users_path %>
+    </div>
 
-<div class="link_style">
-  <%= link_to 'New User', new_admin_user_path %>
-</div>
+    <div class="link_style">
+      <%= link_to 'New User', new_admin_user_path %>
+    </div>
 
-<div class="link_style">
-  <%= link_to 'Edit', edit_admin_user_path %>
+    <div class="link_style">
+      <%= link_to 'Edit', edit_admin_user_path %>
+    </div>
+  </div>  
 </div>
 
 <style type="text/css">
-  .output_field {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-</style>
+  .container .output_field {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
 
+  .container .link_style {
+    background-color: #ccffff;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
 
-<style type="text/css">
-  .link_style {
-  background-color: #ccffff;
-  color: white;
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
+  .container .bg-img{
+    background-color: #b3b3cc;
+  }
 
-a:hover, a:active {
-  background-color: white;
-}
+  a:hover, a:active {
+    background-color: white;
+  }
 </style>
