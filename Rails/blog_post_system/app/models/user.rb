@@ -1,3 +1,11 @@
+class MyValidator < ActiveModel::Validator
+  def validates(record)
+    if record.firstname == "Delhi"
+      record.errors[:base] << "This is not a name"
+    end
+  end
+end
+
 class User < ApplicationRecord
   before_save :firstname_capitalization, :lastname_capitalization, :paid_capitalization, :address_capitalization, :email_downcase
   
@@ -18,6 +26,7 @@ class User < ApplicationRecord
   validates :contact, uniqueness: true, presence: true, numericality: true, length: { is: 10 }
   validates :email, uniqueness: true, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i,
     message: "not valid" }
+  validates_with MyValidator
 
   scope :paid, -> (args){ where ("paid = ?"), args }
 
