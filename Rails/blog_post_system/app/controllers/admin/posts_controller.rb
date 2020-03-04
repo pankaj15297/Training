@@ -30,9 +30,21 @@ class Admin::PostsController < ApplicationController
   end
 
   def create
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to admin_post_path(@post.id)
+    else
+      render 'new'
+    end
   end
 
   def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to @post
+    else
+      render 'edit'
+    end
   end
 
   def destroy
@@ -40,5 +52,6 @@ class Admin::PostsController < ApplicationController
 
   private
   def post_params
+    params.require(:post).permit(:title, :content, :category_id)
   end
 end
