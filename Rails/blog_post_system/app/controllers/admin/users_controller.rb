@@ -2,7 +2,8 @@ class Admin::UsersController < ApplicationController
   protect_from_forgery except: [:create, :edit]
   layout "users"
   def index
-    @users = User.all
+    # @users = User.paginate(:per_page => 2, :page => params[:page])
+    @users = User.all.order(:created_at)
     # @users = User.where(is_deleted: false)
   end
 
@@ -39,7 +40,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to @user
+      redirect_to admin_user_path(@user.id)
     else
       render 'edit'
     end

@@ -1,3 +1,4 @@
 <center style="color: black; background-color: #3399ff"><b>Create User Information</b></center>
-
-<%= render 'form' %>
+<%= form_with(model: @user, local: true, url: admin_users_path) do |form| %>
+  <%= render 'form', user: @user, form: form %>
+<% end %>

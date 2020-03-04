@@ -1,109 +1,56 @@
-<div class="container">
-  <h3 style="color: white"><b>User Register Form</b></h3><br>
-  <div class="bg-img">
-    <%= form_with model: @user, url: admin_users_path, class: "form-controll" do |form| %>
-      <h4><b>User Details</b></h4><br>
-      <% if @user.errors.any? %>
-      <div id="error_explanation">
-        <h4><%= pluralize(@user.errors.count, "error") %> Prohibited this user from benging saved:</h4>
-        <ul>
-          <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-      <% end %>
-      <div class="form-group">
-        <%= form.label :First_Name %><br>
-        <%= form.text_field :firstname, placeholder: "Firstname", class: "form-control" %>
-      </div>
 
-      <div class="form-group">
-        <%= form.label :Last_Name %><br>
-        <%= form.text_field :lastname, placeholder: "lastname", class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :Email %><br>
-        <%= form.text_field :email, placeholder: "Email", class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :Password %><br>
-        <%= form.text_field :password, placeholder: "Password", class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :Confirm_Password %><br>
-        <%= form.text_field :confirmpassword, placeholder: "Confirm_Password", class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :Contact %><br>
-        <%= form.text_field :contact, placeholder: "Mobile Number", class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :Payment %><br>
-        <%= form.text_field :paid, placeholder: "Payment", class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :Address %><br>
-        <%= form.text_field :address, placeholder: "Address", class: "form-control" %>
-      </div>
-
-      <div class="group">
-        <%= form.submit :Submit, class: "btn" %>
-      </div>
+    
+<h4><b>User Details</b></h4><br>
+<% if user.errors.any? %>
+<div id="error_explanation">
+  <h4><%= pluralize(user.errors.count, "error") %> Prohibited this user from benging saved:</h4>
+  <ul>
+    <% user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
     <% end %>
-  </div>
+  </ul>
+</div>
+<% end %>
+<div class="form-group">
+  <%= form.label :First_Name %><br>
+  <%= form.text_field :firstname, placeholder: "Firstname", class: "form-control" %>
 </div>
 
-<style type="text/css">
-  .container{
-    width: 100%;
-    position: relative;
-    max-width: 100%;
-    background-color: black;
-  }
+<div class="form-group">
+  <%= form.label :Last_Name %><br>
+  <%= form.text_field :lastname, placeholder: "lastname", class: "form-control" %>
+</div>
 
-  .container .form-control{
-    background: #c2c2d6;
-  }
+<div class="form-group">
+  <%= form.label :Email %><br>
+  <%= form.text_field :email, placeholder: "Email", class: "form-control" %>
+</div>
 
-  .container .form-controll{
-    position: absolute;
-    right: 0;
-    margin: 20px;
-    /*max-width: 300px;*/
-    width: 40%;
-    padding: 16px;
-    background-color: white;
-  }
+<div class="form-group">
+  <%= form.label :Password %><br>
+  <%= form.text_field :password, placeholder: "Password", class: "form-control" %>
+</div>
 
-  .container .bg-img{
-    /*background: #00ff99;  */
-    background-image: url("/assets/tree2.jpg");
-    min-height: 1400px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-  }
+<div class="form-group">
+  <%= form.label :Confirm_Password %><br>
+  <%= form.text_field :confirmpassword, placeholder: "Confirm_Password", class: "form-control" %>
+</div>
 
-  .container .btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-  }
+<div class="form-group">
+  <%= form.label :Contact %><br>
+  <%= form.text_field :contact, placeholder: "Mobile Number", class: "form-control" %>
+</div>
 
-  .container .btn:hover {
-    background-color: #80ffcc;
-    color: black;
-  }
-</style>
+<div class="form-group">
+  <%= form.label :Payment %><br>
+  <%= form.text_field :paid, placeholder: "Payment", class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= form.label :Address %><br>
+  <%= form.text_field :address, placeholder: "Address", class: "form-control" %>
+</div>
+
+<div class="group">
+  <%= form.submit :Submit, class: "btn" %>
+</div>

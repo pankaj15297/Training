@@ -1,3 +1,4 @@
 <center style="color: black; background-color: #3399ff;"><b>Edit User Information</b></center>
-
-<%= render 'form' %>
+<%= form_with(model: @user, local: true, url: "/admin/users/#{@user.id}") do |form| %>
+  <%= render 'form', user: @user, form: form %>
+<% end %>
