@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :students
   # get 'products/index'
   # get 'models/index'
 
