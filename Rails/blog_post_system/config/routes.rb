@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace  :admin do
     resources :users, :posts
   end
-  # get '/users/:id', to: 'users#show', as: 'show_user'
+  get 'admin/:id/users', to: 'admin/users#soft_delete', as: 'admin_soft_delete'
   # get '/users/:id/edit', to: 'users#edit', as: 'edit_user'
   get '*path', :to => 'application#routing_error'
 end
