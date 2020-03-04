@@ -1,4 +1,65 @@
-<!-- <h1>------Heading-------</h1>  -->
+<div class="container">
+  <h3 style="color: white"><b>User Register Form</b></h3><br>
+  <div class="bg-img">
+    <%= form_with model: @user, url: admin_users_path, class: "form-controll" do |form| %>
+      <h4><b>User Details</b></h4><br>
+      <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h4><%= pluralize(@user.errors.count, "error") %> Prohibited this user from benging saved:</h4>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+      <div class="form-group">
+        <%= form.label :First_Name %><br>
+        <%= form.text_field :firstname, placeholder: "Firstname", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :Last_Name %><br>
+        <%= form.text_field :lastname, placeholder: "lastname", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :Email %><br>
+        <%= form.text_field :email, placeholder: "Email", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :Password %><br>
+        <%= form.text_field :password, placeholder: "Password", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :Confirm_Password %><br>
+        <%= form.text_field :confirmpassword, placeholder: "Confirm_Password", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :Contact %><br>
+        <%= form.text_field :contact, placeholder: "Mobile Number", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :Payment %><br>
+        <%= form.text_field :paid, placeholder: "Payment", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :Address %><br>
+        <%= form.text_field :address, placeholder: "Address", class: "form-control" %>
+      </div>
+
+      <div class="group">
+        <%= form.submit :Submit, class: "btn" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
 <style type="text/css">
   .container{
     width: 100%;
@@ -22,8 +83,8 @@
   }
 
   .container .bg-img{
-    /*background: #00ff99;  */
-    background-image: url("/assets/tree2.jpg");
+    background: #00ff99;  
+    /*background-image: url("/assets/tree2.jpg");*/
     min-height: 1400px;
     background-position: center;
     background-repeat: no-repeat;
@@ -46,355 +107,3 @@
     color: black;
   }
 </style>
-
-<div class="container"><br>
-  <h3 style="color: white"><b>User Register Form</b></h3><br>
-  <div class="bg-img">
-    <form action="/admin/users" accept-charset="UTF-8" method="post" onclick="return validation()" class="form-controll" data-remote="true">
-      <h4><b>User Details</b></h4><br>
-
-      <div class="form-group">
-        <label><b>First Name<span id="ftn" style="color: red"> *</span></b></label>
-        <input type="text" name="user[firstname]" class="form-control" id="firstname" autocomplete="off" placeholder="Firstname" onkeyup="validate(this)">
-        <span id="firstname_error_message" class="font-weigth-bold" ></span>
-      </div><br>
-
-      <div class="form-group">
-        <label><b>Last Name<span id="ltn" style="color: red"> *</span></b></label>
-        <input type="text" name="user[lastname]" class="form-control" id="lastname" autocomplete="off" placeholder="Lastname" onkeyup="validate(this)">
-        <span id="lastname_error_message" class="font-weigth-bold" ></span>
-      </div><br>
-
-      <div class="form-group">
-        <label><b>Email<span id="eml" style="color: red"> *</span></b></label>
-        <input type="text" name="user[email]" class="form-control" id="email" autocomplete="off" placeholder="abc@gmail.com" onkeyup="validate(this)">
-        <span id="email_error_message" class="font-weigth-bold" ></span>
-      </div><br>
-
-      <div class="form-group">
-        <label><b>Password<span id="psw" style="color: red"> *</span></b></label>
-        <input type="password" name="user[password]" class="form-control" id="password" autocomplete="off" placeholder="Password" onkeyup="validate(this)">
-        <span id="password_error_message" class="font-weigth-bold" ></span>
-      </div><br>
-
-      <div class="form-group">
-        <label><b>Confirm Password<span id="cpsw" style="color: red"> *</span></b></label>
-        <input type="password" name="user[conformpassword]" class="form-control" id="conformpassword" autocomplete="off" placeholder="Confirm Password" onkeyup="validate(this)">
-        <span id="conformpassword_error_message" class="font-weigth-bold" ></span>
-      </div><br>
-
-      <div class="form-group">
-        <label><b>Mobile Number<span id="mno" style="color: red"> *</span></b></label>
-        <input type="number" name="user[contact]" class="form-control" id="contact" autocomplete="off" placeholder="Mobile Number" onkeyup="validate(this)">
-        <span id="mobilenumber_error_message" class="font-weigth-bold" ></span>
-      </div><br>
-
-      <div class="form-group">
-        <label><b>Payment<span id="pay" style="color: red"> *</span></b></label>
-        <select name="user[paid]" class="form-contro" id="paid" placeholder="Select" onkeyup="validate(this)">
-          <option value="">--select--</option>
-          <option value="Yes" selected="selected"> Yes </option>
-          <option value="No"> No </option>
-        </select>
-        <span id="payment_error_message" class="font-weigth-bold" ></span>
-      </div><br>
-
-      <div class="form-group">
-        <label><b>Address (Optional)</b></label>
-        <textarea type="textarea" name="user[address]" class="form-control" id="address" autocomplete="off" onkeyup="validate(this)">
-        </textarea>
-        <span id="address_error_message" class="font-weigth-bold" style="background-color: lightblue" ></span>
-      </div><br>
-
-      <input type="submit" name="submit" value="Sign Up" class="btn">
-
-    </form>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  function validate(obj){
-    var letters = /^[A-Za-z]+$/;
-    var valid_email = /(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    // var valid_pass = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
-    
-    switch(obj.id){
-      case "firstname":
-
-      if (obj.value === "") {
-        //show validation message
-        document.getElementById('ftn').style.color = "red";
-        document.getElementById('firstname_error_message').innerHTML = " ** Please fill the first name field";
-        document.getElementById('firstname_error_message').style.color = "red";
-      }
-      else if(!obj.value.match(letters)){
-        document.getElementById('ftn').style.color = "red";
-        document.getElementById('firstname_error_message').innerHTML = " ** Only characters are allowed";
-        document.getElementById('firstname_error_message').style.color = "red";
-      }
-      else {
-        document.getElementById('ftn').style.color = "green";
-        // document.getElementById('firstname_error_message').style.color = "green";
-        document.getElementById('firstname_error_message').innerHTML = "";
-      } 
-      break;
-
-      case "lastname":
-
-      if(obj.value === ""){
-        document.getElementById('ltn').style.color = "red";
-        document.getElementById('lastname_error_message').innerHTML = " ** Please fill the last name field";
-        document.getElementById('lastname_error_message').style.color = "red";
-      }
-      else if(!obj.value.match(letters)){
-        document.getElementById('ltn').style.color = "red";
-        document.getElementById('lastname_error_message').innerHTML = " ** Only characters are allowed";
-        document.getElementById('lastname_error_message').style.color = "red"; 
-      }
-      else{
-        document.getElementById('ltn').style.color = "green";
-        // document.getElementById('lastname_error_message').style.color = "green";
-        document.getElementById('lastname_error_message').innerHTML = "";
-      }
-      break;
-
-      case "email":
-
-      if(obj.value === ""){
-        document.getElementById('eml').style.color = "red";
-        document.getElementById('email_error_message').innerHTML = " ** Please fill the email field";
-        document.getElementById('email_error_message').style.color = "red";
-      }
-      else if(!obj.value.match(valid_email)){
-        document.getElementById('eml').style.color = "red";
-        document.getElementById('email_error_message').innerHTML = " ** Please enter a valid email";
-        document.getElementById('email_error_message').style.color = "red";
-      }
-      else{
-        document.getElementById('eml').style.color = "green";
-        // document.getElementById('email_error_message').style.color = "green";
-        document.getElementById('email_error_message').innerHTML = "";
-      }
-      break;
-
-      case "password":
-
-      if(obj.value === ""){
-        document.getElementById('psw').style.color = "red";
-        document.getElementById('password_error_message').innerHTML = " ** Please fill the password field";
-        document.getElementById('password_error_message').style.color = "red";
-      }
-      else if((obj.value.length < 8) || (obj.value.length > 20)){
-        document.getElementById('psw').style.color = "red";
-        document.getElementById('password_error_message').innerHTML = " ** Password length must be between 8 and 20";
-        document.getElementById('password_error_message').style.color = "red";
-      }
-      else if((!obj.value.match(/[a-z]/)) || (!obj.value.match(/[A-Z]/)) || (!obj.value.match(/[0-9]/)) || (!obj.value.match(/[^a-zA-Z\d]/))){
-        document.getElementById('password_error_message').style.color = "red";
-        document.getElementById('password_error_message').innerHTML = "** Password is weak"
-      }
-      else{
-        document.getElementById('psw').style.color = "green";
-        // document.getElementById('password_error_message').style.color = "green";
-        document.getElementById('password_error_message').innerHTML = "";
-      }
-      break;
-
-      case "conformpassword":
-
-      var pass = document.getElementById('password').value;
-      if(obj.value === ""){
-        document.getElementById('cpsw').style.color = "red";
-        document.getElementById('conformpassword_error_message').innerHTML = " ** Please fill the conform password field";
-        document.getElementById('conformpassword_error_message').style.color = "red";
-      }
-      else if(pass != obj.value){
-        document.getElementById('cpsw').style.color = "red";
-        document.getElementById('conformpassword_error_message').style.color = "red";
-        document.getElementById('conformpassword_error_message').innerHTML = " ** Password are not matching";
-      }
-      else {
-        document.getElementById('cpsw').style.color = "green";
-        // document.getElementById('conformpassword_error_message').style.color = "green";
-        document.getElementById('conformpassword_error_message').innerHTML = "";
-      }
-      break;
-
-      case "contact":
-
-      if(obj.value === ""){
-        document.getElementById('mno').style.color = "red";
-        document.getElementById('mobilenumber_error_message').innerHTML = " ** Please fill the mobile number field";
-        document.getElementById('mobilenumber_error_message').style.color = "red";
-      }
-      else if(isNaN(obj.value)){
-        document.getElementById('mno').style.color = "red";
-        document.getElementById('mobilenumber_error_message').innerHTML = " ** User must write digits only not characters";
-        document.getElementById('mobilenumber_error_message').style.color = "red";
-      }
-      else if(obj.value.length != 10){
-        document.getElementById('mno').style.color = "red";
-        document.getElementById('mobilenumber_error_message').innerHTML = " ** Mobile number must be 10 digits only";
-        document.getElementById('mobilenumber_error_message').style.color = "red";
-      }
-      else{
-        document.getElementById('mno').style.color = "green";
-        // document.getElementById('mobilenumber_error_message').style.color = "green";
-        document.getElementById('mobilenumber_error_message').innerHTML = "";
-      }
-      break;
-
-      case "paid":
-
-      if(obj.value === ""){
-        document.getElementById('pay').style.color = "red";
-        document.getElementById('payment_error_message').style.color = "red";
-        document.getElementById('payment_error_message').innerHTML = " ** Please select the payment field";
-      }
-      else{
-        document.getElementById('pay').style.color = "green";
-        document.getElementById('payment_error_message').style.color = "green";
-        document.getElementById('payment_error_message').innerHTML = "Selected!";
-      }
-      break;
-
-      case "address":
-
-      if(obj.value.length > 20){
-        document.getElementById('address_error_message').style.color = "red";
-        document.getElementById('address_error_message').innerHTML = "Please minimize the address";
-      }
-      else{
-        document.getElementById('address_error_message').style.color = "green";
-        document.getElementById('address_error_message').innerHTML = "Address must be less than 20 characters";
-      }
-      break;
-    }
-  }
-  
-  function validation(){
-    var firstname = document.getElementById('firstname').value;
-    var lastname = document.getElementById('lastname').value;
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
-    var conformpassword = document.getElementById('conformpassword').value;
-    var contact = document.getElementById('contact').value;
-    var paid = document.getElementById('paid').value;
-    var address = document.getElementById('address').value;
-    var letters = /^[A-Za-z]+$/;
-    var pass = document.getElementById('password').value;
-    var cpass = document.getElementById('conformpassword').value;
-    var valid_email = /(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-
-
-
-    if(firstname === ""){
-      document.getElementById('firstname_error_message').style.color = "red";
-      document.getElementById('firstname_error_message').innerHTML = " ** Please fill the first name field";
-      return false;
-    }
-
-    if(!firstname.match(letters)){
-      document.getElementById('firstname_error_message').innerHTML = " ** Only characters are allowed";
-      return true;
-    }
-
-    if(lastname == ""){
-      document.getElementById('lastname_error_message').style.color = "red";
-      document.getElementById('lastname_error_message').innerHTML = " ** Please fill the last name field";
-      return false;
-    }
-
-    if(!lastname.match(letters)){
-      document.getElementById('lastname_error_message').innerHTML = " ** Only characters are allowed";
-      return false;
-    }
-
-    if(email == ""){
-      document.getElementById('email_error_message').style.color = "red";
-      document.getElementById('email_error_message').innerHTML = " ** Please fill the email field";
-      return false;
-    }
-
-    if(!email.match(valid_email)){
-      document.getElementById('email_error_message').style.color = "red";
-      document.getElementById('email_error_message').innerHTML = " ** Please enter a valid email"
-      return false;
-    }
-
-    // if(email.indexOf('@') <= 0){
-    //   document.getElementById('email_error_messageone').innerHTML = " ** @ invalid position";
-    //   return false;
-    // }
-
-    // if((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.')){
-    //   document.getElementById('email_error_messagetwo').innerHTML = " ** . invalid position";
-    //   return false;
-    // }
-
-    if(password == ""){
-      document.getElementById('password_error_message').style.color = "red";
-      document.getElementById('password_error_message').innerHTML = " ** Please fill the password field";
-      return false;
-    }
-
-    if((password.length < 8) || (password.length > 20)){
-      document.getElementById('password_error_message').style.color = "red";
-      document.getElementById('password_error_message').innerHTML = " ** Password length must be between 8 and 20";
-      return false;
-    }
-
-    if((!obj.value.match(/[a-z]/)) || (!obj.value.match(/[A-Z]/)) || (!obj.value.match(/[0-9]/)) || (!obj.value.match(/[^a-zA-Z\d]/))){
-        document.getElementById('password_error_message').style.color = "red";
-        document.getElementById('password_error_message').innerHTML = "** Password is weak"
-        return false;
-      }
-
-    // if(password != conformpassword){
-    //   document.getElementById('conformpassword_error_message').innerHTML = " ** Password are not matching";
-    //   return false;
-    // }
-
-    if(conformpassword == ""){
-      document.getElementById('conformpassword_error_message').style.color = "red";
-      document.getElementById('conformpassword_error_message').innerHTML = " ** Please fill the conform password field";
-      return false;
-    }
-
-    if(pass != cpass){
-      document.getElementById('conformpassword_error_message').style.color = "red";
-      document.getElementById('conformpassword_error_message').innerHTML = " ** Password are not matching";
-      return false;
-    }
-
-
-    if(contact == ""){
-      document.getElementById('mobilenumber_error_message').style.color = "red";
-      document.getElementById('mobilenumber_error_message').innerHTML = " ** Please fill the mobile number field";
-      return false;
-    }
-
-    if(isNaN(contact)){
-      document.getElementById('mobilenumber_error_messageone').innerHTML = " ** User must write digits only not characters";
-      return false;
-    }
-
-    if(contact.length != 10){
-      document.getElementById('mobilenumber_error_messagetwo').innerHTML = " ** Mobile number must be 10 digits only";
-      return false;
-    }
-
-    if(paid == ""){
-      document.getElementById('payment_error_message').style.color = "red";
-      document.getElementById('payment_error_message').innerHTML = " ** Please select the payment field";
-      return false;
-    }
-
-    if(address.length > 20){
-      document.getElementById('address_error_message').style.color = "red";
-      document.getElementById('address_error_message').innerHTML = "Please minimize the address";
-      return false;
-    }
-  }
-</script>
