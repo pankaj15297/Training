@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  username: pankaj
+  password: 123
+  pool: <%= ENV["NUM_OF_THREADS"] %>
+
+development:
+  <<: *default
+  database: Ajax_application_development
+
+# test:
+#   <<: *default
+#   database: policymogul_test
+
+# production:
+#   <<: *default
+#   url: <%= ENV['DATABASE_URL'] %>

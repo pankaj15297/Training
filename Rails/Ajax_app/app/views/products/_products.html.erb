@@ -1,0 +1,14 @@
+<% @products.each do |product| %>
+  <tr>
+    <td><%= product.name %></td>
+    <td><%= product.price %></td>
+    <td><%= product.active %></td>
+    <td>
+      <% if product.active %>
+        <%= link_to "Inactive", product_active_path(product.id), method: 'patch', remote: true %>
+      <% else %>
+        <%= link_to "Active", product_active_path(product.id), method: 'patch', remote: true %>
+      <% end %>
+    </td>
+  </tr>
+<%end%>
