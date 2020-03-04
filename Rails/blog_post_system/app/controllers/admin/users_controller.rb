@@ -2,7 +2,8 @@ class Admin::UsersController < ApplicationController
   protect_from_forgery except: [:create, :edit]
   layout "users"
   def index
-    @users = User.where(is_deleted: false)
+    @users = User.all
+    # @users = User.where(is_deleted: false)
   end
 
   def new
@@ -51,10 +52,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def soft_delete
-    @user = User.find(params[:id])
-    if @user.update(is_deleted: true)
-      redirect_to admin_users_path
-    end
+    user = User.find(params[:id])
+    user.update(is_deleted: !user.is_deleted)
+    @users = User.all
   end
 
   private
