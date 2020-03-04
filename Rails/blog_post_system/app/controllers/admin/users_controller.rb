@@ -10,7 +10,7 @@ class Admin::UsersController < ApplicationController
   end
 
  def new
-   @user = User.new()
+   @user = User.new
  end
  
   def edit
@@ -31,12 +31,11 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    respond_to do |format|
-      if @user.save
-        format.html {redirect_to admin_user_path(@user.id), notice: 'User was successfully created.'}
-      else
-        render 'new'
-      end
+    if @user.save
+      redirect_to admin_user_path(@user.id), notice: "User was successfully created."
+      # format.html {redirect_to admin_user_path(@user.id), notice: 'User was successfully created.'}
+    else
+      render 'new'
     end
   end
 
@@ -52,7 +51,15 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to users_path
+    redirect_to admin_users_path
+  end
+
+  def soft_delete
+    # binding.pry
+    @user = User.find(params[:id])
+    if @user.update(is_deleted: true)
+      redirect_to admin_users_path
+    end
   end
 
   private
