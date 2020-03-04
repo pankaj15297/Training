@@ -1,27 +1,27 @@
 <h3> Listing Users </h3>
 <table>
   <tr>
-	<th> First Name </th>
-	<th> Last Name </th>
-	<th> Email </th>
-	<th> Contact </th>
-	<th> Payment </th>
-	<th> Address </th>
-	<th></th>
+  	<th> First Name </th>
+    <th> Last Name </th>
+    <th> Email </th>
+    <th> Contact </th>
+    <th> Payment </th>
+    <th> Address </th>
+    <th></th>
   </tr>
   <% @users.each do |user|%>
-	  <tr>
-	    <td><%= user.firstname %></td>
-	    <td><%= user.lastname %></td>
-	    <td><%= user.email %></td>
-	    <td><%= user.contact %></td>
-	    <td><%= user.paid %></td>
-	    <td><%= user.address %></td>
-	    <td><%= link_to 'Show', admin_user_path(user) %></td>
-	    <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
-	    <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	    <td><%= link_to 'Soft delete', {controller: "admin/users", action: "soft_delete", id: user.id}, data: { confirm: 'Are you sure'} %></td>
-	  </tr>
+    <tr>
+      <td><%= user.firstname %></td>
+      <td><%= user.lastname %></td>
+      <td><%= user.email %></td>
+      <td><%= user.contact %></td>
+      <td><%= user.paid %></td>
+      <td><%= user.address %></td>
+      <td><%= link_to 'Show', admin_user_path(user) %></td>
+      <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
+      <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Soft delete', {controller: "admin/users", action: "soft_delete", id: user.id}, data: { confirm: 'Are you sure'} %></td>
+    </tr>
   <% end %>
 </table>
 
@@ -31,15 +31,15 @@
 
 <style type="text/css">
   .link_style {
-  background-color: #ccffff;
-  color: white;
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
+  	background-color: #ccffff;
+  	color: white;
+  	padding: 14px 25px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  }
 
-a:hover, a:active {
-  background-color: white;
-}
+  a:hover, a:active {
+  	background-color: white;
+  }
 </style>

@@ -1,5 +1,6 @@
+<center style="color: black; background-color: #3399ff;"><b>Created User Information</b></center>
 <div class="container">
-  <div class="bg-img">
+  <div class="bg-control">
     <div class="output_field">
       <strong> First Name: </strong>
       <%= @user.firstname %>
@@ -31,10 +32,6 @@
     </div>
 
     <div class="link_style">
-      <%= link_to 'Back', edit_admin_user_path %><br>
-    </div>
-
-    <div class="link_style">
       <%= link_to 'Show Users', admin_users_path %>
     </div>
 
@@ -49,6 +46,15 @@
 </div>
 
 <style type="text/css">
+  .container{
+    width: 100%;
+    position: relative;
+    max-width: 100%;
+    background-color: black;
+    background-image: url("/assets/tree2.jpg");
+    min-height: 1400px;
+  }
+
   .container .output_field {
     width: 100%;
     padding: 12px 20px;
@@ -68,8 +74,9 @@
     display: inline-block;
   }
 
-  .container .bg-img{
-    background-color: #b3b3cc;
+  .container .bg-control{
+    background-color: white;
+    width: 50%;
   }
 
   a:hover, a:active {
