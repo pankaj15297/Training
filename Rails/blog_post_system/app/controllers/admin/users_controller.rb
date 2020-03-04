@@ -2,11 +2,7 @@ class Admin::UsersController < ApplicationController
   protect_from_forgery except: [:create, :edit]
   layout "users"
   def index
-    if User.present?
-      @users = User.all
-    else
-      render html: helpers.tag.strong("No Record Found")
-    end
+    @users = User.where(is_deleted: false)
   end
 
  def new
@@ -40,12 +36,17 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
+    binding.pry
     @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to @user
     else
       render 'edit'
     end
+  end
+
+  def update
+    binding.pry
   end
 
   def destroy
