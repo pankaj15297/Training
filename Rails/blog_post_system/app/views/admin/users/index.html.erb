@@ -1,30 +1,19 @@
 <h3> Listing Users </h3>
 <table>
-  <tr>
-  	<th> First Name </th>
-    <th> Last Name </th>
-    <th> Email </th>
-    <th> Contact </th>
-    <th> Payment </th>
-    <th> Address </th>
-    <th></th>
-  </tr>
-  <% @users.each do |user|%>
-    <% if user.is_deleted == false%>
-      <tr>
-      	<td><%= user.firstname %></td>
-	    <td><%= user.lastname %></td>
-	    <td><%= user.email %></td>
-	    <td><%= user.contact %></td>
-	    <td><%= user.paid %></td>
-	    <td><%= user.address %></td>
-	    <td><%= link_to 'Show', admin_user_path(user) %></td>
-	    <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
-	    <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	    <td><%= link_to 'Soft delete', {controller: "admin/users", action: "soft_delete", id: user.id}, data: { confirm: 'Are you sure'} %></td>
-	  </tr>
-	<% end %>
-  <% end %>
+  <thead>
+    <tr>
+    	<th> First Name </th>
+      <th> Last Name </th>
+      <th> Email </th>
+      <th> Contact </th>
+      <th> Payment </th>
+      <th> Address </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="users-list">
+    <%= render partial: 'users'%>
+  </tbody>
 </table>
 
 <div class="link_style">
