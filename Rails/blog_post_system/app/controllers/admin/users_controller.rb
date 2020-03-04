@@ -5,10 +5,10 @@ class Admin::UsersController < ApplicationController
     @users = User.where(is_deleted: false)
   end
 
- def new
-   @user = User.new
- end
- 
+  def new
+    @user = User.new
+  end
+
   def edit
     begin
       @user = User.find(params[:id])
@@ -36,17 +36,12 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    binding.pry
     @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to @user
     else
       render 'edit'
     end
-  end
-
-  def update
-    binding.pry
   end
 
   def destroy
@@ -56,7 +51,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def soft_delete
-    # binding.pry
     @user = User.find(params[:id])
     if @user.update(is_deleted: true)
       redirect_to admin_users_path
