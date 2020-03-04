@@ -19,7 +19,8 @@
 	    <td><%= user.address %></td>
 	    <td><%= link_to 'Show', admin_user_path(user) %></td>
 	    <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
-	    <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { conform: 'Are you sure?' } %></td>
+	    <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	    <td><%= link_to 'Soft delete', {controller: "admin/users", action: "soft_delete", id: user.id}, data: { confirm: 'Are you sure'} %></td>
 	  </tr>
   <% end %>
 </table>
