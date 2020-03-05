@@ -2,8 +2,11 @@ class Admin::UsersController < ApplicationController
   protect_from_forgery except: [:create, :edit]
   layout "users"
   def index
+    # binding.pry
+    @page = params.fetch(:page, 0).to_i
+    @users = User.order(created_at: :desc).limit(2).offset(@page*2)
     # @users = User.paginate(:per_page => 2, :page => params[:page])
-    @users = User.all.order(:created_at)
+    # @users = User.all.order(:created_at)
     # @users = User.where(is_deleted: false)
   end
 
