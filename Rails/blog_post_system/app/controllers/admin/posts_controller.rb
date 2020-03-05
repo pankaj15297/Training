@@ -3,7 +3,7 @@ class Admin::PostsController < ApplicationController
   layout "posts"
   def index
     # @posts = Post.all
-  	@page = params.fetch(:page, 0).to_i
+    @page = params.fetch(:page, 0).to_i
     @posts = Post.order(:created_at).limit(4).offset(@page*4)
   end
 
