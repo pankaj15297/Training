@@ -1,0 +1,45 @@
+.container{
+  width: 100%;
+  position: relative;
+  max-width: 100%;
+  background-color: black;
+}
+
+.container .form-control{
+  background: #c2c2d6;
+}
+
+.container .form-controll{
+  position: absolute;
+  right: 0;
+  margin: 20px;
+  /*max-width: 300px;*/
+  width: 40%;
+  padding: 16px;
+  background-color: white;
+}
+
+.container .bg-img{
+  /*background: #00ff99;  */
+  background-image: url("/assets/tree2.jpg");
+  min-height: 1400px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.container .btn:hover {
+  background-color: #80ffcc;
+  color: black;
+}
