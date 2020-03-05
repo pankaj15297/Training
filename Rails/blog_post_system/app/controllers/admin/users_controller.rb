@@ -3,6 +3,7 @@ class Admin::UsersController < ApplicationController
   layout "users"
   def index
     # binding.pry
+    sleep 1
     @page = params.fetch(:page, 0).to_i
     @users = User.order(created_at: :desc).limit(2).offset(@page*2)
     # @users = User.paginate(:per_page => 2, :page => params[:page])
