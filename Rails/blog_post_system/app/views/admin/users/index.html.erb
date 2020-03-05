@@ -14,11 +14,18 @@
   <tbody id="users-list">
     <%= render partial: 'users'%>
   </tbody>
-</table>
+</table><br><br>
+
+<div style="text-align: center">
+  <%= link_to "Last Page", admin_users_path(page: @page - 1) %>
+  |
+  <%= link_to "Next Page", admin_users_path(page: @page + 1) %>
+</div>
 
 <div class="link_style">
   <%= link_to 'New User', new_admin_user_path %><br>
 </div>
+
 
 <style type="text/css">
   .link_style {
