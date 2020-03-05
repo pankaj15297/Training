@@ -11,6 +11,7 @@
   |
   <%= link_to "Next", admin_posts_path(page: @page + 1), method: 'get', remote: true %>
 </div>
+
 <div style="background-color: #95AAB1">
   <table>
     <tr>
@@ -25,5 +26,19 @@
       </tr>
     <% end %>
   </table>
+</div>
+
+<div style="text-align: center">
+  <%= link_to "Previous", admin_posts_path(page: @page - 1), method: 'get', remote: true %>
+  |
+  <%= link_to "1", admin_posts_path(page: 1), method: 'get', remote: true %>
+  |
+  <%= link_to "2", admin_posts_path(page: 2), method: 'get', remote: true %>
+  |
+  <%= link_to "3", admin_posts_path(page: 3), method: 'get', remote: true %>
+  |
+  <%= "..." %>
+  |
+  <%= link_to "Next", admin_posts_path(page: @page + 1), method: 'get', remote: true %>
 </div>
 
