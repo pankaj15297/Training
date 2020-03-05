@@ -1,20 +1,24 @@
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.firstname %></td>
-    <td><%= user.lastname %></td>
-    <td><%= user.email %></td>
-    <td><%= user.contact %></td>
-    <td><%= user.paid %></td>
-    <td><%= user.address %></td>
-    <td><%= link_to 'Show', admin_user_path(user) %></td>
-    <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
-    <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <td>
-      <% if user.is_deleted %>
-        <%= link_to "Revert", user_soft_delete_path(user.id), method: 'patch', remote: true %>
-      <% else %>
-        <%= link_to 'Soft delete', user_soft_delete_path(user.id), method: 'patch', remote: true %>
-      <% end %>
-    </td>
-  </tr>
+<% if @page >= 0 and @page <= @users.count %>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.firstname %></td>
+      <td><%= user.lastname %></td>
+      <td><%= user.email %></td>
+      <td><%= user.contact %></td>
+      <td><%= user.paid %></td>
+      <td><%= user.address %> | </td>
+      <td><%= link_to 'Show', admin_user_path(user) %> | </td>
+      <td><%= link_to 'Edit', edit_admin_user_path(user) %> | </td>
+      <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %> | </td>
+      <td>
+        <% if user.is_deleted %>
+          <%= link_to "Revert", user_soft_delete_path(user.id), method: 'patch', remote: true %>
+        <% else %>
+          <%= link_to 'Soft delete', user_soft_delete_path(user.id), method: 'patch', remote: true %>
+        <% end %>
+      </td>
+    </tr> 
+  <% end %>
+<% else %>
+  <h4 style="text-align: center; color: red"><b>No record Found</b></h4>
 <% end %>
