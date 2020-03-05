@@ -13,14 +13,17 @@
         </tr>
       <% end %>
       <% else %>
-        <h4 style="text-align: center; color: brown"><b>No record Found</b></h4>
-        <% @page = -1 %>
+        <h4 style="text-align: center; color: brown"><b></b></h4>
       <% end %>
   </table>
 </div>
 
 <div style="text-align: center">
-  <%= link_to "Previous", admin_posts_path(page: @page - 1), method: 'get', remote: true %>
+  <% if @page == 0 %>
+    <%= link_to "Previous", admin_posts_path(page: 0), method: 'get', remote: true %>
+  <% else %>
+    <%= link_to "Previous", admin_posts_path(page: @page - 1), method: 'get', remote: true %>
+  <% end %>
   |
   <%= link_to "1", admin_posts_path(page: 0), method: 'get', remote: true %>
   |
@@ -30,6 +33,10 @@
   |
   <%= "..." %>
   |
-  <%= link_to "Next", admin_posts_path(page: @page + 1), method: 'get', remote: true %>
+  <% if @page == @posts.count %>
+    <%= link_to "Next", admin_posts_path(page: @posts.count), method: 'get', remote: true %>
+  <% else %>
+    <%= link_to "Next", admin_posts_path(page: @page + 1), method: 'get', remote: true %>
+  <% end %>
 </div>
 
