@@ -2,8 +2,8 @@
 <div class="container">
   <h3 style="color: white"><b>User's Post Form</b></h3><br>
   <div class="bg-img">
-  	<%= form_with(model: @post, local: true, url: admin_posts_path, class: "form-controll") do |form| %>
-  	  <%= render 'form', post: @post, form: form %>
-  	<% end %>
+    <%= form_with(model: @post, local: true, url: admin_posts_path, class: "form-controll") do |form| %>
+      <%= render 'form', post: @post, form: form %>
+    <% end %>
   </div>
 </div>
