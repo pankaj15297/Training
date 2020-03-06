@@ -6,10 +6,17 @@ class Admin::PostsController < ApplicationController
     @page = params.fetch(:page, 0).to_i
     @posts = Post.order(:created_at).limit(4).offset(@page*4)
     @records = Post.count
+    # binding.pry
+    if params[:element]
+      # binding.pry
+      @page = params.fetch(:page, 0).to_i
+      @users = Post.where(title: params[:element]).order(:created_at).limit(4).offset(@page*4)
+      @records = Post.count
+    end
   end
 
   def new
-    @post = Post.new()
+    @post = Post.new
   end
 
   def edit
