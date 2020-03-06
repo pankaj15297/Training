@@ -17,7 +17,11 @@
 </table><br><br>
 
 <div style="text-align: center">
-  <%= link_to "Previous Page", admin_users_path(page: @page - 1) %>
+  <% if @page == 0 %>
+    <%= link_to "<<Previous", admin_users_path(page: 0) %>
+  <% else %>
+    <%= link_to "<<Previous", admin_users_path(page: @page - 1) %>
+  <% end %>
   |
   <%= link_to "1", admin_users_path(page: 1) %>
   |
@@ -27,7 +31,11 @@
   |
   <%= "..." %>
   |
-  <%= link_to "Next Page", admin_users_path(page: @page + 1) %>
+  <% if @page > (@records/4).ceil-1 %>
+    <%= link_to "Next>>", admin_users_path(page: (@records/4).ceil) %>
+  <% else %>
+    <%= link_to "Next>>", admin_users_path(page: @page + 1) %>
+  <% end %>
 </div>
 
 <div class="link_style">

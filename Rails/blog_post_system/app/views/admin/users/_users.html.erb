@@ -1,4 +1,4 @@
-<% if @page >= 0 and @page <= @users.count %>
+<%# if @page >= 0 and @page <= @users.count %>
   <% @users.each do |user| %>
     <tr>
       <td><%= user.firstname %></td>
@@ -19,7 +19,6 @@
       </td>
     </tr> 
   <% end %>
-<% else %>
-  <h4 style="text-align: center; color: red"><b>No record Found</b></h4>
-  <% @page = 0 %>
-<% end %>
+<%# else %>
+  <!-- <h4 style="text-align: center; color: red"><b>No record Found</b></h4> -->
+<%# end %>
