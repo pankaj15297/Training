@@ -23,11 +23,11 @@
     <%= link_to "<<Previous", admin_users_path(page: @page - 1) %>
   <% end %>
   |
-  <%= link_to "1", admin_users_path(page: 1) %>
+  <%= link_to "1", admin_users_path(page: 0) %>
   |
-  <%= link_to "2", admin_users_path(page: 2) %>
+  <%= link_to "2", admin_users_path(page: 1) %>
   |
-  <%= link_to "3", admin_users_path(page: 3) %>
+  <%= link_to "3", admin_users_path(page: 2) %>
   |
   <%= "..." %>
   |

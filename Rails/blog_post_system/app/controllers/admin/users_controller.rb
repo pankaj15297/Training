@@ -59,7 +59,10 @@ class Admin::UsersController < ApplicationController
   def soft_delete
     user = User.find(params[:id])
     user.update(is_deleted: !user.is_deleted)
-    @users = User.all
+    @page = params.fetch(:page, 0).to_i
+    @users = User.order(created_at: :desc).limit(4).offset(@page*4)
+    @records = User.count
+    # @users = User.all
   end
 
   private
