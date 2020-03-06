@@ -10,7 +10,7 @@ class Admin::PostsController < ApplicationController
     if params[:element]
       # binding.pry
       @page = params.fetch(:page, 0).to_i
-      @posts = Post.where(title: params[:element]).order(:created_at).limit(4).offset(@page*4)
+      @posts = Post.where("title LIKE ? or content LIKE ?", "#{params[:element]}%", "#{params[:element]}%").order(:created_at).limit(4).offset(@page*4)
       @records = Post.count
     else
       @page = params.fetch(:page, 0).to_i
