@@ -40,8 +40,17 @@
   <% end %>
 </div><br><br>
 
-<%= form_tag admin_posts_path, :method => 'get', :remote => true do %>
-  <%= text_field_tag :element, params[:element] %>
-  <%= submit_tag "Search" %>
-<% end %>
+<% if flash[:notice] %>
+  <div style="text-align: center; color: red">
+    <%= flash[:notice] %>
+  </div><br><br>
+<% end %> 
+
+
+<div style="text-align: center">
+  <%= form_tag admin_posts_path, :method => 'get', :remote => true do %>
+    <%= text_field_tag :element, params[:element], placeholder: "Title or Content" %>
+    <%= submit_tag "Search" %>
+  <% end %>
+</div>
 

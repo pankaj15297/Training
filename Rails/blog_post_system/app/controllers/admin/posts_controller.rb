@@ -11,6 +11,10 @@ class Admin::PostsController < ApplicationController
       # binding.pry
       @page = params.fetch(:page, 0).to_i
       @posts = Post.where("title LIKE ? or content LIKE ?", "#{params[:element]}%", "#{params[:element]}%").order(:created_at).limit(4).offset(@page*4)
+      if !@posts.present?
+        # binding.pry
+        flash[:notice] = "No records Fount"
+      end
       @records = Post.count
     else
       @page = params.fetch(:page, 0).to_i
