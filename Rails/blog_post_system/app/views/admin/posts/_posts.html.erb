@@ -5,7 +5,7 @@
       <th>Content</th>
     </tr>
 
-    <% if @page >= 0 and @page <= @posts.count %>
+    <% if @page >= 0 and @page <= @records %>
       <% @posts.each do |post| %>
         <tr>
           <td><%= post.title %></td>
@@ -33,8 +33,8 @@
   |
   <%= "..." %>
   |
-  <% if @page == @posts.count %>
-    <%= link_to "Next", admin_posts_path(page: @posts.count), method: 'get', remote: true %>
+  <% if @page == ((@records/4)+(@records%4))-1 %>
+    <%= link_to "Next", admin_posts_path(page: ((@records/4)+(@records%4))-1), method: 'get', remote: true %>
   <% else %>
     <%= link_to "Next", admin_posts_path(page: @page + 1), method: 'get', remote: true %>
   <% end %>
