@@ -5,24 +5,24 @@
       <th>Content</th>
     </tr>
 
-    <% if @page >= 0 and @page <= @records %>
+    <%# if @page >= 0 and @page < 4 %>
       <% @posts.each do |post| %>
         <tr>
           <td><%= post.title %></td>
           <td><%= post.content %></td>
         </tr>
       <% end %>
-      <% else %>
+      <% #else %>
         <h4 style="text-align: center; color: brown"><b></b></h4>
-      <% end %>
+      <% #end %>
   </table>
 </div>
 
 <div style="text-align: center">
   <% if @page == 0 %>
-    <%= link_to "Previous", admin_posts_path(page: 0), method: 'get', remote: true %>
+    <%= link_to "<<Previous", admin_posts_path(page: 0), method: 'get', remote: true %>
   <% else %>
-    <%= link_to "Previous", admin_posts_path(page: @page - 1), method: 'get', remote: true %>
+    <%= link_to "<<Previous", admin_posts_path(page: @page - 1), method: 'get', remote: true %>
   <% end %>
   |
   <%= link_to "1", admin_posts_path(page: 0), method: 'get', remote: true %>
@@ -33,10 +33,10 @@
   |
   <%= "..." %>
   |
-  <% if @page == ((@records/4)+(@records%4))-1 %>
-    <%= link_to "Next", admin_posts_path(page: ((@records/4)+(@records%4))-1), method: 'get', remote: true %>
+  <% if @page > (@records/4).ceil-1 %>
+    <%= link_to "Next>>", admin_posts_path(page: (@records/4).ceil), method: 'get', remote: true %>
   <% else %>
-    <%= link_to "Next", admin_posts_path(page: @page + 1), method: 'get', remote: true %>
+    <%= link_to "Next>>", admin_posts_path(page: @page + 1), method: 'get', remote: true %>
   <% end %>
 </div>
 
