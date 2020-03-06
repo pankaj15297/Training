@@ -38,5 +38,10 @@
   <% else %>
     <%= link_to "Next>>", admin_posts_path(page: @page + 1), method: 'get', remote: true %>
   <% end %>
-</div>
+</div><br><br>
+
+<%= form_tag admin_posts_path, :method => 'get', :remote => true do %>
+  <%= text_field_tag :element, params[:element] %>
+  <%= submit_tag "Search" %>
+<% end %>
 
