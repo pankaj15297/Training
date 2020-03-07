@@ -1,0 +1,9 @@
+<center style="color: black; background-color: #3399ff"><b>Create User Post Picture</b></center>
+<div class="container">
+  <h3 style="color: white"><b>Picture Form</b></h3><br>
+  <div class="bg-img">
+    <%= form_with(model: @picture, local: true, url: admin_pictures_path, class: "form-controll") do |form| %>
+      <%= render 'form', picture: @picture, form: form %>
+    <% end %>
+  </div>
+</div>
