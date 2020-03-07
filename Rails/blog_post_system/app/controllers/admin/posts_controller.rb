@@ -4,9 +4,11 @@ class Admin::PostsController < ApplicationController
   def index
     @page = params.fetch(:page, 0).to_i
     if params[:element]
-      @posts = Post.where("title LIKE ? or content LIKE ?", "#{params[:element]}%", "#{params[:element]}%").order(:created_at).limit(4).offset(@page*4)
+      @posts = Post.where("lower(title) LIKE lower(?) or lower(content) LIKE lower(?)", "#{params[:element]}%", "#{params[:element]}%").order(:created_at).limit(4).offset(@page*4)
       if !@posts.present?
         flash[:notice] = "No records Fount"
+      else
+        flash[:notice] = ""
       end
     elsif(params[:format] == 'ASC')
       @posts = Post.order(:title).limit(4).offset(@page*4)
