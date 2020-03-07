@@ -58,5 +58,8 @@
     <%= text_field_tag :element, params[:element], placeholder: "Title or Content" %>
     <%= submit_tag "Search" %>
   <% end %>
-</div>
+</div><br><br>
 
+<div style="text-align: center">
+  <%= link_to "Sort", admin_posts_path('ASC'), method: 'get', remote: true %>
+</div>
