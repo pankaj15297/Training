@@ -1,5 +1,6 @@
 class Admin::PicturesController < ApplicationController
-  protect_from_forgery except: [:create :update]
+  protect_from_forgery except: [:create, :update]
+  layout "pictures"
   def index
     @pictures = Picture.all  	
   end
