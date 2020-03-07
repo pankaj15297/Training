@@ -1,7 +1,23 @@
-<% @pictures.each do |picture| %>
-  <tr>
-    <td><%= picture.name %></td>
-    <td><%= picture.imageable_id %></td>
-    <td><%= picture.imageable_type%></td>
-  </tr>
-<% end %>
+<table>
+  <thead>
+    <tr>
+    	<th><%= sortable "name", "Name"%></th>
+      <th><%= sortable "imageable_type", "Imageable_type" %></th>
+      <th><%= sortable "imageable_id", "Imageable_id" %></th>
+    </tr>
+  </thead>
+  <tbody id="pictures-list">
+    <% @pictures.each do |picture| %>
+      <tr>
+        <td><%= picture.name %></td>
+        <td><%= picture.imageable_id %></td>
+        <td><%= picture.imageable_type %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div style="text-align: center">
+  <%#= link_to "Sort", admin_pictures_path(sort: "DESC"), method: 'get', remote: true %>
+</div>
+
