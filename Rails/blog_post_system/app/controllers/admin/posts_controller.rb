@@ -2,18 +2,18 @@ class Admin::PostsController < ApplicationController
   protect_from_forgery except: [:create, :edit]
   layout "posts"
   def index
+    @page = params.fetch(:page, 0).to_i
     if params[:element]
-      @page = params.fetch(:page, 0).to_i
       @posts = Post.where("title LIKE ? or content LIKE ?", "#{params[:element]}%", "#{params[:element]}%").order(:created_at).limit(4).offset(@page*4)
       if !@posts.present?
         flash[:notice] = "No records Fount"
       end
-      @records = Post.count
+    elsif(params[:format] == 'ASC')
+      @posts = Post.order(:title).limit(4).offset(@page*4)
     else
-      @page = params.fetch(:page, 0).to_i
-      @posts = Post.order(:created_at).limit(4).offset(@page*4)
-      @records = Post.count
+      @posts = Post.order(:created_at).limit(4).offset(@page*4)  
     end
+    @records = Post.count
   end
 
   def new
