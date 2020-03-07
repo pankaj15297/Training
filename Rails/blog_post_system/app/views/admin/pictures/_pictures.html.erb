@@ -1,0 +1,7 @@
+<% @pictures.each do |picture| %>
+  <tr>
+    <td><%= picture.name %></td>
+    <td><%= picture.imageable_id %></td>
+    <td><%= picture.imageable_type%></td>
+  </tr>
+<% end %>
