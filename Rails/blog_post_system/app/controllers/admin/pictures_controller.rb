@@ -1,8 +1,15 @@
 class Admin::PicturesController < ApplicationController
   protect_from_forgery except: [:create, :update]
   layout "pictures"
+  include PicturesHelper
+
   def index
-    @pictures = Picture.all  	
+    @pictures = Picture.order("#{params[:sort]} #{params[:direction]}")
+    # if params[:sort] == 'DESC'
+    #   @pictures = Picture.order(name: :desc)
+    # else
+    #   @pictures = Picture.order(:name)
+    # end
   end
 
   def new
