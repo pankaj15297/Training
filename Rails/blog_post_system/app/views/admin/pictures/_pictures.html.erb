@@ -6,7 +6,7 @@
       <th><%= sortable "imageable_id", "Imageable_id" %></th>
     </tr>
   </thead>
-  <tbody id="pictures-list">
+  <tbody>
     <% @pictures.each do |picture| %>
       <tr>
         <td><%= picture.name %></td>
@@ -21,3 +21,6 @@
   <%#= link_to "Sort", admin_pictures_path(sort: "DESC"), method: 'get', remote: true %>
 </div>
 
+<div>
+  <%= will_paginate %>
+</div>
