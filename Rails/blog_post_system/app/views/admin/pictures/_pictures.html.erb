@@ -1,7 +1,7 @@
 <table>
   <thead>
     <tr>
-    	<th><%= sortable "name", "Name"%></th>
+    	<th><%= sortable "name", "Name" %></th>
       <th><%= sortable "imageable_type", "Imageable_type" %></th>
       <th><%= sortable "imageable_id", "Imageable_id" %></th>
     </tr>
@@ -16,10 +16,6 @@
     <% end %>
   </tbody>
 </table>
-
-<div style="text-align: center">
-  <%#= link_to "Sort", admin_pictures_path(sort: "DESC"), method: 'get', remote: true %>
-</div>
 
 <div>
   <%= will_paginate %>
