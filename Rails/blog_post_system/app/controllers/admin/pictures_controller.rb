@@ -4,12 +4,26 @@ class Admin::PicturesController < ApplicationController
   include PicturesHelper
 
   def index
-    @pictures = Picture.order("#{params[:sort]} #{params[:direction]}")
-    # if params[:sort] == 'DESC'
-    #   @pictures = Picture.order(name: :desc)
-    # else
-    #   @pictures = Picture.order(:name)
-    # end
+    if params[:sort] == 'name' and params[:direction] == 'asc'
+      @pictures = Picture.order(:name).paginate(page: params[:page], per_page: 15)
+    elsif params[:sort] == 'name' and params[:direction] == 'desc'
+      @pictures = Picture.order(name: :desc).paginate(page: params[:page], per_page: 15)
+    elsif params[:sort] == 'imageable_type' and params[:direction] == 'asc'
+      @pictures = Picture.order(:imageable_type).paginate(page: params[:page], per_page: 15)
+    elsif params[:sort] == 'imageable_type' and params[:direction] == 'desc'
+      @pictures = Picture.order(imageable_type: :desc).paginate(page: params[:page], per_page: 15)
+    elsif params[:sort] == "imageable_id" and params[:direction] == 'asc'
+      @pictures = Picture.order(:imageable_id).paginate(page: params[:page], per_page: 15)
+    elsif params[:sort] == "imageable_id" and params[:direction] == 'desc'
+      @pictures = Picture.order(imageable_id: :desc).paginate(page: params[:page], per_page: 15)
+    else
+      @pictures = Picture.paginate(page: params[:page], per_page: 15)
+    end
+    # @pictures = Picture.order("#{params[:sort]} #{params[:direction]}")
+    respond_to do |format|
+      format.html # index.html.erb
+      format.js
+    end
   end
 
   def new
