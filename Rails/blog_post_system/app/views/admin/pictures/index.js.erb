@@ -1,1 +1,2 @@
-$("#pictures-list").html("<%= escape_javascript(render("pictures")) %>");
+jQuery('#pictures-list').html("<%= escape_javascript(render("pictures")) %>");
+$('.pagination a').attr('data-remote', 'true');
