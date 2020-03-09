@@ -9,7 +9,7 @@
       <td><%= user.address %> | </td>
       <td><%= link_to 'Show', admin_user_path(user) %> | </td>
       <td><%= link_to 'Edit', edit_admin_user_path(user) %> | </td>
-      <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %> | </td>
+      <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "delete-user" %> | </td>
       <td>
         <% if user.is_deleted %>
           <%= link_to "Revert", user_soft_delete_path(user.id), method: 'patch', remote: true %>
