@@ -1,4 +1,4 @@
-class Admin::Api::V1::PicturesController < ApplicationController
+class Api::V1::PicturesController < ApplicationController
   protect_from_forgery except: [:create, :update]
   layout "pictures"
   include PicturesHelper
