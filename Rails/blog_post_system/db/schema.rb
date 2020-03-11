@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_20_065207) do
+ActiveRecord::Schema.define(version: 2020_03_03_123544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,19 +41,6 @@ ActiveRecord::Schema.define(version: 2020_02_20_065207) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "offices", force: :cascade do |t|
-    t.string "name"
-    t.string "address"
-    t.integer "pincode"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "offices_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "office_id", null: false
-  end
-
   create_table "pictures", force: :cascade do |t|
     t.string "name"
     t.string "imageable_type"
@@ -76,12 +63,17 @@ ActiveRecord::Schema.define(version: 2020_02_20_065207) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "firstname", null: false
     t.string "address", default: "No Address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "paid", default: "No"
     t.bigint "contact", null: false
+    t.string "email"
+    t.string "lastname"
+    t.string "password"
+    t.integer "lock_version", default: 0, null: false
+    t.boolean "is_deleted", default: false, null: false
   end
 
   add_foreign_key "comments", "posts"

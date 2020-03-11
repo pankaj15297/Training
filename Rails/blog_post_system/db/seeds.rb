@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+n = (1..100).to_a
+100.times {|i| User.last.user_pictures.create(name: "Picture"+"#{n[i]}")}
