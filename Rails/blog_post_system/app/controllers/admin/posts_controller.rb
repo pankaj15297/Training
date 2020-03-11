@@ -1,4 +1,4 @@
-class Admin::Api::V1::PostsController < ApplicationController
+class Admin::PostsController < ApplicationController
   protect_from_forgery except: [:create, :edit]
   layout "posts"
   def index
