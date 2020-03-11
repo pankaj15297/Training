@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class Admin::Api::V1::UsersController < ApplicationController
   protect_from_forgery except: [:create, :edit]
   layout "users"
   def index
@@ -6,6 +6,7 @@ class Admin::UsersController < ApplicationController
     @page = params.fetch(:page, 0).to_i
     @users = User.order(created_at: :desc).limit(4).offset(@page*4)
     @records = User.count
+    render json: @users
     # @users = User.paginate(:per_page => 2, :page => params[:page])
     # @users = User.all.order(:created_at)
     # @users = User.where(is_deleted: false)
