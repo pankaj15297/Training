@@ -1,4 +1,4 @@
-// alert('dsghjjh')
-// $(function(){
-//   $('.pagination a').attr('data-remote', 'true')
-// });
+alert('dsghjjh')
+$(function(){
+  $('.pagination a').attr('data-remote', 'true')
+});
